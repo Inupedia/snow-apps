@@ -11,6 +11,7 @@
 #include "snow_shot/app/shellimagelaunch.h"
 #include "snow_shot/presentation/languagemanager.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/presentation/settings/applicationpriority.h"
 #include "snow_shot/platform/windows/autostartregistration.h"
@@ -545,6 +546,7 @@ int main(int argc, char* argv[]) {
     // Keep it stable while giving Qt windows and the macOS menu the product name.
     QGuiApplication::setApplicationDisplayName(snow_shot::app::edition::productName());
     QApplication app(argc, argv);
+    snow_shot::presentation::styles::installLiquidGlassShell();
     adqt::widgets::initializePlatformCompatibility(app);
     snow_shot::diagnostics::logEvent(QStringLiteral("snow_shot.app"),
                                      QStringLiteral("application.platform"),

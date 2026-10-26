@@ -4,6 +4,7 @@
 #include <QCursor>
 
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 
 #include <QEnterEvent>
 #include <QFontMetrics>
@@ -149,6 +150,10 @@ void SelectionToolbarPanel::changeEvent(QEvent* event) {
 
 void SelectionToolbarPanel::paintEvent(QPaintEvent* event) {
     Q_UNUSED(event);
+    if (snow_shot::presentation::styles::paintLiquidGlassHud(
+            this, screenshot_selection_toolbar::PanelRadius)) {
+        return;
+    }
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);

@@ -3,6 +3,7 @@
 #include "screenshottoolpalettebuttons.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/mainwindowskincontroller.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/storage/applicationstorage.h"
@@ -286,6 +287,10 @@ QPainterPath ScreenshotToolbarPanel::surfacePath() const {
 
 void ScreenshotToolbarPanel::paintEvent(QPaintEvent* event) {
     Q_UNUSED(event);
+    if ((m_skinFrame.isNull() || m_skinController == nullptr) &&
+        snow_shot::presentation::styles::paintLiquidGlassToolbar(this, m_panelRadius)) {
+        return;
+    }
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(Qt::NoPen);

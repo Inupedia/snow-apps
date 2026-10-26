@@ -126,6 +126,53 @@ void configureMainWindowTitleBar(QWidget* window, int titleBarHeight) {
     positionStandardWindowButtons(nativeWindow, titleBarHeight);
 }
 
+void setMainWindowGlassBackdropEnabled(QWidget* window, bool enabled, bool dark) {
+    if (window == nullptr || QThread::currentThread() != qApp->thread() ||
+        QGuiApplication::platformName() != QStringLiteral("cocoa") ||
+        window->internalWinId() == 0) {
+        return;
+    }
+
+    NSView* qtView = reinterpret_cast<NSView*>(window->internalWinId());
+    NSView* parent = qtView.superview;
+    NSWindow* nativeWindow = qtView.window;
+    if (qtView == nil || parent == nil || nativeWindow == nil) {
+        return;
+    }
+
+    static NSString* const effectIdentifier = @"snow-shot-liquid-glass";
+    NSVisualEffectView* effect = nil;
+    for (NSView* subview in parent.subviews) {
+        if ([subview.identifier isEqualToString:effectIdentifier] &&
+            [subview isKindOfClass:NSVisualEffectView.class]) {
+            effect = static_cast<NSVisualEffectView*>(subview);
+            break;
+        }
+    }
+    if (effect == nil && enabled) {
+        effect = [[NSVisualEffectView alloc] initWithFrame:qtView.frame];
+        effect.identifier = effectIdentifier;
+        effect.material = NSVisualEffectMaterialSidebar;
+        effect.blendingMode = NSVisualEffectBlendingModeBehindWindow;
+        effect.state = NSVisualEffectStateFollowsWindowActiveState;
+        effect.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        [parent addSubview:effect positioned:NSWindowBelow relativeTo:qtView];
+        [effect release];
+    }
+    if (effect == nil) {
+        return;
+    }
+
+    effect.frame = qtView.frame;
+    effect.hidden = !enabled;
+    effect.appearance = [NSAppearance
+        appearanceNamed:(dark ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua)];
+    nativeWindow.opaque = !enabled;
+    if (enabled) {
+        nativeWindow.backgroundColor = NSColor.clearColor;
+    }
+}
+
 void activateWindow(QWidget* window) {
     if (window == nullptr || QThread::currentThread() != qApp->thread() ||
         QGuiApplication::platformName() != QStringLiteral("cocoa")) {
