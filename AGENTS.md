@@ -48,3 +48,10 @@
 ## Licensing & Configuration
 - Multi-license repo: keep Apache-2.0 code in `ant_design_qt/`, `snow_draw_engine_qt/`, and `snow_memory/`; keep GPL-3.0-or-later code in `snow_shot/`, `snow_image/`, `snow_image_viewer/`, `snow-crates/`, and `snow_rust_ffi/`. The independent `snow-crates/crates/simd-paddle-ocr-rs/` submodule retains Apache-2.0. After adding a dependency, run `scripts/collect-third-party-licenses.ps1` and update the project's `THIRD_PARTY_NOTICES.md` (`snow_shot/`, `ant_design_qt/`).
 - `SNOW_APPS_API_BASE_URL` is set per preset; never hard-code endpoints or secrets.
+
+## Product Fork Maintenance
+- This fork's product repository is `Inupedia/snow-apps` (`origin`); the original project is `mg-chao/snow-apps` (`upstream`). Push product work only to `origin`.
+- Read `docs/fork-development.md` before UI restructuring, product rebranding, release changes, or upstream synchronization. Product integration currently uses `codex/product-development`; `main` is reserved for validated product integration.
+- Keep new product UI and adapters isolated where practical; retain upstream core implementations and paths. Split UI, branding, and core changes into focused commits.
+- Merge upstream updates on a dedicated synchronization branch. Preserve merge ancestry; do not overwrite product changes with forced synchronization, blanket conflict strategies, or history resets.
+- Git remotes do not configure application updates. Before distributing a rebranded app, configure its own update channel or disable updates, and audit application identity, storage, packaging, and retained license notices.
