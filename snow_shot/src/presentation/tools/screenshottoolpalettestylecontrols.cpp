@@ -62,7 +62,7 @@ namespace {
     return count;
 }
 
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace style_presets = snow_shot::presentation::style_presets;
 constexpr int kCornerRadiusLeadingSpacing = 4;

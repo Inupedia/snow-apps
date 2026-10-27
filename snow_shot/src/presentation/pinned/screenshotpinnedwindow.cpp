@@ -501,7 +501,7 @@ ScreenshotRecognitionResults deserializeRecognitionResults(const QByteArray& byt
 
 namespace pinned_platform = snow_shot::presentation;
 namespace resize_geometry = screenshot_pinned_resize_geometry;
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
 
 constexpr int kControlsInset = 16;

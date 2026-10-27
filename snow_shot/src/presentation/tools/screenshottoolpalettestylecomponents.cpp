@@ -1,4 +1,5 @@
 #include "screenshottoolpalettestylecomponents.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 
 #include "screenshottoolbarperfinstrumentation.h"
 #include "screenshottoolpalettestylepresets.h"
@@ -42,10 +43,10 @@ void ScreenshotToolPaletteTextEmphasisEditor::build(
     rebind(commit);
     m_boldButton = createScreenshotToolPaletteStyleActionButton(
         rootWidget(), QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Bold"),
-        adqt::icons::antd::outlined::Bold(), metrics);
+        snow_shot::presentation::icons::custom::outlined::Bold(), metrics);
     m_italicButton = createScreenshotToolPaletteStyleActionButton(
         rootWidget(), QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Italic"),
-        adqt::icons::antd::outlined::Italic(), metrics);
+        snow_shot::presentation::icons::custom::outlined::Italic(), metrics);
     m_boldButton->setObjectName(QStringLiteral("screenshotTextBoldButton"));
     m_italicButton->setObjectName(QStringLiteral("screenshotTextItalicButton"));
     for (auto* button : {m_boldButton, m_italicButton}) {

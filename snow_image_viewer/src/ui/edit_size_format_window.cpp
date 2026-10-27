@@ -1,4 +1,5 @@
 #include "ui/edit_size_format_window.h"
+#include "ui/app_icons.h"
 
 #include "antd_icons.h"
 #include "theme/theme_manager.h"
@@ -49,7 +50,7 @@ using adqt::widgets::AdModal;
 using adqt::widgets::AdSelect;
 using adqt::widgets::AdSlider;
 using adqt::widgets::AdSwitch;
-namespace outlined = adqt::icons::antd::outlined;
+namespace outlined = snow::image_viewer::icons::outlined;
 
 QVector<AdSelect::Option> options(std::initializer_list<std::pair<int, QString>> values) {
     QVector<AdSelect::Option> result;

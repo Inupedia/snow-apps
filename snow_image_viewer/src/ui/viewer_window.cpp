@@ -69,7 +69,7 @@ namespace {
 using AdButton = adqt::widgets::AdButton;
 using AdContextMenu = adqt::widgets::AdContextMenu;
 using AdModal = adqt::widgets::AdModal;
-namespace outlined = adqt::icons::antd::outlined;
+namespace outlined = snow::image_viewer::icons::outlined;
 
 constexpr int kToolbarHeight = 48;
 constexpr int kToolbarButtonSize = 36;

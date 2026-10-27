@@ -73,7 +73,7 @@ using adqt::widgets::AdFormItem;
 using adqt::widgets::AdInputNumber;
 using adqt::widgets::AdScrollArea;
 using adqt::widgets::AdSegmented;
-namespace icons = adqt::icons::antd::outlined;
+namespace icons = snow_shot::presentation::icons::custom::outlined;
 constexpr int kSettingsFormWidth = 340;
 constexpr int kSettingsFormRightMargin = 12;
 constexpr auto kDragType = "application/x-snow-shot-collage-item";

@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/components/applicationsearchwidget.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 
 #include "snow_shot/presentation/styles/themecolorscheme.h"
 #include "snow_shot/presentation/settings/settingsregistry.h"
@@ -29,7 +30,7 @@
 #include <cstddef>
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 
 constexpr int kDescriptionRole = Qt::UserRole + 101;
 constexpr int kCategoryRole = Qt::UserRole + 102;

@@ -16,7 +16,7 @@
 #include <utility>
 
 namespace snow_shot::presentation {
-namespace outlined = adqt::icons::antd::outlined;
+namespace outlined = snow_shot::presentation::icons::custom::outlined;
 namespace customIcons = snow_shot::presentation::icons::custom::outlined;
 namespace {
 [[maybe_unused]] constexpr const char* translationSources[] = {

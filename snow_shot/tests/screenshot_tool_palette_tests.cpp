@@ -7129,9 +7129,11 @@ void originalImageToggleLeadsRecognitionActions() {
                 "original-image toggle remains first after lazy toolbar creation");
         require(button->accentRole() == adqt::widgets::AdButton::AccentRole::Neutral,
                 "original-image toggle starts inactive");
-        require(adqt::icons::describeIcon(button->iconRef()).key ==
-                    adqt::icons::describeIcon(adqt::icons::antd::outlined::Eye()).key,
-                "original-image toggle uses Ant Design outlined Eye");
+        require(
+            adqt::icons::describeIcon(button->iconRef()).key ==
+                adqt::icons::describeIcon(snow_shot::presentation::icons::custom::outlined::Eye())
+                    .key,
+            "original-image toggle uses Ant Design outlined Eye");
         require(button->accessibleName() == QStringLiteral("Show original image"),
                 "original-image toggle has an accessible label");
         button->click();
@@ -15009,7 +15011,9 @@ void serialNumberStyleControlsExposeAndEmitRequestedProperties() {
     require(numberInput != nullptr &&
                 numberInput->variant() == adqt::widgets::AdLineEdit::Variant::Underlined &&
                 adqt::icons::describeIcon(numberInput->prefixIconRef()).key.name ==
-                    adqt::icons::describeIcon(adqt::icons::antd::outlined::Number()).key.name,
+                    adqt::icons::describeIcon(
+                        snow_shot::presentation::icons::custom::outlined::Number())
+                        .key.name,
             "sequence number should be an underlined input with its existing icon as a prefix");
     const int numberEditorIndex = serialNumberLayout->indexOf(numberEditor);
     auto* fontSizeSummary = controlWithTooltip(palette, "Current sequence number font size");

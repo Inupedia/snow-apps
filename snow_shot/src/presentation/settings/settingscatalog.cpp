@@ -18,7 +18,7 @@
 
 namespace snow_shot::presentation::settings {
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace custom_twotone_icons = snow_shot::presentation::icons::custom::twotone;
 
@@ -2589,9 +2589,10 @@ QVector<SettingsItemDefinition> screenshotShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("print"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Print"),
                           []() { return outlined_icons::Printer(); }),
-        localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("upload_to_cloud"),
-                          QT_TRANSLATE_NOOP("SettingsCatalog", "Upload to Cloud"),
-                          []() { return adqt::icons::antd::outlined::CloudUpload(); }),
+        localShortcutItem(
+            SettingsLocalShortcutScope::Screenshot, QStringLiteral("upload_to_cloud"),
+            QT_TRANSLATE_NOOP("SettingsCatalog", "Upload to Cloud"),
+            []() { return snow_shot::presentation::icons::custom::outlined::CloudUpload(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("save_as_file"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Save as file"),
                           []() { return custom_outlined_icons::Save(); }),
@@ -2736,10 +2737,10 @@ QVector<SettingsItemDefinition> pinToScreenShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("print"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Print"),
                           []() { return outlined_icons::Printer(); }),
-        localShortcutItem(SettingsLocalShortcutScope::PinToScreen,
-                          QStringLiteral("upload_to_cloud"),
-                          QT_TRANSLATE_NOOP("SettingsCatalog", "Upload to Cloud"),
-                          []() { return adqt::icons::antd::outlined::CloudUpload(); }),
+        localShortcutItem(
+            SettingsLocalShortcutScope::PinToScreen, QStringLiteral("upload_to_cloud"),
+            QT_TRANSLATE_NOOP("SettingsCatalog", "Upload to Cloud"),
+            []() { return snow_shot::presentation::icons::custom::outlined::CloudUpload(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("save_as_file"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Save as file"),
                           []() { return custom_outlined_icons::Save(); }),

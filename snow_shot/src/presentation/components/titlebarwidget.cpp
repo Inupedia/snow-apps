@@ -32,7 +32,7 @@
 #include <QWindow>
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace custom_icons = snow_shot::presentation::icons::custom;
 
 QPixmap renderBrandLogo(int logicalHeight, const QColor& color, qreal devicePixelRatio) {

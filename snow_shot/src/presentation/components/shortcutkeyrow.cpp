@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/components/shortcutkeyrow.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/components/formfields.h"
 #include "widgets/detail/pointer_region.h"
 #include "snow_shot/presentation/shortcutdisplaytext.h"
@@ -50,7 +51,7 @@
 #include <QWheelEvent>
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 
 QString cssColor(const QColor& color) {
     if (color.alpha() == 255) {

@@ -3,6 +3,7 @@
 #define SNOW_SHOT_PRESENTATION_COMPONENTS_IMAGEDROPSURFACE_H
 
 #include "antd_icons.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "icon_renderer.h"
 #include "theme/theme_manager.h"
 
@@ -26,7 +27,8 @@ class ImageDropIcon final : public QWidget {
         adqt::icons::IconStatePalette palette;
         palette.set(QIcon::Normal, QIcon::Off,
                     adqt::icons::IconColors::primary(theme.colorPrimary));
-        adqt::icons::paintIcon(&painter, adqt::icons::antd::outlined::Inbox(), rect(), {}, palette);
+        adqt::icons::paintIcon(&painter, snow_shot::presentation::icons::custom::outlined::Inbox(),
+                               rect(), {}, palette);
     }
 };
 

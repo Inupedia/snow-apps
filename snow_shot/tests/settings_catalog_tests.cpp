@@ -2812,7 +2812,8 @@ void globalHotkeyShortcutsHaveStableContracts() {
                 QString::fromLatin1(openHistory->title.source) ==
                     QStringLiteral("Screenshot history") &&
                 openHistoryShortcut != nullptr && openHistoryShortcut->iconFactory &&
-                openHistoryShortcut->iconFactory() == adqt::icons::antd::outlined::History(),
+                openHistoryShortcut->iconFactory() ==
+                    snow_shot::presentation::icons::custom::outlined::History(),
             "Screenshot history must use the History outlined icon");
     require(pinClipboard != nullptr && pinClipboard->title.source != nullptr &&
                 QString::fromLatin1(pinClipboard->title.source) ==
@@ -3277,7 +3278,7 @@ void addingCatalogNodesAutomaticallyExpandsSearch() {
         QStringLiteral("nav.extra-page"),
         QStringLiteral("extra-page"),
         // This search fixture also links against the production icon subset.
-        []() { return adqt::icons::antd::outlined::Setting(); },
+        []() { return snow_shot::presentation::icons::custom::outlined::Setting(); },
     });
     const settings::SettingsCatalog expanded(std::move(pages), std::move(navigation),
                                              builtIn.defaultLocation());
@@ -3318,7 +3319,7 @@ void searchIndexPreservesInteriorSubstringMatches() {
     QVector<settings::SettingsNavigationNode> navigation = builtIn.navigation();
     navigation.push_back(settings::SettingsNavigationPageDefinition{
         QStringLiteral("nav.substring-page"), QStringLiteral("substring-page"),
-        []() { return adqt::icons::antd::outlined::Search(); }});
+        []() { return snow_shot::presentation::icons::custom::outlined::Search(); }});
     const settings::SettingsCatalog expanded(std::move(pages), std::move(navigation),
                                              builtIn.defaultLocation());
     require(expanded.validationErrors().isEmpty(),

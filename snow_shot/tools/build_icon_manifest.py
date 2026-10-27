@@ -8,6 +8,8 @@ from pathlib import Path
 
 
 def symbol(name: str) -> str:
+    if name.startswith("custom-"):
+        name = name[len("custom-") :]
     return "".join(part[:1].upper() + part[1:] for part in re.findall(r"[A-Za-z0-9]+", name))
 
 
@@ -23,7 +25,10 @@ def main() -> int:
         variant = "outlined"
         model = "monochrome"
         defaults = None
-        if name == "screenshot-feature":
+        allow_embedded_data_images = name.startswith("custom-")
+        if allow_embedded_data_images:
+            variant, model = "outlined", "fullColor"
+        elif name == "screenshot-feature":
             variant, model = "twotone", "twoTone"
             defaults = {"secondary": "#9254DE"}
         elif name in {"snow-shot-logo", "snow-shot-mini-logo"}:
@@ -40,6 +45,8 @@ def main() -> int:
         }
         if defaults:
             entry["defaultColors"] = defaults
+        if allow_embedded_data_images:
+            entry["allowEmbeddedDataImages"] = True
         entries.append(entry)
     entries.append({
         "variant": "app",
@@ -48,6 +55,7 @@ def main() -> int:
         "source": "app-icon.svg",
         "colorModel": "fullColor",
         "fit": "contain",
+        "allowEmbeddedDataImages": True,
     })
     entries.append({
         "variant": "app",
@@ -56,6 +64,7 @@ def main() -> int:
         "source": "app-icon-titlebar.svg",
         "colorModel": "fullColor",
         "fit": "contain",
+        "allowEmbeddedDataImages": True,
     })
     entries.sort(key=lambda item: (item["variant"], item["name"]))
     manifest = {

@@ -52,7 +52,7 @@ constexpr auto DEFAULT_LEFT_CLICK_ACTION = "screenshot";
 constexpr auto DEFAULT_MIDDLE_CLICK_ACTION = "screenshot_fixed";
 
 namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 
 const QHash<QString, QString>& bundledIconResources() {
     static const QHash<QString, QString> resources{

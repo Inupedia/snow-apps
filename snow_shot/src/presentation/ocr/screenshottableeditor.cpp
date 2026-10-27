@@ -1,4 +1,5 @@
 #include "snow_shot/shortcuts/shortcutbinding.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/screenshottableeditor.h"
 
 #include "antd_icons.h"
@@ -781,15 +782,17 @@ void ScreenshotTableEditor::showContextMenu(const QPoint& globalPosition,
 
     adqt::widgets::AdContextMenu menu(this);
     menu.setObjectName(QStringLiteral("screenshotTableContextMenu"));
-    QAction* copyAction = menu.addItem(tr("Copy"), adqt::icons::antd::outlined::Copy());
-    QAction* pasteAction = menu.addItem(tr("Paste"), adqt::icons::antd::outlined::Snippets());
-    QAction* clearAction =
-        menu.addItem(tr("Clear contents"), adqt::icons::antd::outlined::IconDelete());
+    QAction* copyAction =
+        menu.addItem(tr("Copy"), snow_shot::presentation::icons::custom::outlined::Copy());
+    QAction* pasteAction =
+        menu.addItem(tr("Paste"), snow_shot::presentation::icons::custom::outlined::Snippets());
+    QAction* clearAction = menu.addItem(
+        tr("Clear contents"), snow_shot::presentation::icons::custom::outlined::IconDelete());
     menu.addSeparator();
-    QAction* mergeAction =
-        menu.addItem(tr("Merge cells"), adqt::icons::antd::outlined::MergeCells());
-    QAction* splitAction =
-        menu.addItem(tr("Split cells"), adqt::icons::antd::outlined::SplitCells());
+    QAction* mergeAction = menu.addItem(
+        tr("Merge cells"), snow_shot::presentation::icons::custom::outlined::MergeCells());
+    QAction* splitAction = menu.addItem(
+        tr("Split cells"), snow_shot::presentation::icons::custom::outlined::SplitCells());
     const ScreenshotTableCommandState state = commandState();
     copyAction->setEnabled(state.hasSelection);
     pasteAction->setEnabled(QApplication::clipboard() != nullptr &&
@@ -818,12 +821,17 @@ void ScreenshotTableEditor::showCellEditorContextMenu(QPlainTextEdit* editor,
 
     adqt::widgets::AdContextMenu menu(this);
     menu.setObjectName(QStringLiteral("screenshotTableCellEditorContextMenu"));
-    QAction* copy = menu.addItem(tr("Copy"), adqt::icons::antd::outlined::Copy());
-    QAction* cut = menu.addItem(tr("Cut"), adqt::icons::antd::outlined::Scissor());
-    QAction* paste = menu.addItem(tr("Paste"), adqt::icons::antd::outlined::Snippets());
-    QAction* remove = menu.addItem(tr("Delete"), adqt::icons::antd::outlined::IconDelete());
+    QAction* copy =
+        menu.addItem(tr("Copy"), snow_shot::presentation::icons::custom::outlined::Copy());
+    QAction* cut =
+        menu.addItem(tr("Cut"), snow_shot::presentation::icons::custom::outlined::Scissor());
+    QAction* paste =
+        menu.addItem(tr("Paste"), snow_shot::presentation::icons::custom::outlined::Snippets());
+    QAction* remove =
+        menu.addItem(tr("Delete"), snow_shot::presentation::icons::custom::outlined::IconDelete());
     menu.addSeparator();
-    QAction* selectAll = menu.addItem(tr("Select All"), adqt::icons::antd::outlined::Select());
+    QAction* selectAll =
+        menu.addItem(tr("Select All"), snow_shot::presentation::icons::custom::outlined::Select());
 
     const bool hasSelection = editor->textCursor().hasSelection();
     const bool writable = !editor->isReadOnly();

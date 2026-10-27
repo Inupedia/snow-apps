@@ -73,7 +73,7 @@
 #include <utility>
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace history_page = snow_shot::presentation::components::history_page;
 namespace thumbnail_cache = snow_shot::presentation::components::thumbnail_cache;
 namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;

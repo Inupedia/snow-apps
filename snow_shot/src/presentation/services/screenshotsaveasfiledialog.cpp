@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/screenshotsaveasfiledialog.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 
 #include "snow_shot/presentation/components/actionpopupmenu.h"
 #include "snow_shot/presentation/components/aspectratiolockbutton.h"
@@ -56,7 +57,7 @@
 
 namespace {
 using namespace adqt::widgets;
-namespace icons = adqt::icons::antd::outlined;
+namespace icons = snow_shot::presentation::icons::custom::outlined;
 namespace pipeline = screenshot_save_export;
 using Format = ScreenshotImageFileFormat;
 using Shortcut = snow_shot::storage::ScreenshotSavePathShortcut;

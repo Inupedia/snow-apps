@@ -58,7 +58,8 @@ RecordingWebcamControl::RecordingWebcamControl(QWidget* parent)
     auto* toolbar =
         static_cast<snow_shot::presentation::components::CanvasActionToolbar*>(m_toolbar);
     const std::array<adqt::icons::IconRef, 4> icons{
-        adqt::icons::antd::outlined::RotateRight(), adqt::icons::antd::outlined::RotateLeft(),
+        snow_shot::presentation::icons::custom::outlined::RotateRight(),
+        snow_shot::presentation::icons::custom::outlined::RotateLeft(),
         snow_shot::presentation::icons::custom::outlined::FlipHorizontal(),
         snow_shot::presentation::icons::custom::outlined::FlipVertical()};
     const std::array<const char*, 4> names{

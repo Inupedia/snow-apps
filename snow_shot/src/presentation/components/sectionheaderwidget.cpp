@@ -1,6 +1,7 @@
 ﻿#include "snow_shot/presentation/components/sectionheaderwidget.h"
 
 #include "snow_shot/presentation/components/themedheadericonbutton.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
 
@@ -16,7 +17,7 @@
 #include <QSizePolicy>
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 } // namespace
 
 SectionHeaderWidget::SectionHeaderWidget(

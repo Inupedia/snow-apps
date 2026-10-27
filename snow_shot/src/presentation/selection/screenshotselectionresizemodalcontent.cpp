@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/screenshotselectionresizemodalcontent.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 
 #include "snow_shot/presentation/components/aspectratiolockbutton.h"
 #include "snow_shot/presentation/screenshotselectionlimits.h"
@@ -58,7 +59,7 @@ constexpr auto kFieldEffectColor = "effectColor";
 constexpr auto kFieldPresetName = "presetName";
 constexpr auto kTranslationSourceProperty = "selectionResizeTranslationSource";
 
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 
 bool isPresetKey(const QString& key) {
     return key.startsWith(QString::fromLatin1(kQuickSetPresetPrefix));

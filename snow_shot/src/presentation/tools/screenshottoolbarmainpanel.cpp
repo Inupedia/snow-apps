@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/screenshottoolbarmainpanel.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 
 #include "screenshottoolpalettebuttons.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
@@ -31,7 +32,7 @@
 #include <utility>
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 
 constexpr int kButtonSize = 32;
 constexpr int kIconSize = 24;

@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/screenshotimageconversionview.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/screenshotimageconversionclipboard.h"
 #include "snow_shot/presentation/screenshotdocumentformatting.h"
 
@@ -166,8 +167,10 @@ void ScreenshotImageConversionView::selectAll() {
 void ScreenshotImageConversionView::showContextMenu(const QPoint& globalPosition) {
     adqt::widgets::AdContextMenu menu(this);
     menu.setObjectName(QStringLiteral("screenshotImageConversionContextMenu"));
-    QAction* copy = menu.addItem(tr("Copy"), adqt::icons::antd::outlined::Copy());
-    QAction* selectAll = menu.addItem(tr("Select All"), adqt::icons::antd::outlined::Select());
+    QAction* copy =
+        menu.addItem(tr("Copy"), snow_shot::presentation::icons::custom::outlined::Copy());
+    QAction* selectAll =
+        menu.addItem(tr("Select All"), snow_shot::presentation::icons::custom::outlined::Select());
     copy->setEnabled(!m_source.isEmpty());
     selectAll->setEnabled(!m_browser->document()->isEmpty());
     connect(copy, &QAction::triggered, this, [this]() { static_cast<void>(copyToClipboard()); });

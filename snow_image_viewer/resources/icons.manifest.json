@@ -16,6 +16,177 @@
     },
     {
       "variant": "outlined",
+      "symbol": "Appstore",
+      "name": "custom-appstore",
+      "source": "custom-appstore.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "ArrowLeft",
+      "name": "custom-arrow-left",
+      "source": "custom-arrow-left.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "ArrowRight",
+      "name": "custom-arrow-right",
+      "source": "custom-arrow-right.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Copy",
+      "name": "custom-copy",
+      "source": "custom-copy.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Desktop",
+      "name": "custom-desktop",
+      "source": "custom-desktop.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Download",
+      "name": "custom-download",
+      "source": "custom-download.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "ShareAlt",
+      "name": "custom-export",
+      "source": "custom-export.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "FileText",
+      "name": "custom-file-text",
+      "source": "custom-file-text.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "FolderOpen",
+      "name": "custom-folder-open",
+      "source": "custom-folder-open.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Fullscreen",
+      "name": "custom-fullscreen",
+      "source": "custom-fullscreen.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "IconDelete",
+      "name": "custom-icon-delete",
+      "source": "custom-icon-delete.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Lock",
+      "name": "custom-lock",
+      "source": "custom-lock.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "OneToOne",
+      "name": "custom-one-to-one",
+      "source": "custom-one-to-one.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Picture",
+      "name": "custom-picture",
+      "source": "custom-picture.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "Printer",
+      "name": "custom-printer",
+      "source": "custom-printer.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "RotateLeft",
+      "name": "custom-rotate-left",
+      "source": "custom-rotate-left.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "RotateRight",
+      "name": "custom-rotate-right",
+      "source": "custom-rotate-right.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "ZoomIn",
+      "name": "custom-zoom-in",
+      "source": "custom-zoom-in.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "ZoomOut",
+      "name": "custom-zoom-out",
+      "source": "custom-zoom-out.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
       "symbol": "ResizeImage",
       "name": "resize-image",
       "source": "resize-image.svg",

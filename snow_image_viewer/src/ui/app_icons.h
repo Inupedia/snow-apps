@@ -15,6 +15,25 @@ namespace app {
 } // namespace app
 
 namespace outlined {
+[[nodiscard]] adqt::icons::IconRef Appstore(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef ArrowLeft(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef ArrowRight(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Copy(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Desktop(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Download(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef ShareAlt(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef FileText(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef FolderOpen(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Fullscreen(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef IconDelete(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Lock(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef OneToOne(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Picture(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef Printer(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef RotateLeft(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef RotateRight(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef ZoomIn(const adqt::icons::IconColors& colors = {});
+[[nodiscard]] adqt::icons::IconRef ZoomOut(const adqt::icons::IconColors& colors = {});
 [[nodiscard]] adqt::icons::IconRef ResizeImage(const adqt::icons::IconColors& colors = {});
 } // namespace outlined
 

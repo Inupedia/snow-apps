@@ -846,7 +846,9 @@ set(SNOW_SHOT_SETTINGS_CATALOG_SOURCES
 # Widget targets also compile these icons. Keep their definitions separate from
 # the catalog so pulling the catalog from its archive does not pull duplicate icons.
 set_source_files_properties(src/presentation/components/icons/snowshoticons.cpp
-    PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON)
+    PROPERTIES
+        SKIP_UNITY_BUILD_INCLUSION ON
+        COMPILE_OPTIONS "-Wno-overlength-strings")
 add_library(snow_shot_settings_catalog STATIC ${SNOW_SHOT_SETTINGS_CATALOG_SOURCES})
 snow_enable_unity_build(snow_shot_settings_catalog)
 target_include_directories(snow_shot_settings_catalog PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")

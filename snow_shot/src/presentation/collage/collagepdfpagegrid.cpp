@@ -50,7 +50,7 @@ using adqt::widgets::AdImageListModel;
 using adqt::widgets::AdImageViewer;
 using adqt::widgets::AdScrollArea;
 using styles::SequenceNumberBadgeStyle;
-namespace icons = adqt::icons::antd::outlined;
+namespace icons = snow_shot::presentation::icons::custom::outlined;
 
 constexpr auto dragType = "application/x-snow-shot-collage-pdf-page";
 constexpr int gridInset = 16;

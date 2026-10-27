@@ -52,7 +52,7 @@ static void initializeAboutResources() {
 namespace {
 namespace styles = snow_shot::presentation::styles;
 namespace custom = snow_shot::presentation::icons::custom;
-namespace outlined = adqt::icons::antd::outlined;
+namespace outlined = snow_shot::presentation::icons::custom::outlined;
 using adqt::widgets::AdButton;
 using adqt::widgets::AdDivider;
 

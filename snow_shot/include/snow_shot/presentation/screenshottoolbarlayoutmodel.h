@@ -968,9 +968,9 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
     case Icon::Watermark:
         return custom::ToolWatermark();
     case Icon::Undo:
-        return adqt::icons::antd::outlined::Undo();
+        return snow_shot::presentation::icons::custom::outlined::Undo();
     case Icon::Redo:
-        return adqt::icons::antd::outlined::Redo();
+        return snow_shot::presentation::icons::custom::outlined::Redo();
     case Icon::Separator:
         return {};
     case Icon::BarcodeRecognition:
@@ -978,7 +978,7 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
     case Icon::TableRecognition:
         return custom::TableRecognition();
     case Icon::Latex:
-        return adqt::icons::antd::outlined::Function();
+        return snow_shot::presentation::icons::custom::outlined::Function();
     case Icon::Markdown:
         return custom::Markdown();
     case Icon::Html:
@@ -996,27 +996,27 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
     case Icon::QuickSave:
         return custom::QuickSave();
     case Icon::Copy:
-        return adqt::icons::antd::outlined::Copy();
+        return snow_shot::presentation::icons::custom::outlined::Copy();
     case Icon::Confirm:
-        return adqt::icons::antd::outlined::Check();
+        return snow_shot::presentation::icons::custom::outlined::Check();
     case Icon::Cancel:
-        return adqt::icons::antd::outlined::Close();
+        return snow_shot::presentation::icons::custom::outlined::Close();
     case Icon::Print:
-        return adqt::icons::antd::outlined::Printer();
+        return snow_shot::presentation::icons::custom::outlined::Printer();
     case Icon::UploadToCloud:
-        return adqt::icons::antd::outlined::CloudUpload();
+        return snow_shot::presentation::icons::custom::outlined::CloudUpload();
     case Icon::SaveAsFile:
         return custom::Save();
     case Icon::RecordingStart:
         return custom::RecordingStart();
     case Icon::RecordingPause:
-        return adqt::icons::antd::outlined::Pause();
+        return snow_shot::presentation::icons::custom::outlined::Pause();
     case Icon::RecordingDuration:
-        return adqt::icons::antd::outlined::ClockCircle();
+        return snow_shot::presentation::icons::custom::outlined::ClockCircle();
     case Icon::RecordingMicrophone:
         return custom::RecordingMicrophone();
     case Icon::RecordingSystemAudio:
-        return adqt::icons::antd::outlined::Sound();
+        return snow_shot::presentation::icons::custom::outlined::Sound();
     case Icon::RecordingFolder:
         return custom::RecordingFolder();
     case Icon::RecordingTrim:

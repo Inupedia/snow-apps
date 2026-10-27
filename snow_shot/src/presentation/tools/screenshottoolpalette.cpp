@@ -132,7 +132,7 @@ constexpr int kRecordingSettingsColorPickerWidth = 154;
     QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Elbow arrow"),
 };
 
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace toolbar_layout = snow_shot::presentation::toolbar_layout;
 
@@ -6451,7 +6451,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     if ((options.showImageConversionTools && snow_shot::app::edition::imageConversion)) {
         m_latexButton =
             addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "LaTeX Formula Recognition"),
-                          adqt::icons::antd::outlined::Function());
+                          snow_shot::presentation::icons::custom::outlined::Function());
         m_latexButton->setObjectName(QStringLiteral("screenshotLatexRecognitionButton"));
         connect(m_latexButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateActionTool(QStringLiteral("latex-recognition")); });
@@ -8811,7 +8811,8 @@ void ScreenshotToolPalette::createShowOriginalImageButton() {
     }
     m_showOriginalImageButton = createScreenshotToolPaletteStyleActionButton(
         m_selectActionPanel, QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Show original image"),
-        adqt::icons::antd::outlined::Eye(), actionButtonMetrics(m_physicalScale));
+        snow_shot::presentation::icons::custom::outlined::Eye(),
+        actionButtonMetrics(m_physicalScale));
     m_showOriginalImageButton->setEnabled(m_originalImageToggleEnabled);
     m_showOriginalImageButton->setObjectName(QStringLiteral("screenshotShowOriginalImageButton"));
     m_showOriginalImageSpacing = addStyleToolbarSpacing(m_selectActionLayout, STYLE_ITEM_SPACING);

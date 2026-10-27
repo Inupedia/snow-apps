@@ -41,7 +41,7 @@
 namespace {
 using namespace adqt::widgets;
 namespace translation = snow_shot::presentation;
-namespace outlined = adqt::icons::antd::outlined;
+namespace outlined = snow_shot::presentation::icons::custom::outlined;
 
 class TranslationTextPolicy final : public AdInputTextPolicy {
   public:

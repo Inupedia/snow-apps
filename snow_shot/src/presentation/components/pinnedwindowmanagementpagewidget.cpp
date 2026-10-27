@@ -50,7 +50,7 @@
 using namespace snow_shot;
 
 namespace {
-namespace outlined_icons = adqt::icons::antd::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
 namespace styles = snow_shot::presentation::styles;
 namespace storage = snow_shot::storage;
 namespace history_page = snow_shot::presentation::components::history_page;

@@ -179,8 +179,9 @@ void RecordingTrimToolbar::setPlaybackAvailable(bool available) {
     m_playPause->setEnabled(available);
 }
 void RecordingTrimToolbar::updatePlaybackControl() {
-    m_playPause->setIconRef(m_playing ? adqt::icons::antd::outlined::PauseCircle()
-                                      : adqt::icons::antd::outlined::PlayCircle());
+    m_playPause->setIconRef(m_playing
+                                ? snow_shot::presentation::icons::custom::outlined::PauseCircle()
+                                : snow_shot::presentation::icons::custom::outlined::PlayCircle());
     m_playPause->setToolTip(trimText(m_playing
                                          ? QT_TRANSLATE_NOOP("RecordingTrimToolbar", "Pause")
                                          : QT_TRANSLATE_NOOP("RecordingTrimToolbar", "Play")));

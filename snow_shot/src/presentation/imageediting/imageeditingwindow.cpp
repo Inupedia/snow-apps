@@ -154,7 +154,8 @@ struct ImageEditingWindow::Impl {
           stack(new QStackedLayout(surface)),
           floating(new ScreenshotFloatingToolPaletteWindow(editorOptions())),
           host(floating->paletteHost()), palette(host->palette()),
-          fit(zoomToolbar->addAction(adqt::icons::antd::outlined::Fullscreen(), "imageEditingFit")),
+          fit(zoomToolbar->addAction(snow_shot::presentation::icons::custom::outlined::Fullscreen(),
+                                     "imageEditingFit")),
           actual(zoomToolbar->addAction(icons::custom::outlined::ActualSize(),
                                         "imageEditingActualSize")),
           shortcuts(&q), autoFilter(new ScreenshotAutoFilterController(

@@ -71,10 +71,11 @@ class RecordingStatusPrompt final : public QWidget {
                                m_microphone ? custom::RecordingMicrophone(microphoneColor)
                                             : custom::RecordingMicrophoneOff(microphoneColor),
                                microphone);
-        adqt::icons::paintIcon(&painter,
-                               m_speaker ? adqt::icons::antd::outlined::Sound(speakerColor)
-                                         : custom::RecordingSpeakerOff(speakerColor),
-                               microphone.translated(kIconSize + kGap, 0));
+        adqt::icons::paintIcon(
+            &painter,
+            m_speaker ? snow_shot::presentation::icons::custom::outlined::Sound(speakerColor)
+                      : custom::RecordingSpeakerOff(speakerColor),
+            microphone.translated(kIconSize + kGap, 0));
     }
 
     void changeEvent(QEvent* event) override {
