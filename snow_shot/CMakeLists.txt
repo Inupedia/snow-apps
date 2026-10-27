@@ -2738,8 +2738,10 @@ if(SNOW_SHOT_BUILD_TESTS)
         COMMAND snow-shot-screenshot-history-page-tests --loading-only)
     add_test(NAME snow-shot-history-entry-layout-tests
         COMMAND snow-shot-screenshot-history-page-tests --entry-layout-only -platform offscreen)
-    add_test(NAME snow-shot-history-pagination-dock-tests
-        COMMAND snow-shot-screenshot-history-page-tests --pagination-only -platform offscreen)
+    if(APPLE)
+        add_test(NAME snow-shot-history-pagination-dock-tests
+            COMMAND snow-shot-screenshot-history-page-tests --pagination-only -platform offscreen)
+    endif()
     set_tests_properties(snow-shot-screenshot-history-page-tests
         snow-shot-screenshot-history-page-loading-tests PROPERTIES
         ENVIRONMENT
@@ -2747,10 +2749,14 @@ if(SNOW_SHOT_BUILD_TESTS)
         ENVIRONMENT_MODIFICATION
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"
     )
-    set_tests_properties(snow-shot-history-entry-layout-tests
-        snow-shot-history-pagination-dock-tests PROPERTIES LABELS unit
+    set_tests_properties(snow-shot-history-entry-layout-tests PROPERTIES LABELS unit
         ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT}"
         ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
+    if(APPLE)
+        set_tests_properties(snow-shot-history-pagination-dock-tests PROPERTIES LABELS unit
+            ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT}"
+            ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
+    endif()
     add_test(NAME snow-shot-screenshot-history-context-menu-tests
         COMMAND snow-shot-screenshot-history-page-tests --context-menu-only -platform offscreen)
     set_tests_properties(snow-shot-screenshot-history-context-menu-tests PROPERTIES

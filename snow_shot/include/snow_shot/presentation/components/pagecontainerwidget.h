@@ -21,15 +21,11 @@ class PageContainerWidget final : public QWidget {
     [[nodiscard]] adqt::widgets::AdScrollArea* scrollArea() const;
     [[nodiscard]] QWidget* contentWidget() const;
     [[nodiscard]] QVBoxLayout* contentLayout() const;
-    // Keeps a bar, such as pagination, at the bottom of the page while the
-    // scroll area above it takes the remaining height.
-    void setFooterWidget(QWidget* footer);
 
   private:
     adqt::widgets::AdScrollArea* m_scrollArea = nullptr;
     QWidget* m_contentWidget = nullptr;
     QVBoxLayout* m_contentLayout = nullptr;
-    QWidget* m_footer = nullptr;
 };
 
 #endif // SNOW_SHOT_PRESENTATION_COMPONENTS_PAGECONTAINERWIDGET_H

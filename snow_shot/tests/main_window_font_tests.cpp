@@ -606,11 +606,10 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
     auto* card = window.findChild<ContentCardWidget*>();
     require(root && titleBar && sidebar && header && card,
             "exercise the actual main-window skin and surface hierarchy");
-    require(root->metaObject() == &QWidget::staticMetaObject &&
+    require(root->metaObject() == &QWidget::staticMetaObject && root->autoFillBackground() &&
                 window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
                 presentation::MainWindowSkinController::existingInstance() == nullptr,
             "an unset skin must use the original QWidget without any skin runtime or hooks");
-    require(root->autoFillBackground(), "an unset skin keeps the opaque content root");
     for (int step = 0; step < 12; ++step) {
         window.resize(900 + step, 640 + step);
         QEvent dprChange(QEvent::DevicePixelRatioChange);
@@ -639,10 +638,10 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
                                      {QStringLiteral("interface/skin_path"), fixturePath}}),
             "configure a persisted but invisible main-window skin");
     flushEvents();
-    require(window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
+    require(root->autoFillBackground() &&
+                window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
                 presentation::MainWindowSkinController::existingInstance() == nullptr,
             "zero-opacity startup must keep the original widget without a skin runtime");
-    require(root->autoFillBackground(), "zero-opacity startup keeps the opaque content root");
     require(configuration.setValue(QStringLiteral("interface/skin_path"), QString()),
             "clear the invisible startup fixture before enabling the normal skin");
     require(configuration.setValues(
@@ -662,12 +661,12 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
     require(configuration.setValue(QStringLiteral("interface/skin_opacity"), 0),
             "disable the main-window skin without removing its saved path");
     waitUntil([&] { return controller && !controller->diagnostics().busy; });
-    require(window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
+    require(root->autoFillBackground() &&
+                window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
                 controller->diagnostics().retainedBytes == 0 &&
                 controller->diagnostics().executorCount == 0 &&
                 controller->diagnostics().scratchRetainedBytes == 0,
-            "zero opacity must release skin resources");
-    require(root->autoFillBackground(), "zero opacity must restore the opaque widget path");
+            "zero opacity must restore the opaque widget path and release skin resources");
     require(configuration.setValue(QStringLiteral("interface/skin_opacity"), 100),
             "restore the skin on the existing main window");
     waitUntil([&] {
@@ -1000,10 +999,9 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
     waitUntil(
         [&] { return presentation::MainWindowSkinController::existingInstance() == nullptr; });
     const QImage restored = root->grab().toImage();
-    require(root->metaObject() == &QWidget::staticMetaObject &&
+    require(root->metaObject() == &QWidget::staticMetaObject && root->autoFillBackground() &&
                 window.findChild<presentation::MainWindowSkinWidget*>() == nullptr,
             "removing the skin must remove its widget and restore the original Qt paint path");
-    require(root->autoFillBackground(), "removing the skin restores the opaque content root");
     for (const auto& surface : samples) {
         require(sample(restored, *surface.surface, surface.point) ==
                     sample(original, *surface.surface, surface.point),

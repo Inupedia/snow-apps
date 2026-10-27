@@ -4,7 +4,6 @@
 #include "snow_shot/presentation/screenshotgeometry.h"
 #include "snow_shot/platform/screenshotnative.h"
 #include "snow_shot/presentation/screenshotguidelinerendering.h"
-#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/storage/applicationstorage.h"
 #include "snow_shot/storage/settingsadapters.h"
@@ -474,8 +473,7 @@ void ScreenshotColorPickerWindow::paintEvent(QPaintEvent* event) {
 
     QPainterPath panelPath;
     panelPath.addRoundedRect(panel, kPanelRadius, kPanelRadius);
-    painter.fillPath(panelPath, snow_shot::presentation::styles::liquidGlassSurfaceFill(
-                                    m_panelBackground));
+    painter.fillPath(panelPath, m_panelBackground);
 
     const QRectF preview = previewRect();
     const QPainterPath previewPath = topRoundedRectPath(preview, kPanelRadius);

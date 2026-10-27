@@ -13,7 +13,6 @@
 #include "snow_shot/presentation/components/titlebarwidget.h"
 #include "snow_shot/presentation/settings/settingsregistry.h"
 #include "snow_shot/presentation/settings/settingsruntimesession.h"
-#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
 #include "snow_shot/storage/applicationstorage.h"
@@ -170,7 +169,6 @@ void MainWindow::setupNativeTitleBar() {
     if (m_titleBar != nullptr) {
         snow_shot::platform::macos::configureMainWindowTitleBar(this, m_titleBar->height());
     }
-    snow_shot::presentation::styles::syncLiquidGlassMainWindow(this);
 }
 #endif
 
@@ -372,7 +370,6 @@ void MainWindow::applySkinAppearance() {
     if (m_contentCard != nullptr) {
         m_contentCard->setSkinMaskOpacity(maskOpacity);
     }
-    snow_shot::presentation::styles::syncLiquidGlassMainWindow(this);
 }
 
 void MainWindow::showAppPermissions(const QString& permissionId) {
@@ -511,6 +508,5 @@ void MainWindow::applyTheme(const snow_shot::presentation::styles::ThemeColorSch
         m_contentHeader->applyTheme(scheme);
     }
 
-    snow_shot::presentation::styles::syncLiquidGlassMainWindow(this);
     update();
 }

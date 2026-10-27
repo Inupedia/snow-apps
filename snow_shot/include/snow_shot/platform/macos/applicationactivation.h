@@ -9,7 +9,6 @@ class QWidget;
 namespace snow_shot::platform::macos {
 void activateWindow(QWidget* window);
 void configureMainWindowTitleBar(QWidget* window, int titleBarHeight);
-void setMainWindowGlassBackdropEnabled(QWidget* window, bool enabled, bool dark);
 
 class ApplicationReopenHandler final {
   public:

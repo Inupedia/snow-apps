@@ -29,7 +29,6 @@
 #include "screenshotpinneddragexport.h"
 #include "screenshotpinnedclickthroughgeometry.h"
 #include "snow_shot/presentation/components/overlaycontrolbutton.h"
-#include "snow_shot/presentation/styles/liquidglass.h"
 #include "screenshotpinnedcontrolspresence.h"
 #include "snow_shot/storage/pinnedwindowrepository.h"
 #include "snow_shot/presentation/shortcutdisplaytext.h"
@@ -1043,9 +1042,6 @@ class PinnedOpacityEditor final : public QWidget {
     }
 
     void paintEvent(QPaintEvent*) override {
-        if (snow_shot::presentation::styles::paintLiquidGlassHud(this, height() / 2.0)) {
-            return;
-        }
         QPainter painter(this);
         painter.setRenderHint(QPainter::Antialiasing);
         painter.setPen(Qt::NoPen);

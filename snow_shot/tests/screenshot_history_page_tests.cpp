@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/components/screenshothistorypagewidget.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/components/historypagecommon.h"
 #include "snow_shot/presentation/components/thumbnailcache.h"
 #include "snow_shot/presentation/components/pinnedwindowmanagementpagewidget.h"
@@ -996,6 +997,7 @@ class PinnedLayoutDataSource final : public PinnedWindowManagementDataSource {
 };
 
 void managementPaginationStaysAtTheBottom() {
+    snow_shot::presentation::styles::installLiquidGlassShell();
     MutableHistoryDataSource historySource;
     auto records = historyRecords(1);
     records[0].createdUtc =
