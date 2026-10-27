@@ -875,6 +875,11 @@ bool BuiltInSettingsBackend::applySelectValue(SettingsSelectBinding binding,
 
 bool BuiltInSettingsBackend::switchValue(SettingsSwitchBinding binding) const {
     switch (binding) {
+    case SettingsSwitchBinding::OcrHardwareAcceleration:
+        return storage::ApplicationStorage::instance()
+            .configuration()
+            .value(QStringLiteral("text_recognition/hardware_acceleration"))
+            .toBool();
     case SettingsSwitchBinding::HistoryEnabled:
         return storage::ApplicationStorage::instance().captureHistoryPolicy().enabled;
     case SettingsSwitchBinding::PinnedHistoryEnabled:
@@ -1167,6 +1172,13 @@ bool BuiltInSettingsBackend::switchEnabled(SettingsSwitchBinding binding) const 
 }
 
 bool BuiltInSettingsBackend::applySwitchValue(SettingsSwitchBinding binding, bool value) {
+    if (binding == SettingsSwitchBinding::OcrHardwareAcceleration) {
+        const bool accepted = storage::ApplicationStorage::instance().configuration().setValue(
+            QStringLiteral("text_recognition/hardware_acceleration"), value);
+        if (accepted)
+            emit synchronized();
+        return accepted;
+    }
     if (binding == SettingsSwitchBinding::ScreenshotShowSaveResult)
         return switchEnabled(binding) && storage::ScreenshotSettings().setShowSaveResult(value);
     if (binding == SettingsSwitchBinding::OcrResidentProcess ||
@@ -1388,6 +1400,7 @@ bool BuiltInSettingsBackend::applySwitchValue(SettingsSwitchBinding binding, boo
         return false;
     case SettingsSwitchBinding::OcrResidentProcess:
     case SettingsSwitchBinding::OcrModelHotStart:
+    case SettingsSwitchBinding::OcrHardwareAcceleration:
         return false;
     case SettingsSwitchBinding::ScreenshotAreaTypeHint:
     case SettingsSwitchBinding::ShowGuidesByDefault:
@@ -3091,6 +3104,7 @@ bool BuiltInSettingsBackend::resetSection(SettingsSectionReset reset) {
         const bool accepted = storage.configuration().setValues({
             {QStringLiteral("text_recognition/resident_process"), false},
             {QStringLiteral("text_recognition/model_hot_start"), false},
+            {QStringLiteral("text_recognition/hardware_acceleration"), false},
             {QStringLiteral("text_recognition/model_type"),
              storage::ConfigurationSchema::defaultValue(
                  QStringLiteral("text_recognition/model_type"))},

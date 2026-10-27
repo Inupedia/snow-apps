@@ -784,7 +784,9 @@ class ApplicationController::Impl {
              configuration.value(QStringLiteral("text_recognition/resident_process")).toBool(),
              configuration.value(QStringLiteral("text_recognition/model_hot_start")).toBool(),
              screenshotOcrTextDetectionProcessingFromValue(
-                 configuration.value(kOcrTextDetectionProcessingKey).toString())});
+                 configuration.value(kOcrTextDetectionProcessingKey).toString()),
+             configuration.value(QStringLiteral("text_recognition/hardware_acceleration"))
+                 .toBool()});
     }
 
     void startMcp() {
@@ -1676,7 +1678,8 @@ class ApplicationController::Impl {
         } else if (key == kOcrModelTypeKey || key == kOcrDetectorResizePolicyKey ||
                    key == kOcrTextDetectionProcessingKey ||
                    key == QStringLiteral("text_recognition/resident_process") ||
-                   key == QStringLiteral("text_recognition/model_hot_start")) {
+                   key == QStringLiteral("text_recognition/model_hot_start") ||
+                   key == QStringLiteral("text_recognition/hardware_acceleration")) {
             if (started)
                 applyOcrConfiguration();
         }
