@@ -1159,6 +1159,7 @@ ScreenshotHistoryPageWidget::ScreenshotHistoryPageWidget(
     content->setObjectName(QStringLiteral("screenshotHistoryContent"));
     auto* contentLayout = pageContainer->contentLayout();
     contentLayout->setSpacing(0);
+    contentLayout->setContentsMargins(metric.paddingLG, metric.paddingXXS, metric.paddingLG, 0);
     root->addWidget(pageContainer, 1);
 
     auto* titleGroup = new QWidget(content);
@@ -1290,7 +1291,14 @@ ScreenshotHistoryPageWidget::ScreenshotHistoryPageWidget(
     m_emptyDescription->setAlignment(Qt::AlignCenter);
     m_emptyDescription->setWordWrap(true);
 
-    m_pagination = new adqt::widgets::AdPagination(content);
+    auto* paginationRow = new QWidget(pageContainer);
+    paginationRow->setObjectName(QStringLiteral("screenshotHistoryPaginationRow"));
+    paginationRow->setAutoFillBackground(false);
+    paginationRow->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto* paginationLayout = new QVBoxLayout(paginationRow);
+    paginationLayout->setContentsMargins(metric.paddingLG, 14, metric.paddingLG, metric.paddingLG);
+    paginationLayout->setSpacing(0);
+    m_pagination = new adqt::widgets::AdPagination(paginationRow);
     m_pagination->setObjectName(QStringLiteral("screenshotHistoryPagination"));
     history_page::configurePagination(m_pagination);
     m_pagination->setTotalTextFormatter(
@@ -1300,8 +1308,8 @@ ScreenshotHistoryPageWidget::ScreenshotHistoryPageWidget(
                 .arg(range.last)
                 .arg(total);
         });
-    contentLayout->addSpacing(14);
-    contentLayout->addWidget(m_pagination, 0);
+    paginationLayout->addWidget(m_pagination);
+    pageContainer->setFooterWidget(paginationRow);
 
     connect(m_sourceFilter, &adqt::widgets::AdSelect::currentValuesChanged, this,
             [this](const QVariantList&) {

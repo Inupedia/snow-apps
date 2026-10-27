@@ -1,4 +1,5 @@
 #include "snow_shot/presentation/windowgroupswitcherpopup.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "widgets/detail/native_window_chrome.h"
 #include "widgets/scroll_area.h"
@@ -214,7 +215,9 @@ class WindowGroupSwitcherPopup::Impl {
         footer->setFont(smallFont);
         QPalette palette = q.palette();
         palette.setColor(QPalette::WindowText, scheme.map.colorText);
-        palette.setColor(QPalette::Window, scheme.map.colorBgElevated);
+        palette.setColor(QPalette::Window,
+                         snow_shot::presentation::styles::liquidGlassSurfaceFill(
+                             scheme.map.colorBgElevated));
         palette.setColor(QPalette::Text, scheme.map.colorText);
         palette.setColor(QPalette::Base, Qt::transparent);
         q.setPalette(palette);

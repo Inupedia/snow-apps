@@ -459,6 +459,7 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
     auto* content = container->contentWidget();
     auto* layout = container->contentLayout();
     layout->setSpacing(0);
+    layout->setContentsMargins(metric.paddingLG, metric.paddingXXS, metric.paddingLG, 0);
 
     auto* titleGroup = new QWidget(content);
     auto* titleLayout = new QVBoxLayout(titleGroup);
@@ -587,7 +588,14 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
     m_emptyDescription->setAlignment(Qt::AlignCenter);
     m_emptyDescription->setWordWrap(true);
 
-    m_pagination = new adqt::widgets::AdPagination(content);
+    auto* paginationRow = new QWidget(container);
+    paginationRow->setObjectName(QStringLiteral("pinnedManagementPaginationRow"));
+    paginationRow->setAutoFillBackground(false);
+    paginationRow->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto* paginationLayout = new QVBoxLayout(paginationRow);
+    paginationLayout->setContentsMargins(metric.paddingLG, 14, metric.paddingLG, metric.paddingLG);
+    paginationLayout->setSpacing(0);
+    m_pagination = new adqt::widgets::AdPagination(paginationRow);
     m_pagination->setObjectName(QStringLiteral("pinnedManagementPagination"));
     history_page::configurePagination(m_pagination);
     m_pagination->setTotalTextFormatter(
@@ -597,8 +605,8 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
                 .arg(range.last)
                 .arg(total);
         });
-    layout->addSpacing(14);
-    layout->addWidget(m_pagination);
+    paginationLayout->addWidget(m_pagination);
+    container->setFooterWidget(paginationRow);
 
     connect(m_refresh, &QAbstractButton::clicked, this, &PinnedWindowManagementPageWidget::refresh);
     connect(m_deleteAllConfirmation, &adqt::widgets::AdPopconfirm::accepted, this,

@@ -995,6 +995,57 @@ class PinnedLayoutDataSource final : public PinnedWindowManagementDataSource {
     void removeRecords(const QVector<QString>&) override {}
 };
 
+void managementPaginationStaysAtTheBottom() {
+    MutableHistoryDataSource historySource;
+    auto records = historyRecords(1);
+    records[0].createdUtc =
+        QDateTime::fromString(QStringLiteral("2026-10-22T10:00:00Z"), Qt::ISODate);
+    historySource.setRecords(records);
+    PinnedLayoutDataSource pinnedSource;
+    pinnedSource.record.id = QStringLiteral("layout-pin");
+    pinnedSource.record.createdUtc = historySource.records().first().createdUtc;
+    ScreenshotHistoryPageWidget historyPage(&historySource, nullptr);
+    PinnedWindowManagementPageWidget pinnedPage(&pinnedSource, nullptr);
+    historyPage.show();
+    pinnedPage.show();
+    historyPage.setActive(true);
+    const int inset =
+        snow_shot::presentation::styles::ThemeManager::instance().themeColorScheme().metricAlias
+            .paddingLG +
+        4;
+    const auto pagerDocked = [](QWidget* page, const QString& pagerName, const QString& contentName,
+                                 const QString& entriesName, int bottomInset, bool expectGap) {
+        auto* pager = page->findChild<QWidget*>(pagerName);
+        auto* content = page->findChild<QWidget*>(contentName);
+        auto* entries = page->findChild<QWidget*>(entriesName);
+        if (pager == nullptr || content == nullptr || entries == nullptr || !pager->isVisible() ||
+            content->isAncestorOf(pager)) {
+            return false;
+        }
+        const int pagerBottom = pager->mapTo(page, QPoint(0, pager->height())).y();
+        const int pagerTop = pager->mapTo(page, QPoint()).y();
+        const int entriesBottom = entries->mapTo(page, QPoint(0, entries->height())).y();
+        const int gap = page->height() - pagerBottom;
+        if (gap < 0 || gap > bottomInset) {
+            return false;
+        }
+        return !expectGap || pagerTop > entriesBottom + 24;
+    };
+    for (const int height : {900, 520}) {
+        historyPage.resize(980, height);
+        pinnedPage.resize(980, height);
+        flushEvents();
+        flushEvents();
+        require(pagerDocked(&historyPage, QStringLiteral("screenshotHistoryPagination"),
+                            QStringLiteral("screenshotHistoryContent"),
+                            QStringLiteral("screenshotHistoryEntries"), inset, height == 900) &&
+                    pagerDocked(&pinnedPage, QStringLiteral("pinnedManagementPagination"),
+                                QStringLiteral("pageContent"),
+                                QStringLiteral("pinnedManagementEntries"), inset, height == 900),
+                "management pagers stay at the bottom of the page");
+    }
+}
+
 void entryLayoutsMatchAcrossManagementPages() {
     auto& themeManager = snow_shot::presentation::styles::ThemeManager::instance();
     const auto originalThemeMode = themeManager.themeMode();
@@ -1910,6 +1961,12 @@ int main(int argc, char** argv) {
                 .initialize({temporary.path(), temporary.path(), 8000})
                 .success,
             "isolated application storage must initialize");
+    if (application.arguments().contains(QStringLiteral("--pagination-only"))) {
+        managementPaginationStaysAtTheBottom();
+        storage::ApplicationStorage::instance().shutdown();
+        QCoreApplication::removeTranslator(&englishTranslator);
+        return 0;
+    }
     if (application.arguments().contains(QStringLiteral("--entry-layout-only"))) {
         entryLayoutsMatchAcrossManagementPages();
         storage::ApplicationStorage::instance().shutdown();

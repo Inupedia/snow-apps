@@ -610,12 +610,7 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
                 window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
                 presentation::MainWindowSkinController::existingInstance() == nullptr,
             "an unset skin must use the original QWidget without any skin runtime or hooks");
-#ifdef Q_OS_MACOS
-    require(!root->autoFillBackground(),
-            "macOS chrome stays translucent so one glass backdrop can show through");
-#else
     require(root->autoFillBackground(), "an unset skin keeps the opaque content root");
-#endif
     for (int step = 0; step < 12; ++step) {
         window.resize(900 + step, 640 + step);
         QEvent dprChange(QEvent::DevicePixelRatioChange);
@@ -647,11 +642,7 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
     require(window.findChild<presentation::MainWindowSkinWidget*>() == nullptr &&
                 presentation::MainWindowSkinController::existingInstance() == nullptr,
             "zero-opacity startup must keep the original widget without a skin runtime");
-#ifdef Q_OS_MACOS
-    require(!root->autoFillBackground(), "zero-opacity startup keeps the macOS glass chrome");
-#else
     require(root->autoFillBackground(), "zero-opacity startup keeps the opaque content root");
-#endif
     require(configuration.setValue(QStringLiteral("interface/skin_path"), QString()),
             "clear the invisible startup fixture before enabling the normal skin");
     require(configuration.setValues(
@@ -676,11 +667,7 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
                 controller->diagnostics().executorCount == 0 &&
                 controller->diagnostics().scratchRetainedBytes == 0,
             "zero opacity must release skin resources");
-#ifdef Q_OS_MACOS
-    require(!root->autoFillBackground(), "zero opacity returns the macOS window to glass chrome");
-#else
     require(root->autoFillBackground(), "zero opacity must restore the opaque widget path");
-#endif
     require(configuration.setValue(QStringLiteral("interface/skin_opacity"), 100),
             "restore the skin on the existing main window");
     waitUntil([&] {
@@ -1016,12 +1003,7 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
     require(root->metaObject() == &QWidget::staticMetaObject &&
                 window.findChild<presentation::MainWindowSkinWidget*>() == nullptr,
             "removing the skin must remove its widget and restore the original Qt paint path");
-#ifdef Q_OS_MACOS
-    require(!root->autoFillBackground(),
-            "removing the skin returns the macOS window to glass chrome");
-#else
     require(root->autoFillBackground(), "removing the skin restores the opaque content root");
-#endif
     for (const auto& surface : samples) {
         require(sample(restored, *surface.surface, surface.point) ==
                     sample(original, *surface.surface, surface.point),

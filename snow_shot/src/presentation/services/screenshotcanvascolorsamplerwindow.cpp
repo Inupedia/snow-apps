@@ -5,6 +5,7 @@
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/screenshotgeometry.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "widgets/detail/top_level_popup_window.h"
 
@@ -222,7 +223,8 @@ void ScreenshotCanvasColorSamplerWindow::paintEvent(QPaintEvent* event) {
 
     QPainterPath panelPath;
     panelPath.addRoundedRect(panel, kPanelRadius, kPanelRadius);
-    painter.fillPath(panelPath, m_panelBackground);
+    painter.fillPath(panelPath, snow_shot::presentation::styles::liquidGlassSurfaceFill(
+                                    m_panelBackground));
 
     const QRectF preview(panel.left() + kPanelPadding,
                          panel.top() + (panel.height() - kPreviewCanvasSize) / 2.0,

@@ -44,3 +44,19 @@ QWidget* PageContainerWidget::contentWidget() const {
 QVBoxLayout* PageContainerWidget::contentLayout() const {
     return m_contentLayout;
 }
+
+void PageContainerWidget::setFooterWidget(QWidget* footer) {
+    if (m_footer == footer) {
+        return;
+    }
+    auto* rootLayout = qobject_cast<QVBoxLayout*>(layout());
+    if (m_footer != nullptr && rootLayout != nullptr) {
+        rootLayout->removeWidget(m_footer);
+    }
+    m_footer = footer;
+    if (m_footer == nullptr || rootLayout == nullptr) {
+        return;
+    }
+    m_footer->setParent(this);
+    rootLayout->addWidget(m_footer, 0);
+}
