@@ -1582,6 +1582,10 @@ QVector<SettingsOptionDefinition> screenshotPointerActionOptions() {
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Quick save"))},
         {QStringLiteral("pin"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Pin to screen"))},
+        {QStringLiteral("ocr"),
+         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Text recognition"))},
+        {QStringLiteral("ocr_copy"),
+         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Copy after text recognition"))},
         {QStringLiteral("none"), settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "None"))},
     };
 }
@@ -2082,6 +2086,7 @@ SettingsItemDefinition copyTranslationResultsAsImageItem() {
 
 QVector<SettingsOptionDefinition> trayClickActionOptions() {
     return {
+        {QStringLiteral("none"), settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "None"))},
         {QStringLiteral("screenshot"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Screenshot"))},
         {QStringLiteral("show_main_window"),

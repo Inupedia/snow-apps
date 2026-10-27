@@ -2490,6 +2490,11 @@ if(SNOW_SHOT_BUILD_TESTS)
         ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
     add_test(NAME snow-shot-application-storage-tests
         COMMAND snow-shot-application-storage-tests)
+    add_test(NAME snow-shot-screenshot-mouse-action-storage-tests
+        COMMAND snow-shot-application-storage-tests --screenshot-mouse-actions-only)
+    set_tests_properties(snow-shot-screenshot-mouse-action-storage-tests PROPERTIES
+        LABELS "unit" TIMEOUT 30
+        ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
     add_test(NAME snow-shot-auto-save-execution-storage-tests
         COMMAND snow-shot-application-storage-tests --auto-save-after-execution-only)
     set_tests_properties(snow-shot-auto-save-execution-storage-tests PROPERTIES
@@ -3593,6 +3598,12 @@ if(SNOW_SHOT_BUILD_TESTS)
         NAME snow-shot-system-tray-controller-tests
         COMMAND snow-shot-system-tray-controller-tests
     )
+    add_test(NAME snow-shot-tray-click-action-tests
+        COMMAND snow-shot-system-tray-controller-tests --click-actions-only -platform offscreen)
+    set_tests_properties(snow-shot-tray-click-action-tests PROPERTIES
+        LABELS "unit" TIMEOUT 30 SNOW_TEST_CROSS_PLATFORM TRUE
+        ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT}"
+        ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
     add_test(NAME snow-shot-pinned-visibility-tray-tests
         COMMAND snow-shot-system-tray-controller-tests --hide-show-tray-only -platform offscreen)
     set_tests_properties(snow-shot-pinned-visibility-tray-tests PROPERTIES
@@ -6511,6 +6522,9 @@ if(SNOW_SHOT_BUILD_TESTS)
         PROPERTIES LABELS "unit" TIMEOUT 60)
     add_test(NAME snow-shot-scrolling-toolbar-tests
         COMMAND snow-shot-screenshot-tool-palette-tests --scrolling-only -platform offscreen)
+    add_test(NAME snow-shot-arrow-outline-toolbar-tests
+        COMMAND snow-shot-screenshot-tool-palette-tests --arrow-outline-only -platform offscreen)
+    set_tests_properties(snow-shot-arrow-outline-toolbar-tests PROPERTIES LABELS "unit" TIMEOUT 60 SNOW_TEST_CROSS_PLATFORM TRUE)
     add_test(NAME snow-shot-text-style-toolbar-tests
         COMMAND snow-shot-screenshot-tool-palette-tests --text-style-only -platform offscreen)
     set_tests_properties(snow-shot-text-style-toolbar-tests PROPERTIES LABELS "unit" TIMEOUT 60)

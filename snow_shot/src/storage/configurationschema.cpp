@@ -1582,14 +1582,14 @@ const QVector<ConfigurationSchemaEntry> kRawEntries = {
      QStringLiteral("screenshot"),
      ConfigurationValueKind::String,
      std::nullopt,
-     {QStringLiteral("screenshot"), QStringLiteral("show_main_window"),
+     {QStringLiteral("none"), QStringLiteral("screenshot"), QStringLiteral("show_main_window"),
       QStringLiteral("screenshot_copy"), QStringLiteral("screenshot_fixed"),
       QStringLiteral("open_function_settings")}},
     {QStringLiteral("tray/middle_click_action"),
      QStringLiteral("screenshot_fixed"),
      ConfigurationValueKind::String,
      std::nullopt,
-     {QStringLiteral("screenshot"), QStringLiteral("show_main_window"),
+     {QStringLiteral("none"), QStringLiteral("screenshot"), QStringLiteral("show_main_window"),
       QStringLiteral("screenshot_copy"), QStringLiteral("screenshot_fixed"),
       QStringLiteral("open_function_settings")}},
     {QStringLiteral("tray/menu_options"),
@@ -1705,13 +1705,15 @@ const QVector<ConfigurationSchemaEntry> kRawEntries = {
      ConfigurationValueKind::String,
      std::nullopt,
      {QStringLiteral("copy"), QStringLiteral("save"), QStringLiteral("quick_save"),
-      QStringLiteral("pin"), QStringLiteral("none")}},
+      QStringLiteral("pin"), QStringLiteral("ocr"), QStringLiteral("ocr_copy"),
+      QStringLiteral("none")}},
     {QStringLiteral("screenshot/middle_mouse_button_action"),
      QStringLiteral("pin"),
      ConfigurationValueKind::String,
      std::nullopt,
      {QStringLiteral("copy"), QStringLiteral("save"), QStringLiteral("quick_save"),
-      QStringLiteral("pin"), QStringLiteral("none")}},
+      QStringLiteral("pin"), QStringLiteral("ocr"), QStringLiteral("ocr_copy"),
+      QStringLiteral("none")}},
     {QStringLiteral("screenshot/quick_selection_modification"), true,
      ConfigurationValueKind::Boolean},
     {QStringLiteral("screenshot/selection_resize_mode"),
@@ -1874,7 +1876,10 @@ QJsonArray shortcutDefaults(const QString& key, const QJsonValue& value) {
     return snow_shot::shortcuts::shortcutBindingsToJson(
         snow_shot::shortcuts::shortcutBindingsFromJson(
             value, true, -1, nullptr, nullptr,
-            key == QStringLiteral("screenshot_shortcuts/toggle_guides")));
+            key == QStringLiteral("screenshot_shortcuts/toggle_guides"),
+            key.startsWith(QStringLiteral("global_shortcuts/"))
+                ? snow_shot::shortcuts::ShortcutPolicy::Native
+                : snow_shot::shortcuts::ShortcutPolicy::Application));
 }
 
 #ifdef Q_OS_MACOS
@@ -2011,11 +2016,13 @@ ConfigurationNormalization normalizeLanguage(const QJsonValue& value) {
 
 ConfigurationNormalization normalizeShortcuts(const QJsonValue& value, int maximumItems,
                                               bool allowModifierOnlyShift,
-                                              bool allowModifierOnlyAlt) {
+                                              bool allowModifierOnlyAlt,
+                                              snow_shot::shortcuts::ShortcutPolicy policy) {
     bool changed = false;
     bool valid = false;
     const auto bindings = snow_shot::shortcuts::shortcutBindingsFromJson(
-        value, allowModifierOnlyShift, maximumItems, &valid, &changed, allowModifierOnlyAlt);
+        value, allowModifierOnlyShift, maximumItems, &valid, &changed, allowModifierOnlyAlt,
+        policy);
     return {snow_shot::shortcuts::shortcutBindingsToJson(bindings), valid, changed};
 }
 
@@ -2962,7 +2969,10 @@ ConfigurationNormalization ConfigurationSchema::normalize(const QString& key,
     case ConfigurationValueKind::ShortcutList:
         return normalizeShortcuts(value, schemaEntry->maximumListItems,
                                   allowsModifierOnlyShift(key),
-                                  key == QStringLiteral("screenshot_shortcuts/toggle_guides"));
+                                  key == QStringLiteral("screenshot_shortcuts/toggle_guides"),
+                                  key.startsWith(QStringLiteral("global_shortcuts/"))
+                                      ? shortcuts::ShortcutPolicy::Native
+                                      : shortcuts::ShortcutPolicy::Application);
     case ConfigurationValueKind::Structured:
         return exactType(value, QJsonValue::Object);
     }
