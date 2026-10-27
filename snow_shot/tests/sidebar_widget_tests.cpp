@@ -1,10 +1,12 @@
 #include "snow_shot/presentation/components/sidebarwidget.h"
 #include "snow_shot/presentation/settings/settingsregistry.h"
+#include "snow_shot/presentation/styles/liquidglass.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/storage/applicationstorage.h"
 #include "snow_shot/storage/settingsadapters.h"
 
 #include "widgets/button.h"
+#include "widgets/modal.h"
 #include "widgets/navigation_menu.h"
 #include "widgets/scroll_area.h"
 
@@ -13,7 +15,9 @@
 #include <QCoreApplication>
 #include <QEvent>
 #include <QFrame>
+#include <QHash>
 #include <QImage>
+#include <QMainWindow>
 #include <QPalette>
 #include <QSize>
 #include <QSizePolicy>
@@ -391,6 +395,94 @@ void collapsedSubmenuUsesNaturalPopupHeight() {
     window.hide();
     settings.setSidebarCollapsed(false);
 }
+
+QColor dominantOpaqueColor(const QImage& image) {
+    QHash<QRgb, int> counts;
+    const QImage argb = image.convertToFormat(QImage::Format_ARGB32);
+    int bestCount = 0;
+    QRgb winner = 0;
+    for (int y = 0; y < argb.height(); ++y) {
+        const QRgb* row = reinterpret_cast<const QRgb*>(argb.constScanLine(y));
+        for (int x = 0; x < argb.width(); ++x) {
+            const QRgb pixel = row[x];
+            if (qAlpha(pixel) < 250) {
+                continue;
+            }
+            const int count = ++counts[pixel];
+            if (count > bestCount) {
+                bestCount = count;
+                winner = pixel;
+            }
+        }
+    }
+    return QColor::fromRgba(winner);
+}
+
+void collapsedSettingsPopupAndModalUseOpaqueGlass() {
+    using snow_shot::presentation::styles::installLiquidGlassShell;
+    installLiquidGlassShell();
+
+    snow_shot::storage::InterfaceSettings settings;
+    settings.setSidebarCollapsed(false);
+
+    QMainWindow window;
+    auto* host = new QWidget(&window);
+    auto* layout = new QVBoxLayout(host);
+    layout->setContentsMargins(0, 0, 0, 0);
+    window.setCentralWidget(host);
+    auto* sidebar =
+        new SidebarWidget(snow_shot::presentation::settings::builtInSettingsRegistry(), host);
+    layout->addWidget(sidebar);
+    window.resize(640, 480);
+    window.show();
+    flushEvents();
+
+    auto* menu = sidebar->findChild<adqt::widgets::AdNavigationMenu*>();
+    require(menu != nullptr, "sidebar should expose its navigation menu");
+    const QColor menuSurface = menu->resolvedColorTokens().itemBackground;
+    const auto tokens = menu->componentTokens();
+    require(tokens.colors.light.subMenuItemBackground == menuSurface &&
+                tokens.colors.light.popupBackground == QColor(250, 251, 253) &&
+                tokens.colors.dark.popupBackground == QColor(35, 39, 48),
+            "settings group and flyout should use the opaque glass surface");
+
+    const QModelIndex settingsIndex = findByStableId(menu->model(), QStringLiteral("nav.settings"));
+    sidebar->setCollapsed(true);
+    menu->setCurrentIndex(settingsIndex);
+    menu->setExpanded(settingsIndex, true);
+    flushEvents();
+
+    auto* popup = window.findChild<QWidget*>(QStringLiteral("AdNavigationMenu-popup-window"));
+    require(popup != nullptr && popup->isVisible(), "collapsed settings flyout should be visible");
+    const QImage popupImage = popup->grab().toImage();
+    const QColor popupColor = dominantOpaqueColor(popupImage);
+    require(popupColor == QColor(250, 251, 253),
+            "collapsed settings flyout should paint the opaque glass color");
+
+    adqt::widgets::AdModal modal(&window);
+    modal.setMode(adqt::widgets::AdModal::Mode::Window);
+    modal.setText(QStringLiteral("Glass check"));
+    modal.setStandardButtons(adqt::widgets::AdModal::StandardButton::Ok |
+                             adqt::widgets::AdModal::StandardButton::Cancel);
+    modal.open();
+    flushEvents();
+
+    auto* panel = window.findChild<QWidget*>(QStringLiteral("ad-modal-panel"));
+    auto* header = window.findChild<QWidget*>(QStringLiteral("ad-modal-header"));
+    auto* footer = window.findChild<QWidget*>(QStringLiteral("ad-modal-footer"));
+    require(panel != nullptr && header != nullptr && footer != nullptr && panel->isVisible(),
+            "dialog panel, header, and footer should be visible");
+    require(dominantOpaqueColor(panel->grab().toImage()) == QColor(250, 251, 253),
+            "dialog chrome should paint the opaque glass color");
+    const int footerBottom = footer->mapTo(panel, footer->rect().bottomLeft()).y();
+    const int headerTop = header->mapTo(panel, header->rect().topLeft()).y();
+    require(headerTop <= 2 && footerBottom >= panel->height() - 2,
+            "dialog footer should stay at the bottom of the panel");
+
+    modal.setOpen(false);
+    window.hide();
+    settings.setSidebarCollapsed(false);
+}
 } // namespace
 
 int main(int argc, char** argv) {
@@ -407,6 +499,7 @@ int main(int argc, char** argv) {
     sidebarBaseLayersUseTopLevelMenuBackground();
     collapseButtonSwitchesNavigationMode();
     collapsedSubmenuUsesNaturalPopupHeight();
+    collapsedSettingsPopupAndModalUseOpaqueGlass();
     snow_shot::storage::ApplicationStorage::instance().shutdown();
     return 0;
 }
