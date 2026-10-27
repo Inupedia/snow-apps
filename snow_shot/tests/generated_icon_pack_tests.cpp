@@ -95,10 +95,10 @@ void everySnowShotEntryRenders() {
     namespace icons = snow_shot::presentation::icons::custom;
     adqt::icons::IconRenderer renderer;
     const auto registered = icons::registerWith(renderer);
-    require(registered.ok(), "Snow Shot pack registration should succeed");
+    require(registered.ok(), "InuShot pack registration should succeed");
     const adqt::icons::IconPack* staticPack = icons::pack().staticPack();
-    require(staticPack != nullptr && staticPack->entryCount == 199,
-            "Snow Shot pack should contain all 199 project-owned assets");
+    require(staticPack != nullptr && staticPack->entryCount == 300,
+            "InuShot pack should contain all 300 project-owned assets");
 
     adqt::icons::IconRenderRequest request;
     request.logicalSize = QSize(32, 32);
@@ -114,18 +114,18 @@ void everySnowShotEntryRenders() {
     } capture;
     for (std::size_t index = 0; index < staticPack->entryCount; ++index) {
         const auto ref = icons::pack().icon(index);
-        require(ref.isValid(), "every Snow Shot pack entry should create a reference");
+        require(ref.isValid(), "every InuShot pack entry should create a reference");
         const QPixmap pixmap = renderer.renderIconPixmap(ref, request);
         require(!pixmap.isNull() && pixmap.size() == QSize(40, 40) &&
                     qFuzzyCompare(pixmap.devicePixelRatio(), 1.25),
-                "every Snow Shot pack entry should render at fractional DPR");
+                "every InuShot pack entry should render at fractional DPR");
         require(!alphaBounds(pixmap.toImage()).isEmpty(),
-                "every Snow Shot pack entry should have nonblank alpha bounds");
+                "every InuShot pack entry should have nonblank alpha bounds");
     }
     for (const auto& warning : renderWarnings)
         std::cerr << warning.toStdString() << '\n';
     require(renderWarnings.isEmpty(),
-            "every Snow Shot icon must render without missing images or undefined references");
+            "every InuShot icon must render without missing images or undefined references");
 }
 
 void recaptureIconUsesThemeColor() {
@@ -215,10 +215,10 @@ void projectIconColorsAndModelsArePreserved() {
     require(logoMetadata.key.pack == QStringLiteral("snow-shot") &&
                 logoMetadata.key.variant == QStringLiteral("brand") &&
                 logoMetadata.colorModel == adqt::icons::IconColorModel::Monochrome,
-            "Snow Shot logo should be a project-owned hybrid monochrome reference");
+            "InuShot logo should be a project-owned monochrome reference");
     const QImage logo = render(logoRef, QSize(190, 34)).toImage();
-    require(containsOpaqueColor(logo, brandPurple) && containsOpaqueColor(logo, primary),
-            "Snow Shot logo should preserve its fixed purple mark and themed text slot");
+    require(containsOpaqueColor(logo, primary),
+            "InuShot logo artwork and wordmark should follow the supplied theme color");
 
     const auto opacityRef = icons::outlined::Opacity(adqt::icons::IconColors::primary(primary));
     const auto opacityMetadata = adqt::icons::describeIcon(opacityRef);
@@ -226,7 +226,7 @@ void projectIconColorsAndModelsArePreserved() {
     require(opacityMetadata.key.pack == QStringLiteral("snow-shot") &&
                 opacityMetadata.key.name == QStringLiteral("opacity") &&
                 containsOpaqueColor(opacity, primary),
-            "opacity should render from the Snow Shot pack with its primary slot");
+            "opacity should render from the InuShot pack with its primary slot");
 
     const auto mouseRef = icons::outlined::Mouse(adqt::icons::IconColors::primary(primary));
     const auto mouseMetadata = adqt::icons::describeIcon(mouseRef);
@@ -258,7 +258,7 @@ void projectIconColorsAndModelsArePreserved() {
     }
     require(appMetadata.colorModel == adqt::icons::IconColorModel::FullColor &&
                 opaqueColors.size() > 4,
-            "Snow Shot application icon should preserve full-color source pixels");
+            "InuShot application icon should preserve full-color source pixels");
 }
 
 void miniLogoPreservesTheWordmarkAndAddsRoundedVectorLettering() {
@@ -272,18 +272,18 @@ void miniLogoPreservesTheWordmarkAndAddsRoundedVectorLettering() {
         const auto colors = adqt::icons::IconColors::primary(color);
         for (const qreal scale : {1.0, 2.0, 3.0}) {
             const QImage original =
-                render(icons::brand::SnowShotLogo(colors), QSize(95, 17), scale).toImage();
+                render(icons::brand::SnowShotLogo(colors), QSize(82, 17), scale).toImage();
             const QImage extended =
-                render(icons::brand::SnowShotMiniLogo(colors), QSize(137, 17), scale).toImage();
+                render(icons::brand::SnowShotMiniLogo(colors), QSize(106, 17), scale).toImage();
             require(extended.copy(original.rect()) == original,
-                    "Mini must preserve the original Snow Shot artwork and its themed text");
+                    "Mini must preserve the InuShot artwork and its themed wordmark");
         }
     }
     for (const qreal scale : {1.0, 1.25, 1.5, 1.75, 2.0, 3.0}) {
         const QImage image = render(mini, QSize(113, 14), scale).toImage();
         int letterCount = 0;
         bool previousColumnHasInk = false;
-        for (int x = qRound(image.width() * 99.0 / 137.0); x < image.width(); ++x) {
+        for (int x = qRound(image.width() * 82.0 / 106.0); x < image.width(); ++x) {
             bool columnHasInk = false;
             for (int y = 0; y < image.height(); ++y) {
                 columnHasInk |= image.pixelColor(x, y).alpha() >= 80;

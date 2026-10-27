@@ -115,10 +115,10 @@ void navigationUsesAntDesignDefaultsAndCollapseTriggerStyle() {
                 settings.isValid() && settings.data(Qt::DecorationRole).isValid() &&
                 menu->model()->rowCount(settings) == settingsNavigationPageCount() &&
                 menu->isExpanded(settings) &&
-                !storageAndPrivacy.data(Qt::DecorationRole).isValid() &&
+                storageAndPrivacy.data(Qt::DecorationRole).isValid() &&
                 storageAndPrivacy.data(adqt::widgets::AdNavigationMenu::StableIdRole).toString() ==
                     QStringLiteral("/settings/files-history"),
-            "top-level items should keep icons while expanded submenu items omit them");
+            "top-level and expanded submenu items should keep their custom icons");
     sidebar.setCurrentRoute(QStringLiteral("/settings/files-history"));
     require(sidebar.currentRoute() == QStringLiteral("/settings/files-history"),
             "storage and privacy route should be selectable");

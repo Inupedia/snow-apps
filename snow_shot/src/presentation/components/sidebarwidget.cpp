@@ -198,9 +198,12 @@ void SidebarWidget::rebuildNavigationModel() {
                 return;
             }
             m_leafRoutes.push_back(page->route);
-            const adqt::icons::IconRef icon = parent == nullptr && navigationPage.iconFactory
-                                                  ? navigationPage.iconFactory()
-                                                  : adqt::icons::IconRef();
+            adqt::icons::IconRef icon = navigationPage.iconFactory
+                                            ? navigationPage.iconFactory()
+                                            : outlined_icons::Appstore();
+            if (!adqt::icons::isValid(icon)) {
+                icon = outlined_icons::Appstore();
+            }
             const QString title = navigationPage.title.isValid() ? navigationPage.title.translated()
                                                                  : page->title.translated();
             QStandardItem* item = createActionItem(page->route, title, icon);

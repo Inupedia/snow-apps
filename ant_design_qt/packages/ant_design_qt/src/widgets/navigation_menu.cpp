@@ -167,8 +167,11 @@ void paintMenuIcon(QPainter& painter, adqt::icons::IconRef icon, const QRect& ta
     return;
   }
 
+  const auto* descriptor = icon.descriptor();
+  const bool fullColor = descriptor != nullptr &&
+                         descriptor->colorModel == adqt::icons::IconColorModel::FullColor;
   const std::optional<QColor> primaryColor = icon.colors().primarySlot();
-  if (!primaryColor.value_or(QColor()).isValid() && color.isValid()) {
+  if (!fullColor && !primaryColor.value_or(QColor()).isValid() && color.isValid()) {
     icon = icon.withColors(icon.colors().withPrimary(color));
   }
   const qreal dpr = painter.device() ? painter.device()->devicePixelRatioF() : 1.0;

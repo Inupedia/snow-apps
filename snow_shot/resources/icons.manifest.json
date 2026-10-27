@@ -3,7 +3,7 @@
   "pack": "snow-shot",
   "cppNamespace": "snow_shot::presentation::icons::custom",
   "headerInclude": "snow_shot/presentation/components/icons/snowshoticons.h",
-  "source": "Snow Shot project-owned static SVG assets",
+  "source": "InuShot project-owned static SVG assets",
   "entries": [
     {
       "variant": "app",
@@ -507,6 +507,15 @@
     },
     {
       "variant": "outlined",
+      "symbol": "ApplicationShortcutsNav",
+      "name": "custom-application-shortcuts-nav",
+      "source": "../src/presentation/components/icons/resources/custom-application-shortcuts-nav.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
       "symbol": "Appstore",
       "name": "custom-appstore",
       "source": "../src/presentation/components/icons/resources/custom-appstore.svg",
@@ -876,6 +885,15 @@
     },
     {
       "variant": "outlined",
+      "symbol": "GlobalMouseNav",
+      "name": "custom-global-mouse-nav",
+      "source": "../src/presentation/components/icons/resources/custom-global-mouse-nav.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
       "symbol": "Heart",
       "name": "custom-heart",
       "source": "../src/presentation/components/icons/resources/custom-heart.svg",
@@ -1083,6 +1101,24 @@
     },
     {
       "variant": "outlined",
+      "symbol": "PinManagementNav",
+      "name": "custom-pin-management-nav",
+      "source": "../src/presentation/components/icons/resources/custom-pin-management-nav.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "PinScreenNav",
+      "name": "custom-pin-screen-nav",
+      "source": "../src/presentation/components/icons/resources/custom-pin-screen-nav.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
       "symbol": "PlayCircle",
       "name": "custom-play-circle",
       "source": "../src/presentation/components/icons/resources/custom-play-circle.svg",
@@ -1191,6 +1227,15 @@
     },
     {
       "variant": "outlined",
+      "symbol": "ScreenRecordingNav",
+      "name": "custom-screen-recording-nav",
+      "source": "../src/presentation/components/icons/resources/custom-screen-recording-nav.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
       "symbol": "Search",
       "name": "custom-search",
       "source": "../src/presentation/components/icons/resources/custom-search.svg",
@@ -1257,6 +1302,15 @@
       "symbol": "Sync",
       "name": "custom-sync",
       "source": "../src/presentation/components/icons/resources/custom-sync.svg",
+      "colorModel": "fullColor",
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
+    },
+    {
+      "variant": "outlined",
+      "symbol": "TextRecognitionTranslationNav",
+      "name": "custom-text-recognition-translation-nav",
+      "source": "../src/presentation/components/icons/resources/custom-text-recognition-translation-nav.svg",
       "colorModel": "fullColor",
       "fit": "contain",
       "allowEmbeddedDataImages": true

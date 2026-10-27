@@ -72,7 +72,7 @@ def main() -> int:
         "pack": "snow-shot",
         "cppNamespace": "snow_shot::presentation::icons::custom",
         "headerInclude": "snow_shot/presentation/components/icons/snowshoticons.h",
-        "source": "Snow Shot project-owned static SVG assets",
+        "source": "InuShot project-owned static SVG assets",
         "entries": entries,
     }
     expected = json.dumps(manifest, indent=2) + "\n"

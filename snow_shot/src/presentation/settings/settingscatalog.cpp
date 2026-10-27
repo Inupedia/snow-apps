@@ -4203,12 +4203,12 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     SettingsNavigationPageDefinition globalHotkeys;
     globalHotkeys.id = QStringLiteral("nav.global-hotkeys");
     globalHotkeys.pageId = QString::fromLatin1(GLOBAL_HOTKEYS_PAGE_ID);
-    globalHotkeys.iconFactory = []() { return outlined_icons::Thunderbolt(); };
+    globalHotkeys.iconFactory = []() { return outlined_icons::MacCommand(); };
 
     SettingsNavigationPageDefinition globalMouse;
     globalMouse.id = QStringLiteral("nav.global-mouse");
     globalMouse.pageId = QString::fromLatin1(GLOBAL_MOUSE_PAGE_ID);
-    globalMouse.iconFactory = []() { return custom_outlined_icons::WheelMouse(); };
+    globalMouse.iconFactory = []() { return custom_outlined_icons::GlobalMouseNav(); };
 
     SettingsNavigationPageDefinition history;
     history.id = QStringLiteral("nav.screenshot-history");
@@ -4223,29 +4223,29 @@ QVector<SettingsNavigationNode> builtInNavigation() {
         {QStringLiteral("nav.general"), QStringLiteral("general"),
          []() { return outlined_icons::Setting(); }},
         {QStringLiteral("nav.general-appearance"), QStringLiteral("general-appearance"),
-         []() { return outlined_icons::Control(); }},
+         []() { return outlined_icons::BgColors(); }},
         {QStringLiteral("nav.screenshots"), QStringLiteral("screenshots"),
-         []() { return outlined_icons::Function(); }},
+         []() { return outlined_icons::Picture(); }},
         {QStringLiteral("nav.pinned-windows"), QStringLiteral("pinned-windows"),
-         []() { return custom_outlined_icons::PinToScreen(); }},
+         []() { return custom_outlined_icons::PinScreenNav(); }},
         {QStringLiteral("nav.screen-recording"), QStringLiteral("screen-recording"),
-         []() { return custom_outlined_icons::RecordScreen(); }},
+         []() { return custom_outlined_icons::ScreenRecordingNav(); }},
         {QStringLiteral("nav.text-recognition-translation"),
          QStringLiteral("text-recognition-translation"),
-         []() { return custom_outlined_icons::TextRecognition(); }},
+         []() { return custom_outlined_icons::TextRecognitionTranslationNav(); }},
         {QStringLiteral("nav.shortcuts-mouse"), QStringLiteral("shortcuts-mouse"),
-         []() { return custom_outlined_icons::Keyboard(); }},
+         []() { return custom_outlined_icons::ApplicationShortcutsNav(); }},
         {QStringLiteral("nav.desktop-tools"), QStringLiteral("desktop-tools"),
-         []() { return outlined_icons::Control(); }},
+         []() { return outlined_icons::Desktop(); }},
         {QStringLiteral("nav.files-history"), QStringLiteral("files-history"),
-         []() { return outlined_icons::History(); }},
+         []() { return outlined_icons::FolderOpen(); }},
         {QStringLiteral("nav.connections-services"), QStringLiteral("connections-services"),
-         []() { return outlined_icons::Setting(); }}};
+         []() { return outlined_icons::Global(); }}};
 
 #ifdef Q_OS_MACOS
     settingsGroup.pages.push_back({QStringLiteral("nav.app-permissions"),
                                    QStringLiteral("app-permissions"),
-                                   []() { return outlined_icons::Lock(); }});
+                                   []() { return outlined_icons::SafetyCertificate(); }});
 #endif
     SettingsNavigationPageDefinition about;
     about.id = QStringLiteral("nav.about");
@@ -4262,7 +4262,7 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     SettingsNavigationPageDefinition pinned;
     pinned.id = QStringLiteral("nav.pin-to-screen-management");
     pinned.pageId = QString::fromLatin1(PINNED_PAGE_ID);
-    pinned.iconFactory = []() { return custom_outlined_icons::PinToScreenManagement(); };
+    pinned.iconFactory = []() { return custom_outlined_icons::PinManagementNav(); };
     return {globalHotkeys, globalMouse, history, pinned,
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
             translation,
