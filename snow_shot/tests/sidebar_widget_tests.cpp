@@ -7,6 +7,8 @@
 
 #include "widgets/button.h"
 #include "widgets/modal.h"
+#include "widgets/popconfirm.h"
+#include "widgets/select.h"
 #include "widgets/navigation_menu.h"
 #include "widgets/scroll_area.h"
 
@@ -18,6 +20,7 @@
 #include <QHash>
 #include <QImage>
 #include <QMainWindow>
+#include <QPainter>
 #include <QPalette>
 #include <QSize>
 #include <QSizePolicy>
@@ -420,7 +423,67 @@ QColor dominantOpaqueColor(const QImage& image) {
 
 void collapsedSettingsPopupAndModalUseOpaqueGlass() {
     using snow_shot::presentation::styles::installLiquidGlassShell;
+    using snow_shot::presentation::styles::liquidGlassPopupColor;
+    using snow_shot::presentation::styles::paintFloatingSnowflake;
+    using snow_shot::presentation::styles::paintWebcamResizeHandle;
+    using snow_shot::presentation::styles::paintOpaqueControlPlate;
+    using snow_shot::presentation::styles::paintQrPopoverBubble;
+    using snow_shot::presentation::styles::paintRecordingEdgeControl;
     installLiquidGlassShell();
+
+    QImage plate(80, 40, QImage::Format_ARGB32_Premultiplied);
+    plate.fill(Qt::red);
+    QPainter platePainter(&plate);
+    paintOpaqueControlPlate(platePainter, QRectF(plate.rect()), 8, QColor(191, 194, 199));
+    platePainter.end();
+    require(plate.pixelColor(40, 20) == QColor(250, 251, 253),
+            "canvas and guide plates should paint the opaque glass color");
+
+    QImage edge(40, 80, QImage::Format_ARGB32_Premultiplied);
+    edge.fill(Qt::red);
+    QPainter edgePainter(&edge);
+    paintRecordingEdgeControl(edgePainter, QRectF(edge.rect()), true, false, false,
+                             adqt::theme::ThemeManager::instance().resolveTheme(nullptr));
+    edgePainter.end();
+    require(edge.pixelColor(8, 40) == QColor(250, 251, 253),
+            "collapsed recording tab should paint the opaque glass color");
+
+    QImage opacity(80, 28, QImage::Format_ARGB32_Premultiplied);
+    opacity.fill(Qt::red);
+    QPainter opacityPainter(&opacity);
+    paintOpaqueControlPlate(opacityPainter, QRectF(opacity.rect()), 14, QColor(255, 255, 255, 70),
+                            liquidGlassPopupColor(true));
+    opacityPainter.end();
+    require(opacity.pixelColor(40, 14) == QColor(35, 39, 48),
+            "pinned opacity editor should paint the dark glass color");
+
+    QImage qrBubble(200, 120, QImage::Format_ARGB32_Premultiplied);
+    qrBubble.fill(Qt::red);
+    QPainter qrPainter(&qrBubble);
+    paintQrPopoverBubble(qrPainter, QRectF(qrBubble.rect()), true, 40, QColor(191, 194, 199));
+    qrPainter.end();
+    require(qrBubble.pixelColor(100, 60) == QColor(250, 251, 253) &&
+                qrBubble.pixelColor(8, 40) == QColor(250, 251, 253) &&
+                qrBubble.pixelColor(2, 2).alpha() == 0,
+            "QR text bubble and arrow should paint the opaque glass color");
+
+    QImage snowflake(48, 48, QImage::Format_ARGB32_Premultiplied);
+    snowflake.fill(Qt::red);
+    QPainter snowflakePainter(&snowflake);
+    paintFloatingSnowflake(snowflakePainter, QRectF(snowflake.rect()), false, false, false, false,
+                           adqt::theme::ThemeManager::instance().resolveTheme(nullptr));
+    snowflakePainter.end();
+    require(snowflake.pixelColor(24, 8) == QColor(250, 251, 253),
+            "floating toolbar button should paint the opaque glass color");
+
+    QImage webcamResize(32, 32, QImage::Format_ARGB32_Premultiplied);
+    webcamResize.fill(Qt::red);
+    QPainter webcamPainter(&webcamResize);
+    paintWebcamResizeHandle(webcamPainter, QRectF(webcamResize.rect()), false, false);
+    webcamPainter.end();
+    require(webcamResize.pixelColor(16, 8) == QColor(35, 39, 48) &&
+                webcamResize.pixelColor(1, 1).alpha() == 0,
+            "webcam resize handle should paint the dark glass color");
 
     snow_shot::storage::InterfaceSettings settings;
     settings.setSidebarCollapsed(false);
@@ -445,6 +508,35 @@ void collapsedSettingsPopupAndModalUseOpaqueGlass() {
                 tokens.colors.light.popupBackground == QColor(250, 251, 253) &&
                 tokens.colors.dark.popupBackground == QColor(35, 39, 48),
             "settings group and flyout should use the opaque glass surface");
+
+    auto* search = sidebar->findChild<ApplicationSearchWidget*>();
+    auto* searchSelect =
+        search != nullptr ? search->findChild<adqt::widgets::AdSelect*>() : nullptr;
+    require(searchSelect != nullptr, "sidebar search should expose its menu");
+    searchSelect->setPopupVisible(true);
+    flushEvents();
+    QWidget* searchPopup = nullptr;
+    const QWidgetList searchTops = QApplication::topLevelWidgets();
+    for (QWidget* top : searchTops) {
+        if (top->objectName() == QStringLiteral("adselect-popup") && top->isVisible()) {
+            searchPopup = top;
+            break;
+        }
+        searchPopup = top->findChild<QWidget*>(QStringLiteral("adselect-popup"));
+        if (searchPopup != nullptr && searchPopup->isVisible()) {
+            break;
+        }
+        searchPopup = nullptr;
+    }
+    const QImage searchImage = searchPopup != nullptr ? searchPopup->grab().toImage() : QImage();
+    const QColor searchPlate = searchImage.height() > 16
+                                   ? searchImage.pixelColor(searchImage.width() / 2, 14)
+                                   : QColor();
+    require(searchSelect->componentTokens().colors.popupBackground == QColor(250, 251, 253) &&
+                searchPlate == QColor(250, 251, 253),
+            "search menu should paint the opaque glass color");
+    searchSelect->setPopupVisible(false);
+    flushEvents();
 
     const QModelIndex settingsIndex = findByStableId(menu->model(), QStringLiteral("nav.settings"));
     sidebar->setCollapsed(true);
@@ -480,6 +572,50 @@ void collapsedSettingsPopupAndModalUseOpaqueGlass() {
             "dialog footer should stay at the bottom of the panel");
 
     modal.setOpen(false);
+
+    adqt::widgets::AdButton confirmSource(QStringLiteral("Delete"), &window);
+    layout->addWidget(&confirmSource);
+    adqt::widgets::AdPopconfirm confirmation(&window);
+    confirmation.setSourceWidget(&confirmSource);
+    confirmation.setVisibilityMode(adqt::widgets::AdPopconfirm::VisibilityMode::Manual);
+    confirmation.setText(QStringLiteral("Delete this item?"));
+    confirmation.setVisible(true);
+    flushEvents();
+    auto* confirmPopover = confirmation.findChild<adqt::widgets::AdPopover*>();
+    require(confirmPopover != nullptr && confirmation.isVisible() &&
+                confirmPopover->backgroundColor() == QColor(250, 251, 253),
+            "delete confirmation should use the opaque glass color");
+    confirmation.setVisible(false);
+
+    adqt::widgets::AdSelect toolSelect(window.centralWidget());
+    toolSelect.setPopupLayerMode(adqt::widgets::AdSelect::PopupLayerMode::QtTool);
+    adqt::widgets::AdSelect::Option toolOption;
+    toolOption.value = QStringLiteral("glass");
+    toolOption.label = QStringLiteral("Glass");
+    toolSelect.setOptions({toolOption});
+    layout->addWidget(&toolSelect);
+    toolSelect.setPopupVisible(true);
+    flushEvents();
+    QWidget* selectPopup = nullptr;
+    const QWidgetList selectTops = QApplication::topLevelWidgets();
+    for (QWidget* top : selectTops) {
+        if (top->objectName() == QStringLiteral("adselect-popup") && top->isVisible()) {
+            selectPopup = top;
+            break;
+        }
+    }
+    const QImage selectImage = selectPopup != nullptr ? selectPopup->grab().toImage() : QImage();
+    // The highlighted row paints its own fill. The plate is the band under the
+    // shadow and above that row.
+    const QColor dropdownPlate = selectImage.height() > 16
+                                     ? selectImage.pixelColor(selectImage.width() / 2, 14)
+                                     : QColor();
+    require(selectPopup != nullptr &&
+                toolSelect.componentTokens().colors.popupBackground == QColor(250, 251, 253) &&
+                dropdownPlate == QColor(250, 251, 253),
+            "tool-window dropdown should paint the opaque glass color");
+    toolSelect.setPopupVisible(false);
+
     window.hide();
     settings.setSidebarCollapsed(false);
 }

@@ -6,7 +6,10 @@
 // two paintEvent early-returns for toolbar panels that have no Q_OBJECT, so a
 // later upstream merge does not have to touch main-window, history, or platform code.
 
+#include "snow_shot/app/supportedpinfiles.h"
+#include "snow_shot/presentation/components/applicationsearchwidget.h"
 #include "snow_shot/presentation/styles/thememanager.h"
+#include "theme/theme_manager.h"
 #include "widgets/context_menu.h"
 #include "widgets/date_picker.h"
 #include "widgets/message.h"
@@ -14,10 +17,18 @@
 #include "widgets/navigation_menu.h"
 #include "widgets/notification.h"
 #include "widgets/popover.h"
+#include "widgets/popconfirm.h"
 #include "widgets/select.h"
 #include "widgets/tooltip.h"
 
+#include "widgets/control_scale.h"
+
+#include <QAbstractButton>
 #include <QAbstractItemView>
+#include <QDropEvent>
+#include <QFileInfo>
+#include <QMimeData>
+#include <QUrl>
 #include <QAbstractScrollArea>
 #include <QApplication>
 #include <QColor>
@@ -30,6 +41,7 @@
 #include <QPalette>
 #include <QPen>
 #include <QPointer>
+#include <QScreen>
 #include <QSizePolicy>
 #include <QTimer>
 #include <QVBoxLayout>
@@ -84,6 +96,354 @@ inline bool paintLiquidGlassToolbar(QWidget* widget, qreal radius) {
     painter.setBrush(Qt::NoBrush);
     painter.setPen(QPen(liquidGlassHighlightColor(dark), 1.0));
     painter.drawPath(edge);
+    return true;
+}
+
+inline bool canvasToolbarUsesGlassPlate(const QString& name) {
+    return name == QStringLiteral("imageSplitCanvasToolbar") ||
+           name == QStringLiteral("imageEditingCanvasToolbar") ||
+           name == QStringLiteral("collageImageToolbar") ||
+           name == QStringLiteral("collagePdfCanvasToolbar") ||
+           name == QStringLiteral("collagePdfImageToolbar") ||
+           name == QStringLiteral("screenRecordingWebcamOrientationToolbar") ||
+           name == QStringLiteral("permissionGuide");
+}
+
+inline void paintOpaqueControlPlate(QPainter& painter, const QRectF& rect, qreal radius,
+                                    const QColor& border, const QColor& fill = QColor()) {
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    painter.setPen(QPen(border, 1.0));
+    painter.setBrush(fill.isValid() ? fill : liquidGlassPopupColor(themeIsDark()));
+    painter.drawRoundedRect(rect.adjusted(0.5, 0.5, -0.5, -0.5), radius, radius);
+}
+
+// Matches screenshot_action_toolbar::PanelRadius. The collapsed recording tab
+// has no Q_OBJECT, and its screen edge is the only side that stays square.
+inline constexpr int kRecordingEdgeRadius = 8;
+
+inline bool recordingEdgeIsOnLeft(const QWidget* widget) {
+    const QScreen* screen = widget != nullptr ? widget->screen() : nullptr;
+    if (widget == nullptr || screen == nullptr) {
+        return false;
+    }
+    return widget->mapToGlobal(QPoint(0, 0)).x() <= screen->geometry().left() + 1;
+}
+
+inline void paintRecordingEdgeControl(QPainter& painter, const QRectF& rect, bool onLeft, bool down,
+                                     bool hover, const adqt::theme::ThemeMapToken& theme) {
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    const qreal scale = rect.width() / 20.0;
+    const qreal radius = std::min<qreal>(
+        adqt::widgets::scaleControlMetric(kRecordingEdgeRadius, scale), rect.height() / 2.0);
+    const QRectF body = rect.adjusted(0.5, 0.5, -0.5, -0.5);
+    QPainterPath surface;
+    if (onLeft) {
+        surface.moveTo(body.topLeft());
+        surface.lineTo(body.right() - radius, body.top());
+        surface.quadTo(body.topRight(), QPointF(body.right(), body.top() + radius));
+        surface.lineTo(body.right(), body.bottom() - radius);
+        surface.quadTo(body.bottomRight(), QPointF(body.right() - radius, body.bottom()));
+        surface.lineTo(body.bottomLeft());
+    } else {
+        surface.moveTo(body.topRight());
+        surface.lineTo(body.left() + radius, body.top());
+        surface.quadTo(body.topLeft(), QPointF(body.left(), body.top() + radius));
+        surface.lineTo(body.left(), body.bottom() - radius);
+        surface.quadTo(body.bottomLeft(), QPointF(body.left() + radius, body.bottom()));
+        surface.lineTo(body.bottomRight());
+    }
+    surface.closeSubpath();
+    const QColor fill = down          ? theme.colorFillSecondary
+                        : hover       ? theme.colorPrimaryBg
+                                      : liquidGlassPopupColor(themeIsDark());
+    painter.setBrush(fill);
+    painter.setPen(QPen(hover ? theme.colorPrimary : theme.colorBorderSecondary, 1));
+    painter.drawPath(surface);
+    const QPointF center(rect.center());
+    const qreal direction = onLeft ? 1.0 : -1.0;
+    QPainterPath chevron;
+    chevron.moveTo(center + QPointF(-direction * 2 * scale, -4 * scale));
+    chevron.lineTo(center + QPointF(direction * 2 * scale, 0));
+    chevron.lineTo(center + QPointF(-direction * 2 * scale, 4 * scale));
+    painter.setBrush(Qt::NoBrush);
+    painter.setPen(QPen(hover ? theme.colorPrimary : theme.colorTextSecondary, 1.7 * scale,
+                        Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    painter.drawPath(chevron);
+}
+
+inline bool paintRecordingEdgeControl(QWidget* widget, const adqt::theme::ThemeMapToken& theme) {
+    auto* button = qobject_cast<QAbstractButton*>(widget);
+    QPainter painter(widget);
+    paintRecordingEdgeControl(painter, QRectF(widget->rect()), recordingEdgeIsOnLeft(widget),
+                             button != nullptr && button->isDown(), widget->underMouse(), theme);
+    return true;
+}
+
+inline void paintQrPopoverBubble(QPainter& painter, const QRectF& rect, bool onLeft, qreal arrowY,
+                                 const QColor& border) {
+    // The bubble and its arrow are one shape. The text and buttons are children
+    // and keep painting on top of this fill.
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    const QRectF box = rect.adjusted(12, 12, -12, -12);
+    if (box.width() <= 0 || box.height() <= 0) {
+        return;
+    }
+    const qreal y = std::clamp(arrowY, box.top() + 16, box.bottom() - 16);
+    const qreal x = onLeft ? box.left() : box.right();
+    QPainterPath shape;
+    shape.addRoundedRect(box, 8, 8);
+    QPainterPath arrow;
+    arrow.moveTo(x, y - 8);
+    arrow.lineTo(x + (onLeft ? -8.0 : 8.0), y);
+    arrow.lineTo(x, y + 8);
+    arrow.closeSubpath();
+    painter.setPen(QPen(border, 1));
+    painter.setBrush(liquidGlassPopupColor(themeIsDark()));
+    painter.drawPath(shape.united(arrow));
+}
+
+inline bool qrPopoverArrow(const QWidget* body, bool* onLeft, qreal* arrowY) {
+    const QWidget* popover = body != nullptr ? body->window() : nullptr;
+    const QScreen* screen = popover != nullptr ? popover->screen() : nullptr;
+    if (popover == nullptr || screen == nullptr || onLeft == nullptr || arrowY == nullptr) {
+        return false;
+    }
+    const QPoint popoverGlobal = popover->mapToGlobal(QPoint(0, 0));
+    const QRect available = screen->availableGeometry();
+    const int popoverWidth = popover->width();
+    const int popoverHeight = popover->height();
+    const QWidget* matched = nullptr;
+    int bestDistance = 12;
+    bool matchedOnLeft = true;
+    const QWidgetList tops = QApplication::topLevelWidgets();
+    for (QWidget* top : tops) {
+        const QList<QWidget*> markers =
+            top->findChildren<QWidget*>(QStringLiteral("screenshotQrMarker"));
+        for (const QWidget* marker : markers) {
+            if (marker == nullptr || !marker->isVisible()) {
+                continue;
+            }
+            const QRect anchor(marker->mapToGlobal(QPoint(0, 0)), marker->size());
+            const int preferredX = anchor.right() + 1 + 8 - 12;
+            const bool arrowOnLeft = preferredX + popoverWidth <= available.right() + 1;
+            int x = arrowOnLeft ? preferredX : anchor.left() - 8 - popoverWidth + 12;
+            const int maxX = std::max(available.left(), available.right() + 1 - popoverWidth);
+            const int maxY = std::max(available.top(), available.bottom() + 1 - popoverHeight);
+            const int y =
+                std::clamp(anchor.center().y() - popoverHeight / 2, available.top(), maxY);
+            x = std::clamp(x, available.left(), maxX);
+            const int distance = (QPoint(x, y) - popoverGlobal).manhattanLength();
+            if (distance <= bestDistance) {
+                bestDistance = distance;
+                matched = marker;
+                matchedOnLeft = arrowOnLeft;
+            }
+        }
+    }
+    if (matched == nullptr) {
+        return false;
+    }
+    const QRect anchor(matched->mapToGlobal(QPoint(0, 0)), matched->size());
+    *onLeft = matchedOnLeft;
+    *arrowY = anchor.center().y() - popoverGlobal.y();
+    return true;
+}
+
+inline bool floatingToolbarDropReady(const QDropEvent* event) {
+    if (event == nullptr || !event->possibleActions().testFlag(Qt::CopyAction)) {
+        return false;
+    }
+    const QMimeData* mime = event->mimeData();
+    if (mime == nullptr) {
+        return false;
+    }
+    if (mime->hasImage() || mime->hasText() || mime->hasHtml()) {
+        return true;
+    }
+    for (const QString& format : mime->formats()) {
+        if (format.startsWith(QLatin1String("image/"))) {
+            return true;
+        }
+    }
+    if (!mime->hasUrls()) {
+        return false;
+    }
+    const QStringList extensions = snow_shot::app::supportedPinFileExtensions();
+    for (const QUrl& url : mime->urls()) {
+        if (url.isLocalFile() &&
+            extensions.contains(QFileInfo(url.toLocalFile()).suffix(), Qt::CaseInsensitive)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+inline void syncFloatingToolbarDropReady(QWidget* surface, bool ready) {
+    if (surface == nullptr) {
+        return;
+    }
+    const QList<QWidget*> buttons =
+        surface->findChildren<QWidget*>(QStringLiteral("floatingToolbarSnowflake"));
+    for (QWidget* button : buttons) {
+        if (button->property("snowGlassDropReady").toBool() == ready) {
+            continue;
+        }
+        button->setProperty("snowGlassDropReady", ready);
+        button->update();
+    }
+}
+
+inline void noteFloatingToolbarDrag(QObject* watched, QEvent* event) {
+    auto* surface = qobject_cast<QWidget*>(watched);
+    if (surface == nullptr || event == nullptr) {
+        return;
+    }
+    const QString name = surface->objectName();
+    if (name != QStringLiteral("floatingToolbarIconWindow") &&
+        name != QStringLiteral("floatingToolbarWindow")) {
+        return;
+    }
+    const QEvent::Type type = event->type();
+    bool ready = false;
+    if (type == QEvent::DragEnter || type == QEvent::DragMove) {
+        ready = floatingToolbarDropReady(static_cast<const QDropEvent*>(event));
+    } else if (type != QEvent::DragLeave && type != QEvent::Drop && type != QEvent::Hide) {
+        return;
+    }
+    syncFloatingToolbarDropReady(surface, ready);
+}
+
+inline void paintFloatingSnowflake(QPainter& painter, const QRectF& rect, bool down, bool hover,
+                                   bool focus, bool dropReady,
+                                   const adqt::theme::ThemeMapToken& theme) {
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    painter.save();
+    painter.translate(rect.topLeft());
+    painter.scale(rect.width() / 48.0, rect.height() / 48.0);
+    painter.setPen(QPen(focus ? theme.colorPrimary : theme.colorBorderSecondary, 1));
+    painter.setBrush(down ? theme.colorFillSecondary : liquidGlassPopupColor(themeIsDark()));
+    painter.drawRoundedRect(QRectF(0.5, 0.5, 47, 47), 12, 12);
+    if (hover) {
+        painter.setPen(Qt::NoPen);
+        painter.setBrush(theme.colorFillQuaternary);
+        painter.drawRoundedRect(QRectF(1, 1, 46, 46), 12, 12);
+    }
+    if (dropReady) {
+        QColor glow = theme.colorSuccess;
+        glow.setAlphaF(0.14F);
+        painter.setPen(Qt::NoPen);
+        painter.setBrush(glow);
+        painter.drawRoundedRect(QRectF(1, 1, 46, 46), 12, 12);
+        QColor ring = theme.colorSuccess;
+        ring.setAlphaF(0.7F);
+        painter.setPen(QPen(ring, 1.5));
+        painter.setBrush(Qt::NoBrush);
+        painter.drawRoundedRect(QRectF(2.5, 2.5, 43, 43), 10, 10);
+    }
+    painter.translate(24, 24);
+    if (dropReady) {
+        painter.scale(1.08, 1.08);
+    }
+    painter.setPen(QPen(dropReady ? theme.colorSuccess : theme.colorPrimary, 1.8, Qt::SolidLine,
+                        Qt::RoundCap, Qt::RoundJoin));
+    for (int arm = 0; arm < 6; ++arm) {
+        painter.drawLine(QPointF(0, 0), QPointF(0, -14));
+        painter.drawLine(QPointF(0, -8.5), QPointF(-4, -11));
+        painter.drawLine(QPointF(0, -8.5), QPointF(4, -11));
+        painter.rotate(60);
+    }
+    painter.restore();
+}
+
+inline void paintWebcamResizeHandle(QPainter& painter, const QRectF& rect, bool down, bool hover) {
+    // This handle sits on the camera picture, so it uses the dark control color.
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    const QColor fill = down    ? QColor(28, 32, 40)
+                        : hover ? QColor(48, 52, 62)
+                                : liquidGlassPopupColor(true);
+    painter.setPen(QPen(QColor(255, 255, 255, 70), 1));
+    painter.setBrush(fill);
+    painter.drawEllipse(rect.adjusted(0.5, 0.5, -0.5, -0.5));
+    painter.save();
+    painter.translate(rect.center());
+    painter.scale(rect.width() / 32.0, rect.height() / 32.0);
+    painter.setPen(QPen(Qt::white, 1.8, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    painter.setBrush(Qt::NoBrush);
+    painter.drawLine(QPointF(-6, 6), QPointF(6, -6));
+    painter.drawLine(QPointF(0, -6), QPointF(6, -6));
+    painter.drawLine(QPointF(6, -6), QPointF(6, 0));
+    painter.drawLine(QPointF(-6, 0), QPointF(-6, 6));
+    painter.drawLine(QPointF(-6, 6), QPointF(0, 6));
+    painter.restore();
+}
+
+inline bool paintNamedControlPlate(QWidget* widget) {
+    if (!liquidGlassShellEnabled() || widget == nullptr) {
+        return false;
+    }
+    const QString name = widget->objectName();
+    const auto theme = adqt::theme::ThemeManager::instance().resolveTheme(widget);
+    if (name == QStringLiteral("screenshotPinnedClickThroughOpacityEditor")) {
+        // This pill sits on the pinned image, same as the capture readout, so it
+        // stays on the dark control color instead of the window theme.
+        QPainter painter(widget);
+        paintOpaqueControlPlate(painter, QRectF(widget->rect()), widget->height() / 2.0,
+                                QColor(255, 255, 255, 70), liquidGlassPopupColor(true));
+        return true;
+    }
+    if (name == QStringLiteral("recordingToolbarAutoHideControl")) {
+        return paintRecordingEdgeControl(widget, theme);
+    }
+    if (name == QStringLiteral("screenRecordingWebcamResize")) {
+        auto* button = qobject_cast<QAbstractButton*>(widget);
+        QPainter painter(widget);
+        paintWebcamResizeHandle(painter, QRectF(widget->rect()),
+                                button != nullptr && button->isDown(), widget->underMouse());
+        return true;
+    }
+    if (name == QStringLiteral("floatingToolbarSnowflake")) {
+        auto* button = qobject_cast<QAbstractButton*>(widget);
+        QPainter painter(widget);
+        paintFloatingSnowflake(painter, QRectF(widget->rect()),
+                               button != nullptr && button->isDown(), widget->underMouse(),
+                               widget->hasFocus(), widget->property("snowGlassDropReady").toBool(),
+                               theme);
+        return true;
+    }
+    if (name == QStringLiteral("screenshotQrPopoverBody")) {
+        bool onLeft = true;
+        qreal arrowY = 0;
+        if (!qrPopoverArrow(widget, &onLeft, &arrowY)) {
+            return false;
+        }
+        QPainter painter(widget);
+        paintQrPopoverBubble(painter, QRectF(widget->rect()), onLeft, arrowY,
+                             theme.colorBorderSecondary);
+        return true;
+    }
+    if (!canvasToolbarUsesGlassPlate(name)) {
+        return false;
+    }
+    const qreal radius = name == QStringLiteral("permissionGuide")
+                             ? 11.0
+                             : static_cast<qreal>(theme.borderRadiusSM);
+    QPainter painter(widget);
+    paintOpaqueControlPlate(painter, QRectF(widget->rect()), radius, theme.colorBorderSecondary);
     return true;
 }
 
@@ -302,6 +662,22 @@ inline void applyDetachedControlGlass() {
         tokens.background = fill;
         menu->setComponentTokens(tokens);
     }
+
+    // A confirmation refresh writes its own popover color and clears a color set
+    // on the inner popover. The resolver is the color that refresh keeps.
+    QList<adqt::widgets::AdPopconfirm*> confirmations;
+    collectControlObjects(confirmations);
+    for (adqt::widgets::AdPopconfirm* confirmation : confirmations) {
+        if (confirmation->property("snowGlassPopconfirm").toBool()) {
+            continue;
+        }
+        confirmation->setProperty("snowGlassPopconfirm", true);
+        confirmation->setSemanticStyleResolver([](const adqt::widgets::AdPopconfirm::StyleContext&) {
+            adqt::widgets::AdPopconfirm::SemanticStyles styles;
+            styles.container.backgroundColor = liquidGlassPopupColor(themeIsDark());
+            return styles;
+        });
+    }
 }
 
 inline void applyWindowGroupSwitcherGlass() {
@@ -326,17 +702,49 @@ inline void applyWindowGroupSwitcherGlass() {
     }
 }
 
-inline void applySelectPopupGlass(QWidget* popup) {
-    if (popup == nullptr) {
-        return;
+inline bool selectIsGlobalSearch(const QWidget* select) {
+    for (const QWidget* cursor = select; cursor != nullptr; cursor = cursor->parentWidget()) {
+        if (cursor->objectName() == QStringLiteral("globalTopSearchBar")) {
+            return true;
+        }
     }
+    return false;
+}
+
+inline void applySearchPopupGlass() {
+    // The search field stores the menu color and paints every result row with
+    // it. One theme pass replaces that color and leaves the field itself alone.
     const QColor fill = liquidGlassPopupColor(themeIsDark());
-    QWidget* window = popup->window();
-    if (window == nullptr) {
+    QList<ApplicationSearchWidget*> searches;
+    collectControlObjects(searches);
+    if (searches.isEmpty()) {
         return;
     }
-    const QList<adqt::widgets::AdSelect*> selects = window->findChildren<adqt::widgets::AdSelect*>();
+    auto scheme = ThemeManager::instance().themeColorScheme();
+    scheme.map.colorBgElevated = fill;
+    for (ApplicationSearchWidget* search : searches) {
+        if (search == nullptr) {
+            continue;
+        }
+        auto* select = search->findChild<adqt::widgets::AdSelect*>();
+        if (select != nullptr && select->componentTokens().colors.popupBackground == fill) {
+            continue;
+        }
+        search->applyTheme(scheme);
+    }
+}
+
+inline void applySelectPopupGlass(QWidget* popup) {
+    Q_UNUSED(popup);
+    // Tool-window menus are parented to nothing, so they are not children of the
+    // window that owns the select. Walk every top-level widget instead.
+    const QColor fill = liquidGlassPopupColor(themeIsDark());
+    QList<adqt::widgets::AdSelect*> selects;
+    collectControlObjects(selects);
     for (adqt::widgets::AdSelect* select : selects) {
+        if (select == nullptr || selectIsGlobalSearch(select)) {
+            continue;
+        }
         auto tokens = select->componentTokens();
         if (tokens.colors.popupBackground == fill) {
             continue;
@@ -398,6 +806,8 @@ inline void syncOpenMainWindows() {
     applyDetachedControlGlass();
     applyModalGlass();
     applyWindowGroupSwitcherGlass();
+    applySelectPopupGlass(nullptr);
+    applySearchPopupGlass();
 }
 
 // Moves a pagination bar out of the scrolling page content by object name, so
@@ -451,6 +861,19 @@ class LiquidGlassShellHooks final : public QObject {
 
   protected:
     bool eventFilter(QObject* watched, QEvent* event) override {
+        if (liquidGlassShellEnabled() &&
+            (event->type() == QEvent::DragEnter || event->type() == QEvent::DragMove ||
+             event->type() == QEvent::DragLeave || event->type() == QEvent::Drop ||
+             event->type() == QEvent::Hide)) {
+            noteFloatingToolbarDrag(watched, event);
+        }
+        if (liquidGlassShellEnabled() && event->type() == QEvent::Paint) {
+            if (auto* widget = qobject_cast<QWidget*>(watched)) {
+                if (paintNamedControlPlate(widget)) {
+                    return true;
+                }
+            }
+        }
         if (liquidGlassShellEnabled() && event->type() == QEvent::Show) {
             if (auto* widget = qobject_cast<QWidget*>(watched)) {
                 const QString name = widget->objectName();
@@ -458,6 +881,7 @@ class LiquidGlassShellHooks final : public QObject {
                     applyModalGlass();
                 } else if (name == QStringLiteral("adselect-popup")) {
                     applySelectPopupGlass(widget);
+                    applySearchPopupGlass();
                 } else if (name == QStringLiteral("adtooltip-popup") ||
                            name == QStringLiteral("adtooltip-surface") ||
                            name == QStringLiteral("adpopover-popup") ||
