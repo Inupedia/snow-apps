@@ -48,7 +48,7 @@ endif()
 
 set_target_properties(snow_shot PROPERTIES
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/../snow_shot/packaging/macos/Info.plist.in"
-    MACOSX_BUNDLE_BUNDLE_NAME "Snow Shot"
+    MACOSX_BUNDLE_BUNDLE_NAME "InuShot"
     MACOSX_BUNDLE_BUNDLE_VERSION "${SNOW_SHOT_VERSION_NUMERIC}"
     MACOSX_BUNDLE_SHORT_VERSION_STRING "${SNOW_SHOT_VERSION_NUMERIC}"
     MACOSX_BUNDLE_ICON_FILE "snow-shot.icns"
@@ -75,7 +75,7 @@ add_custom_command(
     DEPENDS
         "${_snow_macos_icon_artwork}"
         "${CMAKE_CURRENT_LIST_DIR}/GenerateMacOSIcon.cmake"
-    COMMENT "Generating the Snow Shot macOS application icon"
+    COMMENT "Generating the InuShot macOS application icon"
     VERBATIM)
 set_source_files_properties("${_snow_macos_icon}" PROPERTIES
     GENERATED TRUE

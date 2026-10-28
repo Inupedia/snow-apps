@@ -38,7 +38,7 @@ use windows::Win32::UI::WindowsAndMessaging::SW_SHOWNORMAL;
 use windows::core::{BSTR, Interface, PCWSTR, PWSTR};
 
 const STARTUP_FAILURE_CODE: &str = "startup_registration_failed";
-const STARTUP_FAILURE_MESSAGE: &str = "Could not update Snow Shot startup registration";
+const STARTUP_FAILURE_MESSAGE: &str = "Could not update InuShot startup registration";
 
 fn update_error(error: impl std::fmt::Display) -> UpdateError {
     UpdateError::new(STARTUP_FAILURE_CODE, STARTUP_FAILURE_MESSAGE).detail(error)

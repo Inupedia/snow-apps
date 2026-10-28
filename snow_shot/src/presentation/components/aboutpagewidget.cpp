@@ -150,7 +150,7 @@ class AboutArtwork final : public QWidget {
         svg.replace("{{product}}",
                     snow_shot::app::edition::isMini
                         ? snow_shot::app::edition::productName().toHtmlEscaped().toUtf8()
-                        : translated(QT_TRANSLATE_NOOP("AboutPageWidget", "Snow Shot")));
+                        : translated(QT_TRANSLATE_NOOP("AboutPageWidget", "InuShot")));
         svg.replace("{{moment}}",
                     translated(QT_TRANSLATE_NOOP("AboutPageWidget", "Make every moment clear.")));
         svg.replace("{{ocr}}",
@@ -818,11 +818,11 @@ void AboutPageWidget::retranslateUi() {
     const bool hasVersion = !m_version.trimmed().isEmpty();
     setAccessibleName(snow_shot::app::edition::isMini
                           ? tr("About %1").arg(snow_shot::app::edition::productName())
-                          : tr("About Snow Shot"));
+                          : tr("About InuShot"));
     m_ui->productName->setText(snow_shot::app::edition::productName());
     m_ui->logo->setAccessibleName(snow_shot::app::edition::isMini
                                       ? tr("%1 logo").arg(snow_shot::app::edition::productName())
-                                      : tr("Snow Shot logo"));
+                                      : tr("InuShot logo"));
     m_ui->openSource->setText(tr("Free · Open source"));
     const QColor violet(m_ui->scheme.appearance == styles::ThemeAppearance::Dark ? "#b58aec"
                                                                                  : "#7052d8");
@@ -881,7 +881,7 @@ void AboutPageWidget::retranslateUi() {
     m_ui->slogan->setText(
         snow_shot::app::edition::isMini
             ? tr("%1 · Make expression clearer").arg(snow_shot::app::edition::productName())
-            : tr("Snow Shot · Make expression clearer"));
+            : tr("InuShot · Make expression clearer"));
     m_ui->linkError->setText(m_failedUrl.isEmpty()
                                  ? QString()
                                  : tr("Could not open the link. Open %1 in your browser.")
@@ -1022,7 +1022,7 @@ void AboutPageWidget::refreshUpdateStatus() {
         text = status.version.isEmpty() ? (snow_shot::app::edition::isMini
                                                ? tr("Check for a newer version of %1.")
                                                      .arg(snow_shot::app::edition::productName())
-                                               : tr("Check for a newer version of Snow Shot."))
+                                               : tr("Check for a newer version of InuShot."))
                                         : tr("You are up to date");
         if (!status.version.isEmpty()) {
             statusIcon = outlined::CheckCircle();

@@ -27,7 +27,7 @@
 namespace {
 using namespace std::chrono_literals;
 
-constexpr wchar_t kMainWindowName[] = L"SnowShot";
+constexpr wchar_t kMainWindowName[] = L"InuShot";
 constexpr wchar_t kScreenshotControlAutomationIdSuffix[] = L".settings-item-quick-screenshot";
 constexpr wchar_t kScrollingScreenshotControlAutomationIdSuffix[] =
     L".screenshotScrollingScreenshotButton";
@@ -968,7 +968,7 @@ int main(int argc, char* argv[]) {
         ComPtr<IUIAutomationElement> mainWindow = waitForElement([&automation, &application]() {
             return findProcessWindow(*automation.get(), application.processId());
         });
-        require(mainWindow.get() != nullptr, "could not find the SnowShot main window through UIA");
+        require(mainWindow.get() != nullptr, "could not find the InuShot main window through UIA");
 
         ComPtr<IUIAutomationElement> screenshotControl = findProcessDescendantByAutomationIdSuffix(
             *automation.get(), application.processId(), kScreenshotControlAutomationIdSuffix);

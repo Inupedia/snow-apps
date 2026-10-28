@@ -1,5 +1,5 @@
 #ifndef SNOW_DIAGNOSTICS_PRODUCT
-#define SNOW_DIAGNOSTICS_PRODUCT "Snow Shot"
+#define SNOW_DIAGNOSTICS_PRODUCT "InuShot"
 #endif
 
 // SPDX-License-Identifier: GPL-3.0-or-later

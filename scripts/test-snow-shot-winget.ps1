@@ -173,7 +173,7 @@ try {
             Set-FixtureRelease 'v1.2.0_snow-shot'
             $directory = New-SnowShotWingetManifest 'v1.2.0_snow-shot' $sourceDirectory
             $locale = Get-Content (Join-Path $directory 'mg-chao.snow-shot.locale.en-US.yaml') -Raw
-            Require ($locale.Contains('PackageName: Snow Shot')) "$checkout package name mismatch."
+            Require ($locale.Contains('PackageName: InuShot')) "$checkout package name mismatch."
             foreach ($tag in @('chatbot', 'screen-capture', 'screenshot', 'snowshot', 'translate', 'annotation', 'ocr')) {
                 Require ($locale.Contains("  - $tag`n")) "$checkout is missing retained tag: $tag"
             }
@@ -220,7 +220,7 @@ try {
         Expect-Failure { New-SnowShotWingetManifest 'v1.1.5-beta' $root } 'release notes must contain'
     }
     foreach ($tag in @('v1.2.0_viewer', '1.2.0', 'v01.2.0', 'v1.2.0-beta..1', "v1.2.0`nextra", "v1.2.0`n")) {
-        Expect-Failure { Get-SnowShotWingetVersion $tag } 'Not a Snow Shot release'
+        Expect-Failure { Get-SnowShotWingetVersion $tag } 'Invalid InuShot release'
     }
     Set-FixtureRelease 'v1.1.5-beta'
     $script:release.tag_name = 'v1.1.4-beta'
@@ -396,7 +396,7 @@ try {
         $env:RUNNER_ENVIRONMENT = $runnerEnvironment
         $env:RUNNER_OS = $runnerOs
     }
-    Write-Output 'PASS: Snow Shot WinGet generation and submission fixtures.'
+    Write-Output 'PASS: InuShot WinGet generation and submission fixtures.'
 } finally {
     $env:WINGET_CREATE_GITHUB_TOKEN = $originalToken
     # This exact, newly allocated test root is the only directory removed.

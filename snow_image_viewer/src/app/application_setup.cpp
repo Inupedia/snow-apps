@@ -27,7 +27,7 @@ void configureViewerApplicationIdentity(QApplication& app) {
     QApplication::setOrganizationName(QStringLiteral("Snow Shot"));
     QApplication::setOrganizationDomain(QStringLiteral("snow-shot.app"));
     QApplication::setApplicationName(QStringLiteral("snow_image_viewer"));
-    QApplication::setApplicationDisplayName(QStringLiteral("Snow Image Viewer"));
+    QApplication::setApplicationDisplayName(QStringLiteral("InuShot Viewer"));
     QApplication::setApplicationVersion(QStringLiteral("0.1.0"));
 }
 

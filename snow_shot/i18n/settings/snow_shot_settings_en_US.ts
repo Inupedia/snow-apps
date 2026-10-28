@@ -8,8 +8,8 @@
             <translation> Recovery failed: %1</translation>
         </message>
         <message>
-            <source> Settings recovery failed. Retry before closing Snow Shot.</source>
-            <translation> Settings recovery failed. Retry before closing Snow Shot.</translation>
+            <source> Settings recovery failed. Retry before closing InuShot.</source>
+            <translation> Settings recovery failed. Retry before closing InuShot.</translation>
         </message>
         <message>
             <source>Administrator authorization was declined.</source>
@@ -138,8 +138,8 @@
     <context>
         <name>AutoStartRegistration</name>
         <message>
-            <source>Enable Snow Shot in Windows Settings &gt; Apps &gt; Startup.</source>
-            <translation>Enable Snow Shot in Windows Settings &gt; Apps &gt; Startup.</translation>
+            <source>Enable InuShot in Windows Settings &gt; Apps &gt; Startup.</source>
+            <translation>Enable InuShot in Windows Settings &gt; Apps &gt; Startup.</translation>
         </message>
         <message>
             <source>Startup is managed by your organization.</source>
@@ -464,8 +464,8 @@
             <translation>The API key must not contain line breaks.</translation>
         </message>
         <message>
-            <source>The model name displayed in Snow Shot.</source>
-            <translation>The model name displayed in Snow Shot.</translation>
+            <source>The model name displayed in InuShot.</source>
+            <translation>The model name displayed in InuShot.</translation>
         </message>
         <message>
             <source>This model was deleted. Close this form and create a new model.</source>
@@ -728,8 +728,8 @@
             <translation>A launch-at-login change is already in progress.</translation>
         </message>
         <message>
-            <source>Approval required. Allow Snow Shot in System Settings &gt; General &gt; Login Items.</source>
-            <translation>Approval required. Allow Snow Shot in System Settings &gt; General &gt; Login Items.</translation>
+            <source>Approval required. Allow InuShot in System Settings &gt; General &gt; Login Items.</source>
+            <translation>Approval required. Allow InuShot in System Settings &gt; General &gt; Login Items.</translation>
         </message>
         <message>
             <source>Could not change launch at login: %1</source>
@@ -748,20 +748,20 @@
             <translation>Move the signed %1 app to /Applications or ~/Applications to use launch at login.</translation>
         </message>
         <message>
-            <source>Move the signed Snow Shot app to /Applications or ~/Applications to use launch at login.</source>
-            <translation>Move the signed Snow Shot app to /Applications or ~/Applications to use launch at login.</translation>
+            <source>Move the signed InuShot app to /Applications or ~/Applications to use launch at login.</source>
+            <translation>Move the signed InuShot app to /Applications or ~/Applications to use launch at login.</translation>
         </message>
         <message>
-            <source>Snow Shot needs a valid code signature to use launch at login. Reinstall the signed app.</source>
-            <translation>Snow Shot needs a valid code signature to use launch at login. Reinstall the signed app.</translation>
+            <source>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</source>
+            <translation>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</translation>
         </message>
         <message>
             <source>macOS could not find %1's login item. Reinstall the app in Applications.</source>
             <translation>macOS could not find %1's login item. Reinstall the app in Applications.</translation>
         </message>
         <message>
-            <source>macOS could not find Snow Shot's login item. Reinstall the app in Applications.</source>
-            <translation>macOS could not find Snow Shot's login item. Reinstall the app in Applications.</translation>
+            <source>macOS could not find InuShot's login item. Reinstall the app in Applications.</source>
+            <translation>macOS could not find InuShot's login item. Reinstall the app in Applications.</translation>
         </message>
         <message>
             <source>macOS did not apply the launch-at-login change. Check Login Items in System Settings.</source>
@@ -959,8 +959,8 @@
             <translation>Add this configuration to your MCP client, then restart the client to connect. Keep %1 running while using MCP.</translation>
         </message>
         <message>
-            <source>Add this configuration to your MCP client, then restart the client to connect. Keep Snow Shot running while using MCP.</source>
-            <translation>Add this configuration to your MCP client, then restart the client to connect. Keep Snow Shot running while using MCP.</translation>
+            <source>Add this configuration to your MCP client, then restart the client to connect. Keep InuShot running while using MCP.</source>
+            <translation>Add this configuration to your MCP client, then restart the client to connect. Keep InuShot running while using MCP.</translation>
         </message>
         <message>
             <source>Connected clients: %1</source>
@@ -1216,8 +1216,8 @@
             <translation>Active window</translation>
         </message>
         <message>
-            <source>Add Edit with Snow Shot to the Windows context menu to pin a supported image or document file to the screen.</source>
-            <translation>Add Edit with Snow Shot to the Windows context menu to pin a supported image or document file to the screen.</translation>
+            <source>Add Edit with InuShot to the Windows context menu to pin a supported image or document file to the screen.</source>
+            <translation>Add Edit with InuShot to the Windows context menu to pin a supported image or document file to the screen.</translation>
         </message>
         <message>
             <source>Add a mask to highlight text recognition results</source>
@@ -1260,8 +1260,8 @@
             <translation>All screenshot history will be removed</translation>
         </message>
         <message>
-            <source>Allow MCP clients running as your OS user to control Snow Shot. Snow Shot must be running.</source>
-            <translation>Allow MCP clients running as your OS user to control Snow Shot. Snow Shot must be running.</translation>
+            <source>Allow MCP clients running as your OS user to control InuShot. InuShot must be running.</source>
+            <translation>Allow MCP clients running as your OS user to control InuShot. InuShot must be running.</translation>
         </message>
         <message>
             <source>Allow resizing the selection from its borders while non-move tools are active</source>
@@ -1612,8 +1612,8 @@
             <translation>Child elements</translation>
         </message>
         <message>
-            <source>Choose an image for Snow Shot's custom tray menu. Native system menus keep their system appearance. Clear the path to remove this skin.</source>
-            <translation>Choose an image for Snow Shot's custom tray menu. Native system menus keep their system appearance. Clear the path to remove this skin.</translation>
+            <source>Choose an image for InuShot's custom tray menu. Native system menus keep their system appearance. Clear the path to remove this skin.</source>
+            <translation>Choose an image for InuShot's custom tray menu. Native system menus keep their system appearance. Clear the path to remove this skin.</translation>
         </message>
         <message>
             <source>Choose an image for the screenshot, pin-to-screen, full-screen canvas and screen recording toolbar rows. Clear the path to remove this skin.</source>
@@ -1736,8 +1736,8 @@
             <translation>Choose the primary language for translation</translation>
         </message>
         <message>
-            <source>Choose the scheduling level for the interface and application workers. Changes take effect after restarting Snow Shot.</source>
-            <translation>Choose the scheduling level for the interface and application workers. Changes take effect after restarting Snow Shot.</translation>
+            <source>Choose the scheduling level for the interface and application workers. Changes take effect after restarting InuShot.</source>
+            <translation>Choose the scheduling level for the interface and application workers. Changes take effect after restarting InuShot.</translation>
         </message>
         <message>
             <source>Choose the server for built-in online services. Application updates are not affected.</source>
@@ -1916,8 +1916,8 @@
             <translation>Confirm before exiting screenshot via shortcut</translation>
         </message>
         <message>
-            <source>Connect AI clients to Snow Shot</source>
-            <translation>Connect AI clients to Snow Shot</translation>
+            <source>Connect AI clients to InuShot</source>
+            <translation>Connect AI clients to InuShot</translation>
         </message>
         <message>
             <source>Contain</source>
@@ -2308,12 +2308,12 @@
             <translation>Edit selection</translation>
         </message>
         <message>
-            <source>Edit with Snow Shot</source>
-            <translation>Edit with Snow Shot</translation>
+            <source>Edit with InuShot</source>
+            <translation>Edit with InuShot</translation>
         </message>
         <message>
-            <source>Edit with Snow Shot Mini</source>
-            <translation>Edit with Snow Shot Mini</translation>
+            <source>Edit with InuShot Mini</source>
+            <translation>Edit with InuShot Mini</translation>
         </message>
         <message>
             <source>Enable MCP integration</source>
@@ -2752,8 +2752,8 @@
             <translation>Keep selection width and height consistent</translation>
         </message>
         <message>
-            <source>Keep the Snow Shot save dialog open after saving to show the result</source>
-            <translation>Keep the Snow Shot save dialog open after saving to show the result</translation>
+            <source>Keep the InuShot save dialog open after saving to show the result</source>
+            <translation>Keep the InuShot save dialog open after saving to show the result</translation>
         </message>
         <message>
             <source>Keep the first button of each toolbar group visible instead of the last used button</source>
@@ -2768,8 +2768,8 @@
             <translation>Keyboard shortcuts</translation>
         </message>
         <message>
-            <source>Keyboard shortcuts used within Snow Shot tools</source>
-            <translation>Keyboard shortcuts used within Snow Shot tools</translation>
+            <source>Keyboard shortcuts used within InuShot tools</source>
+            <translation>Keyboard shortcuts used within InuShot tools</translation>
         </message>
         <message>
             <source>Landscape A4</source>
@@ -2888,12 +2888,12 @@
             <translation>Main Interface Skin Position</translation>
         </message>
         <message>
-            <source>Manage Snow Shot's login permission in macOS System Settings</source>
-            <translation>Manage Snow Shot's login permission in macOS System Settings</translation>
+            <source>Manage InuShot's login permission in macOS System Settings</source>
+            <translation>Manage InuShot's login permission in macOS System Settings</translation>
         </message>
         <message>
-            <source>Manage macOS permissions for Snow Shot</source>
-            <translation>Manage macOS permissions for Snow Shot</translation>
+            <source>Manage macOS permissions for InuShot</source>
+            <translation>Manage macOS permissions for InuShot</translation>
         </message>
         <message>
             <source>Manual</source>
@@ -3580,8 +3580,8 @@
             <translation>Restart App</translation>
         </message>
         <message>
-            <source>Restart Snow Shot with administrator privileges</source>
-            <translation>Restart Snow Shot with administrator privileges</translation>
+            <source>Restart InuShot with administrator privileges</source>
+            <translation>Restart InuShot with administrator privileges</translation>
         </message>
         <message>
             <source>Restart as administrator</source>
@@ -3892,8 +3892,8 @@
             <translation>Set how much Ctrl+mouse wheel changes pinned window opacity</translation>
         </message>
         <message>
-            <source>Set quality for image files saved outside the Snow Shot dialog</source>
-            <translation>Set quality for image files saved outside the Snow Shot dialog</translation>
+            <source>Set quality for image files saved outside the InuShot dialog</source>
+            <translation>Set quality for image files saved outside the InuShot dialog</translation>
         </message>
         <message>
             <source>Set the border color of locked pinned screenshots</source>
@@ -4188,12 +4188,12 @@
             <translation>Smart selection</translation>
         </message>
         <message>
-            <source>Snow Shot</source>
-            <translation>Snow Shot</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
-            <source>Snow Shot server</source>
-            <translation>Snow Shot server</translation>
+            <source>InuShot server</source>
+            <translation>InuShot server</translation>
         </message>
         <message>
             <source>Snowflake</source>
@@ -4260,16 +4260,16 @@
             <translation>Standalone Translation Window</translation>
         </message>
         <message>
-            <source>Start Snow Shot in the background when Windows starts</source>
-            <translation>Start Snow Shot in the background when Windows starts</translation>
+            <source>Start InuShot in the background when Windows starts</source>
+            <translation>Start InuShot in the background when Windows starts</translation>
         </message>
         <message>
-            <source>Start Snow Shot in the background when you log in.</source>
-            <translation>Start Snow Shot in the background when you log in.</translation>
+            <source>Start InuShot in the background when you log in.</source>
+            <translation>Start InuShot in the background when you log in.</translation>
         </message>
         <message>
-            <source>Start Snow Shot with administrator privileges when you sign in</source>
-            <translation>Start Snow Shot with administrator privileges when you sign in</translation>
+            <source>Start InuShot with administrator privileges when you sign in</source>
+            <translation>Start InuShot with administrator privileges when you sign in</translation>
         </message>
         <message>
             <source>Start a screen recording from a confirmed selection</source>
@@ -4829,12 +4829,12 @@
             <translation>Could not save the Windows context menu preference.</translation>
         </message>
         <message>
-            <source>Edit with Snow Shot</source>
-            <translation>Edit with Snow Shot</translation>
+            <source>Edit with InuShot</source>
+            <translation>Edit with InuShot</translation>
         </message>
         <message>
-            <source>Edit with Snow Shot Mini</source>
-            <translation>Edit with Snow Shot Mini</translation>
+            <source>Edit with InuShot Mini</source>
+            <translation>Edit with InuShot Mini</translation>
         </message>
         <message>
             <source>The Windows context menu entry is owned by another application.</source>
@@ -5420,12 +5420,12 @@ Unavailable: %2</translation>
     <context>
         <name>snow_shot::presentation::GlobalMouseManager</name>
         <message>
-            <source>Allow Snow Shot in System Settings &gt; Privacy &amp; Security &gt; Accessibility to use global mouse gestures.</source>
-            <translation>Allow Snow Shot in System Settings &gt; Privacy &amp; Security &gt; Accessibility to use global mouse gestures.</translation>
+            <source>Allow InuShot in System Settings &gt; Privacy &amp; Security &gt; Accessibility to use global mouse gestures.</source>
+            <translation>Allow InuShot in System Settings &gt; Privacy &amp; Security &gt; Accessibility to use global mouse gestures.</translation>
         </message>
         <message>
-            <source>Allow Snow Shot in System Settings &gt; Privacy &amp; Security &gt; Input Monitoring to use global mouse gestures.</source>
-            <translation>Allow Snow Shot in System Settings &gt; Privacy &amp; Security &gt; Input Monitoring to use global mouse gestures.</translation>
+            <source>Allow InuShot in System Settings &gt; Privacy &amp; Security &gt; Input Monitoring to use global mouse gestures.</source>
+            <translation>Allow InuShot in System Settings &gt; Privacy &amp; Security &gt; Input Monitoring to use global mouse gestures.</translation>
         </message>
         <message>
             <source>Checking global mouse permissions...</source>
@@ -5478,12 +5478,12 @@ Unavailable: %2</translation>
             <translation>The configuration archive could not be created.</translation>
         </message>
         <message>
-            <source>The configuration archive was created by a newer version of Snow Shot.</source>
-            <translation>The configuration archive was created by a newer version of Snow Shot.</translation>
+            <source>The configuration archive was created by a newer version of InuShot.</source>
+            <translation>The configuration archive was created by a newer version of InuShot.</translation>
         </message>
         <message>
-            <source>The file is not a Snow Shot configuration archive.</source>
-            <translation>The file is not a Snow Shot configuration archive.</translation>
+            <source>The file is not a InuShot configuration archive.</source>
+            <translation>The file is not a InuShot configuration archive.</translation>
         </message>
         <message>
             <source>The file is not a valid configuration archive.</source>

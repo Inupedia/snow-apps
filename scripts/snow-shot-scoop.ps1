@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 
 function Get-SnowShotScoopVersion([string]$Tag) {
     if ($Tag -cnotmatch '^v(?<version>(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?)(?:_snow-shot)?\z') {
-        throw "Not a Snow Shot release tag: $Tag"
+        throw "Invalid InuShot release tag: $Tag"
     }
     $version = $Matches.version
     # SemanticVersion also rejects leading zeros in numeric prerelease identifiers.

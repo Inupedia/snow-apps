@@ -546,7 +546,7 @@ bool ScreenshotMcpServer::start(QString* error) {
         QDir(m_runtimeDirectory).filePath(QStringLiteral("endpoint.lock")));
     if (!m_lock->tryLock(0)) {
         if (error)
-            *error = tr("Another Snow Shot instance owns the MCP endpoint.");
+            *error = tr("Another InuShot instance owns the MCP endpoint.");
         m_lock.reset();
         return false;
     }

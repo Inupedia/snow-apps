@@ -1,6 +1,6 @@
 # Snow Apps
 
-Snow Apps repository, providing source code for Snow Shot and Snow Image Viewer.
+Snow Apps repository, providing source code for InuShot and InuShot Viewer.
 
 For native Windows ARM64 builds and packages, see
 [Windows ARM64 build support](docs-windows-arm64-build.md), including cross compilation,
@@ -8,9 +8,9 @@ OCR preparation, and release validation prerequisites.
 
 <div style="font-size: 128px">🏗️🚧🦺</div>
 
-## Install Snow Shot on Windows
+## Install InuShot on Windows
 
-Download the installer from [Snow Shot releases](https://github.com/mg-chao/snow-apps/releases).
+Download the installer from [InuShot releases](https://github.com/mg-chao/snow-apps/releases).
 Install the offline Windows x64 package from the WinGet community repository with:
 
 ```powershell
@@ -21,7 +21,7 @@ This package includes published beta versions and the default OCR resources. See
 [WinGet release support](docs/snow-shot-releases.md#winget) for upgrades, removal,
 and maintainer setup.
 
-Once [Snow Shot's submission](https://github.com/ScoopInstaller/Extras/issues/18870)
+Once [InuShot's submission](https://github.com/ScoopInstaller/Extras/issues/18870)
 is accepted into Scoop's official
 [Extras bucket](https://github.com/ScoopInstaller/Extras), install the portable
 Windows x64 package with [Scoop](https://scoop.sh):
@@ -32,12 +32,12 @@ scoop install extras/snowshot
 ```
 
 The Scoop package follows stable releases and includes the default OCR resources.
-Quit Snow Shot before running `scoop update snowshot`; use Scoop rather than the
+Quit InuShot before running `scoop update snowshot`; use Scoop rather than the
 app's built-in updater. Settings and history persist across upgrades and ordinary
 uninstall. See [Scoop release support](docs/snow-shot-releases.md#scoop) for removal,
 data locations, and maintainer setup.
 
-## Install Snow Shot on macOS
+## Install InuShot on macOS
 
 Apple Silicon Macs running macOS 15 or later can install the stable release with:
 
@@ -48,7 +48,7 @@ brew upgrade --cask snow-shot
 brew uninstall --cask snow-shot
 ```
 
-Installation reuses Snow Shot's local signing identity and may request Keychain
+Installation reuses InuShot's local signing identity and may request Keychain
 access and macOS privacy permissions. See [Homebrew installation and migration](docs-macos-build.md#homebrew-installation)
 for existing installations, custom app directories, and recovery.
 
@@ -103,7 +103,7 @@ repository-level scope rules and third-party material policy.
 
 Synchronized and bundled third-party materials retain their upstream licenses.
 See [Ant Design Qt third-party notices](ant_design_qt/THIRD_PARTY_NOTICES.md)
-and [Snow Shot third-party notices](snow_shot/THIRD_PARTY_NOTICES.md).
+and [InuShot third-party notices](snow_shot/THIRD_PARTY_NOTICES.md).
 
 ## Contributing / 贡献指南
 

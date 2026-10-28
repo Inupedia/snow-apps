@@ -1,9 +1,9 @@
 # Downloads the WeChat QR detection/super-resolution models consumed by
-# OpenCV's contrib wechat_qrcode module in Snow Shot's barcode recognition
+# OpenCV's contrib wechat_qrcode module in InuShot's barcode recognition
 # service. The URLs and hashes mirror the opencv4 vcpkg port's downloads
 # (WeChatCV/opencv_3rdparty @ a8b69ccc) so both builds consume identical,
 # pinned payloads. The vcpkg port fetches them only for its own build tree,
-# so Snow Shot acquires its runtime copies here.
+# so InuShot acquires its runtime copies here.
 #
 # snow_shot_fetch_qr_models(<out-var>) sets <out-var> to the directory that
 # contains detect.prototxt, detect.caffemodel, sr.prototxt, and sr.caffemodel.

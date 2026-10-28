@@ -5,7 +5,7 @@
 !endif
 
 ; Use the desktop shell through the installed helper so an elevated installer
-; does not restart Snow Shot with its own administrator token.
+; does not restart InuShot with its own administrator token.
 Function SnowShotLaunchDesktop
   ClearErrors
   ExecWait '"$INSTDIR\bin\${SNOW_SHOT_INSTALLER_UPDATER}.exe" --launch-desktop --target "$INSTDIR"' $0

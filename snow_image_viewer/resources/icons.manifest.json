@@ -3,7 +3,7 @@
   "pack": "snow-image-viewer",
   "cppNamespace": "snow::image_viewer::icons",
   "headerInclude": "ui/app_icons.h",
-  "source": "Snow Image Viewer project-owned static SVG assets",
+  "source": "InuShot Viewer project-owned static SVG assets",
   "entries": [
     {
       "variant": "app",

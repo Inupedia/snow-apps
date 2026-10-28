@@ -1025,7 +1025,7 @@ void ScreenshotRecognitionSessionController::loadRecognitionModels(bool refresh)
             if (!result.error.isEmpty() ||
                 !m_tableRecognition->hasBuiltInModels(
                     snow_shot::presentation::LanguageManager::instance().currentLocale().name())) {
-                m_recognitionModelsError = tr("Unable to load Snow Shot vision models");
+                m_recognitionModelsError = tr("Unable to load InuShot vision models");
             }
             if (!updateRecognitionModels())
                 return;
@@ -1039,7 +1039,7 @@ void ScreenshotRecognitionSessionController::loadRecognitionModels(bool refresh)
                 : SnowShotApiClient::ChatModelsCachePolicy::UseCached);
     if (!m_recognitionModelsToken) {
         m_recognitionModelsLoading = false;
-        m_recognitionModelsError = tr("Unable to load Snow Shot vision models");
+        m_recognitionModelsError = tr("Unable to load InuShot vision models");
         if (!updateRecognitionModels())
             return;
     }
@@ -1190,7 +1190,7 @@ void ScreenshotRecognitionSessionController::activateModelResult() {
         } else {
             m_recognitionAwaitingModel = false;
             if (!notify(&ScreenshotRecognitionSessionController::failModelRecognition,
-                        tr("Snow Shot's visual understanding model is unavailable. Choose "
+                        tr("InuShot's visual understanding model is unavailable. Choose "
                            "another model or retry.")))
                 return;
         }

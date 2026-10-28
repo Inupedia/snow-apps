@@ -31,25 +31,33 @@ void requireUpdateAppearance() {
     const QJsonObject appearance =
         snow_shot::presentation::styles::ThemeManager::instance().updateProgressAppearance();
     require(appearance.size() == 16, "updater appearance contains the complete token contract");
-    const bool dark = resolved.config.scheme == adqt::theme::ThemeScheme::Dark;
-    require(appearance.value(QStringLiteral("background")).toInt() ==
-                    (dark ? 0x1f1f1f : 0xffffff) &&
-                appearance.value(QStringLiteral("text")).toInt() == (dark ? 0xdddddd : 0x1f1f1f) &&
-                appearance.value(QStringLiteral("textSecondary")).toInt() ==
-                    (dark ? 0xb1b1b1 : 0x595959) &&
-                appearance.value(QStringLiteral("textTertiary")).toInt() ==
-                    (dark ? 0x848484 : 0x8c8c8c) &&
-                appearance.value(QStringLiteral("fillSecondary")).toInt() ==
-                    (dark ? 0x3a3a3a : 0xf0f0f0) &&
-                appearance.value(QStringLiteral("fillTertiary")).toInt() ==
-                    (dark ? 0x313131 : 0xf5f5f5),
-            "updater flattens translucent tokens over its elevated surface");
     const auto rgb = [](const QColor& color) { return static_cast<int>(color.rgb() & 0xffffffU); };
+    const QColor background = resolved.semantic.surfaceElevated;
+    const auto composite = [&background, &rgb](const QColor& color) {
+        const float alpha = color.alphaF();
+        QColor mixed;
+        mixed.setRedF(color.redF() * alpha + background.redF() * (1.0F - alpha));
+        mixed.setGreenF(color.greenF() * alpha + background.greenF() * (1.0F - alpha));
+        mixed.setBlueF(color.blueF() * alpha + background.blueF() * (1.0F - alpha));
+        return rgb(mixed);
+    };
+    require(appearance.value(QStringLiteral("background")).toInt() ==
+                    rgb(background) &&
+                appearance.value(QStringLiteral("text")).toInt() == composite(colors.colorText) &&
+                appearance.value(QStringLiteral("textSecondary")).toInt() ==
+                    composite(colors.colorTextSecondary) &&
+                appearance.value(QStringLiteral("textTertiary")).toInt() ==
+                    composite(colors.colorTextTertiary) &&
+                appearance.value(QStringLiteral("fillSecondary")).toInt() ==
+                    composite(colors.colorFillSecondary) &&
+                appearance.value(QStringLiteral("fillTertiary")).toInt() ==
+                    composite(colors.colorFillTertiary),
+            "updater flattens translucent tokens over its elevated surface");
     require(appearance.value(QStringLiteral("primary")).toInt() == rgb(colors.colorPrimary) &&
                 appearance.value(QStringLiteral("primaryBackground")).toInt() ==
                     rgb(colors.colorPrimaryBg) &&
                 appearance.value(QStringLiteral("border")).toInt() ==
-                    (dark ? 0x303030 : 0xf0f0f0) &&
+                    composite(colors.colorBorderSecondary) &&
                 appearance.value(QStringLiteral("success")).toInt() == rgb(colors.colorSuccess) &&
                 appearance.value(QStringLiteral("error")).toInt() == rgb(colors.colorError),
             "updater inherits resolved accent and semantic colors");
@@ -95,6 +103,31 @@ void requireThemeConfigConversions() {
                                                             : adqt::theme::ThemeScheme::Light,
                 preset == styles::ThemePreset::Compact ? adqt::theme::ThemeDensity::Compact
                                                        : adqt::theme::ThemeDensity::Comfortable);
+            if (appearance == styles::ThemeAppearance::Dark) {
+                expected.surfaceOverrides.colorBgBase = QColor("#111D2B");
+                expected.surfaceOverrides.colorBgLayout = QColor("#111F2E");
+                expected.surfaceOverrides.colorBgContainer = QColor("#182A3D");
+                expected.surfaceOverrides.colorBgContainerDisabled = QColor("#1B2F43");
+                expected.surfaceOverrides.colorBgElevated = QColor("#20374B");
+                expected.surfaceOverrides.colorFillSecondary = QColor("#2B4359");
+                expected.surfaceOverrides.colorFillTertiary = QColor("#233A50");
+                expected.surfaceOverrides.colorFillQuaternary = QColor("#1D3246");
+                expected.surfaceOverrides.colorBorder = QColor("#36516A");
+                expected.surfaceOverrides.colorBorderDisabled = QColor("#2B4359");
+                expected.surfaceOverrides.colorBorderSecondary = QColor("#2B4359");
+            } else {
+                expected.surfaceOverrides.colorBgBase = QColor("#F5F9FE");
+                expected.surfaceOverrides.colorBgLayout = QColor("#EAF3FC");
+                expected.surfaceOverrides.colorBgContainer = QColor("#F5FAFF");
+                expected.surfaceOverrides.colorBgContainerDisabled = QColor("#EAF3FA");
+                expected.surfaceOverrides.colorBgElevated = QColor("#FCFDFF");
+                expected.surfaceOverrides.colorFillSecondary = QColor("#E4EFFA");
+                expected.surfaceOverrides.colorFillTertiary = QColor("#EDF5FC");
+                expected.surfaceOverrides.colorFillQuaternary = QColor("#F4F8FD");
+                expected.surfaceOverrides.colorBorder = QColor("#C9DCEC");
+                expected.surfaceOverrides.colorBorderDisabled = QColor("#D8E7F4");
+                expected.surfaceOverrides.colorBorderSecondary = QColor("#D8E7F4");
+            }
             expected.primary = config.colorPrimary;
             expected.success = config.colorSuccess;
             expected.warning = config.colorWarning;

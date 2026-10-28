@@ -408,7 +408,7 @@ ScreenshotRecognitionFileSaveResult ScreenshotRecognitionFileExport::openTempora
                 message(QT_TRANSLATE_NOOP("ScreenshotRecognitionFileExport",
                                           "No recognition result is available to save"))};
     QTemporaryDir directory(
-        QDir(QDir::tempPath()).filePath(QStringLiteral("SnowShot-table-XXXXXX")));
+        QDir(QDir::tempPath()).filePath(QStringLiteral("InuShot-table-XXXXXX")));
     if (!directory.isValid())
         return {{},
                 message(QT_TRANSLATE_NOOP("ScreenshotRecognitionFileExport",

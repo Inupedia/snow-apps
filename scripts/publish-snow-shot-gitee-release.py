@@ -59,7 +59,7 @@ def checked_tag(tag: str) -> str:
     if not match or (match[4] and any(part.isascii() and part.isdigit() and
                                       len(part) > 1 and part[0] == "0"
                                       for part in match[4].split("."))):
-        raise ValueError(f"Invalid Snow Shot release tag: {tag}")
+        raise ValueError(f"Invalid InuShot release tag: {tag}")
     return tag
 
 
@@ -100,13 +100,13 @@ def release_marker(tag: str, commit: str, directory: Path) -> str:
     tree = subprocess.check_output(("git", "-C", str(directory), "mktree"),
                                    input=f"100644 blob {blob}\trelease.json\n".encode('ascii')).decode('ascii').strip()
     environment = dict(os.environ,
-                       GIT_AUTHOR_NAME="Snow Shot releases", GIT_COMMITTER_NAME="Snow Shot releases",
+                       GIT_AUTHOR_NAME="InuShot releases", GIT_COMMITTER_NAME="InuShot releases",
                        GIT_AUTHOR_EMAIL="releases@snowshot.top", GIT_COMMITTER_EMAIL="releases@snowshot.top",
                        GIT_AUTHOR_DATE="2000-01-01T00:00:00+00:00",
                        GIT_COMMITTER_DATE="2000-01-01T00:00:00+00:00")
     return subprocess.check_output(("git", "-C", str(directory), "-c", "commit.gpgSign=false",
                                     "-c", "i18n.commitEncoding=UTF-8",
-                                    "commit-tree", tree), input=f"Snow Shot {tag}\n".encode('ascii'),
+                                    "commit-tree", tree), input=f"InuShot {tag}\n".encode('ascii'),
                                    env=environment).decode('ascii').strip()
 
 

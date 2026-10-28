@@ -1,7 +1,9 @@
 #include "../../presentation/services/nativeprintbackend.h"
 #include "../../presentation/services/screenshotprintdiagnostics.h"
+#include "snow_shot/app/edition.h"
 
 #include <QApplication>
+#include <QByteArray>
 #include <QCoreApplication>
 #include <QPointer>
 #include <QWidget>
@@ -147,7 +149,8 @@ ScreenshotPrintService::Backend screenshotNativePrintBackend(bool legacy) {
                 view.image = nativeImage;
                 NSPrintOperation* operation = [NSPrintOperation printOperationWithView:view
                                                                              printInfo:info];
-                operation.jobTitle = @"SnowShot";
+                const QByteArray jobTitle = snow_shot::app::edition::productName().toUtf8();
+                operation.jobTitle = [NSString stringWithUTF8String:jobTitle.constData()];
                 operation.showsPrintPanel = YES;
                 operation.showsProgressPanel = YES;
                 operation.canSpawnSeparateThread = NO;

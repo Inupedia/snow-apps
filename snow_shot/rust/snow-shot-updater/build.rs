@@ -36,7 +36,7 @@ fn compile_windows_resources(output: &std::path::Path) {
     let patch = parts.next().expect("patch version");
     assert!(
         parts.next().is_none(),
-        "Snow Shot version must be major.minor.patch[-suffix]"
+        "InuShot version must be major.minor.patch[-suffix]"
     );
     for part in [major, minor, patch] {
         part.parse::<u16>()
@@ -44,7 +44,7 @@ fn compile_windows_resources(output: &std::path::Path) {
     }
 
     let mini = env::var_os("CARGO_FEATURE_MINI").is_some();
-    let product = if mini { "Snow Shot Mini" } else { "Snow Shot" };
+    let product = if mini { "InuShot Mini" } else { "InuShot" };
     let updater = if mini {
         "snow-shot-mini-updater"
     } else {

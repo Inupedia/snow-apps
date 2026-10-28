@@ -26,7 +26,7 @@ $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 . (Join-Path $PSScriptRoot 'snow-build-environment.ps1')
 $windowsTarget = Get-SnowWindowsTarget -Preset $Preset
 if ($windowsTarget.Architecture -ceq 'arm64' -and $windowsTarget.HostArchitecture -cne 'arm64') {
-    throw 'Running Snow Shot ARM64 requires a Windows ARM64 host.'
+    throw 'Running InuShot ARM64 requires a Windows ARM64 host.'
 }
 $target = if ($Edition -eq "Mini") { "snow_shot_mini" } else { "snow_shot" }
 $buildDirectory = Join-Path $repoRoot "build\$Preset"
@@ -97,7 +97,7 @@ if (-not $NoBuild) {
     $skipBootstrap = Test-Path -LiteralPath $vcpkgExecutable -PathType Leaf
     & $buildScript -Preset $Preset -Target $target -Clean:$Clean -Reconfigure:$Reconfigure -SkipBootstrap:$skipBootstrap
     if ($LASTEXITCODE -ne 0) {
-        throw "Snow Shot build failed with exit code $LASTEXITCODE."
+        throw "InuShot build failed with exit code $LASTEXITCODE."
     }
 }
 
@@ -108,14 +108,14 @@ if (-not (Test-Path -LiteralPath $executablePath -PathType Leaf)) {
     else {
         "The build completed without producing the expected target."
     }
-    throw "Snow Shot executable was not found at '$executablePath'. $buildHint"
+    throw "InuShot executable was not found at '$executablePath'. $buildHint"
 }
 
 $workingDirectory = Split-Path -Parent $executablePath
 if ((Get-SnowPeMachine -Path $executablePath) -ne $windowsTarget.PeMachine) {
-    throw "The Snow Shot executable does not match preset $Preset. Rebuild its selected architecture."
+    throw "The InuShot executable does not match preset $Preset. Rebuild its selected architecture."
 }
-# Snow Shot is a GUI executable and does not create a console. Hidden sets the
+# InuShot is a GUI executable and does not create a console. Hidden sets the
 # Windows startup show state and can suppress its first editor while Qt reports it visible.
 if ($Detached) {
     Start-Process -FilePath $executablePath -WorkingDirectory $workingDirectory -WindowStyle Normal | Out-Null
@@ -126,5 +126,5 @@ $process = Start-Process -FilePath $executablePath -WorkingDirectory $workingDir
     -WindowStyle Normal -PassThru
 $process.WaitForExit()
 if ($process.ExitCode -ne 0) {
-    throw "Snow Shot exited with code $($process.ExitCode)."
+    throw "InuShot exited with code $($process.ExitCode)."
 }

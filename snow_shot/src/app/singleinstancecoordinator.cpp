@@ -144,7 +144,7 @@ SingleInstanceCoordinator::acquireOrForward(const QStringList& arguments,
     static_cast<void>(m_lock->getLockInfo(&processId, &hostName, &applicationName));
     return {
         SingleInstanceOutcome::Failed,
-        QStringLiteral("Another Snow Shot process owns the storage lock but could not be "
+        QStringLiteral("Another InuShot process owns the storage lock but could not be "
                        "contacted (PID %1 on %2, %3), %4")
             .arg(processId)
             .arg(hostName, applicationName, forwardError),

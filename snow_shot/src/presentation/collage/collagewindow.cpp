@@ -48,7 +48,7 @@ using adqt::widgets::AdModal;
 [[maybe_unused]] constexpr const char* labels[] = {
     QT_TRANSLATE_NOOP("CollageWindow", "%1: %2"),
     QT_TRANSLATE_NOOP("CollageWindow", "Add images"),
-    QT_TRANSLATE_NOOP("CollageWindow", "Allow Snow Shot to access Finder in System Settings > "
+    QT_TRANSLATE_NOOP("CollageWindow", "Allow InuShot to access Finder in System Settings > "
                                        "Privacy & Security > Automation, then try again."),
     QT_TRANSLATE_NOOP("CollageWindow", "All images will be removed from this collage."),
     QT_TRANSLATE_NOOP("CollageWindow", "Cancel"),
@@ -114,7 +114,7 @@ QString imageFilter() {
 QString selectedFileErrorText(platform::SelectedFileError error) {
     switch (error) {
     case platform::SelectedFileError::PermissionDenied:
-        return collageText("Allow Snow Shot to access Finder in System Settings > Privacy & "
+        return collageText("Allow InuShot to access Finder in System Settings > Privacy & "
                            "Security > Automation, then try again.");
     case platform::SelectedFileError::Timeout:
         return collageText("The file manager took too long to return the selected files. Please "
@@ -1114,7 +1114,7 @@ struct CollageWindow::Impl {
             dialog->setNameFilter(QStringLiteral("%1 (*.pdf)").arg(collageText("PDF documents")));
             dialog->setDefaultSuffix(QStringLiteral("pdf"));
             dialog->setOption(QFileDialog::DontConfirmOverwrite, false);
-            dialog->selectFile(QStringLiteral("SnowShot_%1.pdf")
+            dialog->selectFile(QStringLiteral("InuShot_%1.pdf")
                                    .arg(QDateTime::currentDateTime().toString(
                                        QStringLiteral("yyyy-MM-dd_HH-mm-ss"))));
         } else {

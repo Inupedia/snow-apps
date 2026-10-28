@@ -187,7 +187,7 @@ fn installation_root_identity(root: &Path) -> Result<PathBuf> {
                 .as_ref()
                 .is_none_or(|home| !platform::path_eq(&root, &absolute_clean(home))),
         "invalid_installation_root",
-        "Invalid Snow Shot installation root",
+        "Invalid InuShot installation root",
     )?;
     Ok(root)
 }
@@ -233,13 +233,13 @@ pub fn installation_record_for_platform(root: &Path, platform: &str) -> Result<I
     let value: Value = serde_json::from_slice(&bytes).map_err(|_| {
         UpdateError::new(
             "invalid_installation_metadata",
-            "This copy does not have valid Snow Shot installation metadata",
+            "This copy does not have valid InuShot installation metadata",
         )
     })?;
     let object = value.as_object().ok_or_else(|| {
         UpdateError::new(
             "invalid_installation_metadata",
-            "This copy does not have valid Snow Shot installation metadata",
+            "This copy does not have valid InuShot installation metadata",
         )
     })?;
     let schema = object
@@ -266,7 +266,7 @@ pub fn installation_record_for_platform(root: &Path, platform: &str) -> Result<I
             && crate::edition::product_matches(object.get("product"))
             && crate::edition::installation_variant(&variant),
         "invalid_installation_metadata",
-        "This copy does not have valid Snow Shot installation metadata",
+        "This copy does not have valid InuShot installation metadata",
     )?;
     compare_versions(&version, &version)?;
     let files = parse_file_inventory(object.get("files"))?;

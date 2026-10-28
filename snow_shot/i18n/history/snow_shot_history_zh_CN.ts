@@ -531,8 +531,8 @@
             <translation>将从此图片拼接中移除全部图像。</translation>
         </message>
         <message>
-            <source>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
-            <translation>请在“系统设置 &gt; 隐私与安全性 &gt; 自动化”中允许 Snow Shot 访问访达，然后重试。</translation>
+            <source>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
+            <translation>请在“系统设置 &gt; 隐私与安全性 &gt; 自动化”中允许 InuShot 访问访达，然后重试。</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1067,8 +1067,8 @@ Files:
     <context>
         <name>ImageSplitWindow</name>
         <message>
-            <source>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
-            <translation>请在“系统设置 &gt; 隐私与安全性 &gt; 自动化”中允许 Snow Shot 访问访达，然后重试。</translation>
+            <source>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
+            <translation>请在“系统设置 &gt; 隐私与安全性 &gt; 自动化”中允许 InuShot 访问访达，然后重试。</translation>
         </message>
         <message>
             <source>Cancel</source>

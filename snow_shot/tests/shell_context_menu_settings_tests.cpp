@@ -64,11 +64,11 @@ void catalogAndDefaults(const QString& configurationPath) {
             std::get<settings::SettingsLocalShortcutDefinition>(shortcutField->definition->payload)
                     .maximumShortcutCount == 1 &&
             shortcutField->definition->title.translated() ==
-                (snow_shot::app::edition::isMini ? QStringLiteral("Edit with Snow Shot Mini")
-                                                 : QStringLiteral("Edit with Snow Shot")) &&
+                (snow_shot::app::edition::isMini ? QStringLiteral("Edit with InuShot Mini")
+                                                 : QStringLiteral("Edit with InuShot")) &&
             registry.catalog().page(shortcutField->pageId)->sections.last().id ==
                 shortcutField->sectionId &&
-            !search.search(QStringLiteral("Edit with Snow Shot")).isEmpty(),
+            !search.search(QStringLiteral("Edit with InuShot")).isEmpty(),
         "Windows exposes the searchable edition-aware recorder in the final shortcut category");
     require(field && field->configurationKey == kKey &&
                 field->pageId == QStringLiteral("general") &&

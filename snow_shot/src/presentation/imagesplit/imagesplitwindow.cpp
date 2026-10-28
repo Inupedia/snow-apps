@@ -81,7 +81,7 @@ const char* selectedFileErrorSource(platform::SelectedFileError error) {
     switch (error) {
     case platform::SelectedFileError::PermissionDenied:
         return QT_TRANSLATE_NOOP("ImageSplitWindow",
-                                 "Allow Snow Shot to access Finder in System Settings > Privacy & "
+                                 "Allow InuShot to access Finder in System Settings > Privacy & "
                                  "Security > Automation, then try again.");
     case platform::SelectedFileError::Timeout:
         return QT_TRANSLATE_NOOP("ImageSplitWindow",

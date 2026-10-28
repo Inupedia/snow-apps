@@ -255,7 +255,7 @@ applyNativeStartupSettings(bool enabled, bool elevated,
     if (!result.success && !save(restoredEnabled, restoredElevated)) {
         auto failed = result;
         failed.error += QCoreApplication::translate(
-            "AdministratorLaunch", " Settings recovery failed. Retry before closing Snow Shot.");
+            "AdministratorLaunch", " Settings recovery failed. Retry before closing InuShot.");
         return failed;
     }
     return result;

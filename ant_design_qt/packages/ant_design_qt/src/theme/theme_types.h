@@ -302,6 +302,20 @@ struct ThemeColors {
 #undef ADQT_THEME_COLOR_DECL
 };
 
+struct ThemeSurfaceOverrides {
+  QColor colorBgBase;
+  QColor colorBgLayout;
+  QColor colorBgContainer;
+  QColor colorBgContainerDisabled;
+  QColor colorBgElevated;
+  QColor colorFillSecondary;
+  QColor colorFillTertiary;
+  QColor colorFillQuaternary;
+  QColor colorBorder;
+  QColor colorBorderDisabled;
+  QColor colorBorderSecondary;
+};
+
 struct ThemeSemanticPalette {
 #define ADQT_THEME_SEMANTIC_DECL(name) QColor name;
   ADQT_THEME_SEMANTIC_FIELDS(ADQT_THEME_SEMANTIC_DECL)
@@ -333,6 +347,7 @@ struct ThemeMotion {
 struct ThemeConfig : public ThemeAccents {
   ThemeScheme scheme = ThemeScheme::Light;
   ThemeDensity density = ThemeDensity::Comfortable;
+  ThemeSurfaceOverrides surfaceOverrides;
 
   QColor primary;
   QColor success;
@@ -449,6 +464,7 @@ ResolvedTheme makeResolvedTheme(const AdTheme& theme);
 
 bool operator==(const ThemeAccents& lhs, const ThemeAccents& rhs);
 bool operator==(const ThemeColors& lhs, const ThemeColors& rhs);
+bool operator==(const ThemeSurfaceOverrides& lhs, const ThemeSurfaceOverrides& rhs);
 bool operator==(const ThemeSemanticPalette& lhs, const ThemeSemanticPalette& rhs);
 bool operator==(const ThemeMetrics& lhs, const ThemeMetrics& rhs);
 bool operator==(const ThemeMotion& lhs, const ThemeMotion& rhs);

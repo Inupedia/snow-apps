@@ -157,7 +157,7 @@ void pathAndCommandLinePolicy() {
     embeddedNul.append(L".png");
     require(!isSupportedPath(embeddedNul), "embedded NUL paths cannot truncate a shell operand");
 
-    const std::wstring executable = L"C:\\Program Files\\Snow Shot\\snow_shot.exe";
+    const std::wstring executable = L"C:\\Program Files\\InuShot\\snow_shot.exe";
     const std::vector<std::wstring> paths{L"C:\\images\\图片 & (100%) one.png",
                                           L"\\\\server\\share\\note's two.MD"};
     std::wstring commandLine;
@@ -194,7 +194,7 @@ void commandBehavior() {
     require(command->GetState(valid.Get(), FALSE, &state) == S_OK && state == ECS_ENABLED,
             "modern menu enables supported mixed image and document selections");
     require(command->Invoke(valid.Get(), nullptr) == S_OK && launchCount == 1,
-            "a complete multiple selection launches Snow Shot once");
+            "a complete multiple selection launches InuShot once");
     std::wstring expectedExecutable(32768, L'\0');
     expectedExecutable.resize(GetModuleFileNameW(nullptr, expectedExecutable.data(),
                                                  static_cast<DWORD>(expectedExecutable.size())));

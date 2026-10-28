@@ -612,7 +612,7 @@ bool downloadOnce(QNetworkAccessManager* manager, const FileDescriptor& descript
     QNetworkRequest request(descriptor.url);
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
                          QNetworkRequest::NoLessSafeRedirectPolicy);
-    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("SnowShot/ocr-assets"));
+    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("InuShot/ocr-assets"));
     request.setRawHeader("Referer", "https://www.modelscope.cn/");
     QNetworkReply* reply = manager->get(request);
     QEventLoop loop;

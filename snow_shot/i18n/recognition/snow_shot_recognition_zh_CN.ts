@@ -129,12 +129,12 @@
             <translation>文本识别失败</translation>
         </message>
         <message>
-            <source>The bundled text recognition runtime is damaged or incompatible. Reinstall Snow Shot for this Mac.</source>
-            <translation>内置文字识别运行时已损坏或不兼容。请重新安装适用于此 Mac 的 Snow Shot。</translation>
+            <source>The bundled text recognition runtime is damaged or incompatible. Reinstall InuShot for this Mac.</source>
+            <translation>内置文字识别运行时已损坏或不兼容。请重新安装适用于此 Mac 的 InuShot。</translation>
         </message>
         <message>
-            <source>The packaged text recognition runtime is missing or damaged. Repair or reinstall Snow Shot from Microsoft Store.</source>
-            <translation>软件包中的文字识别运行时缺失或已损坏。请通过 Microsoft Store 修复或重新安装 Snow Shot。</translation>
+            <source>The packaged text recognition runtime is missing or damaged. Repair or reinstall InuShot from Microsoft Store.</source>
+            <translation>软件包中的文字识别运行时缺失或已损坏。请通过 Microsoft Store 修复或重新安装 InuShot。</translation>
         </message>
         <message>
             <source>Unable to open the recognized link</source>
@@ -224,8 +224,8 @@
             <translation>正在识别文本</translation>
         </message>
         <message>
-            <source>Snow Shot's visual understanding model is unavailable. Choose another model or retry.</source>
-            <translation>Snow Shot 的视觉理解模型不可用。请选择其他模型或重试。</translation>
+            <source>InuShot's visual understanding model is unavailable. Choose another model or retry.</source>
+            <translation>InuShot 的视觉理解模型不可用。请选择其他模型或重试。</translation>
         </message>
         <message>
             <source>Some text could not be translated</source>
@@ -280,8 +280,8 @@
             <translation>无法复制翻译结果</translation>
         </message>
         <message>
-            <source>Unable to load Snow Shot vision models</source>
-            <translation>无法加载 Snow Shot 视觉模型</translation>
+            <source>Unable to load InuShot vision models</source>
+            <translation>无法加载 InuShot 视觉模型</translation>
         </message>
         <message>
             <source>Unable to read the selected screenshot</source>

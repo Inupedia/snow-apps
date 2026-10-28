@@ -350,7 +350,7 @@ endif()
     $association = $manifest.SelectSingleNode('//uap3:FileTypeAssociation', $ns)
     Require ($association.Parameters -ceq '--edit-with-snow-shot "%1"' -and
         $association.MultiSelectModel -ceq 'Document') 'Open with and default file activation must retain typed file arguments.'
-    Require ($manifest.SelectNodes('//uap2:SupportedVerbs', $ns).Count -eq 0) 'Only the native Explorer command should contribute an edit menu entry, including when Snow Shot is the default app.'
+    Require ($manifest.SelectNodes('//uap2:SupportedVerbs', $ns).Count -eq 0) 'Only the native Explorer command should contribute an edit menu entry, including when InuShot is the default app.'
     $commands = @($manifest.SelectNodes('//desktop4:FileExplorerContextMenus/desktop5:ItemType', $ns))
     Require (($commands.Type -join ',') -ceq ($types -join ',')) 'Explorer context menus must cover exactly the supported file types without changing default associations.'
     $comClass = $manifest.SelectSingleNode('//com:SurrogateServer/com:Class', $ns)
@@ -403,7 +403,7 @@ endif()
         Invoke-SnowMsixTool 'makeappx.exe' @('unpack', '/p', $package, '/d', $unpack, '/o')
         Require (Test-Path -LiteralPath (Join-Path $unpack 'resources.pri')) 'Compiled localized resources must survive real package round trip.'
     }
-    Write-Output 'Snow Shot MSIX packaging tests passed.'
+    Write-Output 'InuShot MSIX packaging tests passed.'
 } finally {
     $safe = Assert-SnowMsixChildPath $testRoot (Join-Path $script:SnowMsixRepoRoot 'build')
     Remove-Item -LiteralPath $safe -Recurse -Force

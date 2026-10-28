@@ -1,8 +1,8 @@
-# Snow Shot privacy policy
+# InuShot privacy policy
 
 Last updated: October 19, 2026
 
-Snow Shot is operated by **Chao Huang**, publishing as **Snow Apps**. This policy
+InuShot is operated by **Chao Huang**, publishing as **Snow Apps**. This policy
 explains how the app, its official online services, and this website handle your
 information.
 
@@ -15,7 +15,7 @@ Screen capture, annotation, recording, standard text recognition (OCR), and QR c
 reading run on your device. Online features and connections to AI clients can send content
 elsewhere, as described below.
 
-Snow Shot works with the images, files, clipboard content, text, and annotations you
+InuShot works with the images, files, clipboard content, text, and annotations you
 capture, open, or select. Recordings can include system audio, microphone audio,
 webcam video, and keyboard or mouse overlays when you enable those features.
 
@@ -101,7 +101,7 @@ files. These files and regular settings exports are not encrypted and can contai
 your credentials. Treat them and any backups as sensitive. Settings exported
 through MCP hide credential fields.
 
-Snow Shot keeps diagnostic logs and crash reports on your device to help diagnose
+InuShot keeps diagnostic logs and crash reports on your device to help diagnose
 problems. They can include app and session details, timings, image dimensions,
 model identifiers, and errors. The app tries to remove secrets and sensitive path
 or URL details, but a diagnostic archive or crash dump can still contain sensitive
@@ -110,7 +110,7 @@ disabled. You choose whether to export and share a diagnostic archive. The offic
 online service also uses logs, metrics, and traces to maintain reliability and
 investigate problems.
 
-MCP, which lets an AI client work with Snow Shot, is off by default. When you enable
+MCP, which lets an AI client work with InuShot, is off by default. When you enable
 it, an authenticated local connection can give that client access to supported
 captures, files, recognized content, settings, and app actions. The client may pass
 returned content to its own AI service. Review that client's settings and privacy
@@ -147,5 +147,5 @@ enough information to help us locate the relevant records. We may need to verify
 your connection to those records; please do not send unrelated sensitive captures
 or service passwords.
 
-We will update this policy when the way Snow Shot handles information changes.
+We will update this policy when the way InuShot handles information changes.
 The date at the top identifies the latest revision.

@@ -1,7 +1,7 @@
 include_guard(GLOBAL)
 
 # The upstream build always creates a sample and selects extra platform dependencies. Build
-# only its pinned library closure using Snow Shot's resolved Qt kit and CRT configuration.
+# only its pinned library closure using InuShot's resolved Qt kit and CRT configuration.
 function(snow_shot_add_latex_renderer)
     if(TARGET snow_shot_latex_renderer)
         return()

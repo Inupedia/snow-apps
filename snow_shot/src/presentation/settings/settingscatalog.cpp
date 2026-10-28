@@ -449,7 +449,7 @@ QVector<SettingsItemDefinition> skinItems() {
                  SettingsFilePathBinding::TrayMenuSkinPath,
                  settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Tray Menu Skin Path")),
                  settingsText(QT_TRANSLATE_NOOP(
-                     "SettingsCatalog", "Choose an image for Snow Shot's custom tray menu. Native "
+                     "SettingsCatalog", "Choose an image for InuShot's custom tray menu. Native "
                                         "system menus keep their system appearance. Clear the path "
                                         "to remove this skin."))),
         positionItem(QStringLiteral("interface.skin.tray-menu-position"),
@@ -1001,7 +1001,7 @@ SettingsItemDefinition applicationQoSItem() {
         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Quality of service (QoS)")),
         settingsText(QT_TRANSLATE_NOOP(
             "SettingsCatalog", "Choose the scheduling level for the interface and application "
-                               "workers. Changes take effect after restarting Snow Shot.")),
+                               "workers. Changes take effect after restarting InuShot.")),
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Scheduling")),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Responsiveness"))},
         QStringLiteral("system/application_qos"),
@@ -1386,7 +1386,7 @@ SettingsItemDefinition screenshotImageQualityItem() {
         QStringLiteral("screenshot-output.image-quality"),
         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Image quality")),
         settingsText(QT_TRANSLATE_NOOP(
-            "SettingsCatalog", "Set quality for image files saved outside the Snow Shot dialog")),
+            "SettingsCatalog", "Set quality for image files saved outside the InuShot dialog")),
         {},
         QStringLiteral("screenshot/image_quality"),
         SettingsSliderDefinition{SettingsSliderBinding::ScreenshotImageQuality,
@@ -1424,7 +1424,7 @@ SettingsItemDefinition screenshotSaveAsFileDialogItem() {
         SettingsSelectBinding::ScreenshotSaveAsFileDialog,
         {{QStringLiteral("system"), settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "System"))},
          {QStringLiteral("snow_shot"),
-          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Snow Shot"))}});
+          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "InuShot"))}});
 }
 
 SettingsItemDefinition screenshotAutoSaveAfterExecutionItem() {
@@ -1476,7 +1476,7 @@ QVector<SettingsItemDefinition> screenshotOutputItems() {
                    QT_TRANSLATE_NOOP("SettingsCatalog", "Show save result"),
                    QT_TRANSLATE_NOOP(
                        "SettingsCatalog",
-                       "Keep the Snow Shot save dialog open after saving to show the result"),
+                       "Keep the InuShot save dialog open after saving to show the result"),
                    QStringLiteral("screenshot/show_save_result"),
                    SettingsSwitchBinding::ScreenshotShowSaveResult),
         directoryPathItem(
@@ -2363,7 +2363,7 @@ SettingsItemDefinition launchAsAdministratorItem() {
         QStringLiteral("system.launch-as-administrator"),
         QT_TRANSLATE_NOOP("SettingsCatalog", "Launch as administrator"),
         QT_TRANSLATE_NOOP("SettingsCatalog",
-                          "Start Snow Shot with administrator privileges when you sign in"),
+                          "Start InuShot with administrator privileges when you sign in"),
         QStringLiteral("system/launch_as_administrator"),
         SettingsSwitchBinding::LaunchAsAdministrator);
 }
@@ -2375,7 +2375,7 @@ SettingsItemDefinition restartAsAdministratorItem() {
     return {QStringLiteral("system.restart-as-administrator"),
             settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Restart as administrator")),
             settingsText(QT_TRANSLATE_NOOP("SettingsCatalog",
-                                           "Restart Snow Shot with administrator privileges")),
+                                           "Restart InuShot with administrator privileges")),
             {},
             {},
             payload};
@@ -2390,7 +2390,7 @@ SettingsItemDefinition loginItemSettingsItem() {
     return {QStringLiteral("system.login-item-settings"),
             settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Open Login Items Settings")),
             settingsText(QT_TRANSLATE_NOOP(
-                "SettingsCatalog", "Manage Snow Shot's login permission in macOS System Settings")),
+                "SettingsCatalog", "Manage InuShot's login permission in macOS System Settings")),
             {},
             {},
             payload};
@@ -2401,18 +2401,18 @@ SettingsItemDefinition autoStartItem() {
         return switchItem(QStringLiteral("system.auto-start-at-boot"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Launch at login"),
                           QT_TRANSLATE_NOOP("SettingsCatalog",
-                                            "Start Snow Shot in the background when you log in."),
+                                            "Start InuShot in the background when you log in."),
                           QStringLiteral("system/auto_start_at_boot"),
                           SettingsSwitchBinding::AutoStartAtBoot);
     return switchItem(
         QStringLiteral("system.auto-start-at-boot"),
 #ifdef Q_OS_MACOS
         QT_TRANSLATE_NOOP("SettingsCatalog", "Launch at login"),
-        QT_TRANSLATE_NOOP("SettingsCatalog", "Start Snow Shot in the background when you log in."),
+        QT_TRANSLATE_NOOP("SettingsCatalog", "Start InuShot in the background when you log in."),
 #else
         QT_TRANSLATE_NOOP("SettingsCatalog", "Auto start at boot"),
         QT_TRANSLATE_NOOP("SettingsCatalog",
-                          "Start Snow Shot in the background when Windows starts"),
+                          "Start InuShot in the background when Windows starts"),
 #endif
         QStringLiteral("system/auto_start_at_boot"), SettingsSwitchBinding::AutoStartAtBoot);
 }
@@ -2423,7 +2423,7 @@ SettingsItemDefinition contextMenuModeItem() {
         QStringLiteral("system.context-menu-mode"),
         QT_TRANSLATE_NOOP("SettingsCatalog", "Windows context menu"),
         QT_TRANSLATE_NOOP("SettingsCatalog",
-                          "Add Edit with Snow Shot to the Windows context menu to pin a "
+                          "Add Edit with InuShot to the Windows context menu to pin a "
                           "supported image or document file to the screen."),
         QStringLiteral("system/context_menu_mode"), SettingsSelectBinding::ContextMenuMode,
         {{QStringLiteral("image_files"),
@@ -2438,7 +2438,7 @@ SettingsItemDefinition mcpEnabledItem() {
                       QT_TRANSLATE_NOOP("SettingsCatalog", "Enable MCP integration"),
                       QT_TRANSLATE_NOOP("SettingsCatalog",
                                         "Allow MCP clients running as your OS user to control "
-                                        "Snow Shot. Snow Shot must be running."),
+                                        "InuShot. InuShot must be running."),
                       QStringLiteral("mcp/enabled"), SettingsSwitchBinding::McpEnabled);
 }
 
@@ -3785,7 +3785,7 @@ QVector<SettingsPageDefinition> builtInPages() {
          QStringLiteral("/settings/shortcuts-mouse"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Application shortcuts")),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog",
-                                        "Keyboard shortcuts used within Snow Shot tools")),
+                                        "Keyboard shortcuts used within InuShot tools")),
          {
              {
                  QStringLiteral("screenshot-shortcuts"),
@@ -3843,8 +3843,8 @@ QVector<SettingsPageDefinition> builtInPages() {
                  {{QStringLiteral("windows-context-menu-shortcut.edit_with_snow_shot"),
                    settingsText(
                        app::edition::isMini
-                           ? QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with Snow Shot Mini")
-                           : QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with Snow Shot")),
+                           ? QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with InuShot Mini")
+                           : QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with InuShot")),
                    settingsText(QT_TRANSLATE_NOOP("SettingsCatalog",
                                                   "Use one letter (A–Z) or digit (0–9) when the "
                                                   "classic Windows context menu is open")),
@@ -4104,7 +4104,7 @@ QVector<SettingsPageDefinition> builtInPages() {
 
 #if SNOW_SHOT_ENABLE_API_CONFIGURATION
              {QStringLiteral("snow-shot-server"),
-              settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Snow Shot server")),
+              settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "InuShot server")),
               settingsText(QT_TRANSLATE_NOOP("SettingsCatalog",
                                              "Choose the server for built-in online services. "
                                              "Application updates are not affected.")),
@@ -4130,7 +4130,7 @@ QVector<SettingsPageDefinition> builtInPages() {
                  QStringLiteral("mcp"),
                  settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "MCP")),
                  settingsText(
-                     QT_TRANSLATE_NOOP("SettingsCatalog", "Connect AI clients to Snow Shot")),
+                     QT_TRANSLATE_NOOP("SettingsCatalog", "Connect AI clients to InuShot")),
                  SettingsSectionReset::None,
                  {mcpEnabledItem(), mcpStatusItem()},
              },
@@ -4149,7 +4149,7 @@ QVector<SettingsPageDefinition> builtInPages() {
          QStringLiteral("/settings/appPermissions"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "App Permissions")),
          settingsText(
-             QT_TRANSLATE_NOOP("SettingsCatalog", "Manage macOS permissions for Snow Shot")),
+             QT_TRANSLATE_NOOP("SettingsCatalog", "Manage macOS permissions for InuShot")),
          {{QStringLiteral("permissions"),
            settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "App Permissions")),
            settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Permission status and access")),
@@ -4221,7 +4221,7 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     settingsGroup.iconFactory = []() { return outlined_icons::Setting(); };
     settingsGroup.pages = {
         {QStringLiteral("nav.general"), QStringLiteral("general"),
-         []() { return outlined_icons::Setting(); }},
+         []() { return custom_outlined_icons::Control(); }},
         {QStringLiteral("nav.general-appearance"), QStringLiteral("general-appearance"),
          []() { return outlined_icons::BgColors(); }},
         {QStringLiteral("nav.screenshots"), QStringLiteral("screenshots"),

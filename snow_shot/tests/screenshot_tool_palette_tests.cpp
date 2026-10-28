@@ -7395,9 +7395,9 @@ void recognitionModelSelectorGroupsOptionsAndRetainsIndependentSelections() {
                 unavailableDefault[2].value.toString() == QStringLiteral("custom:vision-other") &&
                 unavailableDefault[3].value.toString() ==
                     screenshotDefaultVisionRecognitionModelId() &&
-                unavailableDefault[3].label == QStringLiteral("Snow Shot visual understanding") &&
+                unavailableDefault[3].label == QStringLiteral("InuShot visual understanding") &&
                 unavailableDefault[3].disabled && !select->currentValue().isValid() &&
-                select->placeholder() == QStringLiteral("Snow Shot visual understanding") &&
+                select->placeholder() == QStringLiteral("InuShot visual understanding") &&
                 select->lineEdit()->placeholderText() == select->placeholder() &&
                 select->loading() && modelChanges == 4,
             "an unresolved server default must stay a disabled placeholder alongside all custom "
@@ -7523,9 +7523,9 @@ void recognitionModelSelectorPreservesPopupStateAndScalesAndRetranslates() {
             translated[1].group == QStringLiteral("Translated Vision Model") &&
             translated[1].value.toString() == QStringLiteral("custom:vision") &&
             translated[1].label == longName && translated[2].group == translated[1].group &&
-            translated[2].label == QStringLiteral("Translated Snow Shot visual understanding") &&
+            translated[2].label == QStringLiteral("Translated InuShot visual understanding") &&
             translated[2].disabled && !select->currentValue().isValid() &&
-            select->placeholder() == QStringLiteral("Translated Snow Shot visual understanding") &&
+            select->placeholder() == QStringLiteral("Translated InuShot visual understanding") &&
             select->lineEdit()->placeholderText() == select->placeholder(),
         "language changes must translate recognition groups while preserving model identities");
     palette.setActiveTool(Tool::Latex);
@@ -7538,10 +7538,10 @@ void recognitionModelSelectorPreservesPopupStateAndScalesAndRetranslates() {
                 translatedLatex[1].value.toString() == QStringLiteral("custom:vision") &&
                 translatedLatex[2].group == translatedLatex[1].group &&
                 translatedLatex[2].label ==
-                    QStringLiteral("Translated Snow Shot visual understanding") &&
+                    QStringLiteral("Translated InuShot visual understanding") &&
                 translatedLatex[2].disabled && !select->currentValue().isValid() &&
                 select->placeholder() ==
-                    QStringLiteral("Translated Snow Shot visual understanding") &&
+                    QStringLiteral("Translated InuShot visual understanding") &&
                 select->lineEdit()->placeholderText() == select->placeholder() &&
                 keyboardSelections == 1,
             "language changes must translate the LaTeX-specific label without translating catalog "

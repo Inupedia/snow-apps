@@ -338,7 +338,7 @@ RhiImageWindow::RhiImageWindow(QWindow* parent, RhiBackend backend)
     case RhiBackend::platform_default:
         break;
     }
-    setTitle(QStringLiteral("Snow Image Viewer canvas"));
+    setTitle(QStringLiteral("InuShot Viewer canvas"));
     connect(this, &QWindow::screenChanged, this, [this]() {
         viewTransform_.setDevicePixelRatio(devicePixelRatio());
         updateTileSelection();

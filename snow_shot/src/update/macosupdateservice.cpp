@@ -370,7 +370,7 @@ struct UpdateService::Impl {
                              QNetworkRequest::AlwaysNetwork);
         request.setRawHeader("Accept", source == Source::GitHub ? "application/vnd.github+json"
                                                                 : "application/json");
-        request.setRawHeader("User-Agent", "SnowShot/" + options.installedVersion.toUtf8());
+        request.setRawHeader("User-Agent", "InuShot/" + options.installedVersion.toUtf8());
         request.setRawHeader("Cache-Control", "no-cache");
         state.active = true;
         state.reply = network.get(request);

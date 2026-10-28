@@ -19,6 +19,7 @@
 #include <QFrame>
 #include <QHash>
 #include <QImage>
+#include <QLabel>
 #include <QMainWindow>
 #include <QPainter>
 #include <QPalette>
@@ -425,6 +426,13 @@ void collapsedSettingsPopupAndModalUseOpaqueGlass() {
     using snow_shot::presentation::styles::installLiquidGlassShell;
     using snow_shot::presentation::styles::liquidGlassPopupColor;
     using snow_shot::presentation::styles::paintFloatingSnowflake;
+    using snow_shot::presentation::styles::overlayControlUsesDarkGlass;
+    using snow_shot::presentation::styles::canvasStatusReadoutStyleSheet;
+    using snow_shot::presentation::styles::paintRecordingStatusPlate;
+    using snow_shot::presentation::styles::paintShortcutHintPlate;
+    using snow_shot::presentation::styles::shortcutHintUsesMouse;
+    using snow_shot::presentation::styles::recordingStatusFromAccessibleName;
+    using snow_shot::presentation::styles::paintOverlayControlPlate;
     using snow_shot::presentation::styles::paintWebcamResizeHandle;
     using snow_shot::presentation::styles::paintOpaqueControlPlate;
     using snow_shot::presentation::styles::paintQrPopoverBubble;
@@ -484,6 +492,60 @@ void collapsedSettingsPopupAndModalUseOpaqueGlass() {
     require(webcamResize.pixelColor(16, 8) == QColor(35, 39, 48) &&
                 webcamResize.pixelColor(1, 1).alpha() == 0,
             "webcam resize handle should paint the dark glass color");
+
+    QImage overlay(32, 32, QImage::Format_ARGB32_Premultiplied);
+    overlay.fill(Qt::red);
+    QPainter overlayPainter(&overlay);
+    paintOverlayControlPlate(overlayPainter, QRectF(overlay.rect()));
+    overlayPainter.end();
+    require(overlay.pixelColor(16, 16) == QColor(35, 39, 48) &&
+                overlay.pixelColor(1, 1).alpha() == 0 &&
+                overlayControlUsesDarkGlass(
+                    QStringLiteral("screenshotPinnedClickThroughExitButton")) &&
+                overlayControlUsesDarkGlass(
+                    QStringLiteral("screenshotPinnedClickThroughMoveButton")) &&
+                !overlayControlUsesDarkGlass(QStringLiteral("screenshotPinnedEditButton")) &&
+                !overlayControlUsesDarkGlass(QStringLiteral("screenshotPinnedCloseButton")),
+            "picture controls should paint the dark glass color and leave edit and close solid");
+
+    QLabel statusReadout;
+    statusReadout.setStyleSheet(canvasStatusReadoutStyleSheet());
+    statusReadout.setFixedSize(80, 24);
+    statusReadout.show();
+    flushEvents();
+    const QImage statusImage = statusReadout.grab().toImage();
+    require(statusImage.pixelColor(40, 12) == QColor(35, 39, 48),
+            "canvas status chips should paint the dark glass color");
+    statusReadout.hide();
+
+    const QString statusName =
+        QCoreApplication::translate("RecordingStatusPrompt", "Format: %1; %2; %3")
+            .arg(QCoreApplication::translate("RecordingStatusPrompt", "MP4"),
+                 QCoreApplication::translate("RecordingStatusPrompt", "Microphone enabled"),
+                 QCoreApplication::translate("RecordingStatusPrompt", "Speaker disabled"));
+    const auto recordingStatus = recordingStatusFromAccessibleName(statusName);
+    QImage recordingStatusPlate(160, 36, QImage::Format_ARGB32_Premultiplied);
+    recordingStatusPlate.fill(Qt::red);
+    QPainter recordingStatusPainter(&recordingStatusPlate);
+    paintRecordingStatusPlate(recordingStatusPainter, QRectF(recordingStatusPlate.rect()));
+    recordingStatusPainter.end();
+    require(recordingStatus.has_value() && recordingStatus->microphone &&
+                !recordingStatus->speaker && recordingStatus->text ==
+                    QCoreApplication::translate("RecordingStatusPrompt", "MP4") &&
+                recordingStatusPlate.pixelColor(80, 18) == QColor(35, 39, 48),
+            "recording status should keep its format and paint the dark glass color");
+
+    const QString mouseWheel =
+        QCoreApplication::translate("ScreenshotShortcutHintsWidget", "mouse wheel");
+    QImage hintPlate(180, 72, QImage::Format_ARGB32_Premultiplied);
+    hintPlate.fill(Qt::red);
+    QPainter hintPainter(&hintPlate);
+    paintShortcutHintPlate(hintPainter, QRectF(hintPlate.rect()));
+    hintPainter.end();
+    require(hintPlate.pixelColor(90, 36) == QColor(35, 39, 48) &&
+                hintPlate.pixelColor(1, 1).alpha() == 0 && shortcutHintUsesMouse(mouseWheel) &&
+                !shortcutHintUsesMouse(QStringLiteral("Ctrl")),
+            "shortcut hints should paint the dark glass color and keep mouse chips");
 
     snow_shot::storage::InterfaceSettings settings;
     settings.setSidebarCollapsed(false);

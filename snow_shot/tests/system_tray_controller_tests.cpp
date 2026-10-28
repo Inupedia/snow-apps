@@ -970,8 +970,8 @@ int main(int argc, char* argv[]) {
     require(!trayIcon->icon().isMask(),
             "bundled macOS tray icons must preserve their original colors");
 #endif
-    require(trayIcon->toolTip() == QStringLiteral("SnowShot"),
-            "the tray tooltip should be SnowShot");
+    require(trayIcon->toolTip() == QStringLiteral("InuShot"),
+            "the tray tooltip should use the InuShot product name");
     controller.show();
     require(trayIcon->isVisible(), "show should make the tray icon visible");
     controller.setEnabled(false);
@@ -1760,7 +1760,7 @@ int main(int argc, char* argv[]) {
     const int screenshotRequestsBeforeMessageClicks = screenshotRequests;
     const int showMainWindowRequestsBeforeMessageClicks = showMainWindowRequests;
     const int functionSettingsRequestsBeforeMessageClicks = functionSettingsRequests;
-    controller.showUpdateMessage(QStringLiteral("Snow Shot 2.0.0 is available."));
+    controller.showUpdateMessage(QStringLiteral("InuShot 2.0.0 is available."));
     clickNotification(controller, trayIcon,
                       snow_shot::platform::SystemNotificationAction::OpenAbout);
     require(aboutRequests == 1 && screenshotRequests == screenshotRequestsBeforeMessageClicks &&

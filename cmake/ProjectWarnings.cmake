@@ -2,7 +2,7 @@ include_guard(GLOBAL)
 
 option(SNOW_ENABLE_CLANG_TIDY "Run clang-tidy while compiling C++ targets." OFF)
 option(SNOW_APPS_ENABLE_RELEASE_SIZE_OPTIMIZATION
-    "Prefer smaller code in explicitly selected cold Snow Shot Release modules." OFF)
+    "Prefer smaller code in explicitly selected cold InuShot Release modules." OFF)
 
 function(snow_msvc_arm64_requires_native_codegen output)
     # MSVC 19.51 ARM64 LTCG emitted GS-cookie epilogues without restoring LR.

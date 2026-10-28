@@ -1,7 +1,7 @@
 //! Compile-time product identity and the reduced Mini MCP contract.
 pub const MINI: bool = cfg!(feature = "mini");
 pub const PRODUCT: &str = if MINI { "snow-shot-mini" } else { "snow-shot" };
-pub const PRODUCT_NAME: &str = if MINI { "Snow Shot Mini" } else { "Snow Shot" };
+pub const PRODUCT_NAME: &str = if MINI { "InuShot Mini" } else { "InuShot" };
 pub const MCP_NAME: &str = if MINI {
     "snow-shot-mini-mcp"
 } else {

@@ -7,7 +7,9 @@
 // later upstream merge does not have to touch main-window, history, or platform code.
 
 #include "snow_shot/app/supportedpinfiles.h"
+#include "snow_shot/storage/settingsadapters.h"
 #include "snow_shot/presentation/components/applicationsearchwidget.h"
+#include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "theme/theme_manager.h"
 #include "widgets/context_menu.h"
@@ -20,6 +22,9 @@
 #include "widgets/popconfirm.h"
 #include "widgets/select.h"
 #include "widgets/tooltip.h"
+#include "widgets/button.h"
+#include "widgets/detail/pointer_region.h"
+#include "icon_renderer.h"
 
 #include "widgets/control_scale.h"
 
@@ -48,6 +53,7 @@
 #include <QWidget>
 
 #include <algorithm>
+#include <optional>
 
 namespace snow_shot::presentation::styles {
 
@@ -55,7 +61,7 @@ inline QColor liquidGlassPopupColor(bool dark) {
     // Opaque control-layer fill. A translucent popup lets the page text show
     // through the settings flyout, and a translucent toolbar lets the desktop
     // show through its buttons.
-    return dark ? QColor(35, 39, 48) : QColor(250, 251, 253);
+    return dark ? QColor(32, 55, 75) : QColor(246, 250, 255);
 }
 
 inline QColor liquidGlassChromeColor(bool dark) {
@@ -367,6 +373,52 @@ inline void paintFloatingSnowflake(QPainter& painter, const QRectF& rect, bool d
     painter.restore();
 }
 
+inline bool overlayControlUsesDarkGlass(const QString& name) {
+    // Pinned edit and close stay on their original plate. These controls sit on
+    // a picture or a capture, so the resting plate uses the dark control color.
+    return name == QStringLiteral("screenshotPinnedClickThroughExitButton") ||
+           name == QStringLiteral("screenshotPinnedClickThroughMoveButton") ||
+           name == QStringLiteral("screenRecordingRegionDragHandle") ||
+           name == QStringLiteral("collageReplaceImage") ||
+           name == QStringLiteral("collageDeleteImage") ||
+           name == QStringLiteral("collageFitToCanvas");
+}
+
+inline void paintOverlayControlPlate(QPainter& painter, const QRectF& rect) {
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    painter.setPen(QPen(QColor(255, 255, 255, 70), 1));
+    painter.setBrush(liquidGlassPopupColor(true));
+    painter.drawEllipse(rect.adjusted(0.5, 0.5, -0.5, -0.5));
+}
+
+inline bool paintOverlayControlButton(QWidget* widget) {
+    auto* button = qobject_cast<adqt::widgets::AdButton*>(widget);
+    if (button == nullptr || !button->isEnabled() || button->isDown() ||
+        adqt::widgets::detail::widgetHovered(button)) {
+        return false;
+    }
+    const adqt::icons::IconRef icon = button->iconRef();
+    if (!adqt::icons::isValid(icon)) {
+        return false;
+    }
+    QPainter painter(widget);
+    paintOverlayControlPlate(painter, QRectF(widget->rect()));
+    const QSize iconSize = button->iconSize().isValid() && !button->iconSize().isEmpty()
+                               ? button->iconSize()
+                               : QSize(18, 18);
+    const QRectF iconRect(widget->width() / 2.0 - iconSize.width() / 2.0,
+                          widget->height() / 2.0 - iconSize.height() / 2.0, iconSize.width(),
+                          iconSize.height());
+    adqt::icons::IconRenderRequest request;
+    request.logicalSize = iconSize;
+    request.devicePixelRatio = widget->devicePixelRatioF();
+    adqt::icons::paintIcon(&painter, icon, iconRect, request);
+    return true;
+}
+
 inline void paintWebcamResizeHandle(QPainter& painter, const QRectF& rect, bool down, bool hover) {
     // This handle sits on the camera picture, so it uses the dark control color.
     painter.setRenderHint(QPainter::Antialiasing, true);
@@ -392,12 +444,178 @@ inline void paintWebcamResizeHandle(QPainter& painter, const QRectF& rect, bool 
     painter.restore();
 }
 
+struct RecordingStatusGlass {
+    QString text;
+    bool microphone = false;
+    bool speaker = false;
+};
+
+inline std::optional<RecordingStatusGlass> recordingStatusFromAccessibleName(const QString& name) {
+    const auto text = [](const char* source) {
+        return QCoreApplication::translate("RecordingStatusPrompt", source);
+    };
+    const QString microphoneOn = text("Microphone enabled");
+    const QString microphoneOff = text("Microphone disabled");
+    const QString speakerOn = text("Speaker enabled");
+    const QString speakerOff = text("Speaker disabled");
+    for (const char* formatSource : {"GIF", "WebP", "MP4"}) {
+        const QString format = text(formatSource);
+        for (const bool microphone : {false, true}) {
+            for (const bool speaker : {false, true}) {
+                const QString candidate =
+                    text("Format: %1; %2; %3")
+                        .arg(format, microphone ? microphoneOn : microphoneOff,
+                             speaker ? speakerOn : speakerOff);
+                if (candidate == name) {
+                    return RecordingStatusGlass{format, microphone, speaker};
+                }
+            }
+        }
+    }
+    return std::nullopt;
+}
+
+inline void paintRecordingStatusPlate(QPainter& painter, const QRectF& rect) {
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setPen(QPen(QColor(255, 255, 255, 70), 1));
+    painter.setBrush(liquidGlassPopupColor(true));
+    painter.drawRoundedRect(rect, 6, 6);
+}
+
+inline bool shortcutHintUsesMouse(const QString& shortcut) {
+    const QString mouseWheel =
+        QCoreApplication::translate("ScreenshotShortcutHintsWidget", "mouse wheel");
+    return !mouseWheel.isEmpty() && shortcut.contains(mouseWheel);
+}
+
+inline void paintShortcutHintPlate(QPainter& painter, const QRectF& rect) {
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.fillRect(rect, Qt::transparent);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    painter.setPen(QPen(QColor(255, 255, 255, 70), 1));
+    painter.setBrush(liquidGlassPopupColor(true));
+    painter.drawRoundedRect(rect.adjusted(0.5, 0.5, -0.5, -0.5), 6, 6);
+}
+
+inline bool paintShortcutHints(QWidget* widget) {
+    const QStringList lines =
+        widget->accessibleName().split(QLatin1Char('\n'), Qt::SkipEmptyParts);
+    if (lines.isEmpty()) {
+        return false;
+    }
+    const qreal opacity = std::clamp(
+        snow_shot::storage::ScreenshotUiSettings().shortcutHintOpacity() / 100.0, 0.0, 1.0);
+    QPainter painter(widget);
+    painter.setOpacity(opacity);
+    paintShortcutHintPlate(painter, QRectF(widget->rect()));
+    painter.setFont(widget->font());
+    const QFontMetrics metrics(widget->font());
+    const QColor contentColor(Qt::white);
+    constexpr int padding = 16;
+    constexpr int lineHeight = 22;
+    constexpr int rowSpacing = 16;
+    constexpr int colonGapLeft = 2;
+    constexpr int colonGapRight = 8;
+    constexpr int chipPadding = 16;
+    constexpr int chipRadius = 6;
+    constexpr int iconSize = 14;
+    constexpr int iconGap = 8;
+    int rowTop = padding;
+    namespace custom = snow_shot::presentation::icons::custom::outlined;
+    for (const QString& line : lines) {
+        const qsizetype ascii = line.indexOf(QLatin1Char(':'));
+        const qsizetype fullWidth = line.indexOf(QChar(0xFF1A));
+        const qsizetype separator = ascii < 0      ? fullWidth
+                                    : fullWidth < 0 ? ascii
+                                                    : std::min(ascii, fullWidth);
+        const QString label = separator < 0 ? line : line.left(separator);
+        const QString shortcut = separator < 0 ? QString() : line.mid(separator + 1).trimmed();
+        const int labelWidth = metrics.horizontalAdvance(label);
+        painter.setPen(QColor(255, 255, 255, 184));
+        painter.drawText(QRect(padding, rowTop, labelWidth, lineHeight),
+                         Qt::AlignLeft | Qt::AlignVCenter, label);
+        int chipLeft = padding + labelWidth;
+        if (separator >= 0) {
+            const QString colon = line.mid(separator, 1);
+            const int colonWidth = metrics.horizontalAdvance(colon);
+            painter.drawText(QRect(chipLeft + colonGapLeft, rowTop, colonWidth, lineHeight),
+                             Qt::AlignLeft | Qt::AlignVCenter, colon);
+            chipLeft += colonGapLeft + colonWidth + colonGapRight;
+        }
+        if (!shortcut.isEmpty()) {
+            const int textWidth = metrics.horizontalAdvance(shortcut);
+            const int chipWidth = chipPadding * 2 + iconSize + iconGap + textWidth;
+            const QRectF chipRect(chipLeft, rowTop - 2, chipWidth, lineHeight + 4);
+            painter.setPen(QPen(contentColor, 1.0));
+            painter.setBrush(Qt::NoBrush);
+            painter.drawRoundedRect(chipRect.adjusted(0.5, 0.5, -0.5, -0.5), chipRadius,
+                                    chipRadius);
+            const QRect iconRect(chipLeft + chipPadding,
+                                 rowTop + (lineHeight - iconSize) / 2, iconSize, iconSize);
+            adqt::icons::paintIcon(&painter,
+                                   shortcutHintUsesMouse(shortcut)
+                                       ? custom::WheelMouse(adqt::icons::IconColors::primary(
+                                             contentColor))
+                                       : custom::Keyboard(adqt::icons::IconColors::primary(
+                                             contentColor)),
+                                   iconRect);
+            painter.setPen(contentColor);
+            painter.drawText(QRect(iconRect.right() + 1 + iconGap, rowTop, textWidth, lineHeight),
+                             Qt::AlignLeft | Qt::AlignVCenter, shortcut);
+        }
+        rowTop += lineHeight + rowSpacing;
+    }
+    return true;
+}
+
+inline bool paintRecordingStatusPrompt(QWidget* widget) {
+    const std::optional<RecordingStatusGlass> status =
+        recordingStatusFromAccessibleName(widget->accessibleName());
+    if (!status.has_value()) {
+        return false;
+    }
+    QPainter painter(widget);
+    paintRecordingStatusPlate(painter, QRectF(widget->rect()));
+    painter.setFont(widget->font());
+    painter.setPen(Qt::white);
+    const int textWidth = widget->fontMetrics().horizontalAdvance(status->text);
+    painter.drawText(QRect(12, 0, textWidth, widget->height()), Qt::AlignCenter, status->text);
+    const auto colors = ThemeManager::instance().themeColorScheme().map;
+    const auto microphoneColor = adqt::icons::IconColors::primary(
+        status->microphone ? colors.colorSuccess : colors.colorError);
+    const auto speakerColor =
+        adqt::icons::IconColors::primary(status->speaker ? colors.colorSuccess : colors.colorError);
+    constexpr int iconSize = 20;
+    const QRect microphone(12 + textWidth + 12, (widget->height() - iconSize) / 2, iconSize,
+                           iconSize);
+    namespace custom = snow_shot::presentation::icons::custom::outlined;
+    adqt::icons::paintIcon(&painter,
+                           status->microphone ? custom::RecordingMicrophone(microphoneColor)
+                                              : custom::RecordingMicrophoneOff(microphoneColor),
+                           microphone);
+    adqt::icons::paintIcon(&painter,
+                           status->speaker ? custom::Sound(speakerColor)
+                                           : custom::RecordingSpeakerOff(speakerColor),
+                           microphone.translated(iconSize + 12, 0));
+    return true;
+}
+
 inline bool paintNamedControlPlate(QWidget* widget) {
     if (!liquidGlassShellEnabled() || widget == nullptr) {
         return false;
     }
     const QString name = widget->objectName();
     const auto theme = adqt::theme::ThemeManager::instance().resolveTheme(widget);
+    if (overlayControlUsesDarkGlass(name)) {
+        return paintOverlayControlButton(widget);
+    }
+    if (name == QStringLiteral("screenRecordingStatusPrompt")) {
+        return paintRecordingStatusPrompt(widget);
+    }
+    if (name == QStringLiteral("screenshotShortcutHints")) {
+        return paintShortcutHints(widget);
+    }
     if (name == QStringLiteral("screenshotPinnedClickThroughOpacityEditor")) {
         // This pill sits on the pinned image, same as the capture readout, so it
         // stays on the dark control color instead of the window theme.
@@ -462,6 +680,29 @@ inline bool paintLiquidGlassHud(QWidget* widget, qreal radius) {
     painter.setPen(QPen(QColor(255, 255, 255, 70), 1.0));
     painter.drawRoundedRect(panelRect, glassRadius, glassRadius);
     return true;
+}
+
+inline QString canvasStatusReadoutStyleSheet() {
+    // Scale, opacity, and preview chips sit on the picture. Keep the text and
+    // padding, and replace the translucent black plate with the dark control color.
+    const QColor fill = liquidGlassPopupColor(true);
+    return QStringLiteral("QLabel { color: white; background-color: rgb(%1, %2, %3); "
+                           "padding: 3px 6px; border-radius: 4px; }")
+        .arg(fill.red())
+        .arg(fill.green())
+        .arg(fill.blue());
+}
+
+inline void applyCanvasStatusReadoutGlass(QWidget* widget) {
+    if (!liquidGlassShellEnabled() || widget == nullptr ||
+        !widget->inherits("CanvasStatusReadout")) {
+        return;
+    }
+    const QString style = canvasStatusReadoutStyleSheet();
+    if (widget->styleSheet() == style) {
+        return;
+    }
+    widget->setStyleSheet(style);
 }
 
 inline void applyOpaqueSurface(QWidget* widget, const QColor& color) {
@@ -876,6 +1117,7 @@ class LiquidGlassShellHooks final : public QObject {
         }
         if (liquidGlassShellEnabled() && event->type() == QEvent::Show) {
             if (auto* widget = qobject_cast<QWidget*>(watched)) {
+                applyCanvasStatusReadoutGlass(widget);
                 const QString name = widget->objectName();
                 if (name == QStringLiteral("ad-modal-overlay")) {
                     applyModalGlass();

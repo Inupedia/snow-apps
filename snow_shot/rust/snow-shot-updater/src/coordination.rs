@@ -1192,7 +1192,7 @@ mod windows_coordination {
             require(
                 platform::registered_target_matches(&root)?,
                 "elevation_target_invalid",
-                "Elevation requires a registered Snow Shot installation",
+                "Elevation requires a registered InuShot installation",
             )?;
         }
         let registry_needs_elevation = platform::registered_version_requires_elevation(&root)?;
@@ -1207,7 +1207,7 @@ mod windows_coordination {
             require(
                 !elevated && platform::registered_target_matches(&root)?,
                 "elevation_target_invalid",
-                "Elevation requires a registered Snow Shot installation",
+                "Elevation requires a registered InuShot installation",
             )?;
             let launched = platform::launch_elevated(
                 &std::env::current_exe().map_err(|error| {
@@ -1582,7 +1582,7 @@ mod tests {
     fn broker_context_preserves_the_theme_and_localized_text_after_application_exit() {
         let context = ProgressContext {
             texts: ProgressTexts {
-                title: "正在更新 Snow Shot".to_owned(),
+                title: "正在更新 InuShot".to_owned(),
                 ..Default::default()
             },
             appearance: Some(ProgressAppearance {

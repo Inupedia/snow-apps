@@ -29,7 +29,7 @@ $registryPaths = @(
     "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\$($product.Registry)"
 )
 if (@($registryPaths | Where-Object { Test-Path -LiteralPath $_ }).Count) {
-    throw 'Refusing to change an existing Snow Shot installation.'
+    throw 'Refusing to change an existing InuShot installation.'
 }
 $output = Join-Path $PSScriptRoot "../build/winget-install-test/$($product.Product)"
 $null = New-Item -ItemType Directory -Force -Path $output
@@ -105,7 +105,7 @@ function Assert-InstalledVersion([string]$Expected) {
         ForEach-Object { Get-ItemProperty -LiteralPath $_ })
     if ($entries.Count -ne 1 -or $entries[0].DisplayVersion -cne $Expected -or
         $entries[0].DisplayName -cne $product.Name -or $entries[0].Publisher -cne 'Snow Apps') {
-        throw "Installed registration does not match Snow Shot $Expected."
+        throw "Installed registration does not match InuShot $Expected."
     }
     Invoke-WingetChecked @('list', '--name', $product.Name, '--exact', '--accept-source-agreements')
 }
@@ -144,7 +144,7 @@ try {
     $machine = [BitConverter]::ToUInt16($pe, $peOffset + 4)
     $expectedMachine = if ($Architecture -eq 'arm64') { 0xaa64 } else { 0x8664 }
     if ($machine -ne $expectedMachine) { throw 'WinGet selected a different executable architecture.' }
-    if (Get-Process $product.Executable -ErrorAction SilentlyContinue) { throw 'Silent installation launched Snow Shot.' }
+    if (Get-Process $product.Executable -ErrorAction SilentlyContinue) { throw 'Silent installation launched InuShot.' }
     $userData = Join-Path $env:APPDATA "$($product.Registry)/$($product.Executable)"
     $null = New-Item -ItemType Directory -Force -Path $userData
     $sentinel = Join-Path $userData 'winget-preservation-test.txt'
@@ -196,7 +196,7 @@ try {
     Assert-InstalledVersion $version
     if (-not (Test-Path -LiteralPath $executable)) { throw 'Upgrade did not preserve the custom directory.' }
     if ([IO.File]::ReadAllText($sentinel) -cne $sentinelValue) { throw 'Upgrade changed user data.' }
-    if (Get-Process $product.Executable -ErrorAction SilentlyContinue) { throw 'Silent upgrade launched Snow Shot.' }
+    if (Get-Process $product.Executable -ErrorAction SilentlyContinue) { throw 'Silent upgrade launched InuShot.' }
     $registration = @($registryPaths | Where-Object { Test-Path -LiteralPath $_ } |
         ForEach-Object { Get-ItemProperty -LiteralPath $_ })[0]
     if ($Edition -eq 'Full' -and $version -eq '1.1.5-beta' -and -not $registration.PSObject.Properties['QuietUninstallString']) {

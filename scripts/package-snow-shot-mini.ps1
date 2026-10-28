@@ -54,11 +54,11 @@ function Invoke-SnowShotMiniPackaging {
     $miniInstall = Join-Path $artifactRoot 'snow-shot-mini'
     Reset-ReleaseDirectory $miniInstall
     & cmake --install $buildDirectory --config Release --component SnowShotMini --prefix $miniInstall
-    if ($LASTEXITCODE -ne 0) { throw 'Snow Shot Mini install failed.' }
+    if ($LASTEXITCODE -ne 0) { throw 'InuShot Mini install failed.' }
     Assert-SnowShotMiniPayload -Stage $miniInstall -Architecture $Architecture -OcrAssetManifest $ocrAssetManifestPath
     $main = Join-Path $miniInstall 'bin/snow_shot_mini.exe'
     $metadata = (Get-Item -LiteralPath $main).VersionInfo
-    if ($metadata.ProductName -cne 'Snow Shot Mini' -or $metadata.OriginalFilename -cne 'snow_shot_mini.exe' -or
+    if ($metadata.ProductName -cne 'InuShot Mini' -or $metadata.OriginalFilename -cne 'snow_shot_mini.exe' -or
         $metadata.ProductVersion -cne $packageVersion) { throw 'Mini binary identity/version differs from this release.' }
     Assert-NoPeExports $main
     foreach ($binary in @(Get-ChildItem -LiteralPath (Join-Path $miniInstall 'bin') -File -Filter '*.exe' -Force)) {
@@ -131,7 +131,7 @@ string(REPLACE "snow-shot-mini-$packageVersion-$ocrPlatform.exe" "$base.exe" CPA
                 Move-Item -LiteralPath (Join-Path $nsisWorkDirectory "$base$suffix") -Destination (Join-Path $buildDirectory "$base$suffix") -Force
             }
             $info = (Get-Item $exe).VersionInfo
-            if ($info.ProductName -cne 'Snow Shot Mini' -or $info.ProductVersion -cne $packageVersion) {
+            if ($info.ProductName -cne 'InuShot Mini' -or $info.ProductVersion -cne $packageVersion) {
                 throw 'Mini installer metadata differs from this release.'
             }
             $exeHash = (Get-FileHash $exe -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -142,7 +142,7 @@ string(REPLACE "snow-shot-mini-$packageVersion-$ocrPlatform.exe" "$base.exe" CPA
             $audit | ConvertTo-Json -Depth 8 | Set-Content (Join-Path $buildDirectory "$base.manifest.json") -Encoding utf8NoBOM
         }
     }
-    Write-Output "Packaged Snow Shot Mini $packageVersion (online installer, update ZIP, portable ZIP)."
+    Write-Output "Packaged InuShot Mini $packageVersion (online installer, update ZIP, portable ZIP)."
 }
 
 if (-not $FunctionsOnly) { Invoke-SnowShotMiniPackaging }

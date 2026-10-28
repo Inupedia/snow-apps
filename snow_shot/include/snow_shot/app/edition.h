@@ -40,8 +40,8 @@ inline constexpr bool apiConfiguration = SNOW_SHOT_ENABLE_API_CONFIGURATION != 0
 inline constexpr bool extendedFeatures = SNOW_SHOT_ENABLE_EXTENDED_FEATURES != 0;
 
 [[nodiscard]] inline QString productName() {
-    return isMini ? QCoreApplication::translate("EditionMetadata", "Snow Shot Mini")
-                  : QCoreApplication::translate("EditionMetadata", "Snow Shot");
+    return isMini ? QCoreApplication::translate("EditionMetadata", "InuShot Mini")
+                  : QCoreApplication::translate("EditionMetadata", "InuShot");
 }
 [[nodiscard]] inline QString applicationName() {
     return isMini ? QStringLiteral("snow_shot_mini") : QStringLiteral("snow_shot");

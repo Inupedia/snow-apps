@@ -402,8 +402,7 @@ class SystemTrayController::Impl {
         }
         q.setObjectName(QStringLiteral("systemTrayController"));
         trayIcon->setObjectName(QStringLiteral("snowShotSystemTrayIcon"));
-        trayIcon->setToolTip(app::edition::isMini ? app::edition::productName()
-                                                  : QStringLiteral("SnowShot"));
+        trayIcon->setToolTip(app::edition::productName());
 #ifdef Q_OS_MACOS
         notifications = std::make_unique<platform::macos::SystemNotificationService>(&q);
         using NotificationService = platform::macos::SystemNotificationService;
@@ -744,8 +743,7 @@ class SystemTrayController::Impl {
     }
 
     void retranslateUi() {
-        if (app::edition::isMini)
-            trayIcon->setToolTip(app::edition::productName());
+        trayIcon->setToolTip(app::edition::productName());
         for (const settings::SettingsTrayMenuGroupDefinition& group : groups) {
             for (const settings::SettingsTrayMenuOptionDefinition& option : group.options) {
                 if (QAction* action = actions.value(option.id)) {

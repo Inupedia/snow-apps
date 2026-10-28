@@ -531,8 +531,8 @@
             <translation>All images will be removed from this collage.</translation>
         </message>
         <message>
-            <source>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
-            <translation>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</translation>
+            <source>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
+            <translation>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1067,8 +1067,8 @@ Files:
     <context>
         <name>ImageSplitWindow</name>
         <message>
-            <source>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
-            <translation>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</translation>
+            <source>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
+            <translation>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</translation>
         </message>
         <message>
             <source>Cancel</source>

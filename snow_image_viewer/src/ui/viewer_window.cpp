@@ -586,7 +586,7 @@ void ViewerWindow::requestRapidPerformanceIteration() {
 
 void ViewerWindow::initializeWindow(const QString& initialImagePath) {
     setObjectName(QStringLiteral("viewerWindow"));
-    setWindowTitle(QStringLiteral("Snow Image Viewer"));
+    setWindowTitle(QStringLiteral("InuShot Viewer"));
     setAcceptDrops(true);
     setMinimumSize(kMinimumWindowWidth, kMinimumWindowHeight);
     resize(1100, 720);
@@ -1931,7 +1931,7 @@ void ViewerWindow::updateWindowTitle() {
     }
 
     if (!currentImage_.isValid()) {
-        setWindowTitle(QStringLiteral("Snow Image Viewer"));
+        setWindowTitle(QStringLiteral("InuShot Viewer"));
         return;
     }
 

@@ -375,9 +375,9 @@ struct RegistryHandle {
             RegCloseKey(value);
     }
 };
-// Reconciles the Snow Shot auto-start value under base\subKey for uninstall and migration.
+// Reconciles the InuShot auto-start value under base\subKey for uninstall and migration.
 // Returns whether an accessible matching registration was removed or rewritten.
-// A key that cannot be opened for reading cannot contain a verifiable Snow Shot
+// A key that cannot be opened for reading cannot contain a verifiable InuShot
 // registration: machine hives (.DEFAULT, service accounts S-1-5-19/S-1-5-20) deny access
 // to filtered tokens, and the service hives are readable only by SYSTEM, so probing must
 // skip them instead of failing the whole uninstall. Only a registration that was verified
@@ -905,7 +905,7 @@ static AdministratorResult updateInstallationStartup(const QString& root,
                 SysFreeString(user);
             } catch (...) {
                 // A task that cannot be inspected (for example a third-party task with a
-                // restrictive security descriptor) is not a verifiable Snow Shot
+                // restrictive security descriptor) is not a verifiable InuShot
                 // registration; skipping it must not abort the uninstall.
                 continue;
             }

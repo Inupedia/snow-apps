@@ -1,5 +1,5 @@
 if(NOT APPLE AND NOT SNOW_SHOT_DISTRIBUTION_CHANNEL STREQUAL "store")
-    # The GPL updater is a standalone Rust package inside the Snow Shot license boundary. The main
+    # The GPL updater is a standalone Rust package inside the InuShot license boundary. The main
     # application links only the Qt process/protocol adapter below.
     set(_snow_shot_updater_manifest_dir
         "${CMAKE_CURRENT_SOURCE_DIR}/rust/snow-shot-updater")

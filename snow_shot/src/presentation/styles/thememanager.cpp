@@ -273,9 +273,8 @@ void ThemeManager::applyThemeMode() {
         return;
     }
 
-    auto& adqtThemeManager = adqt::theme::ThemeManager::instance();
-    adqtThemeManager.setColorScheme(detail::toAdqtScheme(appearance));
-    m_config = toThemeStyleConfig(adqt::theme::makeResolvedTheme(adqtThemeManager.config()));
-    rebuildScheme();
+    auto config = m_config;
+    config.appearance = appearance;
+    setThemeStyleConfig(config);
 }
 } // namespace snow_shot::presentation::styles

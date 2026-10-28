@@ -76,7 +76,7 @@ if [[ "$build" == false && "$codesign_identity_set" == true ]]; then
     snow_die '--codesign-identity cannot be combined with --no-build'
 fi
 if [[ "$build" == false ]]; then
-    [[ -x "$deployed_app/Contents/MacOS/$target" ]] || snow_die "The deployed Snow Shot was not found for $snow_preset. Run without --no-build to create it."
+    [[ -x "$deployed_app/Contents/MacOS/$target" ]] || snow_die "The deployed InuShot was not found for $snow_preset. Run without --no-build to create it."
     # Preserve the exact signed bundle to which the user granted permissions.
     exec open -n "$deployed_app" --args "$@"
 fi
@@ -89,7 +89,7 @@ fi
 build_args+=(-- "-DSNOW_MACOS_CODESIGN_IDENTITY=$codesign_identity")
 "$(dirname "$0")/build.sh" "${build_args[@]}"
 app="$snow_build_dir/$target/$target.app"
-[[ -x "$app/Contents/MacOS/$target" ]] || snow_die "Snow Shot was not found for $snow_preset. Run without --no-build to create it."
+[[ -x "$app/Contents/MacOS/$target" ]] || snow_die "InuShot was not found for $snow_preset. Run without --no-build to create it."
 # Deploy a separate development copy so dlopen-only OCR dependencies and Qt
 # plugins resolve exactly as they do in a package. Leave build products intact.
 export PATH="$snow_repo_root/.tools/macos-dev/bin:$PATH"

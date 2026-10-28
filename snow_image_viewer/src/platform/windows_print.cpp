@@ -666,7 +666,7 @@ class WindowsPrintController::Impl final {
             winrt::Windows::Graphics::Printing::IPrintDocumentSource source{
                 abiSource.Detach(), winrt::take_ownership_from_abi};
             const QString title =
-                documentTitle.isEmpty() ? QStringLiteral("Snow Image Viewer") : documentTitle;
+                documentTitle.isEmpty() ? QStringLiteral("InuShot Viewer") : documentTitle;
             const auto session = std::make_shared<PrintSession>(title, std::move(source));
             const QFuture<Result> future = session->future();
             if (!state_->begin(session)) {

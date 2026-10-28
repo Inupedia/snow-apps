@@ -26,12 +26,12 @@ mod tasks;
 pub(crate) const TOOLS: &[(&str, &str, bool)] = &[
     (
         "snow_shot_mcp_status",
-        "Report Snow Shot MCP availability and capabilities.",
+        "Report InuShot MCP availability and capabilities.",
         true,
     ),
     (
         "snow_shot_screenshot_begin",
-        "Start a Snow Shot screenshot editing session.",
+        "Start a InuShot screenshot editing session.",
         false,
     ),
     (
@@ -46,7 +46,7 @@ pub(crate) const TOOLS: &[(&str, &str, bool)] = &[
     ),
     (
         "snow_shot_screenshot_set_tool",
-        "Select a Snow Shot annotation tool.",
+        "Select a InuShot annotation tool.",
         false,
     ),
     (
@@ -228,7 +228,7 @@ impl SnowShotMcp {
     ) -> Result<CallToolResult, McpError> {
         schemas::schema(name, Some(arguments.clone())).map_err(|error| {
             McpError::invalid_params(
-                "Invalid Snow Shot tool arguments",
+                "Invalid InuShot tool arguments",
                 Some(json!({"detail":error.to_string()})),
             )
         })?;
@@ -487,7 +487,7 @@ impl ServerHandler for SnowShotMcp {
         let result = self.invoke(method, arguments, context).await?;
         if result.is_error == Some(true) {
             return Err(McpError::invalid_params(
-                "Snow Shot resource is unavailable",
+                "InuShot resource is unavailable",
                 result.structured_content,
             ));
         }
@@ -590,7 +590,7 @@ impl ServerHandler for SnowShotMcp {
         {
             return Err(McpError::new(
                 ErrorCode::METHOD_NOT_FOUND,
-                format!("unknown Snow Shot tool: {name}"),
+                format!("unknown InuShot tool: {name}"),
                 None,
             ));
         }

@@ -129,12 +129,12 @@
             <translation>Text recognition failed</translation>
         </message>
         <message>
-            <source>The bundled text recognition runtime is damaged or incompatible. Reinstall Snow Shot for this Mac.</source>
-            <translation>The bundled text recognition runtime is damaged or incompatible. Reinstall Snow Shot for this Mac.</translation>
+            <source>The bundled text recognition runtime is damaged or incompatible. Reinstall InuShot for this Mac.</source>
+            <translation>The bundled text recognition runtime is damaged or incompatible. Reinstall InuShot for this Mac.</translation>
         </message>
         <message>
-            <source>The packaged text recognition runtime is missing or damaged. Repair or reinstall Snow Shot from Microsoft Store.</source>
-            <translation>The packaged text recognition runtime is missing or damaged. Repair or reinstall Snow Shot from Microsoft Store.</translation>
+            <source>The packaged text recognition runtime is missing or damaged. Repair or reinstall InuShot from Microsoft Store.</source>
+            <translation>The packaged text recognition runtime is missing or damaged. Repair or reinstall InuShot from Microsoft Store.</translation>
         </message>
         <message>
             <source>Unable to open the recognized link</source>
@@ -224,8 +224,8 @@
             <translation>Recognizing text</translation>
         </message>
         <message>
-            <source>Snow Shot's visual understanding model is unavailable. Choose another model or retry.</source>
-            <translation>Snow Shot's visual understanding model is unavailable. Choose another model or retry.</translation>
+            <source>InuShot's visual understanding model is unavailable. Choose another model or retry.</source>
+            <translation>InuShot's visual understanding model is unavailable. Choose another model or retry.</translation>
         </message>
         <message>
             <source>Some text could not be translated</source>
@@ -280,8 +280,8 @@
             <translation>Unable to copy translation results</translation>
         </message>
         <message>
-            <source>Unable to load Snow Shot vision models</source>
-            <translation>Unable to load Snow Shot vision models</translation>
+            <source>Unable to load InuShot vision models</source>
+            <translation>Unable to load InuShot vision models</translation>
         </message>
         <message>
             <source>Unable to read the selected screenshot</source>

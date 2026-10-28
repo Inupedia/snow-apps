@@ -61,11 +61,11 @@ class HomebrewTests(unittest.TestCase):
         self.assertIn(brew.digest(archive), cask)
         self.assertIn('depends_on arch: :arm64', cask)
         self.assertIn('depends_on macos: :sequoia', cask)
-        self.assertIn('app "Snow Shot.app"', cask)
+        self.assertIn('app "InuShot.app"', cask)
         self.assertIn('staged_path.join("prepare-snow-shot-homebrew.sh")', cask)
         self.assertIn('installer script:', cask)
         self.assertIn('uninstall script:', cask)
-        self.assertIn('["-rf", "--", "#{staged_path}/Snow Shot.app"]', cask)
+        self.assertIn('["-rf", "--", "#{staged_path}/InuShot.app"]', cask)
         for forbidden in ('/main/', '/latest/', 'sha256 :no_check', 'zap ', 'preflight', '/Applications/'):
             self.assertNotIn(forbidden, cask)
         self.package()
@@ -101,7 +101,7 @@ load ARGV[0]
         self.assertEqual(executable, '/bin/bash')
         self.assertEqual(options['args'], [
             str(self.output / 'prepare-snow-shot-homebrew.sh'),
-            str(self.output / self.name), str(self.output / 'Snow Shot.app')])
+            str(self.output / self.name), str(self.output / 'InuShot.app')])
         self.assertTrue(options['must_succeed'])
         self.assertFalse(options['sudo'])
 
@@ -465,7 +465,7 @@ load ARGV[0]
                                     self.tap / 'Casks/snow-shot-mini.rb', 'mini')
         self.assertEqual(archive.name, 'snow-shot-mini-1.2.3-macos-arm64-homebrew.tar.gz')
         self.assertIn('cask "snow-shot-mini"', cask)
-        self.assertIn('app "Snow Shot Mini.app"', cask)
+        self.assertIn('app "InuShot Mini.app"', cask)
         self.assertIn('"mini"]', cask)
         self.assertIn('/v#{version}_snow-shot/', cask)
         self.assertIn('Support/Snow Shot Mini/Installer', cask)

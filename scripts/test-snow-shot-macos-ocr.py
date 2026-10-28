@@ -37,7 +37,7 @@ class MacOSOcrAssets(unittest.TestCase):
         self.addCleanup(patch.stopall)
 
     def test_bundle_data_is_sealed_as_resources_with_stable_lookup_paths(self):
-        app = self.root / 'Snow Shot.app'
+        app = self.root / 'InuShot.app'
         data = app / 'Contents/MacOS/assets/ocr/model.onnx'
         data.parent.mkdir(parents=True)
         data.write_bytes(b'pinned model')
@@ -52,7 +52,7 @@ class MacOSOcrAssets(unittest.TestCase):
             ocr.prepare_bundle(app)
 
     def test_bundle_preparation_removes_reused_loose_audio_and_preserves_ocr(self):
-        app = self.root / 'Snow Shot.app'
+        app = self.root / 'InuShot.app'
         runtime = app / 'Contents/MacOS'
         resources = app / 'Contents/Resources'
         for directory in (runtime, resources):
@@ -80,7 +80,7 @@ class MacOSOcrAssets(unittest.TestCase):
                 (runtime / 'audios').symlink_to('../Resources/audios')
 
     def test_bundle_audio_cleanup_preserves_unrelated_files_and_external_link_targets(self):
-        app = self.root / 'Snow Shot.app'
+        app = self.root / 'InuShot.app'
         runtime = app / 'Contents/MacOS'
         resources = app / 'Contents/Resources'
         external = self.root / 'external.mp3'
@@ -100,7 +100,7 @@ class MacOSOcrAssets(unittest.TestCase):
             self.assertEqual((resources / 'audios' / (name + '.mp3')).read_bytes(), name.encode())
 
     def test_bundle_audio_cleanup_removes_destination_only_files_and_empty_directories(self):
-        app = self.root / 'Snow Shot.app'
+        app = self.root / 'InuShot.app'
         runtime = app / 'Contents/MacOS'
         resources = app / 'Contents/Resources'
         runtime.mkdir(parents=True)
@@ -200,7 +200,7 @@ class MacOSOcrAssets(unittest.TestCase):
             ocr.runtime_manifest(self.source, self.runtime, arch='x64')
 
     def test_x64_bundle_audit_inspects_the_x86_64_slice(self):
-        app = self.root / 'Snow Shot.app'
+        app = self.root / 'InuShot.app'
         binary = app / 'Contents/MacOS/snow_shot'
         binary.parent.mkdir(parents=True)
         binary.write_bytes(ocr.X64_HEADER + bytes(24))
@@ -324,7 +324,7 @@ class MacOSOcrAssets(unittest.TestCase):
             self.assertTrue(ocr.valid(self.model / item['name'], item))
 
     def test_runtime_only_bundle_preparation_cleans_reused_resource_models(self):
-        app = self.root / 'Snow Shot Mini.app'
+        app = self.root / 'InuShot Mini.app'
         resources = app / 'Contents/Resources/assets'
         stale = resources / 'ocr/models/old-small-id/rec.onnx'
         stale.parent.mkdir(parents=True)
@@ -348,7 +348,7 @@ class MacOSOcrAssets(unittest.TestCase):
         self.assertTrue((resources / 'ocr/asset-manifest.json').is_file())
 
     def test_runtime_only_bundle_preparation_rejects_external_resource_links(self):
-        app = self.root / 'Snow Shot Mini.app'
+        app = self.root / 'InuShot Mini.app'
         runtime = app / 'Contents/MacOS'
         resources = app / 'Contents/Resources'
         runtime.mkdir(parents=True)
@@ -360,7 +360,7 @@ class MacOSOcrAssets(unittest.TestCase):
         self.assertTrue((self.model / 'det.onnx').exists())
 
     def test_runtime_only_resource_merge_never_overwrites_destination_model_cache(self):
-        app = self.root / 'Snow Shot Mini.app'
+        app = self.root / 'InuShot Mini.app'
         source = app / 'Contents/MacOS/assets/ocr'
         resources = app / 'Contents/Resources/assets/ocr'
         incoming = source / 'models/small-id/rec.onnx'
@@ -382,7 +382,7 @@ class MacOSOcrAssets(unittest.TestCase):
         self.assertEqual(json.loads((resources / 'asset-manifest.json').read_text()), self.source)
 
     def test_runtime_only_bundle_without_source_rejects_external_resources(self):
-        app = self.root / 'Snow Shot Mini.app'
+        app = self.root / 'InuShot Mini.app'
         resources = app / 'Contents/Resources'
         resources.mkdir(parents=True)
         (resources / 'assets').symlink_to(self.runtime / 'assets')
@@ -392,7 +392,7 @@ class MacOSOcrAssets(unittest.TestCase):
         self.assertEqual((self.model / 'det.onnx').read_bytes(), b'det.onnx')
 
     def test_runtime_only_bundle_rejects_external_ocr_and_resource_ancestors(self):
-        app = self.root / 'Snow Shot Mini.app'
+        app = self.root / 'InuShot Mini.app'
         resources = app / 'Contents/Resources'
         assets = resources / 'assets'
         assets.mkdir(parents=True)
@@ -410,7 +410,7 @@ class MacOSOcrAssets(unittest.TestCase):
         self.assertEqual((self.model / 'rec.onnx').read_bytes(), b'rec.onnx')
 
     def test_runtime_only_cleanup_accepts_valid_executable_resource_link(self):
-        app = self.root / 'Snow Shot Mini.app'
+        app = self.root / 'InuShot Mini.app'
         runtime = app / 'Contents/MacOS'
         resources = app / 'Contents/Resources'
         runtime.mkdir(parents=True)
@@ -700,7 +700,7 @@ class MacOSOcrAssets(unittest.TestCase):
             ocr.remove_development_libraries(self.runtime)
 
     def test_bundle_rejects_wrong_arch_newer_os_and_unresolved_dependencies(self):
-        app = self.root / 'Snow Shot.app'
+        app = self.root / 'InuShot.app'
         binary = app / 'Contents/MacOS/snow_shot'
         binary.parent.mkdir(parents=True)
         binary.write_bytes(ocr.ARM64_HEADER + bytes(24))

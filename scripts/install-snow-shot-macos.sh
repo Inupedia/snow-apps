@@ -3,7 +3,9 @@
 set -Eeuo pipefail
 
 edition=full
-product_name="Snow Shot"
+product_name="InuShot"
+legacy_product_name="Snow Shot"
+state_product_name="Snow Shot"
 product_slug=snow-shot
 product_executable=snow_shot
 product_bundle_id=com.snowshot.snow_shot
@@ -23,7 +25,7 @@ committed=0
 replacement_started=0
 had_previous=0
 needs_sudo=0
-destination='/Applications/Snow Shot.app'
+destination='/Applications/InuShot.app'
 previous_destination=''
 github_pid=''
 gitee_pid=''
@@ -33,9 +35,9 @@ message() {
     local en cn tw
     case "$1" in
         usage) en='Usage: install-snow-shot-macos.sh [--edition full|mini] [--lang auto|en|zh-CN|zh-TW] [--no-launch] [--dmg PATH] [--prepare-app PATH] [--help]'; cn='用法：install-snow-shot-macos.sh [--edition full|mini] [--lang auto|en|zh-CN|zh-TW] [--no-launch] [--dmg 路径] [--prepare-app 路径] [--help]'; tw='用法：install-snow-shot-macos.sh [--edition full|mini] [--lang auto|en|zh-CN|zh-TW] [--no-launch] [--dmg 路徑] [--prepare-app 路徑] [--help]' ;;
-        help) en='Downloads, verifies, locally signs, and installs Snow Shot. --dmg requires PATH.sha256. --prepare-app requires --dmg and a fresh absolute .app path; it stages a signed app without installing or launching. --no-launch skips launching. --lang overrides automatic language selection. First installation requires macOS privacy authorization.'; cn='下载、验证、本地签名并安装 Snow Shot。--dmg 需要对应的 PATH.sha256 文件。--prepare-app 需要 --dmg 和尚不存在的绝对 .app 路径；仅暂存签名后的应用，不安装或启动。--no-launch 跳过启动。--lang 指定界面语言。首次安装需要授予 macOS 隐私权限。'; tw='下載、驗證、本機簽署並安裝 Snow Shot。--dmg 需要對應的 PATH.sha256 檔案。--prepare-app 需要 --dmg 和尚不存在的絕對 .app 路徑；僅暫存簽署後的應用程式，不安裝或啟動。--no-launch 跳過啟動。--lang 指定介面語言。首次安裝需要授予 macOS 隱私權限。' ;;
+        help) en='Downloads, verifies, locally signs, and installs InuShot. --dmg requires PATH.sha256. --prepare-app requires --dmg and a fresh absolute .app path; it stages a signed app without installing or launching. --no-launch skips launching. --lang overrides automatic language selection. First installation requires macOS privacy authorization.'; cn='下载、验证、本地签名并安装 InuShot。--dmg 需要对应的 PATH.sha256 文件。--prepare-app 需要 --dmg 和尚不存在的绝对 .app 路径；仅暂存签名后的应用，不安装或启动。--no-launch 跳过启动。--lang 指定界面语言。首次安装需要授予 macOS 隐私权限。'; tw='下載、驗證、本機簽署並安裝 InuShot。--dmg 需要對應的 PATH.sha256 檔案。--prepare-app 需要 --dmg 和尚不存在的絕對 .app 路徑；僅暫存簽署後的應用程式，不安裝或啟動。--no-launch 跳過啟動。--lang 指定介面語言。首次安裝需要授予 macOS 隱私權限。' ;;
         arguments) en='Invalid or incomplete option. Run with --help.'; cn='选项无效或不完整。请使用 --help 查看帮助。'; tw='選項無效或不完整。請使用 --help 查看說明。' ;;
-        platform) en='Snow Shot requires macOS 15 or later on Apple Silicon or Intel.'; cn='Snow Shot 需要运行 macOS 15 或更新版本的 Apple Silicon 或 Intel Mac。'; tw='Snow Shot 需要執行 macOS 15 或更新版本的 Apple Silicon 或 Intel Mac。' ;;
+        platform) en='InuShot requires macOS 15 or later on Apple Silicon or Intel.'; cn='InuShot 需要运行 macOS 15 或更新版本的 Apple Silicon 或 Intel Mac。'; tw='InuShot 需要執行 macOS 15 或更新版本的 Apple Silicon 或 Intel Mac。' ;;
         root) en='Run this script as your desktop user, without sudo. Administrator access is requested only when needed.'; cn='请以当前桌面用户运行脚本，不要直接使用 root。仅在需要时请求管理员权限。'; tw='請以目前桌面使用者執行指令碼，不要直接使用 root。僅在需要時請求管理員權限。' ;;
         primary) en='[1/5] Downloading the latest macOS package…'; cn='[1/5] 正在下载最新 macOS 安装包…'; tw='[1/5] 正在下載最新 macOS 安裝套件…' ;;
         fallback) en='Selected download unavailable or invalid; trying the same release on the other channel…'; cn='所选下载源不可用或验证失败，正在从另一渠道获取相同版本…'; tw='所選下載來源無法使用或驗證失敗，正在從另一管道取得相同版本…' ;;
@@ -48,19 +50,19 @@ message() {
         continuity) en='The new app does not satisfy the saved signing requirement. Installation stopped to protect permission continuity. Keep the original signing identity and inspect the diagnostic below.'; cn='新应用不符合保存的签名要求。已停止安装以保护权限连续性。请保留原签名身份并检查下方诊断信息。'; tw='新應用程式不符合儲存的簽署要求。已停止安裝以保護權限連續性。請保留原簽署身分並檢查下方診斷資訊。' ;;
         install) en='[4/5] Installing into /Applications…'; cn='[4/5] 正在安装到 /Applications…'; tw='[4/5] 正在安裝到 /Applications…' ;;
         sudo) en='Administrator access is needed to replace the application. Enter your Mac login password if prompted.'; cn='替换应用需要管理员权限。如有提示，请输入 Mac 登录密码。'; tw='取代應用程式需要管理員權限。如有提示，請輸入 Mac 登入密碼。' ;;
-        quit) en='Closing the installed Snow Shot…'; cn='正在关闭已安装的 Snow Shot…'; tw='正在關閉已安裝的 Snow Shot…' ;;
-        running) en='Snow Shot did not quit. Finish any recording, quit the app manually, and run the installer again.'; cn='Snow Shot 未退出。请结束录制并手动退出应用，然后重新运行安装器。'; tw='Snow Shot 未結束。請結束錄製並手動結束應用程式，然後重新執行安裝程式。' ;;
-        done) en='[5/5] Snow Shot is installed.'; cn='[5/5] Snow Shot 安装完成。'; tw='[5/5] Snow Shot 安裝完成。' ;;
+        quit) en='Closing the installed InuShot…'; cn='正在关闭已安装的 InuShot…'; tw='正在關閉已安裝的 InuShot…' ;;
+        running) en='InuShot did not quit. Finish any recording, quit the app manually, and run the installer again.'; cn='InuShot 未退出。请结束录制并手动退出应用，然后重新运行安装器。'; tw='InuShot 未結束。請結束錄製並手動結束應用程式，然後重新執行安裝程式。' ;;
+        done) en='[5/5] InuShot is installed.'; cn='[5/5] InuShot 安装完成。'; tw='[5/5] InuShot 安裝完成。' ;;
         permissions) en='On first installation or migration from an older signature, grant Screen Recording and Accessibility in System Settings → Privacy & Security when requested. Use this installer or Homebrew for future updates to retain the local identity. Permission retention has not yet been qualified across supported macOS versions; macOS may still request consent.'; cn='首次安装或从旧签名迁移时，请按提示在“系统设置 → 隐私与安全性”中授予屏幕录制和辅助功能权限。今后请使用此安装器或 Homebrew 更新，以保留本地身份。跨 macOS 版本的权限保留尚未完成验证；系统仍可能要求授权。'; tw='首次安裝或從舊簽署遷移時，請依提示在「系統設定 → 隱私權與安全性」中授予螢幕錄製和輔助使用權限。之後請使用此安裝程式或 Homebrew 更新，以保留本機身分。跨 macOS 版本的權限保留尚未完成驗證；系統仍可能要求授權。' ;;
         failed) en='Installation failed. Check the diagnostic below, resolve the issue, and retry.'; cn='安装失败。请检查下方诊断信息，解决问题后重试。'; tw='安裝失敗。請檢查下方診斷資訊，解決問題後重試。' ;;
         rollback) en='Restoring the previous application…'; cn='正在恢复原应用…'; tw='正在還原原應用程式…' ;;
         recovery) en='Automatic cleanup or recovery failed. Keep the following directory; it may contain your previous app. Restore previous.app to the installation path printed below before retrying:'; cn='自动清理或恢复失败。请保留以下目录，其中可能包含原应用。重试前请将 previous.app 恢复到下方显示的安装路径：'; tw='自動清理或還原失敗。請保留以下目錄，其中可能包含原應用程式。重試前請將 previous.app 還原至下方顯示的安裝路徑：' ;;
         detach) en='Could not detach the installer volume. Eject it in Finder:'; cn='无法卸载安装卷。请在访达中推出：'; tw='無法卸載安裝卷。請在 Finder 中退出：' ;;
         state) en='Installer state is unsafe or another installation is running. Check ownership and symlinks in the directory below. Remove its lock directory only after confirming no installer is running:'; cn='安装器状态不安全或已有安装正在运行。请检查下方目录的所有权及符号链接。仅在确认没有安装器运行后移除 lock 目录：'; tw='安裝程式狀態不安全或已有安裝正在執行。請檢查下方目錄的擁有權及符號連結。僅在確認沒有安裝程式執行後移除 lock 目錄：' ;;
-        launch) en='Installed successfully, but launch failed. Open Snow Shot from Applications in Finder.'; cn='安装成功，但启动失败。请从访达的“应用程序”打开 Snow Shot。'; tw='安裝成功，但啟動失敗。請從 Finder 的「應用程式」開啟 Snow Shot。' ;;
+        launch) en='Installed successfully, but launch failed. Open InuShot from Applications in Finder.'; cn='安装成功，但启动失败。请从访达的“应用程序”打开 InuShot。'; tw='安裝成功，但啟動失敗。請從 Finder 的「應用程式」開啟 InuShot。' ;;
         *) return 1 ;;
     esac
-    case "$language" in zh-CN) printf '%s\n' "${cn//Snow Shot/$product_name}" ;; zh-TW) printf '%s\n' "${tw//Snow Shot/$product_name}" ;; *) printf '%s\n' "${en//Snow Shot/$product_name}" ;; esac
+    case "$language" in zh-CN) printf '%s\n' "${cn//InuShot/$product_name}" ;; zh-TW) printf '%s\n' "${tw//InuShot/$product_name}" ;; *) printf '%s\n' "${en//InuShot/$product_name}" ;; esac
 }
 
 say() {
@@ -404,10 +406,10 @@ obtain_package() {
 }
 
 prepare_state() {
-    state="$HOME/Library/Application Support/$product_name/Installer"
+    state="$HOME/Library/Application Support/$state_product_name/Installer"
     # Check every existing ancestor before creating anything beneath it.
     local part="$HOME" component
-    for component in Library 'Application Support' "$product_name" Installer; do
+    for component in Library 'Application Support' "$state_product_name" Installer; do
         part="$part/$component"
         [[ ! -L "$part" && ( ! -e "$part" || ( -d "$part" && "$(stat -f %u "$part")" == "$(id -u)" ) ) ]] || { message state >&2; printf '%s\n' "$part" >&2; exit 1; }
     done
@@ -545,7 +547,9 @@ install_application() {
     previous_destination="$destination"
     # Move the old bundle into the existing transaction backup so success adopts
     # the product name and failure restores the original installation path.
-    if [[ ! -e "$destination" && -e "$applications_dir/$product_executable.app" ]]; then
+    if [[ ! -e "$destination" && -e "$applications_dir/$legacy_product_name.app" ]]; then
+        previous_destination="$applications_dir/$legacy_product_name.app"
+    elif [[ ! -e "$destination" && -e "$applications_dir/$product_executable.app" ]]; then
         previous_destination="$applications_dir/$product_executable.app"
     fi
     [[ -d "$applications_dir" && ! -L "$applications_dir" && ! -L "$destination" && ( ! -e "$destination" || -d "$destination" ) ]] || die invalid
@@ -628,7 +632,7 @@ main() {
     case "$language" in auto|en|zh-CN|zh-TW) ;; *) die arguments ;; esac
     case "$edition" in
         full) ;;
-        mini) product_name="Snow Shot Mini"; product_slug=snow-shot-mini; product_executable=snow_shot_mini; product_bundle_id=com.snowshot.snow_shot_mini ;;
+        mini) product_name="InuShot Mini"; legacy_product_name="Snow Shot Mini"; state_product_name="Snow Shot Mini"; product_slug=snow-shot-mini; product_executable=snow_shot_mini; product_bundle_id=com.snowshot.snow_shot_mini ;;
         *) die arguments ;;
     esac
     destination="/Applications/$product_name.app"

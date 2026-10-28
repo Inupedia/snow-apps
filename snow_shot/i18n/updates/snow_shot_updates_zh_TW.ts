@@ -208,8 +208,8 @@
             <translation>無法暫存已驗證的更新軟體套件</translation>
         </message>
         <message>
-            <source>Could not update Snow Shot context menu registration</source>
-            <translation>無法更新 Snow Shot 右鍵選單註冊資訊</translation>
+            <source>Could not update InuShot context menu registration</source>
+            <translation>無法更新 InuShot 右鍵選單註冊資訊</translation>
         </message>
         <message>
             <source>Could not update the registered application version</source>
@@ -228,16 +228,16 @@
             <translation>此平台不支援提升權限</translation>
         </message>
         <message>
-            <source>Elevation requires a registered Snow Shot installation</source>
-            <translation>提升權限需要已註冊的 Snow Shot 安裝</translation>
+            <source>Elevation requires a registered InuShot installation</source>
+            <translation>提升權限需要已註冊的 InuShot 安裝</translation>
         </message>
         <message>
             <source>Incomplete update archive</source>
             <translation>更新壓縮包不完整</translation>
         </message>
         <message>
-            <source>Invalid Snow Shot installation root</source>
-            <translation>無效的 Snow Shot 安裝目錄</translation>
+            <source>Invalid InuShot installation root</source>
+            <translation>無效的 InuShot 安裝目錄</translation>
         </message>
         <message>
             <source>Invalid previous installation path</source>
@@ -404,8 +404,8 @@
             <translation>更新工作處理程序失敗</translation>
         </message>
         <message>
-            <source>This copy does not have valid Snow Shot installation metadata</source>
-            <translation>此副本缺少有效的 Snow Shot 安裝中繼資料</translation>
+            <source>This copy does not have valid InuShot installation metadata</source>
+            <translation>此副本缺少有效的 InuShot 安裝中繼資料</translation>
         </message>
         <message>
             <source>Unexpected update package URL</source>

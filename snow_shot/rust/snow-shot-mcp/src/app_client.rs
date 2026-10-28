@@ -29,12 +29,12 @@ use tokio_util::sync::CancellationToken;
 #[derive(Debug, thiserror::Error, Clone)]
 pub enum AppClientError {
     #[error(
-        "Snow Shot is not running or MCP is disabled. Start Snow Shot and enable MCP in Settings."
+        "InuShot is not running or MCP is disabled. Start InuShot and enable MCP in Settings."
     )]
     Unavailable,
-    #[error("Invalid or insecure Snow Shot MCP descriptor")]
+    #[error("Invalid or insecure InuShot MCP descriptor")]
     InvalidDescriptor,
-    #[error("Snow Shot local protocol error")]
+    #[error("InuShot local protocol error")]
     Protocol,
     #[error(
         "Screenshot request timed out; its outcome may be unknown. Refresh the session state before editing."
@@ -46,9 +46,9 @@ pub enum AppClientError {
         "The local connection closed; the mutation was not replayed. Refresh the session state before editing."
     )]
     Disconnected,
-    #[error("Snow Shot request capacity is full; retry after a pending request finishes")]
+    #[error("InuShot request capacity is full; retry after a pending request finishes")]
     QueueFull,
-    #[error("Snow Shot request exceeds the maximum JSON size")]
+    #[error("InuShot request exceeds the maximum JSON size")]
     RequestTooLarge,
 }
 impl AppClientError {

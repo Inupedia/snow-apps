@@ -1220,8 +1220,8 @@
             <translation>智能擦除</translation>
         </message>
         <message>
-            <source>Snow Shot visual understanding</source>
-            <translation>Snow Shot 视觉理解</translation>
+            <source>InuShot visual understanding</source>
+            <translation>InuShot 视觉理解</translation>
         </message>
         <message>
             <source>Solid arrow stroke</source>

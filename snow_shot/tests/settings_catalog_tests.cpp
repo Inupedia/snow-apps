@@ -3814,7 +3814,7 @@ int main(int argc, char** argv) {
             registry.catalog().item({QStringLiteral("general"), QStringLiteral("system-general"),
                                      QStringLiteral("system.auto-start-at-boot")});
         require(startup && QString::fromUtf8(startup->description.source) ==
-                               u"Start Snow Shot in the background when you log in.",
+                               u"Start InuShot in the background when you log in.",
                 "Store startup description explains only the behavior of this setting");
         require(
             registry.fieldForSwitch(settings::SettingsSwitchBinding::AutoStartAtBoot) &&
@@ -3913,7 +3913,7 @@ int main(int argc, char** argv) {
                            QStringLiteral("system.login-item-settings")});
     require(login && QString::fromUtf8(login->title.source) == u"Launch at login" &&
                 QString::fromUtf8(login->description.source) ==
-                    u"Start Snow Shot in the background when you log in." &&
+                    u"Start InuShot in the background when you log in." &&
                 login->configurationKey == u"system/auto_start_at_boot",
             "macOS login setting preserves its binding with native wording");
     require(loginSettings &&

@@ -1220,8 +1220,8 @@
             <translation>Smart Erase</translation>
         </message>
         <message>
-            <source>Snow Shot visual understanding</source>
-            <translation>Snow Shot visual understanding</translation>
+            <source>InuShot visual understanding</source>
+            <translation>InuShot visual understanding</translation>
         </message>
         <message>
             <source>Solid arrow stroke</source>

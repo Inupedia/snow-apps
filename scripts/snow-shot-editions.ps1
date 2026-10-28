@@ -3,12 +3,12 @@ function Get-SnowShotEdition([ValidateSet('Full', 'Mini')][string]$Edition = 'Fu
     [ValidateSet('x64', 'arm64')][string]$Architecture = 'x64') {
     $feedSuffix = if ($Architecture -eq 'arm64') { '-windows-arm64' } else { '' }
     if ($Edition -eq 'Mini') {
-        return [pscustomobject]@{ Edition = 'Mini'; Product = 'snow-shot-mini'; Name = 'Snow Shot Mini';
+        return [pscustomobject]@{ Edition = 'Mini'; Product = 'snow-shot-mini'; Name = 'InuShot Mini';
             Executable = 'snow_shot_mini'; Registry = 'SnowShotMini'; Scoop = 'snowshot-mini';
             Feed = "latest-version-mini$feedSuffix.json";
             Variants = @('online', 'portable'); Component = 'SnowShotMini'; Marker = '__mini_data_directory' }
     }
-    return [pscustomobject]@{ Edition = 'Full'; Product = 'snow-shot'; Name = 'Snow Shot';
+    return [pscustomobject]@{ Edition = 'Full'; Product = 'snow-shot'; Name = 'InuShot';
         Executable = 'snow_shot'; Registry = 'SnowShot'; Scoop = 'snowshot';
         Winget = 'mg-chao.snow-shot'; Feed = "latest-version$feedSuffix.json";
         Variants = @('online', 'offline', 'portable'); Component = 'SnowShot'; Marker = '__data_directory' }

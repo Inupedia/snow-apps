@@ -105,6 +105,25 @@ void copyAccents(ThemeAccents* target, const ThemeConfig& source) {
 #undef ADQT_COPY_ACCENT
 }
 
+void applySurfaceOverrides(ThemeColors* colors, const ThemeSurfaceOverrides& overrides) {
+#define ADQT_APPLY_SURFACE_OVERRIDE(name) \
+  if (overrides.name.isValid()) {         \
+    colors->name = overrides.name;        \
+  }
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBgBase)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBgLayout)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBgContainer)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBgContainerDisabled)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBgElevated)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorFillSecondary)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorFillTertiary)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorFillQuaternary)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBorder)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBorderDisabled)
+  ADQT_APPLY_SURFACE_OVERRIDE(colorBorderSecondary)
+#undef ADQT_APPLY_SURFACE_OVERRIDE
+}
+
 void applyTypographyMetrics(ThemeMetrics* metrics) {
   metrics->fontHeight = metrics->fontSize * metrics->lineHeight;
   metrics->fontHeightLG = metrics->fontSizeLG * metrics->lineHeightLG;
@@ -332,6 +351,17 @@ ThemeConfig themeConfigFromTheme(const AdTheme& theme) {
   config.error = theme.palette.colorError;
   config.info = theme.palette.colorInfo;
   config.link = theme.palette.colorLink;
+  config.surfaceOverrides.colorBgBase = theme.palette.colorBgBase;
+  config.surfaceOverrides.colorBgLayout = theme.palette.colorBgLayout;
+  config.surfaceOverrides.colorBgContainer = theme.palette.colorBgContainer;
+  config.surfaceOverrides.colorBgContainerDisabled = theme.palette.colorBgContainerDisabled;
+  config.surfaceOverrides.colorBgElevated = theme.palette.colorBgElevated;
+  config.surfaceOverrides.colorFillSecondary = theme.palette.colorFillSecondary;
+  config.surfaceOverrides.colorFillTertiary = theme.palette.colorFillTertiary;
+  config.surfaceOverrides.colorFillQuaternary = theme.palette.colorFillQuaternary;
+  config.surfaceOverrides.colorBorder = theme.palette.colorBorder;
+  config.surfaceOverrides.colorBorderDisabled = theme.palette.colorBorderDisabled;
+  config.surfaceOverrides.colorBorderSecondary = theme.palette.colorBorderSecondary;
   config.appFont = theme.appFont;
   config.codeFont = theme.codeFont;
   config.fontSize = theme.metrics.fontSize;
@@ -785,6 +815,7 @@ AdTheme makeTheme(const ThemeConfig& config) {
   } else {
     applyLightSemanticColors(&theme.palette, config);
   }
+  applySurfaceOverrides(&theme.palette, config.surfaceOverrides);
   theme.semantic = makeSemanticPalette(theme.palette);
 
   return theme;
@@ -832,6 +863,18 @@ bool operator==(const ThemeColors& lhs, const ThemeColors& rhs) {
           ;
 }
 
+bool operator==(const ThemeSurfaceOverrides& lhs, const ThemeSurfaceOverrides& rhs) {
+  return lhs.colorBgBase == rhs.colorBgBase && lhs.colorBgLayout == rhs.colorBgLayout &&
+         lhs.colorBgContainer == rhs.colorBgContainer &&
+         lhs.colorBgContainerDisabled == rhs.colorBgContainerDisabled &&
+         lhs.colorBgElevated == rhs.colorBgElevated &&
+         lhs.colorFillSecondary == rhs.colorFillSecondary &&
+         lhs.colorFillTertiary == rhs.colorFillTertiary &&
+         lhs.colorFillQuaternary == rhs.colorFillQuaternary && lhs.colorBorder == rhs.colorBorder &&
+         lhs.colorBorderDisabled == rhs.colorBorderDisabled &&
+         lhs.colorBorderSecondary == rhs.colorBorderSecondary;
+}
+
 bool operator==(const ThemeSemanticPalette& lhs, const ThemeSemanticPalette& rhs) {
   return true
 #define ADQT_EQ_SEMANTIC(name) ADQT_EQ_FIELD(name)
@@ -869,6 +912,7 @@ bool operator==(const ThemeConfig& lhs, const ThemeConfig& rhs) {
          lhs.codeFont.resolveMask() == rhs.codeFont.resolveMask() && lhs.scheme == rhs.scheme &&
          lhs.density ==
              rhs.density
+         && lhs.surfaceOverrides == rhs.surfaceOverrides
 #define ADQT_EQ_CONFIG_ACCENT(name) ADQT_EQ_FIELD(name)
                  ADQT_THEME_ACCENT_FIELDS(ADQT_EQ_CONFIG_ACCENT)
 #undef ADQT_EQ_CONFIG_ACCENT

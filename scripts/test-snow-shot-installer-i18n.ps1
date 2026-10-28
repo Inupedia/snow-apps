@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param([ValidateSet('Full', 'Mini')][string]$Edition = 'Full')
-$productName = if ($Edition -eq 'Mini') { 'Snow Shot Mini' } else { 'Snow Shot' }
+$productName = if ($Edition -eq 'Mini') { 'InuShot Mini' } else { 'InuShot' }
 
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
@@ -151,8 +151,8 @@ foreach ($setting in '"Settings" "NumFields" "1"', '"Field 1" "Type" "CheckBox"'
 }
 if ($init.Contains('0 noOptionsPage') -or
     -not $generated.Contains('MUI_INSTALLOPTIONS_READ $INSTALL_DESKTOP "NSIS.InstallOptions.ini" "Field 1" "State"') -or
-    $generated -notmatch 'StrCmp "\$INSTALL_DESKTOP" "1" 0 \+2\r?\n\s*CreateShortCut "\$DESKTOP\\Snow Shot.lnk" "\$INSTDIR\\bin\\snow_shot.exe"' -or
-    -not $generated.Contains('Delete "$DESKTOP\Snow Shot.lnk"')) {
+    $generated -notmatch 'StrCmp "\$INSTALL_DESKTOP" "1" 0 \+2\r?\n\s*CreateShortCut "\$DESKTOP\\InuShot.lnk" "\$INSTDIR\\bin\\snow_shot.exe"' -or
+    -not $generated.Contains('Delete "$DESKTOP\InuShot.lnk"')) {
     throw "Desktop shortcut creation must honor the checkbox and support uninstall cleanup."
 }
 Write-Output "PASS: shortcut-only options default on, preserve selection, and gate desktop shortcut creation."
@@ -164,7 +164,7 @@ $uninit = [regex]::Match($generated, '(?s)Function un\.onInit\r?\n.*?FunctionEnd
 if ($uninit.IndexOf('!insertmacro MUI_UNGETLANGUAGE') -lt $uninit.IndexOf('SetShellVarContext all')) {
     throw "Uninstaller language restoration must follow registry context selection."
 }
-foreach ($text in 'Welcome to Snow Shot Setup', 'installation complete', 'is already installed.',
+foreach ($text in 'Welcome to InuShot Setup', 'installation complete', 'is already installed.',
     'Uninstall failed.', '!insertmacro MUI_LANGUAGE "Afrikaans"', 'SnowShotLanguageFallback') {
     if ($generated.Contains($text)) { throw "Unlocalized or unsupported installer text remains: $text" }
 }

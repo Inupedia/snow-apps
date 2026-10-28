@@ -17,8 +17,8 @@ VERSION = STABLE + r'(?:-beta(?:\.(?:0|[1-9][0-9]*))?)?'
 
 
 PRODUCTS = {
-    'full': ('snow-shot', 'Snow Shot'),
-    'mini': ('snow-shot-mini', 'Snow Shot Mini'),
+    'full': ('snow-shot', 'InuShot'),
+    'mini': ('snow-shot-mini', 'InuShot Mini'),
 }
 ARCHITECTURES = {'arm64': 'arm64', 'x64': 'x86_64'}
 
@@ -37,7 +37,7 @@ def products_for_release(release):
 def tag_version(tag):
     match = re.fullmatch('v(' + VERSION + r')(?:_snow-shot)?', tag)
     if not match:
-        raise ValueError('Expected a stable or beta Snow Shot tag (v<version>[_snow-shot]).')
+        raise ValueError('Expected a stable or beta InuShot tag (v<version>[_snow-shot]).')
     return match[1]
 
 
@@ -89,7 +89,7 @@ def required_assets(release, version, edition='full', architecture='arm64'):
     if architecture not in ARCHITECTURES:
         raise ValueError('Unsupported macOS architecture.')
     if edition == 'mini' and architecture != 'arm64':
-        raise ValueError('Snow Shot Mini is available only for macOS ARM64.')
+        raise ValueError('InuShot Mini is available only for macOS ARM64.')
     dmg = f'{PRODUCTS[edition][0]}-{version}-macos-{ARCHITECTURES[architecture]}.dmg'
     names = [asset['name'] for asset in release.get('assets', [])]
     if names.count(dmg) != 1 or names.count(dmg + '.sha256') > 1:
@@ -105,7 +105,7 @@ def architectures_for_release(release, version, edition='full'):
     prefix = f'{PRODUCTS[edition][0]}-{version}-macos-'
     if edition == 'mini' and any(name.startswith(prefix + suffix) for name in names
                                  for suffix in ('x86_64.', 'x86_64-', 'x64.', 'x64-')):
-        raise ValueError('Snow Shot Mini is available only for macOS ARM64.')
+        raise ValueError('InuShot Mini is available only for macOS ARM64.')
     architectures = []
     for architecture, suffix in ARCHITECTURES.items():
         name = prefix + suffix + '.dmg'
@@ -156,7 +156,7 @@ def cask(version, sha256, tag=None, edition='full', architecture='arm64'):
     if not checksums or any(arch not in ARCHITECTURES for arch in checksums):
         raise ValueError('Cask requires a supported macOS architecture.')
     if edition == 'mini' and set(checksums) != {'arm64'}:
-        raise ValueError('Snow Shot Mini is available only for macOS ARM64.')
+        raise ValueError('InuShot Mini is available only for macOS ARM64.')
     if len(checksums) == 2:
         architecture_stanza = '  arch arm: "arm64", intel: "x86_64"\n\n'
         checksum_stanza = f'  sha256 arm:   "{checksums["arm64"]}",\n         intel: "{checksums["x64"]}"'

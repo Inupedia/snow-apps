@@ -8,7 +8,7 @@ homebrew_prepare_application() {
     if [[ -e "$bundle" || -L "$bundle" ]]; then
         # A restored backup must not require the signing key that caused an upgrade
         # failure. Homebrew owns this directory; reject links and verify its seal.
-        [[ -d "$bundle" && ! -L "$bundle" ]] || { printf '%s\n' 'Invalid staged Snow Shot application.' >&2; return 1; }
+        [[ -d "$bundle" && ! -L "$bundle" ]] || { printf '%s\n' 'Invalid staged InuShot application.' >&2; return 1; }
         codesign --verify --deep --strict "$bundle"
     else
         /bin/bash "$(dirname "${BASH_SOURCE[0]}")/install-snow-shot-macos.sh" \

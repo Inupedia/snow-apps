@@ -85,7 +85,7 @@ QRect normalClientGeometry(HWND hwnd) {
         left + width > std::numeric_limits<int>::max() ||
         top + height > std::numeric_limits<int>::max())
         return {};
-    // Snow Shot's pinned HWND is frameless: normal window placement is also
+    // InuShot's pinned HWND is frameless: normal window placement is also
     // the normal client rectangle, including the app-drawn shadow margin.
     return QRect(static_cast<int>(left), static_cast<int>(top), static_cast<int>(width),
                  static_cast<int>(height));

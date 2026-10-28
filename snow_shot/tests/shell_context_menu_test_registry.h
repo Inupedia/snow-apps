@@ -85,7 +85,7 @@ class Registry final {
         windows::ShellContextMenuRegistration::Options options;
         options.classesRoot = QStringLiteral("Software\\SnowShotTests");
         options.executablePath =
-            QStringLiteral("C:/Snow Shot/雪/") + snow_shot::app::edition::executableName();
+            QStringLiteral("C:/InuShot/雪/") + snow_shot::app::edition::executableName();
         options.fileExtensions = {QStringLiteral("png"), QStringLiteral("jpg")};
         options.registry = access();
         return options;

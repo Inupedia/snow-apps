@@ -575,7 +575,7 @@ pub const TOOLS: &[(&str, &str, bool)] = &[
     ),
     (
         "snow_shot_app_action",
-        "Open an application page, restart, or quit Snow Shot.",
+        "Open an application page, restart, or quit InuShot.",
         false,
     ),
     (

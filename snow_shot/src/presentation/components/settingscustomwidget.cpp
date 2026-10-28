@@ -1479,7 +1479,7 @@ class McpStatusSettingsWidget final : public SettingsCustomWidget {
         m_help->setText(QCoreApplication::translate(
             "ScreenshotMcpSettings",
             "Add this configuration to your MCP client, then restart the client to connect. "
-            "Keep Snow Shot running while using MCP."));
+            "Keep InuShot running while using MCP."));
 #endif
         updateCopyText();
         const QString executable = snow_shot::app::distribution::isStoreManaged()

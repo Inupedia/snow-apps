@@ -1,7 +1,7 @@
 /* Native bundle names and privacy prompts; Qt catalogs are separate. */
-"CFBundleName" = "Snow Shot";
-"CFBundleDisplayName" = "Snow Shot";
-"NSAppleEventsUsageDescription" = "Snow Shot reads selected image files from Finder to pin them to the screen.";
-"NSMicrophoneUsageDescription" = "Snow Shot records microphone audio when you enable it for a screen recording.";
-"NSAudioCaptureUsageDescription" = "Snow Shot captures system audio when you enable it for a screen recording.";
-"NSCameraUsageDescription" = "Snow Shot records webcam video when you enable Record webcam for a screen recording.";
+"CFBundleName" = "InuShot";
+"CFBundleDisplayName" = "InuShot";
+"NSAppleEventsUsageDescription" = "InuShot reads selected image files from Finder to pin them to the screen.";
+"NSMicrophoneUsageDescription" = "InuShot records microphone audio when you enable it for a screen recording.";
+"NSAudioCaptureUsageDescription" = "InuShot captures system audio when you enable it for a screen recording.";
+"NSCameraUsageDescription" = "InuShot records webcam video when you enable Record webcam for a screen recording.";

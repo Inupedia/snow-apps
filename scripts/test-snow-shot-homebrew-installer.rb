@@ -27,7 +27,7 @@ Dir.mktmpdir("snow-homebrew-installer-") do |directory|
     begin
       edition = token.start_with?("snow-shot-mini") ? "mini" : "full"
       slug = edition == "mini" ? "snow-shot-mini" : "snow-shot"
-      name = edition == "mini" ? "Snow Shot Mini" : "Snow Shot"
+      name = edition == "mini" ? "InuShot Mini" : "InuShot"
 
       prepare = lambda do |item, fail: false|
         stage = item.staged_path

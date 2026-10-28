@@ -1515,7 +1515,7 @@ void recordingShortcutRecorderAcceptsControlKeysAndEscape() {
 void contextMenuRecorderAcceptsOnlyOneLogicalCharacter() {
     const auto scheme = styles::ThemeManager::instance().themeColorScheme();
     ShortcutKeyRowConfig config;
-    config.title = QStringLiteral("Edit with Snow Shot");
+    config.title = QStringLiteral("Edit with InuShot");
     config.maxShortcutCount = 1;
     config.showRegistrationStatus = false;
     config.validationScope = ShortcutKeyRowConfig::ValidationScope::WindowsContextMenu;

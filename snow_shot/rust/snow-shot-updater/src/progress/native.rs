@@ -611,7 +611,7 @@ fn create(state: &RefCell<NativeState>) -> Option<HWND> {
         CreateWindowExW(
             WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE,
             w!("SnowShotUpdaterProgress"),
-            w!("Snow Shot update"),
+            w!("InuShot update"),
             WS_POPUP,
             0,
             0,
@@ -867,26 +867,26 @@ mod tests {
             (
                 "en_US",
                 96,
-                "Updating Snow Shot",
+                "Updating InuShot",
                 "Backing up application files",
             ),
-            ("zh_CN", 144, "正在更新 Snow Shot", "正在备份应用程序文件"),
+            ("zh_CN", 144, "正在更新 InuShot", "正在备份应用程序文件"),
             (
                 "en_US-dark",
                 144,
-                "Updating Snow Shot",
+                "Updating InuShot",
                 "Backing up application files",
             ),
             (
                 "en_US-custom",
                 96,
-                "Updating Snow Shot",
+                "Updating InuShot",
                 "Downloading update",
             ),
             (
                 "zh_TW",
                 192,
-                "正在更新 Snow Shot",
+                "正在更新 InuShot",
                 "正在檢查更新後的應用程式",
             ),
         ] {

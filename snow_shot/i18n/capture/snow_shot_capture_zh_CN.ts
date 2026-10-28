@@ -30,8 +30,8 @@
     <context>
         <name>ScreenshotController</name>
         <message>
-            <source>Allow Snow Shot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
-            <translation>请在“系统设置 &gt; 隐私与安全性 &gt; 自动化”中允许 Snow Shot 访问访达，然后重试。</translation>
+            <source>Allow InuShot to access Finder in System Settings &gt; Privacy &amp; Security &gt; Automation, then try again.</source>
+            <translation>请在“系统设置 &gt; 隐私与安全性 &gt; 自动化”中允许 InuShot 访问访达，然后重试。</translation>
         </message>
         <message>
             <source>Automatic screenshot saving failed: %1</source>
@@ -572,8 +572,8 @@
     <context>
         <name>snow_shot::app::mcp::ScreenshotMcpServer</name>
         <message>
-            <source>Another Snow Shot instance owns the MCP endpoint.</source>
-            <translation>另一个 Snow Shot 实例正在使用 MCP 端点。</translation>
+            <source>Another InuShot instance owns the MCP endpoint.</source>
+            <translation>另一个 InuShot 实例正在使用 MCP 端点。</translation>
         </message>
         <message>
             <source>Could not open the local MCP endpoint.</source>

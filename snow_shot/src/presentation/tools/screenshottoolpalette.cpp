@@ -9170,7 +9170,7 @@ void ScreenshotToolPalette::refreshRecognitionModelSelect() {
     QString selectedLabel;
     if (unavailable) {
         selectedLabel = selection == screenshotDefaultVisionRecognitionModelId()
-                            ? tr("Snow Shot visual understanding")
+                            ? tr("InuShot visual understanding")
                             : tr("Selected model (%1)").arg(selection);
         options.push_back({selection, selectedLabel, true, tr("Vision Model")});
     } else {

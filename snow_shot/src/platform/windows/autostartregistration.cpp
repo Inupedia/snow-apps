@@ -190,7 +190,7 @@ QString AutoStartRegistration::hint() {
     const auto current = snapshot();
     if (current.state == AutoStartState::DisabledByUser)
         return QCoreApplication::translate(
-            "AutoStartRegistration", "Enable Snow Shot in Windows Settings > Apps > Startup.");
+            "AutoStartRegistration", "Enable InuShot in Windows Settings > Apps > Startup.");
     if (current.state == AutoStartState::DisabledByPolicy ||
         current.state == AutoStartState::EnabledByPolicy)
         return QCoreApplication::translate("AutoStartRegistration",

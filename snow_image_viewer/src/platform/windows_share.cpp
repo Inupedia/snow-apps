@@ -43,8 +43,8 @@ using DataRequestDeferral = data_transfer::DataRequestDeferral;
 using DataRequestedEventArgs = data_transfer::DataRequestedEventArgs;
 using DataTransferManager = data_transfer::DataTransferManager;
 
-constexpr wchar_t kShareDescription[] = L"Image shared from Snow Image Viewer";
-constexpr wchar_t kShareDataError[] = L"Snow Image Viewer could not access the image to share it.";
+constexpr wchar_t kShareDescription[] = L"Image shared from InuShot Viewer";
+constexpr wchar_t kShareDataError[] = L"InuShot Viewer could not access the image to share it.";
 
 class WindowsRuntimeApartment final {
   public:

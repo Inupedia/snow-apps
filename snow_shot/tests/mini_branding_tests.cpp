@@ -86,7 +86,7 @@ void titleBarRendersTheEditionSvg(TitleBarWidget& titleBar) {
         const int height = std::clamp(scheme.metricAlias.fontSizeSM, 10, 14);
         adqt::icons::IconRenderRequest request;
         request.logicalSize =
-            QSize(qRound(height * (edition::isMini ? 137.0 : 95.0) / 17.0), height);
+            QSize(qRound(height * (edition::isMini ? 106.0 : 82.0) / 17.0), height);
         request.devicePixelRatio = scale;
         const QPixmap pixmap = adqt::icons::renderIconPixmap(logo, request);
         QImage expected(actual.size(), QImage::Format_ARGB32_Premultiplied);
@@ -183,8 +183,8 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
         {"zh_TW", "關於 %1", "%1 標誌"},
     };
     const QString product =
-        edition::isMini ? QStringLiteral("Snow Shot Mini") : QStringLiteral("Snow Shot");
-    const QString windowName = edition::isMini ? product : QStringLiteral("SnowShot");
+        edition::isMini ? QStringLiteral("InuShot Mini") : QStringLiteral("InuShot");
+    const QString windowName = product;
     for (const auto& test : cases) {
         QTranslator translator;
         require(translator.load(
@@ -211,7 +211,7 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
                 ? "Add this configuration to your MCP client, then restart the client to connect. "
                   "Keep %1 running while using MCP."
                 : "Add this configuration to your MCP client, then restart the client to connect. "
-                  "Keep Snow Shot running while using MCP.";
+                  "Keep InuShot running while using MCP.";
         const QString translatedMcpHelp = translatedText("ScreenshotMcpSettings", mcpHelpSource);
         require(!translatedMcpHelp.isEmpty(), "all catalogs include edition-specific MCP help");
         require(mcpHelp->text() ==
@@ -225,7 +225,7 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
                         translatedEndpoint.arg(QDir::toNativeSeparators(descriptor)),
                 "MCP settings advertises the edition's isolated endpoint descriptor");
         require(window.windowTitle() == windowName && window.accessibleName() == windowName,
-                "Mini main window uses its product; Full retains historical SnowShot identifiers");
+                "both editions use their visible product name for the main window title");
         require(window.objectName() == QStringLiteral("snowShotMainWindow"),
                 "main window object identifier stays compatible in both editions");
         if (edition::isMini) {
@@ -259,7 +259,7 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
             const char* source =
                 edition::isMini
                     ? "%1 will close and restart to install the update. Continue?"
-                    : "Snow Shot will close and restart to install the update. Continue?";
+                    : "InuShot will close and restart to install the update. Continue?";
             const QString translated =
                 translatedText("snow_shot::app::ApplicationController", source);
             require(!translated.isEmpty(), "update confirmation branding exists in every catalog");

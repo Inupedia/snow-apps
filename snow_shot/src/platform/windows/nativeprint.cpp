@@ -2,6 +2,7 @@
 #include "nativeprintdocument.h"
 #include "nativeprintdialog.h"
 #include "nativeprintdiagnostics.h"
+#include "snow_shot/app/edition.h"
 #include "snow_shot/runtime/runtimeactivitytracker.h"
 
 #include <QApplication>
@@ -98,8 +99,10 @@ class ModernJob final : public std::enable_shared_from_this<ModernJob> {
                                 return;
                             document = self->m_document;
                         }
+                        const auto title = winrt::hstring(
+                            snow_shot::app::edition::productName().toStdWString());
                         auto task = event.Request().CreatePrintTask(
-                            L"SnowShot", [self, document](const auto& args) {
+                            title, [self, document](const auto& args) {
                                 try {
                                     args.SetSource(document.template as<IPrintDocumentSource>());
                                 } catch (...) {

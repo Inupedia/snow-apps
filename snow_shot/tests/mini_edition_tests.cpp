@@ -316,7 +316,7 @@ void fullArchiveImportPreservesSupportedChoices() {
 int main(int argc, char** argv) {
     QCoreApplication application(argc, argv);
     require(snow_shot::app::edition::isMini, "this test must be compiled as Mini");
-    require(snow_shot::app::edition::productName() == QStringLiteral("Snow Shot Mini") &&
+    require(snow_shot::app::edition::productName() == QStringLiteral("InuShot Mini") &&
                 snow_shot::app::edition::applicationName() == QStringLiteral("snow_shot_mini") &&
                 snow_shot::app::edition::portableMarkerName() ==
                     QStringLiteral("__mini_data_directory"),

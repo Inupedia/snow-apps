@@ -60,7 +60,7 @@ function Publish-SnowGitHubRelease([string]$Repository, [string]$Version, [hasht
         $flags = if ($prerelease) { @('--prerelease') } else { @() }
         $notesFlags = if ($NotesPath) { @('--notes-file', $NotesPath) } else { @('--generate-notes') }
         Invoke-SnowGitHub (@('release', 'create', $tag, '--repo', $Repository, '--verify-tag', '--draft',
-            '--title', "Snow Shot $Version") + $notesFlags + $flags) | Out-Null
+            '--title', "InuShot $Version") + $notesFlags + $flags) | Out-Null
         $release = Get-SnowGitHubRelease $Repository $Version
         if (-not $release -or -not $release.draft) { throw 'Could not confirm the GitHub draft.' }
     }

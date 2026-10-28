@@ -104,7 +104,7 @@ foreach(_original IN LISTS _snow_mini_libraries)
     target_link_libraries(${_original}_mini PUBLIC snow_shot_edition_mini)
 endforeach()
 target_compile_definitions(snow_shot_crash_bridge_mini PRIVATE
-    SNOW_DIAGNOSTICS_PRODUCT="Snow Shot Mini")
+    SNOW_DIAGNOSTICS_PRODUCT="InuShot Mini")
 
 _snow_mini_share_resources(snow_shot)
 get_target_property(_sources snow_shot SOURCES)
@@ -123,20 +123,20 @@ set_target_properties(snow_shot_mini PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/snow_shot_mini"
     MACOSX_BUNDLE TRUE WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE_GUI_IDENTIFIER com.snowshot.snow_shot_mini
-    MACOSX_BUNDLE_BUNDLE_NAME "Snow Shot Mini"
+    MACOSX_BUNDLE_BUNDLE_NAME "InuShot Mini"
     MACOSX_BUNDLE_BUNDLE_VERSION "${SNOW_SHOT_VERSION_NUMERIC}"
     MACOSX_BUNDLE_SHORT_VERSION_STRING "${SNOW_SHOT_VERSION_NUMERIC}")
 if(MSVC AND SNOW_SHOT_RELEASE_STATIC AND NOT SNOW_SHOT_QT_STATIC)
     set_property(TARGET snow_shot_mini PROPERTY qt_no_entrypoint TRUE)
 endif()
 if(WIN32)
-    set(SNOW_SHOT_PRODUCT_NAME "Snow Shot Mini")
+    set(SNOW_SHOT_PRODUCT_NAME "InuShot Mini")
     set(SNOW_SHOT_EXECUTABLE_NAME snow_shot_mini)
     configure_file(resources/windows-app-resource.rc.in
         "${CMAKE_CURRENT_BINARY_DIR}/generated/windows-mini-app-resource.rc" @ONLY)
     target_sources(snow_shot_mini PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}/generated/windows-mini-app-resource.rc")
-    set(SNOW_SHOT_PRODUCT_NAME "Snow Shot")
+    set(SNOW_SHOT_PRODUCT_NAME "InuShot")
     set(SNOW_SHOT_EXECUTABLE_NAME snow_shot)
 endif()
 
@@ -263,7 +263,7 @@ if(WIN32)
         SOURCE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
         THIRD_PARTY_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/third-party-licenses/third-party"
         DESTINATION "${_mini_datadir}/snow-shot-mini/licenses"
-        COMPONENT SnowShotMini PRODUCT "Snow Shot Mini")
+        COMPONENT SnowShotMini PRODUCT "InuShot Mini")
 else()
     install(FILES LICENSE COPYRIGHT THIRD_PARTY_NOTICES.md
         DESTINATION "${_mini_datadir}/snow-shot-mini/licenses"

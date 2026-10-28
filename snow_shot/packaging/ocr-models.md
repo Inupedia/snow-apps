@@ -1,6 +1,6 @@
 # OCR runtime and V6 models
 
-Snow Shot uses CPU inference through the `simd-paddle-ocr-rs` Git submodule.
+InuShot uses CPU inference through the `simd-paddle-ocr-rs` Git submodule.
 Runtime **1.1.0** uses protocol **6**. Initialize submodules before building;
 the worker alone uses the library's pinned `nightly-2026-09-08` compiler.
 Other Rust packages keep their existing toolchain. The runtime takes verified

@@ -898,7 +898,7 @@ void mainNavigationSearchThemesAndLanguages() {
     snapshot(window, QStringLiteral("navigation-search-with-tabs"));
     auto* searchSelect = sidebar->findChild<adqt::widgets::AdSelect*>();
     require(searchSelect != nullptr, "global search belongs to the navigation sidebar");
-    searchSelect->selected(QStringLiteral("page:about"), QStringLiteral("About Snow Shot"));
+    searchSelect->selected(QStringLiteral("page:about"), QStringLiteral("About InuShot"));
     flushEvents();
     page = window.findChild<AboutPageWidget*>();
     require(page != nullptr && sidebar->currentRoute() == QStringLiteral("/about"),
@@ -920,7 +920,7 @@ void mainNavigationSearchThemesAndLanguages() {
                     ->styleSheet()
                     .contains(scheme.map.colorBorderSecondary.name(QColor::HexArgb)),
                 "compact version surface follows the neutral theme tokens");
-        require(!child<QLabel>(*page, "aboutLogo")->pixmap().isNull(), "render the Snow Shot icon");
+        require(!child<QLabel>(*page, "aboutLogo")->pixmap().isNull(), "render the InuShot logo");
         auto* logo = child<QLabel>(*page, "aboutLogo");
         require(qFuzzyCompare(logo->pixmap().devicePixelRatio(), logo->devicePixelRatioF()),
                 "the logo uses the current display pixel ratio");
@@ -985,7 +985,7 @@ void mainNavigationSearchThemesAndLanguages() {
                 "the two-tone headline retranslates");
         require(child<QLabel>(*page, "aboutSlogan")->text() ==
                     expectedTranslation(translator, locale, "AboutPageWidget",
-                                        "Snow Shot · Make expression clearer"),
+                                        "InuShot · Make expression clearer"),
                 "the footer slogan retranslates");
         const std::array<const char*, 6> features{"Screenshot capture", "Easy annotation",
                                                   "Text recognition",   "Screen recording",

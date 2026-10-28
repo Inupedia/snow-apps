@@ -52,7 +52,7 @@ try {
     foreach ($name in @("build-snow-shot-msvc-release", "build-snow-shot-msvc-fast")) {
         $preset = @($presetData.buildPresets | Where-Object { $_.name -ceq $name })
         Require ($preset.Count -eq 1 -and @($preset[0].targets).Count -eq 2 -and
-            $preset[0].targets[0] -ceq "snow_shot" -and $preset[0].targets[1] -ceq "snow_shot_mini") "$name must build both Snow Shot editions by default."
+            $preset[0].targets[0] -ceq "snow_shot" -and $preset[0].targets[1] -ceq "snow_shot_mini") "$name must build both InuShot editions by default."
     }
 
     $fixtureScripts = Join-Path $testRoot "scripts"
@@ -119,7 +119,7 @@ $global:LASTEXITCODE = 0
     Require ($global:SnowBuildCalls.Count -eq 2) "Release build must configure and build once."
     Require-Arguments $global:SnowBuildCalls[1] `
         @("--build", "--preset", "build-snow-shot-msvc-release", "--parallel") `
-        "Release build must use the preset's Snow Shot target."
+        "Release build must use the preset's InuShot target."
 
     $global:SnowMiniEnabled = 'OFF'
     $global:SnowBuildCalls = @()

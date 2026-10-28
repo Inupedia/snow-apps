@@ -24,8 +24,8 @@
             <translation>关于 %1</translation>
         </message>
         <message>
-            <source>About Snow Shot</source>
-            <translation>关于 Snow Shot</translation>
+            <source>About InuShot</source>
+            <translation>关于 InuShot</translation>
         </message>
         <message>
             <source>Automatic updates are unavailable for this copy.</source>
@@ -54,8 +54,8 @@ so every moment on screen can be expressed clearly and shared easily.</source>
             <translation>检查 %1 是否有新版本。</translation>
         </message>
         <message>
-            <source>Check for a newer version of Snow Shot.</source>
-            <translation>检查是否有新版 Snow Shot。</translation>
+            <source>Check for a newer version of InuShot.</source>
+            <translation>检查是否有新版 InuShot。</translation>
         </message>
         <message>
             <source>Check for updates</source>
@@ -210,16 +210,16 @@ so every moment on screen can be expressed clearly and shared easily.</source>
             <translation>截图选区、标注工具与识别文字</translation>
         </message>
         <message>
-            <source>Snow Shot</source>
-            <translation>Snow Shot</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
-            <source>Snow Shot logo</source>
-            <translation>Snow Shot 标志</translation>
+            <source>InuShot logo</source>
+            <translation>InuShot 标志</translation>
         </message>
         <message>
-            <source>Snow Shot · Make expression clearer</source>
-            <translation>Snow Shot · 让表达更清晰</translation>
+            <source>InuShot · Make expression clearer</source>
+            <translation>InuShot · 让表达更清晰</translation>
         </message>
         <message>
             <source>Text recognition</source>
@@ -401,12 +401,12 @@ so every moment on screen can be expressed clearly and shared easily.</source>
     <context>
         <name>EditionMetadata</name>
         <message>
-            <source>Snow Shot</source>
-            <translation>Snow Shot</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
-            <source>Snow Shot Mini</source>
-            <translation>Snow Shot Mini</translation>
+            <source>InuShot Mini</source>
+            <translation>InuShot Mini</translation>
         </message>
     </context>
     <context>
@@ -865,8 +865,8 @@ so every moment on screen can be expressed clearly and shared easily.</source>
             <translation>更新已就绪。请打开“关于”重新启动并更新 %1。</translation>
         </message>
         <message>
-            <source>An update is ready. Open About to restart and update Snow Shot.</source>
-            <translation>更新已准备就绪。请打开“关于”页面，重启并更新 Snow Shot。</translation>
+            <source>An update is ready. Open About to restart and update InuShot.</source>
+            <translation>更新已准备就绪。请打开“关于”页面，重启并更新 InuShot。</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -901,12 +901,12 @@ so every moment on screen can be expressed clearly and shared easily.</source>
             <translation>重启失败</translation>
         </message>
         <message>
-            <source>Snow Shot %1 is available. Open About for update options.</source>
-            <translation>Snow Shot %1 已推出。打开“关于”查看更新选项。</translation>
+            <source>InuShot %1 is available. Open About for update options.</source>
+            <translation>InuShot %1 已推出。打开“关于”查看更新选项。</translation>
         </message>
         <message>
-            <source>Snow Shot will close and restart to install the update. Continue?</source>
-            <translation>Snow Shot 将关闭并重启以安装更新。是否继续？</translation>
+            <source>InuShot will close and restart to install the update. Continue?</source>
+            <translation>InuShot 将关闭并重启以安装更新。是否继续？</translation>
         </message>
         <message>
             <source>The selected file path is invalid</source>

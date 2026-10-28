@@ -24,8 +24,8 @@
             <translation>About %1</translation>
         </message>
         <message>
-            <source>About Snow Shot</source>
-            <translation>About Snow Shot</translation>
+            <source>About InuShot</source>
+            <translation>About InuShot</translation>
         </message>
         <message>
             <source>Automatic updates are unavailable for this copy.</source>
@@ -54,8 +54,8 @@ so every moment on screen can be expressed clearly and shared easily.</translati
             <translation>Check for a newer version of %1.</translation>
         </message>
         <message>
-            <source>Check for a newer version of Snow Shot.</source>
-            <translation>Check for a newer version of Snow Shot.</translation>
+            <source>Check for a newer version of InuShot.</source>
+            <translation>Check for a newer version of InuShot.</translation>
         </message>
         <message>
             <source>Check for updates</source>
@@ -210,16 +210,16 @@ so every moment on screen can be expressed clearly and shared easily.</translati
             <translation>Screenshot selection, annotation tools, and recognized text</translation>
         </message>
         <message>
-            <source>Snow Shot</source>
-            <translation>Snow Shot</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
-            <source>Snow Shot logo</source>
-            <translation>Snow Shot logo</translation>
+            <source>InuShot logo</source>
+            <translation>InuShot logo</translation>
         </message>
         <message>
-            <source>Snow Shot · Make expression clearer</source>
-            <translation>Snow Shot · Make expression clearer</translation>
+            <source>InuShot · Make expression clearer</source>
+            <translation>InuShot · Make expression clearer</translation>
         </message>
         <message>
             <source>Text recognition</source>
@@ -401,12 +401,12 @@ so every moment on screen can be expressed clearly and shared easily.</translati
     <context>
         <name>EditionMetadata</name>
         <message>
-            <source>Snow Shot</source>
-            <translation>Snow Shot</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
-            <source>Snow Shot Mini</source>
-            <translation>Snow Shot Mini</translation>
+            <source>InuShot Mini</source>
+            <translation>InuShot Mini</translation>
         </message>
     </context>
     <context>
@@ -865,8 +865,8 @@ so every moment on screen can be expressed clearly and shared easily.</translati
             <translation>An update is ready. Open About to restart and update %1.</translation>
         </message>
         <message>
-            <source>An update is ready. Open About to restart and update Snow Shot.</source>
-            <translation>An update is ready. Open About to restart and update Snow Shot.</translation>
+            <source>An update is ready. Open About to restart and update InuShot.</source>
+            <translation>An update is ready. Open About to restart and update InuShot.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -901,12 +901,12 @@ so every moment on screen can be expressed clearly and shared easily.</translati
             <translation>Restart failed</translation>
         </message>
         <message>
-            <source>Snow Shot %1 is available. Open About for update options.</source>
-            <translation>Snow Shot %1 is available. Open About for update options.</translation>
+            <source>InuShot %1 is available. Open About for update options.</source>
+            <translation>InuShot %1 is available. Open About for update options.</translation>
         </message>
         <message>
-            <source>Snow Shot will close and restart to install the update. Continue?</source>
-            <translation>Snow Shot will close and restart to install the update. Continue?</translation>
+            <source>InuShot will close and restart to install the update. Continue?</source>
+            <translation>InuShot will close and restart to install the update. Continue?</translation>
         </message>
         <message>
             <source>The selected file path is invalid</source>

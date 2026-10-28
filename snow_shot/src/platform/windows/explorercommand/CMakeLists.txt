@@ -1,4 +1,4 @@
-# This subdirectory is added before Snow Shot's directory-wide Qt linkage. Explorer must
+# This subdirectory is added before InuShot's directory-wide Qt linkage. Explorer must
 # be able to load the packaged COM server without loading the application's Qt runtime.
 set(_snow_explorer_root "${CMAKE_CURRENT_SOURCE_DIR}/../../../..")
 set(_snow_explorer_suffixes)

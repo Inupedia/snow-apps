@@ -64,7 +64,7 @@ $macPackages = @(if ($MacHost) {
     }
 })
 $destinations = if ($SkipGitee -or $Operation -eq 'Verify') { 'GitHub' } else { 'GitHub and Gitee' }
-if (-not $PSCmdlet.ShouldProcess("Snow Shot $Version on $destinations", $Operation)) {
+if (-not $PSCmdlet.ShouldProcess("InuShot $Version on $destinations", $Operation)) {
         foreach ($architecture in @('x64', 'arm64')) {
         foreach ($edition in @('Full', 'Mini')) {
             $product = Get-SnowShotEdition $edition $architecture
@@ -324,7 +324,7 @@ foreach ($edition in @('Full', 'Mini')) {
 $auditor = Join-Path $buildDirectories[$hostArchitecture] 'snow_shot/Release/snow-shot-updater.exe'
 $miniAuditor = Join-Path $buildDirectories[$hostArchitecture] 'snow_shot_mini/Release/snow-shot-mini-updater.exe'
 if ($AuditOnly) {
-    Write-Output "Audited Snow Shot $Version without staging or publishing. Signed release: $releaseDirectory"
+    Write-Output "Audited InuShot $Version without staging or publishing. Signed release: $releaseDirectory"
     return
 }
     if ($MacHost) {
@@ -361,7 +361,7 @@ if ($AuditOnly) {
             @{ name = $name; path = $path; size = (Get-Item -LiteralPath $path).Length;
                 sha256 = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() }
         }
-        @{ schema = 1; tag = $tag; sourceCommit = $head; title = "Snow Shot $Version"; nativeValidation = $nativeValidation;
+        @{ schema = 1; tag = $tag; sourceCommit = $head; title = "InuShot $Version"; nativeValidation = $nativeValidation;
             body = [IO.File]::ReadAllText($ReleaseNotesPath); assets = @($descriptors) } |
             ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $localManifestPath -Encoding utf8NoBOM
         $validationArguments = @(if ($SkipArm64NativeValidation) { '--skip-arm64-native-validation' })
@@ -376,7 +376,7 @@ if ($AuditOnly) {
         & python (Join-Path $PSScriptRoot 'publish-snow-shot-gitee-release.py') --manifest $localManifestPath --auditor $auditor --mini-auditor $miniAuditor @validationArguments
         if ($LASTEXITCODE -ne 0) { throw "Local Gitee publication failed. Retry with the audited manifest: $localManifestPath" }
     }
-Write-Output "Published and verified Snow Shot $Version on $destinations."
+Write-Output "Published and verified InuShot $Version on $destinations."
 if ($DeployWebsite) {
     & (Join-Path $PSScriptRoot 'publish-snow-shot-website.ps1') -Version $Version -WebsiteDirectory $WebsiteDirectory
 }

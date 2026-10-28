@@ -27,7 +27,7 @@ add_custom_command(
     COMMAND "${Python3_EXECUTABLE}" "${_snow_shot_catalog_tool}" merge
         --catalog-dir "${_snow_shot_catalog_dir}" --output-dir "${_snow_shot_merged_dir}"
     DEPENDS ${TS_FILES} "${_snow_shot_catalog_dir}/modules.json" "${_snow_shot_catalog_tool}"
-    COMMENT "Merging Snow Shot feature translation catalogs"
+    COMMENT "Merging InuShot feature translation catalogs"
     VERBATIM
 )
 snow_shot_release_translation_catalogs(snow_shot_release_translations
@@ -135,7 +135,7 @@ function(snow_shot_add_translations target)
     add_custom_command(TARGET snow_shot_update_translations POST_BUILD
         COMMAND "${Python3_EXECUTABLE}" "${_snow_shot_catalog_tool}" split
             --catalog-dir "${_snow_shot_catalog_dir}" --input-dir "${_snow_shot_update_dir}"
-        COMMENT "Updating Snow Shot feature translation catalogs"
+        COMMENT "Updating InuShot feature translation catalogs"
         VERBATIM
     )
 endfunction()

@@ -69,7 +69,7 @@ try {
     $global:SnowLaunchFixtureProcess = $null
     $failure = ''
     try { & $launcher -Edition Mini -NoBuild } catch { $failure = $_.Exception.Message }
-    Require ($failure -eq 'Snow Shot exited with code -1073741515.') 'Report the actual loader failure.'
+    Require ($failure -eq 'InuShot exited with code -1073741515.') 'Report the actual loader failure.'
     $global:SnowLaunchFixtureProcess = $null
     & $launcher -Edition Mini -NoBuild -Detached
     Require ($null -eq $global:SnowLaunchFixtureProcess) 'Detached launches must return immediately.'
@@ -94,7 +94,7 @@ try {
             $expectedPath = Join-Path $fixture 'build\windows-msvc-performance\snow_shot_mini\Release\snow_shot_mini.exe'
             # PowerShell 7's concise error view wraps long paths with gutter bars.
             $normalizedOutput = $output -replace '[\s|]', ''
-            $expectedOutput = "Snow Shot executable was not found at '$expectedPath'." -replace '\s', ''
+            $expectedOutput = "InuShot executable was not found at '$expectedPath'." -replace '\s', ''
             Require ($normalizedOutput.Contains($expectedOutput)) `
                 "Both batch PowerShell hosts must load the helper and forward arguments. Output: $output"
         }

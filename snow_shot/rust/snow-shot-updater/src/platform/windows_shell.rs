@@ -18,7 +18,7 @@ use windows::Win32::System::Registry::{
 use windows::core::{PCWSTR, PWSTR};
 
 const FAILURE_CODE: &str = "shell_registration_failed";
-const FAILURE_MESSAGE: &str = "Could not update Snow Shot context menu registration";
+const FAILURE_MESSAGE: &str = "Could not update InuShot context menu registration";
 const ASSOCIATIONS: &str = "SystemFileAssociations";
 const CLASSES: &str = "Software\\Classes";
 const PROFILES: &str = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList";

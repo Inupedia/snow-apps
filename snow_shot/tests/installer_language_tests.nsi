@@ -1,5 +1,5 @@
 Unicode true
-Name "Snow Shot"
+Name "InuShot"
 OutFile "${OUTPUT}"
 RequestExecutionLevel user
 !include "MUI.nsh"

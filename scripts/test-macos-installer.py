@@ -56,7 +56,7 @@ elif name == 'hdiutil':
     elif args[0] == 'attach':
         if os.environ.get('FAIL_ATTACH'): fail()
         mount = pathlib.Path(args[args.index('-mountpoint') + 1])
-        shutil.copytree(root / 'bundle', mount / os.environ.get('BUNDLE_NAME', 'Snow Shot.app'), dirs_exist_ok=True)
+        shutil.copytree(root / 'bundle', mount / os.environ.get('BUNDLE_NAME', 'InuShot.app'), dirs_exist_ok=True)
         (root / 'mounted').write_text(str(mount))
     elif args[0] == 'detach':
         if os.environ.get('FAIL_DETACH'): fail()
@@ -81,7 +81,7 @@ elif name == 'codesign':
         executable.write_bytes(executable.read_bytes() + b' locally signed')
     elif '-d' in args: print('designated => ' + os.environ['REQUIREMENT'])
     elif (pathlib.Path(args[-1]) / 'reject-signature').exists(): fail()
-    elif os.environ.get('FAIL_FINAL') and args[-1] == str(root / 'Applications/Snow Shot.app'): fail()
+    elif os.environ.get('FAIL_FINAL') and args[-1] == str(root / 'Applications/InuShot.app'): fail()
     elif os.environ.get('FAIL_REQUIREMENT') and '-R' in args: fail()
 elif name == 'ditto': shutil.copytree(args[0], args[1], dirs_exist_ok=True, symlinks=True)
 elif name == 'security':
@@ -134,7 +134,7 @@ class InstallerTests(unittest.TestCase):
         self.work.mkdir()
         self.apps = self.root / 'Applications'
         self.apps.mkdir()
-        self.destination = self.apps / 'Snow Shot.app'
+        self.destination = self.apps / 'InuShot.app'
         self.bundle = self.root / 'bundle'
         (self.bundle / 'Contents/MacOS').mkdir(parents=True)
         (self.bundle / 'Contents/Resources/assets/ocr').mkdir(parents=True)
@@ -554,7 +554,7 @@ sign_application''', success=False)
     def prepare_code(self):
         return '''trap cleanup EXIT
 local_dmg="$FIXTURE/package.dmg"
-prepare_app="$FIXTURE/Prepared Snow Shot.app"
+prepare_app="$FIXTURE/Prepared InuShot.app"
 validate_prepare_output
 prepare_state
 obtain_package
@@ -566,7 +566,7 @@ prepare_application
         self.previous()
         self.identity()
         self.shell(self.prepare_code())
-        output = self.root / 'Prepared Snow Shot.app'
+        output = self.root / 'Prepared InuShot.app'
         self.assertTrue((output / 'Contents/MacOS/snow_shot').exists())
         self.assertTrue((self.destination / 'old-marker').exists())
         self.assertEqual((self.state / 'requirement').read_text().strip(), REQUIREMENT)
@@ -594,7 +594,7 @@ prepare_application
         (self.state / 'requirement').write_text(REQUIREMENT)
         self.shell(self.prepare_code(), success=False, FAIL_REQUIREMENT='1')
         self.assertTrue((self.destination / 'old-marker').exists())
-        self.assertFalse((self.root / 'Prepared Snow Shot.app').exists())
+        self.assertFalse((self.root / 'Prepared InuShot.app').exists())
         self.assertFalse(self.work.exists())
         self.assertFalse((self.state / 'lock').exists())
         self.assertEqual((self.state / 'requirement').read_text(), REQUIREMENT)
@@ -605,7 +605,7 @@ prepare_application
         code = self.prepare_code().replace('prepare_application', '''ditto() { return 1; }
 prepare_application''')
         self.shell(code, success=False)
-        self.assertFalse((self.root / 'Prepared Snow Shot.app').exists())
+        self.assertFalse((self.root / 'Prepared InuShot.app').exists())
         self.assertFalse((self.state / 'requirement').exists())
         self.assertTrue((self.destination / 'old-marker').exists())
 
@@ -613,7 +613,7 @@ prepare_application''')
         self.sum.write_text('0' * 64)
         self.shell(self.prepare_code(), success=False)
         self.assertFalse(self.calls('security'))
-        self.assertFalse((self.root / 'Prepared Snow Shot.app').exists())
+        self.assertFalse((self.root / 'Prepared InuShot.app').exists())
         self.assertFalse((self.state / 'lock').exists())
 
     def test_prepare_concurrent_install_retains_other_lock(self):

@@ -33,7 +33,7 @@ string(REPLACE "${_snow_nsis_init}" [=[Function .onInit
     Call SnowShotEnsureInstallationClosed
   Pop $0
 ]=] _snow_nsis_template "${_snow_nsis_template}")
-# Restrict the wizard to languages with complete Snow Shot catalogs.
+# Restrict the wizard to languages with complete InuShot catalogs.
 string(REGEX MATCHALL "!insertmacro MUI_LANGUAGE \"[A-Za-z]+\"[^\n]*" _snow_nsis_languages
     "${_snow_nsis_template}")
 if(NOT _snow_nsis_languages)

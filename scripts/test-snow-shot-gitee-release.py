@@ -29,7 +29,7 @@ class PublisherTests(unittest.TestCase):
         self.addCleanup(self.temporary.cleanup)
         self.directory = Path(self.temporary.name)
         self.release = {"schema": 1, "tag": TAG, "sourceCommit": "a" * 40,
-                        "title": "Snow Shot 1.2.3", "body": "Detailed bilingual notes.\n",
+                        "title": "InuShot 1.2.3", "body": "Detailed bilingual notes.\n",
                         "assets": []}
         self.add_asset("snow-shot-1.2.3-windows-x64-online-update.zip", b"binary package")
         self.add_asset("latest-version.json", b"signed manifest")
@@ -717,7 +717,7 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual(api.call_args.args[1], "secret-token")
 
     def test_utf8_release_response_through_real_curl_transport(self):
-        notes = "Snow Shot release notes: 中文，繁體。"
+        notes = "InuShot release notes: 中文，繁體。"
         body = json.dumps({"body": notes}, ensure_ascii=False).encode("utf-8")
         received = []
         class Handler(BaseHTTPRequestHandler):

@@ -13,7 +13,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $store = $DistributionChannel -eq 'store'
-if ($store -and $Architecture -ne 'x64') { throw 'The Snow Shot Store channel supports x64 only.' }
+if ($store -and $Architecture -ne 'x64') { throw 'The InuShot Store channel supports x64 only.' }
 if ($PrepareOcrRuntimeOnly) {
     & (Join-Path $PSScriptRoot 'prepare-snow-shot-ocr-runtime.ps1') -Architecture $Architecture -BuildDirectory $BuildDirectory -Parallelism $Parallelism -SkipBuild:$SkipBuild
     return
@@ -135,7 +135,7 @@ if (-not $store -and -not $StageOnly) {
         }
     }
     if (-not $nsisCommand) {
-        throw "NSIS compiler 'makensis' was not found. Install NSIS before packaging Snow Shot."
+        throw "NSIS compiler 'makensis' was not found. Install NSIS before packaging InuShot."
     }
 }
 
@@ -323,12 +323,12 @@ function Assert-SnowShotStaticDependencies {
     )
 
     if (-not (Test-Path -LiteralPath $Prefix -PathType Container)) {
-        throw "The Snow Shot static vcpkg prefix was not found: $Prefix"
+        throw "The InuShot static vcpkg prefix was not found: $Prefix"
     }
 
     $ffmpegComponentsPath = Join-Path $Prefix "share\ffmpeg\snow-shot-config-components.h"
     if (-not (Test-Path -LiteralPath $ffmpegComponentsPath -PathType Leaf)) {
-        throw "The audited Snow Shot FFmpeg component header was not found: $ffmpegComponentsPath"
+        throw "The audited InuShot FFmpeg component header was not found: $ffmpegComponentsPath"
     }
     $componentPattern = '^#define CONFIG_(?<Name>[A-Z0-9_]+?)_(?<Kind>DEMUXER|DECODER|ENCODER|HWACCEL|PARSER|MUXER|BSF|PROTOCOL|FILTER|INDEV|OUTDEV) 1$'
     $enabledFfmpegComponents = @(Get-Content -LiteralPath $ffmpegComponentsPath | ForEach-Object {
@@ -356,7 +356,7 @@ function Assert-SnowShotStaticDependencies {
         $main10Capability.bitDepth8 -ne $true -or
         $main10Capability.bitDepth10 -ne $true -or
         $main10Capability.singlePublicApi -ne $true) {
-        throw "The Snow Shot x265 build must provide both 8-bit and Main10 encoding."
+        throw "The InuShot x265 build must provide both 8-bit and Main10 encoding."
     }
 
     $libraryDirectory = Join-Path $Prefix "lib"
@@ -383,7 +383,7 @@ function Assert-SnowShotStaticDependencies {
         -Filter "libde265_*" -ErrorAction SilentlyContinue |
         ForEach-Object { $libde265Artifacts.Add($_.FullName) }
     if ($libde265Artifacts.Count -gt 0) {
-        throw "The Snow Shot static prefix contains forbidden libde265 artifacts: $($libde265Artifacts -join ', ')"
+        throw "The InuShot static prefix contains forbidden libde265 artifacts: $($libde265Artifacts -join ', ')"
     }
 
     $debugDirectory = Join-Path $Prefix "debug"
@@ -439,7 +439,7 @@ if (-not $SkipBuild) {
     $configureArguments += "-DSNOW_SHOT_OCR_ASSET_MANIFEST=$($ocrAssetManifestPath.Replace('\', '/'))"
     & cmake @configureArguments
     if ($LASTEXITCODE -ne 0) {
-        throw "Snow Shot release configuration failed."
+        throw "InuShot release configuration failed."
     }
 }
 elseif (-not (Test-Path -LiteralPath $cachePath)) {
@@ -483,7 +483,7 @@ if (-not $SkipBuild) {
     [string[]]$releaseTargets = if ($store) { @('snow_shot') } else { @('snow_shot', 'snow_shot_mini') }
     & cmake --build $buildDirectory --config Release --target @releaseTargets --parallel $Parallelism
     if ($LASTEXITCODE -ne 0) {
-        throw "Snow Shot release build failed."
+        throw "InuShot release build failed."
     }
 }
 
@@ -496,7 +496,7 @@ if (-not $store) {
     & $updaterSizeReporter -Architecture $Architecture -Executable $updaterBuildExecutable `
         -CargoProfileDirectory $updaterCargoProfileDirectory -Output $updaterSizeEvidence
     if ($LASTEXITCODE -ne 0) {
-        throw 'Snow Shot updater size reporting failed.'
+        throw 'InuShot updater size reporting failed.'
     }
 }
 
@@ -520,7 +520,7 @@ if (-not $store) { $licenseManifests += $updaterCargoManifest }
     -AntDesignNotice (Join-Path $repoRoot "ant_design_qt\THIRD_PARTY_NOTICES.md") `
     -FallbackLicenseDirectory (Join-Path $repoRoot "licenses")
 if ($LASTEXITCODE -ne 0) {
-    throw "Snow Shot third-party license collection failed."
+    throw "InuShot third-party license collection failed."
 }
 
 if (Test-Path -LiteralPath $installDirectory) {
@@ -530,7 +530,7 @@ New-Item -ItemType Directory -Force -Path $installDirectory | Out-Null
 
 & cmake --install $buildDirectory --config Release --component SnowShot --prefix $installDirectory
 if ($LASTEXITCODE -ne 0) {
-    throw "Snow Shot install step failed."
+    throw "InuShot install step failed."
 }
 
 $mainExecutable = Join-Path $installDirectory "bin\snow_shot.exe"
@@ -541,15 +541,15 @@ if (-not (Test-Path -LiteralPath $mainExecutable)) {
 $versionInfo = (Get-Item -LiteralPath $mainExecutable).VersionInfo
 $expectedBinaryMetadata = @{
     CompanyName = "Snow Apps"
-    FileDescription = "Snow Shot screenshot utility"
+    FileDescription = "InuShot screenshot utility"
     InternalName = "snow_shot"
     LegalCopyright = "Copyright (C) 2025-2026 mg-chao"
     OriginalFilename = "snow_shot.exe"
-    ProductName = "Snow Shot"
+    ProductName = "InuShot"
 }
 foreach ($property in $expectedBinaryMetadata.Keys) {
     if ($versionInfo.$property -ne $expectedBinaryMetadata[$property]) {
-        throw "Snow Shot binary metadata '$property' is '$($versionInfo.$property)'; expected '$($expectedBinaryMetadata[$property])'."
+        throw "InuShot binary metadata '$property' is '$($versionInfo.$property)'; expected '$($expectedBinaryMetadata[$property])'."
     }
 }
 
@@ -565,16 +565,16 @@ if (-not $store) {
     $updaterVersionInfo = (Get-Item -LiteralPath $updaterExecutable).VersionInfo
     $expectedUpdaterMetadata = @{
         CompanyName = 'Snow Apps'
-        FileDescription = 'Snow Shot update service'
+        FileDescription = 'InuShot update service'
         InternalName = 'snow-shot-updater'
         LegalCopyright = 'Copyright (C) 2025-2026 mg-chao'
         OriginalFilename = 'snow-shot-updater.exe'
-        ProductName = 'Snow Shot'
+        ProductName = 'InuShot'
         ProductVersion = $versionInfo.ProductVersion
     }
     foreach ($property in $expectedUpdaterMetadata.Keys) {
         if ($updaterVersionInfo.$property -ne $expectedUpdaterMetadata[$property]) {
-            throw "Snow Shot updater metadata '$property' is '$($updaterVersionInfo.$property)'; expected '$($expectedUpdaterMetadata[$property])'."
+            throw "InuShot updater metadata '$property' is '$($updaterVersionInfo.$property)'; expected '$($expectedUpdaterMetadata[$property])'."
         }
     }
 }
@@ -792,7 +792,7 @@ $symbolOptions = @{
 
 $linkMapPath = Join-Path $buildDirectory "snow_shot\Release\snow_shot.map"
 if (-not (Test-Path -LiteralPath $linkMapPath -PathType Leaf)) {
-    throw "The Snow Shot Release link map was not found: $linkMapPath"
+    throw "The InuShot Release link map was not found: $linkMapPath"
 }
 $ffmpegRegistrationPattern =
     '^\s+[0-9A-Fa-f]+:[0-9A-Fa-f]+\s+(?<Name>ff_[A-Za-z0-9_]+_(?:bsf|decoder|encoder|hwaccel|parser|demuxer|muxer|protocol)|ff_(?:af|asrc|asink|vf|vsrc|vsink|avf|vaf)_[A-Za-z0-9_]+)\s+[0-9A-Fa-f]+\s{2,}\S'
@@ -855,7 +855,7 @@ if (-not $store) {
     $cpackConfiguration = Get-Content -LiteralPath $cpackConfig -Raw
     $requiredCpackSettings = @{
         CPACK_CREATE_DESKTOP_LINKS = "snow_shot"
-        CPACK_PACKAGE_EXECUTABLES = "snow_shot;Snow Shot"
+        CPACK_PACKAGE_EXECUTABLES = "snow_shot;InuShot"
         CPACK_PACKAGE_HOMEPAGE_URL = "https://snowshot.top"
         CPACK_PACKAGE_INSTALL_DIRECTORY = "SnowShot"
         CPACK_PACKAGE_INSTALL_REGISTRY_KEY = "SnowShot"
@@ -875,7 +875,7 @@ if (-not $store) {
         }
     }
     if ($cpackConfiguration -notmatch 'set\(CPACK_PACKAGE_VERSION "([^"]+)"\)') {
-        throw "CPack configuration does not declare the Snow Shot package version."
+        throw "CPack configuration does not declare the InuShot package version."
     }
     $packageVersion = $Matches[1]
     $packageVersionNumeric = ($packageVersion -split "-", 2)[0]
@@ -888,7 +888,7 @@ if (-not $store) {
 }
 if ($versionInfo.FileVersion -ne "$packageVersionNumeric.0" -or
     $versionInfo.ProductVersion -ne $packageVersion) {
-    throw "Snow Shot binary version '$($versionInfo.FileVersion)'/'$($versionInfo.ProductVersion)' does not match package version '$packageVersion'."
+    throw "InuShot binary version '$($versionInfo.FileVersion)'/'$($versionInfo.ProductVersion)' does not match package version '$packageVersion'."
 }
 
 $pinnedRuntime = (Get-Content -LiteralPath $ocrAssetManifestPath -Raw | ConvertFrom-Json).runtime
@@ -1123,11 +1123,11 @@ if ($nativeTarget) {
 $ocrRuntimeVersionInfo = (Get-Item -LiteralPath (Join-Path $runtimeWork $ocrRuntimeFileName)).VersionInfo
 $expectedOcrMetadata = @{
     CompanyName = "Snow Apps"
-    FileDescription = "Snow Shot OCR runtime"
+    FileDescription = "InuShot OCR runtime"
     FileVersion = "$ocrRuntimeVersion.0"
     InternalName = "snow-ocr-process"
     OriginalFilename = $ocrRuntimeFileName
-    ProductName = "Snow Shot OCR Runtime"
+    ProductName = "InuShot OCR Runtime"
     ProductVersion = $ocrRuntimeVersion
 }
 foreach ($property in $expectedOcrMetadata.Keys) {
@@ -1472,17 +1472,17 @@ string(REPLACE "snow-shot-$packageVersion-$ocrPlatform.exe" "$packageBaseName.ex
     $installerVersionInfo = (Get-Item -LiteralPath $packagePath).VersionInfo
     $expectedInstallerMetadata = @{
         CompanyName = "Snow Apps"
-        FileDescription = "Snow Shot installer"
+        FileDescription = "InuShot installer"
         FileVersion = "$packageVersionNumeric.0"
         InternalName = "snow-shot-installer"
         LegalCopyright = "Copyright (C) 2025-2026 mg-chao"
         OriginalFilename = "$packageBaseName.exe"
-        ProductName = "Snow Shot"
+        ProductName = "InuShot"
         ProductVersion = $packageVersion
     }
     foreach ($property in $expectedInstallerMetadata.Keys) {
         if ($installerVersionInfo.$property -ne $expectedInstallerMetadata[$property]) {
-            throw "Snow Shot $variant installer metadata '$property' is '$($installerVersionInfo.$property)'; expected '$($expectedInstallerMetadata[$property])'."
+            throw "InuShot $variant installer metadata '$property' is '$($installerVersionInfo.$property)'; expected '$($expectedInstallerMetadata[$property])'."
         }
     }
     $checksumPath = "$packagePath.sha256"
@@ -1518,9 +1518,9 @@ string(REPLACE "snow-shot-$packageVersion-$ocrPlatform.exe" "$packageBaseName.ex
         }
     } | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $manifestPath -Encoding utf8
     $producedPackages += $packagePath
-    Write-Output "Snow Shot $variant installer: $packagePath"
-    Write-Output "Snow Shot $variant installer checksum: $checksumPath"
-    Write-Output "Snow Shot $variant release manifest: $manifestPath"
+    Write-Output "InuShot $variant installer: $packagePath"
+    Write-Output "InuShot $variant installer checksum: $checksumPath"
+    Write-Output "InuShot $variant release manifest: $manifestPath"
 }
 
 $portableBaseName = "snow-shot-$packageVersion-$ocrPlatform-portable"
@@ -1560,10 +1560,10 @@ $portableManifestPath = Join-Path $buildDirectory "$portableBaseName.manifest.js
     }
 } | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $portableManifestPath -Encoding utf8
 $producedPackages += $portableArchivePath
-Write-Output "Snow Shot portable archive: $portableArchivePath"
-Write-Output "Snow Shot portable archive checksum: $portableChecksumPath"
-Write-Output "Snow Shot portable release manifest: $portableManifestPath"
-Write-Output "Snow Shot audited install tree: $installDirectory"
+Write-Output "InuShot portable archive: $portableArchivePath"
+Write-Output "InuShot portable archive checksum: $portableChecksumPath"
+Write-Output "InuShot portable release manifest: $portableManifestPath"
+Write-Output "InuShot audited install tree: $installDirectory"
 Write-Output "OCR runtime upload artifact: $runtimeArchivePath"
 Write-Output "OCR runtime checksum: $runtimeArchiveChecksum"
 Write-Output "OCR runtime manifest: $runtimeReleaseManifest"

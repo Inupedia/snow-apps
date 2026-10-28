@@ -58,8 +58,8 @@ void accessKeysAndRollback() {
     Registry registry;
     windows::ShellContextMenuRegistration registration(registry.options());
     const QString baseLabel = snow_shot::app::edition::isMini
-                                  ? QStringLiteral("Edit with Snow Shot Mini")
-                                  : QStringLiteral("Edit with Snow Shot");
+                                  ? QStringLiteral("Edit with InuShot Mini")
+                                  : QStringLiteral("Edit with InuShot");
     const auto label = [&] {
         return stringText(
             registry.keys.value(Registry::path(QStringLiteral("png"))).values.value({}));
@@ -164,8 +164,8 @@ void foreignOwnerAndLanguageRefresh() {
     const auto command = registry.keys[png].children.value(QStringLiteral("command"));
     require(registration.refreshLabels() &&
                 stringText(registry.keys[png].values.value({})) ==
-                    (snow_shot::app::edition::isMini ? QStringLiteral("Edit with Snow Shot Mini")
-                                                     : QStringLiteral("Edit with Snow Shot")) &&
+                    (snow_shot::app::edition::isMini ? QStringLiteral("Edit with InuShot Mini")
+                                                     : QStringLiteral("Edit with InuShot")) &&
                 registry.keys[png].children.value(QStringLiteral("command")) == command,
             "language refresh replaces the display label and preserves command data");
     registry.keys[png].values.insert(QStringLiteral("ProductId"),

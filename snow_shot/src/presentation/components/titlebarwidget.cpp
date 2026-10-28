@@ -40,7 +40,7 @@ QPixmap renderBrandLogo(int logicalHeight, const QColor& color, qreal devicePixe
         return {};
     }
 
-    constexpr qreal aspectRatio = snow_shot::app::edition::isMini ? 137.0 / 17.0 : 95.0 / 17.0;
+    constexpr qreal aspectRatio = snow_shot::app::edition::isMini ? 106.0 / 17.0 : 82.0 / 17.0;
     const int logicalWidth =
         static_cast<int>(std::llround(static_cast<qreal>(logicalHeight) * aspectRatio));
     if (logicalWidth <= 0) {

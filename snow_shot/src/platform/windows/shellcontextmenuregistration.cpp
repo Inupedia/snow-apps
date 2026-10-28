@@ -38,9 +38,9 @@ QString contextMenuText(const char* source) {
 QString menuLabel(const QString& accessKey) {
     QString label = app::edition::isMini
                         ? contextMenuText(QT_TRANSLATE_NOOP("ShellContextMenuRegistration",
-                                                            "Edit with Snow Shot Mini"))
+                                                            "Edit with InuShot Mini"))
                         : contextMenuText(QT_TRANSLATE_NOOP("ShellContextMenuRegistration",
-                                                            "Edit with Snow Shot"));
+                                                            "Edit with InuShot"));
     label.replace(QLatin1Char('&'), QStringLiteral("&&"));
     if (!accessKey.isEmpty())
         label += QStringLiteral(" (&%1)").arg(accessKey);

@@ -631,7 +631,7 @@ void CustomAiModelsSettingsWidget::translateModal() {
             QT_TRANSLATE_NOOP("CustomAiModelsSettingsWidget", "Provider Type")};
         const char* descriptions[] = {
             QT_TRANSLATE_NOOP("CustomAiModelsSettingsWidget",
-                              "The model name displayed in Snow Shot."),
+                              "The model name displayed in InuShot."),
             QT_TRANSLATE_NOOP("CustomAiModelsSettingsWidget",
                               "OpenAI-compatible Chat Completions. /chat/completions is appended "
                               "to this base URL."),

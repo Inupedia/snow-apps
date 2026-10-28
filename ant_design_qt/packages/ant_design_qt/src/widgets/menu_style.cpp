@@ -288,7 +288,6 @@ MenuVisualStyle makeDarkStyle(const ThemeMapToken& map, const QFont& baseFont,
 
   const auto& shared = sharedColors(tokens);
   const auto& dark = darkColors(tokens);
-  const QColor primaryColor = toColor(map.colorPrimary, QColor("#1677ff"));
   const QColor textLight = toColor(map.colorWhite, QColor("#ffffff"));
   const QColor textDark = withAlpha(textLight, 0.65F);
   const QColor dangerColor = toColor(map.colorError, QColor("#ff4d4f"));
@@ -321,7 +320,8 @@ MenuVisualStyle makeDarkStyle(const ThemeMapToken& map, const QFont& baseFont,
   style.selected.text =
       resolveSchemeColor(dark.itemSelectedText, shared.itemSelectedText, textLight);
   style.selected.background =
-      resolveSchemeColor(dark.itemSelectedBackground, shared.itemSelectedBackground, primaryColor);
+      resolveSchemeColor(dark.itemSelectedBackground, shared.itemSelectedBackground,
+                         toColor(map.colorPrimaryBg, QColor("#15325b")));
   style.subMenuItemSelectedColor = resolveSchemeColor(
       dark.subMenuItemSelectedText, shared.subMenuItemSelectedText, style.selected.text);
 

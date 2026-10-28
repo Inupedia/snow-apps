@@ -35,7 +35,7 @@ using namespace std::chrono_literals;
 // F24 is used so the seeded binding cannot collide with the hotkeys of a
 // real snow_shot instance running on the same machine.
 
-constexpr wchar_t kMainWindowName[] = L"SnowShot";
+constexpr wchar_t kMainWindowName[] = L"InuShot";
 constexpr wchar_t kToolbarButtonAutomationIdSuffix[] = L".screenshotScrollingScreenshotButton";
 
 constexpr LONG kSelectionLeft = 64;

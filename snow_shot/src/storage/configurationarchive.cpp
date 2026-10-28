@@ -286,7 +286,7 @@ ConfigurationArchiveReadResult ConfigurationArchive::read(const QString& archive
         QLatin1String("snow-shot-configuration")) {
         return fail(configArchiveTranslate(
             QT_TRANSLATE_NOOP("snow_shot::storage::ConfigurationArchive",
-                              "The file is not a Snow Shot configuration archive.")));
+                              "The file is not a InuShot configuration archive.")));
     }
     int formatVersion = 0;
     if (!ConfigurationSchema::parseIntegerVersion(manifest.value(QStringLiteral("format_version")),
@@ -296,7 +296,7 @@ ConfigurationArchiveReadResult ConfigurationArchive::read(const QString& archive
     if (formatVersion > kConfigArchiveFormatVersion) {
         return fail(configArchiveTranslate(QT_TRANSLATE_NOOP(
             "snow_shot::storage::ConfigurationArchive",
-            "The configuration archive was created by a newer version of Snow Shot.")));
+            "The configuration archive was created by a newer version of InuShot.")));
     }
     if (formatVersion != kConfigArchiveFormatVersion) {
         return fail(invalidArchive);
@@ -309,7 +309,7 @@ ConfigurationArchiveReadResult ConfigurationArchive::read(const QString& archive
     if (schemaVersion > ConfigurationSchema::currentVersion()) {
         return fail(configArchiveTranslate(QT_TRANSLATE_NOOP(
             "snow_shot::storage::ConfigurationArchive",
-            "The configuration archive was created by a newer version of Snow Shot.")));
+            "The configuration archive was created by a newer version of InuShot.")));
     }
     result.schemaVersion = schemaVersion;
     for (const auto& id : manifest.value(QStringLiteral("redacted_credentials")).toArray()) {

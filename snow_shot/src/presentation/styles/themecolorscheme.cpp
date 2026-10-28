@@ -373,6 +373,33 @@ adqt::theme::ThemeConfig toAdqtThemeConfig(const ThemeStyleConfig& config) {
     adqt::theme::ThemeConfig adqtConfig = adqt::theme::defaultThemeConfig(
         toAdqtScheme(config.appearance), toAdqtDensity(config.preset));
 
+    auto& surfaces = adqtConfig.surfaceOverrides;
+    if (config.appearance == ThemeAppearance::Dark) {
+        surfaces.colorBgBase = QColor(QStringLiteral("#111D2B"));
+        surfaces.colorBgLayout = QColor(QStringLiteral("#111F2E"));
+        surfaces.colorBgContainer = QColor(QStringLiteral("#182A3D"));
+        surfaces.colorBgContainerDisabled = QColor(QStringLiteral("#1B2F43"));
+        surfaces.colorBgElevated = QColor(QStringLiteral("#20374B"));
+        surfaces.colorFillSecondary = QColor(QStringLiteral("#2B4359"));
+        surfaces.colorFillTertiary = QColor(QStringLiteral("#233A50"));
+        surfaces.colorFillQuaternary = QColor(QStringLiteral("#1D3246"));
+        surfaces.colorBorder = QColor(QStringLiteral("#36516A"));
+        surfaces.colorBorderDisabled = QColor(QStringLiteral("#2B4359"));
+        surfaces.colorBorderSecondary = QColor(QStringLiteral("#2B4359"));
+    } else {
+        surfaces.colorBgBase = QColor(QStringLiteral("#F5F9FE"));
+        surfaces.colorBgLayout = QColor(QStringLiteral("#EAF3FC"));
+        surfaces.colorBgContainer = QColor(QStringLiteral("#F5FAFF"));
+        surfaces.colorBgContainerDisabled = QColor(QStringLiteral("#EAF3FA"));
+        surfaces.colorBgElevated = QColor(QStringLiteral("#FCFDFF"));
+        surfaces.colorFillSecondary = QColor(QStringLiteral("#E4EFFA"));
+        surfaces.colorFillTertiary = QColor(QStringLiteral("#EDF5FC"));
+        surfaces.colorFillQuaternary = QColor(QStringLiteral("#F4F8FD"));
+        surfaces.colorBorder = QColor(QStringLiteral("#C9DCEC"));
+        surfaces.colorBorderDisabled = QColor(QStringLiteral("#D8E7F4"));
+        surfaces.colorBorderSecondary = QColor(QStringLiteral("#D8E7F4"));
+    }
+
     if (config.colorPrimary.isValid()) {
         adqtConfig.primary = config.colorPrimary;
     }

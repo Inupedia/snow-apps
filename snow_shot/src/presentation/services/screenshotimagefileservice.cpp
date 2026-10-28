@@ -217,7 +217,7 @@ ScreenshotImageFileSaveResult ScreenshotImageFileService::savePdfAutomatically(
 }
 
 QString ScreenshotImageFileService::suggestedBaseName(const QDateTime& timestamp) {
-    return suggestedBaseName(QStringLiteral("SnowShot_{YYYY-MM-DD_HH-mm-ss}"), timestamp);
+    return suggestedBaseName(QStringLiteral("InuShot_{YYYY-MM-DD_HH-mm-ss}"), timestamp);
 }
 
 QString ScreenshotImageFileService::suggestedBaseName(
@@ -567,7 +567,7 @@ ScreenshotImageFileService::write(const ScreenshotImageRowSource& source, const 
 ScreenshotImageFileSaveResult ScreenshotImageFileService::saveAutomatically(
     const QImage& image, const QStringList& candidateDirectories, const QDateTime& timestamp) {
     return saveAutomatically(image, candidateDirectories, ScreenshotImageFileFormat::Png,
-                             QStringLiteral("SnowShot_{YYYY-MM-DD_HH-mm-ss}"), timestamp);
+                             QStringLiteral("InuShot_{YYYY-MM-DD_HH-mm-ss}"), timestamp);
 }
 
 ScreenshotImageFileSaveResult ScreenshotImageFileService::saveAutomatically(

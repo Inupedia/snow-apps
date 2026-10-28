@@ -28,7 +28,7 @@
     Quit
   ${EndIf}
 !else
-  !error "Unsupported Snow Shot installer architecture"
+  !error "Unsupported InuShot installer architecture"
 !endif
 !macroend
 !endif

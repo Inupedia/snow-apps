@@ -85,19 +85,19 @@ if(WIN32)
 endif()
 
 option(SNOW_SHOT_ENABLE_STRICT_COMPILE "Enable strict compiler warnings and treat warnings as errors." ON)
-option(SNOW_SHOT_BUILD_TESTS "Build Snow Shot test executables." OFF)
+option(SNOW_SHOT_BUILD_TESTS "Build InuShot test executables." OFF)
 option(SNOW_SHOT_BUILD_RUNTIME_TESTS
     "Build focused OCR and crash diagnostics tests without unrelated test targets." OFF)
 option(SNOW_SHOT_BUILD_IMAGE_CODEC_SMOKE_TEST
-    "Build the Snow Shot image-codec smoke test without the full QtTest suite." OFF)
-option(SNOW_SHOT_BUILD_BENCHMARKS "Build opt-in native Snow Shot benchmarks." OFF)
-option(SNOW_SHOT_ENABLE_MCP "Build and package the local Snow Shot MCP bridge." ON)
+    "Build the InuShot image-codec smoke test without the full QtTest suite." OFF)
+option(SNOW_SHOT_BUILD_BENCHMARKS "Build opt-in native InuShot benchmarks." OFF)
+option(SNOW_SHOT_ENABLE_MCP "Build and package the local InuShot MCP bridge." ON)
 option(SNOW_SHOT_SCROLLING_PERF_DETAIL "Compile detailed scrolling C++ and Rust timings." OFF)
-option(SNOW_SHOT_RELEASE_STATIC "Prefer static Snow Shot release linkage." OFF)
-option(SNOW_SHOT_QT_STATIC "Link Snow Shot against a static Qt build." OFF)
-set(SNOW_SHOT_WEBSITE_URL "https://snowshot.top" CACHE STRING "Public Snow Shot website URL.")
+option(SNOW_SHOT_RELEASE_STATIC "Prefer static InuShot release linkage." OFF)
+option(SNOW_SHOT_QT_STATIC "Link InuShot against a static Qt build." OFF)
+set(SNOW_SHOT_WEBSITE_URL "https://snowshot.top" CACHE STRING "Public InuShot website URL.")
 set(SNOW_SHOT_PROJECT_URL "https://github.com/mg-chao/snow-apps" CACHE STRING
-    "Public Snow Shot source repository URL.")
+    "Public InuShot source repository URL.")
 set(SNOW_SHOT_QQ_GROUP_3_URL "https://qm.qq.com/q/Ts3cwNdykW" CACHE STRING
     "QQ group 3 join URL.")
 unset(SNOW_SHOT_CAMERA_SHUTTER_AUDIO_SOURCE CACHE)
@@ -129,7 +129,7 @@ add_library(snow_shot_distribution STATIC
     src/app/distribution.cpp)
 target_include_directories(snow_shot_distribution PUBLIC include)
 target_link_libraries(snow_shot_distribution PUBLIC Qt6::Core)
-# Every Snow Shot target follows the same channel policy. Keep native SDK headers out of
+# Every InuShot target follows the same channel policy. Keep native SDK headers out of
 # the shared policy header so their macros cannot change unrelated callers' C++ tokens.
 link_libraries(snow_shot_distribution)
 
@@ -245,13 +245,13 @@ endif()
 if(NOT DEFINED SNOW_SHOT_API_BASE_URL OR SNOW_SHOT_API_BASE_URL STREQUAL "")
     if(CMAKE_CONFIGURATION_TYPES)
         set(SNOW_SHOT_API_BASE_URL "https://snowshot.top" CACHE STRING
-            "Snow Shot API base URL." FORCE)
+            "InuShot API base URL." FORCE)
     elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
         set(SNOW_SHOT_API_BASE_URL "http://localhost:8080" CACHE STRING
-            "Snow Shot API base URL." FORCE)
+            "InuShot API base URL." FORCE)
     else()
         set(SNOW_SHOT_API_BASE_URL "https://snowshot.top" CACHE STRING
-            "Snow Shot API base URL." FORCE)
+            "InuShot API base URL." FORCE)
     endif()
 endif()
 snow_find_qt_private(Gui)
@@ -394,7 +394,7 @@ snow_add_rust_executable(snow_ocr_process
 )
 
 # The MCP bridge is deliberately a small standalone process.  It only speaks
-# MCP over stdio and connects to an already running Snow Shot instance through
+# MCP over stdio and connects to an already running InuShot instance through
 # the per-user local endpoint published by the application.
 if(SNOW_SHOT_ENABLE_MCP)
     set(_snow_shot_mcp_features)
@@ -419,7 +419,7 @@ endif()
 set(SNOW_SHOT_SNOW_IMAGE_DIR
     "${SNOW_IMAGE_SOURCE_DIR}"
     CACHE PATH
-    "Path to the snow_image project used by Snow Shot."
+    "Path to the snow_image project used by InuShot."
 )
 if(NOT TARGET snow_image::snow_image)
     set(SNOW_IMAGE_BUILD_TESTS OFF CACHE BOOL "Build snow_image tests." FORCE)
@@ -435,7 +435,7 @@ if(NOT TARGET snow_image::snow_image)
 endif()
 if(NOT TARGET snow_image::snow_image_static)
     message(FATAL_ERROR
-        "Snow Shot requires the snow_image static target for its isolated image codec backend.")
+        "InuShot requires the snow_image static target for its isolated image codec backend.")
 endif()
 if(TARGET snow_image_static)
     set_property(TARGET snow_image_static PROPERTY POSITION_INDEPENDENT_CODE ON)
@@ -448,11 +448,11 @@ set(SNOW_SHOT_IMAGE_CODEC_BACKEND_SOURCES
 )
 if(SNOW_SHOT_RELEASE_STATIC AND SNOW_SHOT_QT_STATIC)
     set(SNOW_SHOT_IMAGE_CODEC_BACKEND_STATIC ON CACHE INTERNAL
-        "Link the Snow Shot image codec backend statically." FORCE)
+        "Link the InuShot image codec backend statically." FORCE)
     set(_SNOW_SHOT_IMAGE_CODEC_BACKEND_TYPE STATIC)
 else()
     set(SNOW_SHOT_IMAGE_CODEC_BACKEND_STATIC OFF CACHE INTERNAL
-        "Link the Snow Shot image codec backend statically." FORCE)
+        "Link the InuShot image codec backend statically." FORCE)
     set(_SNOW_SHOT_IMAGE_CODEC_BACKEND_TYPE SHARED)
 endif()
 add_library(snow_shot_image_codec_backend ${_SNOW_SHOT_IMAGE_CODEC_BACKEND_TYPE}
@@ -3478,7 +3478,7 @@ if(SNOW_SHOT_BUILD_TESTS)
         snow_shot_add_translations(snow-shot-macos-permission-guide-tests)
         set_target_properties(snow-shot-macos-permission-guide-tests PROPERTIES
             MACOSX_BUNDLE_GUI_IDENTIFIER "com.snowshot.tests.permission-guide"
-            MACOSX_BUNDLE_BUNDLE_NAME "Snow Shot Permission Guide")
+            MACOSX_BUNDLE_BUNDLE_NAME "InuShot Permission Guide")
         add_test(NAME snow-shot-macos-permission-guide-tests
             COMMAND snow-shot-macos-permission-guide-tests)
         set_tests_properties(snow-shot-macos-permission-guide-tests PROPERTIES
@@ -9518,7 +9518,7 @@ if(APPLE AND SNOW_SHOT_BUILD_BENCHMARKS)
         snow_shot_settings "-framework AppKit")
     set_target_properties(snow-shot-permission-guide-benchmark PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER "com.snowshot.tests.permission-guide-benchmark"
-        MACOSX_BUNDLE_BUNDLE_NAME "Snow Shot Permission Guide Benchmark")
+        MACOSX_BUNDLE_BUNDLE_NAME "InuShot Permission Guide Benchmark")
 endif()
 
 if(SNOW_SHOT_BUILD_BENCHMARKS)
@@ -10186,7 +10186,7 @@ if(SNOW_SHOT_ENABLE_MCP)
         COMMAND "${CMAKE_COMMAND}" -E copy_if_different
             "$<TARGET_FILE:snow_shot_mcp>"
             "$<TARGET_FILE_DIR:snow_shot>/$<TARGET_FILE_NAME:snow_shot_mcp>"
-        COMMENT "Staging Snow Shot MCP bridge"
+        COMMENT "Staging InuShot MCP bridge"
         VERBATIM
     )
 endif()
@@ -10719,7 +10719,7 @@ if(WIN32)
         set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
             ${SNOW_RUNTIME_FILES})
         set(SNOW_SHOT_FFMPEG_RUNTIME_FILES ${SNOW_RUNTIME_FILES}
-            CACHE INTERNAL "FFmpeg runtime files installed with Snow Shot.")
+            CACHE INTERNAL "FFmpeg runtime files installed with InuShot.")
         unset(SNOW_RUNTIME_FILES)
     endif()
 endif()
@@ -10898,7 +10898,7 @@ endif()
 if(WIN32 AND NOT SNOW_SHOT_QT_STATIC)
     set(_snow_shot_qt_deploy_arguments)
     # The release staging policy keeps only the platform and Schannel TLS
-    # plugins. Snow Shot uses its project-owned resources and statically linked
+    # plugins. InuShot uses its project-owned resources and statically linked
     # image codecs, so Qt's optional image, style, and generic plugins are not
     # needed in the installer.
     list(APPEND _snow_shot_qt_deploy_arguments
@@ -10956,7 +10956,7 @@ if(WIN32 AND NOT SNOW_SHOT_QT_STATIC)
     ]=])
 
     # windeployqt deploys optional Qt plugins based on broad module metadata.
-    # Snow Shot only needs the Windows platform integration and the Schannel
+    # InuShot only needs the Windows platform integration and the Schannel
     # TLS backend at runtime. Remove optional image, style, input,
     # network-information, icon-engine, and certificate-only backends.
     install(CODE [=[
@@ -10998,7 +10998,7 @@ if(WIN32)
         SOURCE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
         THIRD_PARTY_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/third-party-licenses/third-party"
         DESTINATION "${CMAKE_INSTALL_DATADIR}/snow-shot/licenses"
-        COMPONENT SnowShot PRODUCT "Snow Shot")
+        COMPONENT SnowShot PRODUCT "InuShot")
 else()
     install(FILES
         "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"

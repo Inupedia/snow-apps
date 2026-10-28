@@ -174,7 +174,7 @@ struct UpdateService::Impl {
                     return;
                 }
                 qWarning().noquote()
-                    << "Snow Shot updater service exited unexpectedly" << exitCode << exitStatus;
+                    << "InuShot updater service exited unexpectedly" << exitCode << exitStatus;
                 if (status.state == UpdateState::Checking ||
                     status.state == UpdateState::Downloading ||
                     status.state == UpdateState::Verifying ||

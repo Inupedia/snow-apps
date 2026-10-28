@@ -1,4 +1,4 @@
-# Stages the verified Snow Shot OCR asset payload (standalone OCR runtime plus
+# Stages the verified InuShot OCR asset payload (standalone OCR runtime plus
 # the PP-OCRv6 Small model) into a development build output directory.
 #
 # Packaged installers ship either this exact payload (offline variant) or just
@@ -26,7 +26,7 @@ foreach(_required IN ITEMS
     SNOW_OCR_DESTINATION
 )
     if(NOT DEFINED ${_required} OR "${${_required}}" STREQUAL "")
-        message(FATAL_ERROR "${_required} is required to stage Snow Shot OCR assets.")
+        message(FATAL_ERROR "${_required} is required to stage InuShot OCR assets.")
     endif()
 endforeach()
 
@@ -147,7 +147,7 @@ function(_snow_ocr_fetch _url _size _sha256 _dest _out)
     endif()
     get_filename_component(_dest_directory "${_dest}" DIRECTORY)
     file(MAKE_DIRECTORY "${_dest_directory}")
-    message(STATUS "Snow Shot OCR assets: downloading ${_url}")
+    message(STATUS "InuShot OCR assets: downloading ${_url}")
     file(DOWNLOAD "${_url}" "${_dest}.partial"
         STATUS _status
         TIMEOUT 600
@@ -160,7 +160,7 @@ function(_snow_ocr_fetch _url _size _sha256 _dest _out)
     if(NOT _status_code EQUAL 0)
         file(REMOVE "${_dest}.partial")
         message(WARNING
-            "Snow Shot OCR assets: download of ${_url} failed (${_status_text}). "
+            "InuShot OCR assets: download of ${_url} failed (${_status_text}). "
             "Text recognition will be unavailable until a build with network "
             "access stages it.")
         set(${_out} FALSE PARENT_SCOPE)
@@ -170,7 +170,7 @@ function(_snow_ocr_fetch _url _size _sha256 _dest _out)
     if(NOT _download_valid)
         file(REMOVE "${_dest}.partial")
         message(WARNING
-            "Snow Shot OCR assets: ${_url} failed SHA-256 verification.")
+            "InuShot OCR assets: ${_url} failed SHA-256 verification.")
         set(${_out} FALSE PARENT_SCOPE)
         return()
     endif()
@@ -243,7 +243,7 @@ endforeach()
 
 if(NOT _runtime_staged AND _archive_cached)
     message(STATUS
-        "Snow Shot OCR assets: extracting ${_archive_name} into the output directory")
+        "InuShot OCR assets: extracting ${_archive_name} into the output directory")
     file(MAKE_DIRECTORY "${_runtime_directory}")
     execute_process(
         COMMAND "${CMAKE_COMMAND}" -E tar xzf
@@ -253,7 +253,7 @@ if(NOT _runtime_staged AND _archive_cached)
     )
     if(NOT _extract_result EQUAL 0)
         message(WARNING
-            "Snow Shot OCR assets: could not extract ${_archive_name}.")
+            "InuShot OCR assets: could not extract ${_archive_name}.")
     endif()
 endif()
 
@@ -312,10 +312,10 @@ file(COPY_FILE "${SNOW_OCR_ASSET_MANIFEST}"
 
 if(NOT _runtime_ok OR NOT _models_ok)
     message(WARNING
-        "Snow Shot OCR assets are incomplete in ${SNOW_OCR_DESTINATION}; text "
+        "InuShot OCR assets are incomplete in ${SNOW_OCR_DESTINATION}; text "
         "recognition will report its components as unprepared. Rebuild with "
         "network access to stage them.")
 else()
     message(STATUS
-        "Snow Shot OCR assets are staged in ${SNOW_OCR_DESTINATION}")
+        "InuShot OCR assets are staged in ${SNOW_OCR_DESTINATION}")
 endif()

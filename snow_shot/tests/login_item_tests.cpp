@@ -177,9 +177,9 @@ void failuresAndEligibility() {
 }
 void launchAndPaths() {
     const QString user = QStringLiteral("/Users/example/Applications");
-    require(loginItemLocationAllowed(QStringLiteral("/Applications/Snow Shot.app"), user),
+    require(loginItemLocationAllowed(QStringLiteral("/Applications/InuShot.app"), user),
             "system Applications allowed");
-    require(loginItemLocationAllowed(user + QStringLiteral("/Snow Shot.app"), user),
+    require(loginItemLocationAllowed(user + QStringLiteral("/InuShot.app"), user),
             "user Applications allowed");
     for (const auto& path :
          {QStringLiteral("/Applications-other/Snow Shot.app"),

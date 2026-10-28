@@ -1,4 +1,4 @@
-# Snow Shot translations
+# InuShot translations
 
 Edit the Qt Linguist `.ts` catalogs in the feature directories. Each feature has
 `en_US`, `zh_CN`, and `zh_TW` catalogs. English is the source language and its

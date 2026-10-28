@@ -1,7 +1,7 @@
 # Installed Mini bundles retain the local OCR runtime on macOS. Models are
 # downloaded on demand; no model folders or Full helpers may be packaged.
 if(NOT DEFINED SNOW_SHOT_MINI_APP OR NOT IS_DIRECTORY "${SNOW_SHOT_MINI_APP}/Contents")
-    message(FATAL_ERROR "Snow Shot Mini bundle was not found")
+    message(FATAL_ERROR "InuShot Mini bundle was not found")
 endif()
 set(_mini_runtime "${SNOW_SHOT_MINI_APP}/Contents/MacOS")
 foreach(_mini_area IN ITEMS MacOS Resources)

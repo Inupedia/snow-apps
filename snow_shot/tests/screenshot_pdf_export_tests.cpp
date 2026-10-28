@@ -54,7 +54,7 @@ void validateStructure(const QByteArray& pdf, int pages = 1) {
             "PDF must contain its expected number of pages");
     require(pdf.contains("1 1 1 rg\n0 0 "), "PDF must explicitly paint a white page");
     require(pdf.contains("/Creator <feff0053006e006f0077002000530068006f0074>"),
-            "PDF creator must identify Snow Shot");
+            "PDF creator must identify InuShot");
 }
 void layoutRules() {
     for (QSize size :

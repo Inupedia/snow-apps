@@ -389,7 +389,7 @@ class ApplicationController::Impl {
                                "%1 %2 is available. Open About for update options.")
                                .arg(edition::productName(), version)
                          : ApplicationController::tr(
-                               "Snow Shot %1 is available. Open About for update options.")
+                               "InuShot %1 is available. Open About for update options.")
                                .arg(version)));
             });
 #ifndef Q_OS_MACOS
@@ -400,7 +400,7 @@ class ApplicationController::Impl {
                            "An update is ready. Open About to restart and update %1.")
                            .arg(edition::productName())
                      : ApplicationController::tr(
-                           "An update is ready. Open About to restart and update Snow Shot.")));
+                           "An update is ready. Open About to restart and update InuShot.")));
         });
 #endif
         platform::windows::setAdministratorRestartGuard([this] { return restartAllowed(); });
@@ -1100,7 +1100,7 @@ class ApplicationController::Impl {
         }
         QString error;
         if (!mcpServer->start(&error))
-            qWarning("Unable to start Snow Shot MCP server: %s", qPrintable(error));
+            qWarning("Unable to start InuShot MCP server: %s", qPrintable(error));
     }
     bool cancelMcpSource(quint64 owner, const QString& requestId) {
         const auto key = QString::number(owner) + u':' + requestId;

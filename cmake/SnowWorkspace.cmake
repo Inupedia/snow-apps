@@ -129,19 +129,19 @@ function(snow_workspace_configure_options)
     if(SNOW_APPS_RELEASE_STATIC AND VCPKG_TARGET_TRIPLET MATCHES "^(x64|arm64)-windows$")
         message(WARNING
             "SNOW_APPS_RELEASE_STATIC is enabled with ${VCPKG_TARGET_TRIPLET}. "
-            "Use the matching Snow Shot release preset for static vcpkg libraries.")
+            "Use the matching InuShot release preset for static vcpkg libraries.")
     endif()
 
     if(SNOW_APPS_API_BASE_URL STREQUAL "")
         if(CMAKE_CONFIGURATION_TYPES)
             set(SNOW_APPS_API_BASE_URL "https://snowshot.top" CACHE STRING
-                "Default Snow Shot API base URL. Set explicitly for reproducible builds." FORCE)
+                "Default InuShot API base URL. Set explicitly for reproducible builds." FORCE)
         elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
             set(SNOW_APPS_API_BASE_URL "http://localhost:8080" CACHE STRING
-                "Default Snow Shot API base URL." FORCE)
+                "Default InuShot API base URL." FORCE)
         else()
             set(SNOW_APPS_API_BASE_URL "https://snowshot.top" CACHE STRING
-                "Default Snow Shot API base URL." FORCE)
+                "Default InuShot API base URL." FORCE)
         endif()
     endif()
 endfunction()
