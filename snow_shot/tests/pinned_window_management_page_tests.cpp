@@ -17,6 +17,7 @@
 #include "widgets/image.h"
 #include "widgets/context_menu.h"
 #include "widgets/message.h"
+#include "history_sticky_selection_test_support.h"
 #include <QElapsedTimer>
 #include <QTimeZone>
 #include <QThread>
@@ -124,6 +125,35 @@ class SkinBackdrop final : public QWidget {
         painter.fillRect(rect(), color);
     }
 };
+
+void selectionPanelSticksWhileScrolling() {
+    Fixture fixture;
+    for (int index = 0; index < 55; ++index) {
+        storage::PinnedWindowSummary item;
+        item.id = QStringLiteral("sticky-%1").arg(index);
+        item.createdUtc =
+            QDateTime(QDate(2026, 9, 24), QTime(0, 30), QTimeZone::UTC).addSecs(-index);
+        fixture.items.push_back(item);
+    }
+    storage::InterfaceSettings settings;
+    const int originalPageSize = settings.pinnedWindowManagementPageSize();
+    const auto restorePageSize =
+        qScopeGuard([&] { settings.setPinnedWindowManagementPageSize(originalPageSize); });
+    for (const int pageSize : {10, 20, 50}) {
+        require(settings.setPinnedWindowManagementPageSize(pageSize),
+                "save pinned fixture page size");
+        PinnedWindowManagementPageWidget page(&fixture, nullptr);
+        require(page.findChild<adqt::widgets::AdPagination*>()->pageSize() == pageSize,
+                "sticky pinned fixture restores the saved page size");
+        page.resize(980, 640);
+        page.show();
+        history_sticky_test::settleLayout();
+        auto* row = page.findChild<QFrame*>(QStringLiteral("pinnedManagementRecord"));
+        require(row != nullptr, "sticky pinned fixture has an entry");
+        history_sticky_test::verifySelection(page, QStringLiteral("pinnedManagement"),
+                                             row->findChild<adqt::widgets::AdCheckbox*>(), require);
+    }
+}
 
 class StyleChangeRecorder final : public QObject {
   public:
@@ -1001,6 +1031,11 @@ int main(int argc, char** argv) {
                 .initialize({directory.path(), directory.path(), 30000})
                 .success,
             "isolated storage");
+    if (application.arguments().contains(QStringLiteral("--sticky-only"))) {
+        selectionPanelSticksWhileScrolling();
+        storage::ApplicationStorage::instance().shutdown();
+        return 0;
+    }
     pinnedEntryMoreActionsUseOnlyTheirRecord();
     pinnedCollageSelectionKeepsRecordOrder();
     batchPinRequiresSingleGroup();
@@ -1026,6 +1061,7 @@ int main(int argc, char** argv) {
     pinnedDescriptionsUseSmallThemeText(fixture.items);
     pinnedThemeChangesDoNotRestyleTwice(fixture.items);
     pinnedRowsRespectSkinMask(fixture.items);
+    selectionPanelSticksWhileScrolling();
     pinnedChangesRefreshOnlyVisiblePages(fixture.items);
     pinnedHiddenRecordsUseShowAction(first);
     pinnedFailedPreviewsRetryOnRefresh(fixture.items);

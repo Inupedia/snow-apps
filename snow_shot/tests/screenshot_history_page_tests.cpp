@@ -4,6 +4,7 @@
 #include "snow_shot/presentation/components/pinnedwindowmanagementpagewidget.h"
 #include "snow_shot/storage/applicationstorage.h"
 #include "snow_shot/storage/capturehistoryrepository.h"
+#include "snow_shot/storage/settingsadapters.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/presentation/historypinplacement.h"
 #include "snow_shot/presentation/screenshotclipboardcontent.h"
@@ -23,6 +24,7 @@
 #include "widgets/popconfirm.h"
 #include "widgets/message.h"
 #include "widgets/scroll_area.h"
+#include "history_sticky_selection_test_support.h"
 #include "snow_shot/storage/storageusagetracker.h"
 
 #include <QApplication>
@@ -184,6 +186,28 @@ class SkinBackdrop final : public QWidget {
         painter.fillRect(rect(), color);
     }
 };
+
+void selectionPanelSticksWhileScrolling() {
+    MutableHistoryDataSource source;
+    source.setRecords(historyRecords(55));
+    storage::InterfaceSettings settings;
+    const int originalPageSize = settings.screenshotHistoryPageSize();
+    const auto restorePageSize =
+        qScopeGuard([&] { settings.setScreenshotHistoryPageSize(originalPageSize); });
+    for (const int pageSize : {10, 20, 50}) {
+        require(settings.setScreenshotHistoryPageSize(pageSize), "save history fixture page size");
+        ScreenshotHistoryPageWidget page(&source, nullptr);
+        require(page.findChild<adqt::widgets::AdPagination*>()->pageSize() == pageSize,
+                "sticky history fixture restores the saved page size");
+        page.resize(980, 640);
+        page.show();
+        history_sticky_test::settleLayout();
+        auto* row = page.findChild<QWidget*>(QStringLiteral("screenshotHistoryEntry-record-0"));
+        require(row != nullptr, "sticky history fixture has an entry");
+        history_sticky_test::verifySelection(page, QStringLiteral("screenshotHistory"),
+                                             row->findChild<adqt::widgets::AdCheckbox*>(), require);
+    }
+}
 
 class StyleChangeRecorder final : public QObject {
   public:
@@ -1974,6 +1998,12 @@ int main(int argc, char** argv) {
                 .initialize({temporary.path(), temporary.path(), 8000})
                 .success,
             "isolated application storage must initialize");
+    if (application.arguments().contains(QStringLiteral("--sticky-only"))) {
+        selectionPanelSticksWhileScrolling();
+        storage::ApplicationStorage::instance().shutdown();
+        QCoreApplication::removeTranslator(&englishTranslator);
+        return 0;
+    }
     if (application.arguments().contains(QStringLiteral("--page-size-only"))) {
         pageSizesRememberedIndependently(temporary.path());
         storage::ApplicationStorage::instance().shutdown();
@@ -2013,6 +2043,7 @@ int main(int argc, char** argv) {
     entryDescriptionsUseSmallThemeText();
     historyThemeChangesDoNotRestyleTwice();
     historyRowsRespectSkinMask();
+    selectionPanelSticksWhileScrolling();
     continuousHistoryPreview();
     emptyStateRemainsVisibleAfterFilteringEmptyHistory();
     pageTextAndEmptyStateMatchPinnedWindowManagement();

@@ -2760,9 +2760,15 @@ if(SNOW_SHOT_BUILD_TESTS)
     )
     add_test(NAME snow-shot-screenshot-history-page-loading-tests
         COMMAND snow-shot-screenshot-history-page-tests --loading-only)
+    add_test(NAME snow-shot-history-sticky-selection-tests
+        COMMAND snow-shot-screenshot-history-page-tests --sticky-only)
+    add_test(NAME snow-shot-pinned-sticky-selection-tests
+        COMMAND snow-shot-pinned-window-management-page-tests --sticky-only)
     add_test(NAME snow-shot-history-page-size-tests
         COMMAND snow-shot-screenshot-history-page-tests --page-size-only -platform offscreen)
-    set_tests_properties(snow-shot-history-page-size-tests PROPERTIES LABELS unit
+    set_tests_properties(snow-shot-history-sticky-selection-tests
+        snow-shot-pinned-sticky-selection-tests snow-shot-history-page-size-tests PROPERTIES
+        LABELS unit
         ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT}"
         ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
     add_test(NAME snow-shot-history-entry-layout-tests
