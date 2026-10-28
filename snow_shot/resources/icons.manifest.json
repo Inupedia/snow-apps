@@ -492,7 +492,7 @@
       "symbol": "AlignCenter",
       "name": "custom-align-center",
       "source": "../src/presentation/components/icons/resources/custom-align-center.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -501,7 +501,7 @@
       "symbol": "Apartment",
       "name": "custom-apartment",
       "source": "../src/presentation/components/icons/resources/custom-apartment.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -510,16 +510,15 @@
       "symbol": "ApplicationShortcutsNav",
       "name": "custom-application-shortcuts-nav",
       "source": "../src/presentation/components/icons/resources/custom-application-shortcuts-nav.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "Appstore",
       "name": "custom-appstore",
       "source": "../src/presentation/components/icons/resources/custom-appstore.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -528,7 +527,7 @@
       "symbol": "ArrowDown",
       "name": "custom-arrow-down",
       "source": "../src/presentation/components/icons/resources/custom-arrow-down.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -537,7 +536,7 @@
       "symbol": "ArrowLeft",
       "name": "custom-arrow-left",
       "source": "../src/presentation/components/icons/resources/custom-arrow-left.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -546,7 +545,7 @@
       "symbol": "ArrowRight",
       "name": "custom-arrow-right",
       "source": "../src/presentation/components/icons/resources/custom-arrow-right.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -555,7 +554,7 @@
       "symbol": "ArrowUp",
       "name": "custom-arrow-up",
       "source": "../src/presentation/components/icons/resources/custom-arrow-up.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -564,7 +563,7 @@
       "symbol": "BgColors",
       "name": "custom-bg-colors",
       "source": "../src/presentation/components/icons/resources/custom-bg-colors.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -573,7 +572,7 @@
       "symbol": "Bold",
       "name": "custom-bold",
       "source": "../src/presentation/components/icons/resources/custom-bold.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -582,7 +581,7 @@
       "symbol": "Border",
       "name": "custom-border",
       "source": "../src/presentation/components/icons/resources/custom-border.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -591,7 +590,7 @@
       "symbol": "CaretRight",
       "name": "custom-caret-right",
       "source": "../src/presentation/components/icons/resources/custom-caret-right.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -600,7 +599,7 @@
       "symbol": "Check",
       "name": "custom-check",
       "source": "../src/presentation/components/icons/resources/custom-check.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -609,7 +608,7 @@
       "symbol": "CheckCircle",
       "name": "custom-check-circle",
       "source": "../src/presentation/components/icons/resources/custom-check-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -618,7 +617,7 @@
       "symbol": "Clear",
       "name": "custom-clear",
       "source": "../src/presentation/components/icons/resources/custom-clear.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -627,7 +626,7 @@
       "symbol": "ClockCircle",
       "name": "custom-clock-circle",
       "source": "../src/presentation/components/icons/resources/custom-clock-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -636,7 +635,7 @@
       "symbol": "Close",
       "name": "custom-close",
       "source": "../src/presentation/components/icons/resources/custom-close.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -645,7 +644,7 @@
       "symbol": "CloseCircle",
       "name": "custom-close-circle",
       "source": "../src/presentation/components/icons/resources/custom-close-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -654,7 +653,7 @@
       "symbol": "CloudDownload",
       "name": "custom-cloud-download",
       "source": "../src/presentation/components/icons/resources/custom-cloud-download.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -663,7 +662,7 @@
       "symbol": "CloudUpload",
       "name": "custom-cloud-upload",
       "source": "../src/presentation/components/icons/resources/custom-cloud-upload.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -672,7 +671,7 @@
       "symbol": "Code",
       "name": "custom-code",
       "source": "../src/presentation/components/icons/resources/custom-code.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -681,7 +680,7 @@
       "symbol": "Comment",
       "name": "custom-comment",
       "source": "../src/presentation/components/icons/resources/custom-comment.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -690,7 +689,7 @@
       "symbol": "Compress",
       "name": "custom-compress",
       "source": "../src/presentation/components/icons/resources/custom-compress.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -699,7 +698,7 @@
       "symbol": "Control",
       "name": "custom-control",
       "source": "../src/presentation/components/icons/resources/custom-control.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -708,7 +707,7 @@
       "symbol": "Copy",
       "name": "custom-copy",
       "source": "../src/presentation/components/icons/resources/custom-copy.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -717,7 +716,7 @@
       "symbol": "DeleteRow",
       "name": "custom-delete-row",
       "source": "../src/presentation/components/icons/resources/custom-delete-row.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -726,7 +725,7 @@
       "symbol": "Desktop",
       "name": "custom-desktop",
       "source": "../src/presentation/components/icons/resources/custom-desktop.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -735,16 +734,15 @@
       "symbol": "Down",
       "name": "custom-down",
       "source": "../src/presentation/components/icons/resources/custom-down.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "Download",
       "name": "custom-download",
       "source": "../src/presentation/components/icons/resources/custom-download.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -753,7 +751,7 @@
       "symbol": "Edit",
       "name": "custom-edit",
       "source": "../src/presentation/components/icons/resources/custom-edit.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -762,7 +760,7 @@
       "symbol": "Ellipsis",
       "name": "custom-ellipsis",
       "source": "../src/presentation/components/icons/resources/custom-ellipsis.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -771,7 +769,7 @@
       "symbol": "ExclamationCircle",
       "name": "custom-exclamation-circle",
       "source": "../src/presentation/components/icons/resources/custom-exclamation-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -780,7 +778,7 @@
       "symbol": "Expand",
       "name": "custom-expand",
       "source": "../src/presentation/components/icons/resources/custom-expand.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -789,7 +787,7 @@
       "symbol": "Export",
       "name": "custom-export",
       "source": "../src/presentation/components/icons/resources/custom-export.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -798,7 +796,7 @@
       "symbol": "Eye",
       "name": "custom-eye",
       "source": "../src/presentation/components/icons/resources/custom-eye.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -807,7 +805,7 @@
       "symbol": "EyeInvisible",
       "name": "custom-eye-invisible",
       "source": "../src/presentation/components/icons/resources/custom-eye-invisible.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -816,7 +814,7 @@
       "symbol": "FileAdd",
       "name": "custom-file-add",
       "source": "../src/presentation/components/icons/resources/custom-file-add.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -825,7 +823,7 @@
       "symbol": "FileImage",
       "name": "custom-file-image",
       "source": "../src/presentation/components/icons/resources/custom-file-image.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -834,7 +832,7 @@
       "symbol": "FileText",
       "name": "custom-file-text",
       "source": "../src/presentation/components/icons/resources/custom-file-text.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -843,7 +841,7 @@
       "symbol": "FolderAdd",
       "name": "custom-folder-add",
       "source": "../src/presentation/components/icons/resources/custom-folder-add.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -852,7 +850,7 @@
       "symbol": "FolderOpen",
       "name": "custom-folder-open",
       "source": "../src/presentation/components/icons/resources/custom-folder-open.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -861,7 +859,7 @@
       "symbol": "Fullscreen",
       "name": "custom-fullscreen",
       "source": "../src/presentation/components/icons/resources/custom-fullscreen.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -870,7 +868,7 @@
       "symbol": "Function",
       "name": "custom-function",
       "source": "../src/presentation/components/icons/resources/custom-function.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -879,7 +877,7 @@
       "symbol": "Global",
       "name": "custom-global",
       "source": "../src/presentation/components/icons/resources/custom-global.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -888,16 +886,15 @@
       "symbol": "GlobalMouseNav",
       "name": "custom-global-mouse-nav",
       "source": "../src/presentation/components/icons/resources/custom-global-mouse-nav.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "Heart",
       "name": "custom-heart",
       "source": "../src/presentation/components/icons/resources/custom-heart.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -906,7 +903,7 @@
       "symbol": "Highlight",
       "name": "custom-highlight",
       "source": "../src/presentation/components/icons/resources/custom-highlight.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -915,7 +912,7 @@
       "symbol": "History",
       "name": "custom-history",
       "source": "../src/presentation/components/icons/resources/custom-history.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -924,7 +921,7 @@
       "symbol": "Holder",
       "name": "custom-holder",
       "source": "../src/presentation/components/icons/resources/custom-holder.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -933,7 +930,7 @@
       "symbol": "IconDelete",
       "name": "custom-icon-delete",
       "source": "../src/presentation/components/icons/resources/custom-icon-delete.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -942,7 +939,7 @@
       "symbol": "Inbox",
       "name": "custom-inbox",
       "source": "../src/presentation/components/icons/resources/custom-inbox.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -951,7 +948,7 @@
       "symbol": "InfoCircle",
       "name": "custom-info-circle",
       "source": "../src/presentation/components/icons/resources/custom-info-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -960,7 +957,7 @@
       "symbol": "Italic",
       "name": "custom-italic",
       "source": "../src/presentation/components/icons/resources/custom-italic.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -969,7 +966,7 @@
       "symbol": "Left",
       "name": "custom-left",
       "source": "../src/presentation/components/icons/resources/custom-left.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -978,7 +975,7 @@
       "symbol": "Link",
       "name": "custom-link",
       "source": "../src/presentation/components/icons/resources/custom-link.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -987,7 +984,7 @@
       "symbol": "Lock",
       "name": "custom-lock",
       "source": "../src/presentation/components/icons/resources/custom-lock.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -996,7 +993,7 @@
       "symbol": "MacCommand",
       "name": "custom-mac-command",
       "source": "../src/presentation/components/icons/resources/custom-mac-command.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1005,7 +1002,7 @@
       "symbol": "MenuFold",
       "name": "custom-menu-fold",
       "source": "../src/presentation/components/icons/resources/custom-menu-fold.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1014,7 +1011,7 @@
       "symbol": "MenuUnfold",
       "name": "custom-menu-unfold",
       "source": "../src/presentation/components/icons/resources/custom-menu-unfold.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1023,7 +1020,7 @@
       "symbol": "MergeCells",
       "name": "custom-merge-cells",
       "source": "../src/presentation/components/icons/resources/custom-merge-cells.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1032,7 +1029,7 @@
       "symbol": "Minus",
       "name": "custom-minus",
       "source": "../src/presentation/components/icons/resources/custom-minus.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1041,7 +1038,7 @@
       "symbol": "More",
       "name": "custom-more",
       "source": "../src/presentation/components/icons/resources/custom-more.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1050,7 +1047,7 @@
       "symbol": "Number",
       "name": "custom-number",
       "source": "../src/presentation/components/icons/resources/custom-number.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1059,7 +1056,7 @@
       "symbol": "OneToOne",
       "name": "custom-one-to-one",
       "source": "../src/presentation/components/icons/resources/custom-one-to-one.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1068,7 +1065,7 @@
       "symbol": "Pause",
       "name": "custom-pause",
       "source": "../src/presentation/components/icons/resources/custom-pause.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1077,7 +1074,7 @@
       "symbol": "PauseCircle",
       "name": "custom-pause-circle",
       "source": "../src/presentation/components/icons/resources/custom-pause-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1086,7 +1083,7 @@
       "symbol": "Percentage",
       "name": "custom-percentage",
       "source": "../src/presentation/components/icons/resources/custom-percentage.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1095,7 +1092,7 @@
       "symbol": "Picture",
       "name": "custom-picture",
       "source": "../src/presentation/components/icons/resources/custom-picture.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1104,25 +1101,23 @@
       "symbol": "PinManagementNav",
       "name": "custom-pin-management-nav",
       "source": "../src/presentation/components/icons/resources/custom-pin-management-nav.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "PinScreenNav",
       "name": "custom-pin-screen-nav",
       "source": "../src/presentation/components/icons/resources/custom-pin-screen-nav.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "PlayCircle",
       "name": "custom-play-circle",
       "source": "../src/presentation/components/icons/resources/custom-play-circle.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1131,7 +1126,7 @@
       "symbol": "Plus",
       "name": "custom-plus",
       "source": "../src/presentation/components/icons/resources/custom-plus.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1140,7 +1135,7 @@
       "symbol": "Printer",
       "name": "custom-printer",
       "source": "../src/presentation/components/icons/resources/custom-printer.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1149,7 +1144,7 @@
       "symbol": "Qq",
       "name": "custom-qq",
       "source": "../src/presentation/components/icons/resources/custom-qq.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1158,7 +1153,7 @@
       "symbol": "Redo",
       "name": "custom-redo",
       "source": "../src/presentation/components/icons/resources/custom-redo.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1167,7 +1162,7 @@
       "symbol": "Reload",
       "name": "custom-reload",
       "source": "../src/presentation/components/icons/resources/custom-reload.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1176,7 +1171,7 @@
       "symbol": "Rest",
       "name": "custom-rest",
       "source": "../src/presentation/components/icons/resources/custom-rest.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1185,7 +1180,7 @@
       "symbol": "Right",
       "name": "custom-right",
       "source": "../src/presentation/components/icons/resources/custom-right.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1194,7 +1189,7 @@
       "symbol": "RotateLeft",
       "name": "custom-rotate-left",
       "source": "../src/presentation/components/icons/resources/custom-rotate-left.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1203,7 +1198,7 @@
       "symbol": "RotateRight",
       "name": "custom-rotate-right",
       "source": "../src/presentation/components/icons/resources/custom-rotate-right.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1212,7 +1207,7 @@
       "symbol": "SafetyCertificate",
       "name": "custom-safety-certificate",
       "source": "../src/presentation/components/icons/resources/custom-safety-certificate.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1221,7 +1216,7 @@
       "symbol": "Scissor",
       "name": "custom-scissor",
       "source": "../src/presentation/components/icons/resources/custom-scissor.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1230,18 +1225,16 @@
       "symbol": "ScreenRecordingNav",
       "name": "custom-screen-recording-nav",
       "source": "../src/presentation/components/icons/resources/custom-screen-recording-nav.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "Search",
       "name": "custom-search",
       "source": "../src/presentation/components/icons/resources/custom-search.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
@@ -1257,7 +1250,7 @@
       "symbol": "Snippets",
       "name": "custom-snippets",
       "source": "../src/presentation/components/icons/resources/custom-snippets.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1266,7 +1259,7 @@
       "symbol": "Sound",
       "name": "custom-sound",
       "source": "../src/presentation/components/icons/resources/custom-sound.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1275,7 +1268,7 @@
       "symbol": "SplitCells",
       "name": "custom-split-cells",
       "source": "../src/presentation/components/icons/resources/custom-split-cells.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1284,7 +1277,7 @@
       "symbol": "Stop",
       "name": "custom-stop",
       "source": "../src/presentation/components/icons/resources/custom-stop.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1293,7 +1286,7 @@
       "symbol": "Swap",
       "name": "custom-swap",
       "source": "../src/presentation/components/icons/resources/custom-swap.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1302,7 +1295,7 @@
       "symbol": "Sync",
       "name": "custom-sync",
       "source": "../src/presentation/components/icons/resources/custom-sync.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1311,16 +1304,15 @@
       "symbol": "TextRecognitionTranslationNav",
       "name": "custom-text-recognition-translation-nav",
       "source": "../src/presentation/components/icons/resources/custom-text-recognition-translation-nav.svg",
-      "colorModel": "fullColor",
-      "fit": "contain",
-      "allowEmbeddedDataImages": true
+      "colorModel": "monochrome",
+      "fit": "contain"
     },
     {
       "variant": "outlined",
       "symbol": "Thunderbolt",
       "name": "custom-thunderbolt",
       "source": "../src/presentation/components/icons/resources/custom-thunderbolt.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1329,7 +1321,7 @@
       "symbol": "ToTop",
       "name": "custom-to-top",
       "source": "../src/presentation/components/icons/resources/custom-to-top.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1338,7 +1330,7 @@
       "symbol": "Translation",
       "name": "custom-translation",
       "source": "../src/presentation/components/icons/resources/custom-translation.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1347,7 +1339,7 @@
       "symbol": "Undo",
       "name": "custom-undo",
       "source": "../src/presentation/components/icons/resources/custom-undo.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1356,7 +1348,7 @@
       "symbol": "VerticalAlignBottom",
       "name": "custom-vertical-align-bottom",
       "source": "../src/presentation/components/icons/resources/custom-vertical-align-bottom.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1365,7 +1357,7 @@
       "symbol": "VerticalAlignTop",
       "name": "custom-vertical-align-top",
       "source": "../src/presentation/components/icons/resources/custom-vertical-align-top.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1374,7 +1366,7 @@
       "symbol": "ZoomIn",
       "name": "custom-zoom-in",
       "source": "../src/presentation/components/icons/resources/custom-zoom-in.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1383,7 +1375,7 @@
       "symbol": "ZoomOut",
       "name": "custom-zoom-out",
       "source": "../src/presentation/components/icons/resources/custom-zoom-out.svg",
-      "colorModel": "fullColor",
+      "colorModel": "monochrome",
       "fit": "contain",
       "allowEmbeddedDataImages": true
     },
@@ -1663,7 +1655,7 @@
       "variant": "outlined",
       "symbol": "Keyboard",
       "name": "keyboard",
-      "source": "../src/presentation/components/icons/resources/keyboard.svg",
+      "source": "../src/presentation/components/icons/resources/custom-application-shortcuts-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -1759,7 +1751,7 @@
       "variant": "outlined",
       "symbol": "Mouse",
       "name": "mouse",
-      "source": "../src/presentation/components/icons/resources/mouse.svg",
+      "source": "../src/presentation/components/icons/resources/custom-global-mouse-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -1783,9 +1775,10 @@
       "variant": "outlined",
       "symbol": "OcrTranslate",
       "name": "ocr-translate",
-      "source": "../src/presentation/components/icons/resources/ocr-translate.svg",
+      "source": "../src/presentation/components/icons/resources/custom-translation.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
@@ -1823,7 +1816,7 @@
       "variant": "outlined",
       "symbol": "PinToScreen",
       "name": "pin-to-screen",
-      "source": "../src/presentation/components/icons/resources/pin-to-screen.svg",
+      "source": "../src/presentation/components/icons/resources/custom-pin-screen-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -1831,7 +1824,7 @@
       "variant": "outlined",
       "symbol": "PinToScreenManagement",
       "name": "pin-to-screen-management",
-      "source": "../src/presentation/components/icons/resources/pin-to-screen-management.svg",
+      "source": "../src/presentation/components/icons/resources/custom-pin-management-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -1855,15 +1848,16 @@
       "variant": "outlined",
       "symbol": "QuickSave",
       "name": "quick-save",
-      "source": "../src/presentation/components/icons/resources/quick-save.svg",
+      "source": "../src/presentation/components/icons/resources/custom-download.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
       "symbol": "RecordScreen",
       "name": "record-screen",
-      "source": "../src/presentation/components/icons/resources/record-screen.svg",
+      "source": "../src/presentation/components/icons/resources/custom-screen-recording-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -2031,9 +2025,10 @@
       "variant": "outlined",
       "symbol": "Save",
       "name": "save",
-      "source": "../src/presentation/components/icons/resources/save.svg",
+      "source": "../src/presentation/components/icons/resources/custom-file-add.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
@@ -2047,33 +2042,37 @@
       "variant": "outlined",
       "symbol": "ScreenshotCopy",
       "name": "screenshot-copy",
-      "source": "../src/presentation/components/icons/resources/screenshot-copy.svg",
+      "source": "../src/presentation/components/icons/resources/custom-copy.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
       "symbol": "ScreenshotDelay",
       "name": "screenshot-delay",
-      "source": "../src/presentation/components/icons/resources/screenshot-delay.svg",
+      "source": "../src/presentation/components/icons/resources/custom-clock-circle.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
       "symbol": "ScreenshotFocusedWindow",
       "name": "screenshot-focused-window",
-      "source": "../src/presentation/components/icons/resources/screenshot-focused-window.svg",
+      "source": "../src/presentation/components/icons/resources/custom-desktop.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
       "symbol": "ScreenshotFullScreen",
       "name": "screenshot-full-screen",
-      "source": "../src/presentation/components/icons/resources/screenshot-full-screen.svg",
+      "source": "../src/presentation/components/icons/resources/custom-fullscreen.svg",
       "colorModel": "monochrome",
-      "fit": "contain"
+      "fit": "contain",
+      "allowEmbeddedDataImages": true
     },
     {
       "variant": "outlined",
@@ -2327,7 +2326,7 @@
       "variant": "outlined",
       "symbol": "TextRecognition",
       "name": "text-recognition",
-      "source": "../src/presentation/components/icons/resources/text-recognition.svg",
+      "source": "../src/presentation/components/icons/resources/custom-text-recognition-translation-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -2479,7 +2478,7 @@
       "variant": "outlined",
       "symbol": "WheelMouse",
       "name": "wheel-mouse",
-      "source": "../src/presentation/components/icons/resources/wheel-mouse.svg",
+      "source": "../src/presentation/components/icons/resources/custom-global-mouse-nav.svg",
       "colorModel": "monochrome",
       "fit": "contain"
     },
@@ -2503,12 +2502,10 @@
       "variant": "twotone",
       "symbol": "ScreenshotFeature",
       "name": "screenshot-feature",
-      "source": "../src/presentation/components/icons/resources/screenshot-feature.svg",
-      "colorModel": "twoTone",
+      "source": "../src/presentation/components/icons/resources/custom-picture.svg",
+      "colorModel": "monochrome",
       "fit": "contain",
-      "defaultColors": {
-        "secondary": "#9254DE"
-      }
+      "allowEmbeddedDataImages": true
     }
   ]
 }

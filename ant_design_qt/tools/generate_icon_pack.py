@@ -179,8 +179,8 @@ def _validate_svg(path: Path, model: str, allow_data_images: bool) -> str:
                 image_count += 1
                 if not value.startswith("data:"):
                     raise ManifestError(f"{path} contains a non-data image reference")
-    if image_count and (model != "fullColor" or not allow_data_images):
-        raise ManifestError(f"{path} embeds data images without fullColor allowEmbeddedDataImages")
+    if image_count and not allow_data_images:
+        raise ManifestError(f"{path} embeds data images without allowEmbeddedDataImages")
     return _normalize_slots(source, model) + "\n"
 
 

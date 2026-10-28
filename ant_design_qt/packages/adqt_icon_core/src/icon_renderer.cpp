@@ -1,6 +1,7 @@
 #include "icon_renderer.h"
 
 #include <QIconEngine>
+#include <QImage>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QPainter>
@@ -357,12 +358,40 @@ QImage rasterize(const IconDescriptor& descriptor, const ResolvedColors& colors,
   QImage image(physical, QImage::Format_ARGB32_Premultiplied);
   image.fill(Qt::transparent);
   QPainter painter(&image);
-  painter.setRenderHint(QPainter::Antialiasing, true);
+  painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform, true);
   const QRectF bounds(QPointF(0, 0), QSizeF(physical));
   const QRectF target = fit == IconFit::Stretch
                             ? bounds
                             : alignedContainedRect(renderer.viewBoxF().size(), bounds, alignment);
   renderer.render(&painter, target);
+  painter.end();
+
+  if (descriptor.colorModel == IconColorModel::Monochrome &&
+      stringFromView(descriptor.svg).contains(QStringLiteral("data:image/png;base64,"))) {
+    const QString svg = stringFromView(descriptor.svg);
+    const bool useAlphaMask = svg.contains(QStringLiteral("data-adqt-tint=\"alpha\""));
+    image = image.convertToFormat(QImage::Format_ARGB32);
+    const QColor tint = colors.primary.isValid() ? colors.primary : QColor(Qt::black);
+    for (int y = 0; y < image.height(); ++y) {
+      auto* line = reinterpret_cast<QRgb*>(image.scanLine(y));
+      for (int x = 0; x < image.width(); ++x) {
+        const QRgb sourcePixel = line[x];
+        int opacity = qAlpha(sourcePixel);
+        if (!useAlphaMask) {
+          constexpr int kOpaqueInkLuma = 42;
+          constexpr int kTransparentInkLuma = 112;
+          const int luma = qGray(sourcePixel);
+          const int inkStrength =
+              qBound(0, (kTransparentInkLuma - luma) * 255 /
+                           (kTransparentInkLuma - kOpaqueInkLuma),
+                     255);
+          opacity = (opacity * inkStrength + 127) / 255;
+        }
+        line[x] = qRgba(tint.red(), tint.green(), tint.blue(), opacity);
+      }
+    }
+  }
+
   if (descriptor.colorModel == IconColorModel::Monochrome && colors.primary.alpha() < 255) {
     painter.setCompositionMode(QPainter::CompositionMode_DestinationIn);
     painter.fillRect(bounds, QColor(0, 0, 0, colors.primary.alpha()));
