@@ -82,6 +82,9 @@ and miniz_oxide (MIT OR Zlib OR Apache-2.0). The resolved GPU dependency closure
 including bytemuck, half, and transitive dependencies, is included by the same
 license collectors. Runtime shaders are embedded; GPU drivers and native system
 frameworks are supplied by the operating system/vendor.
+The upstream notice for `objc2` 0.6.5 is retained in
+`licenses/cargo/objc2-0.6.5/` because its published crate omits the license file;
+the accompanying source record pins the crate's upstream revision.
 
 Vulkan shaders, like Metal resources, use miniz_oxide (MIT OR Zlib OR Apache-2.0)
 for build-time compression and lazy runtime decompression. Its resolved
