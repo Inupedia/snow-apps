@@ -89,6 +89,7 @@ enum class Icon {
     TextTranslation,
     ScrollingScreenshot,
     Print,
+    AirDrop,
     SaveAsFile,
     UploadToCloud,
     QuickSave,
@@ -230,6 +231,8 @@ struct EditorDescriptor {
              Icon::ScrollingScreenshot},
             {"print", "ScreenshotToolbarEditorSettingsWidget",
              QT_TRANSLATE_NOOP("ScreenshotToolbarEditorSettingsWidget", "Print"), Icon::Print},
+            {"airdrop", "ScreenshotToolbarEditorSettingsWidget",
+             QT_TRANSLATE_NOOP("ScreenshotToolbarEditorSettingsWidget", "AirDrop"), Icon::AirDrop},
             {"quick-save", "ScreenshotToolbarEditorSettingsWidget",
              QT_TRANSLATE_NOOP("ScreenshotToolbarEditorSettingsWidget", "Quick save"),
              Icon::QuickSave},
@@ -375,8 +378,8 @@ editorDescriptors(storage::ScreenshotToolbarLayoutKind kind) {
                 id == QStringLiteral("text-recognition") ||
                 id == QStringLiteral("text-translation") || id == QStringLiteral("save-as-file") ||
                 id == QStringLiteral("quick-save") || id == QStringLiteral("upload-to-cloud") ||
-                id == QStringLiteral("print") || id == QStringLiteral("copy") ||
-                id == QStringLiteral("confirm")) {
+                id == QStringLiteral("print") || id == QStringLiteral("airdrop") ||
+                id == QStringLiteral("copy") || id == QStringLiteral("confirm")) {
                 result.push_back(descriptor);
             }
         }
@@ -454,8 +457,8 @@ editorDescriptors(storage::ScreenshotToolbarLayoutKind kind) {
         {QStringLiteral("text-recognition")},
         {QStringLiteral("text-translation")},
         {QStringLiteral("scrolling-screenshot")},
-        {QStringLiteral("upload-to-cloud"), QStringLiteral("print"), QStringLiteral("quick-save"),
-         QStringLiteral("save-as-file")},
+        {QStringLiteral("upload-to-cloud"), QStringLiteral("airdrop"), QStringLiteral("print"),
+         QStringLiteral("quick-save"), QStringLiteral("save-as-file")},
         {QStringLiteral("separator")},
         {QStringLiteral("cancel")},
         {QStringLiteral("copy")},
@@ -482,7 +485,7 @@ defaultPositions(storage::ScreenshotToolbarLayoutKind kind) {
             {QStringLiteral("text-recognition")},
             {QStringLiteral("text-translation")},
             {QStringLiteral("separator")},
-            {QStringLiteral("upload-to-cloud"), QStringLiteral("print"),
+            {QStringLiteral("upload-to-cloud"), QStringLiteral("airdrop"), QStringLiteral("print"),
              QStringLiteral("quick-save"), QStringLiteral("save-as-file")},
             {QStringLiteral("copy")},
             {QStringLiteral("confirm-separator")},
@@ -609,6 +612,28 @@ normalizedLayout(const storage::ScreenshotToolbarLayout& input, const QStringLis
             hidden.contains(QStringLiteral("save-as-file"))) {
             result.hidden.push_back(QStringLiteral("print"));
             hidden.insert(QStringLiteral("print"));
+        }
+    }
+    if (known.contains(QStringLiteral("airdrop")) &&
+        !positioned.contains(QStringLiteral("airdrop")) &&
+        !hidden.contains(QStringLiteral("airdrop"))) {
+        for (QStringList& position : result.positions) {
+            const qsizetype save = position.indexOf(QStringLiteral("save-as-file"));
+            if (save < 0)
+                continue;
+            const qsizetype print = position.indexOf(QStringLiteral("print"));
+            const qsizetype quick = position.indexOf(QStringLiteral("quick-save"));
+            position.insert(print >= 0   ? print
+                            : quick >= 0 ? quick
+                                         : save,
+                            QStringLiteral("airdrop"));
+            positioned.insert(QStringLiteral("airdrop"));
+            break;
+        }
+        if (!positioned.contains(QStringLiteral("airdrop")) &&
+            hidden.contains(QStringLiteral("save-as-file"))) {
+            result.hidden.push_back(QStringLiteral("airdrop"));
+            hidden.insert(QStringLiteral("airdrop"));
         }
     }
     if (migrateScreenshotLayout && !result.positions.isEmpty() &&
@@ -1002,6 +1027,8 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
         return snow_shot::presentation::icons::third_party::outlined::Check();
     case Icon::Cancel:
         return snow_shot::presentation::icons::third_party::outlined::Close();
+    case Icon::AirDrop:
+        return custom::AirDrop();
     case Icon::Print:
         return snow_shot::presentation::icons::third_party::outlined::Printer();
     case Icon::UploadToCloud:

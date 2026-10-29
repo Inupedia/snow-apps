@@ -18,6 +18,7 @@
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/presentation/styles/mainwindowcomponenttoken.h"
 #include "snow_shot/storage/applicationstorage.h"
+#include "snow_shot/storage/settingsadapters.h"
 
 #include "antd_icons.h"
 #include "theme/theme_manager.h"
@@ -548,8 +549,8 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
     selectionActionsLayout->addWidget(m_deselect);
     m_selectionLayout->addWidget(m_selectionActions);
     selectionOuter->addWidget(m_selectionPanel);
-    layout->addWidget(m_selectionBar);
     m_selectionBar->hide();
+    container->addStickyWidget(m_selectionBar, metric.marginSM);
 
     m_deleteAllConfirmation = new adqt::widgets::AdPopconfirm(content);
     m_deleteAllConfirmation->setObjectName(QStringLiteral("pinnedManagementDeleteAllConfirm"));
@@ -590,7 +591,8 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
 
     m_pagination = new adqt::widgets::AdPagination(content);
     m_pagination->setObjectName(QStringLiteral("pinnedManagementPagination"));
-    history_page::configurePagination(m_pagination);
+    history_page::configurePagination(
+        m_pagination, storage::InterfaceSettings().pinnedWindowManagementPageSize());
     m_pagination->setTotalTextFormatter(
         [](int total, const adqt::widgets::AdPagination::Range& range) {
             return PinnedWindowManagementPageWidget::tr("%1-%2 of %3")
@@ -656,10 +658,12 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
         if (!m_updatingPagination)
             rebuildEntries();
     });
-    connect(m_pagination, &adqt::widgets::AdPagination::pageSizeChanged, this, [this](int) {
-        if (!m_updatingPagination)
-            rebuildEntries();
-    });
+    connect(m_pagination, &adqt::widgets::AdPagination::pageSizeChanged, this,
+            [this](int pageSize) {
+                storage::InterfaceSettings().setPinnedWindowManagementPageSize(pageSize);
+                if (!m_updatingPagination)
+                    rebuildEntries();
+            });
     connect(m_source, &PinnedWindowManagementDataSource::changed, this,
             &PinnedWindowManagementPageWidget::handleSourceChanged);
     connect(m_previewViewer, &adqt::widgets::AdImageViewer::visibleChanged, this,
