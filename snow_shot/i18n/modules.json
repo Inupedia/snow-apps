@@ -10,6 +10,7 @@
     "MainContentHeaderWidget",
     "MainWindow",
     "McpDocumentService",
+    "MemberAccount",
     "QObject",
     "SectionHeaderWidget",
     "ShortcutDisplayService",
@@ -17,6 +18,7 @@
     "SnowShotApiClient",
     "SystemTrayController",
     "TitleBarWidget",
+    "snow_shot::account::MemberSession",
     "snow_shot::app::ApplicationController",
     "snow_shot::presentation::SystemTrayController"
   ],

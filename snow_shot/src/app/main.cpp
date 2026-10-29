@@ -1,3 +1,4 @@
+#include "snow_shot/account/accountui.h"
 #include "snow_shot/app/edition.h"
 #include "snow_shot/platform/applicationqos.h"
 #include "snow_shot/app/applicationcontroller.h"
@@ -732,37 +733,60 @@ int main(int argc, char* argv[]) {
 
     adqt::widgets::AdTooltip::installApplicationTooltips();
 
-    snow_shot::app::ApplicationController applicationController(app);
-    applicationController.start();
-    QTimer::singleShot(0, &app, [&] {
-        if (snow_shot::app::parseShellImageLaunchRequest(launchArguments).requested)
-            applicationController.handleLaunchRequest(launchArguments);
-        singleInstance.setLaunchRequestHandler(
-            [&applicationController](const QStringList& arguments) {
-                applicationController.handleLaunchRequest(
-                    snow_shot::update::normalStartupArguments(arguments));
-            });
-    });
-    if (!startupResult.success) {
-        snow_shot::app::reportStartupRegistrationFailure(startupResult.error);
-#ifdef Q_OS_MACOS
-        QTimer::singleShot(0, &app, [&applicationController, error = startupResult.error] {
-            // Startup can otherwise have only a tiny floating toolbar visible.
-            // Give the error a readable application surface before opening it.
-            applicationController.showMainWindow();
-            adqt::widgets::AdMessage::Request request;
-            request.content = error;
-            adqt::widgets::AdMessageService::error(std::move(request));
+    std::unique_ptr<snow_shot::app::ApplicationController> controllerStorage;
+    bool initialLaunchPending = true;
+    std::function<void()> startAuthenticatedApplication;
+    startAuthenticatedApplication = [&] {
+        if (!snow_shot::account::requireMemberSignIn()) {
+            app.quit();
+            return;
+        }
+        controllerStorage = std::make_unique<snow_shot::app::ApplicationController>(app);
+        auto& applicationController = *controllerStorage;
+        applicationController.start();
+        QTimer::singleShot(0, &applicationController, [&] {
+            if (initialLaunchPending &&
+                snow_shot::app::parseShellImageLaunchRequest(launchArguments).requested)
+                applicationController.handleLaunchRequest(launchArguments);
+            initialLaunchPending = false;
+            singleInstance.setLaunchRequestHandler(
+                [&applicationController](const QStringList& arguments) {
+                    applicationController.handleLaunchRequest(
+                        snow_shot::update::normalStartupArguments(arguments));
+                });
         });
+        if (!startupResult.success) {
+            snow_shot::app::reportStartupRegistrationFailure(startupResult.error);
+#ifdef Q_OS_MACOS
+            QTimer::singleShot(0, &applicationController,
+                               [&applicationController, error = startupResult.error] {
+                                   // Startup can otherwise have only a tiny floating toolbar
+                                   // visible. Give the error a readable application surface before
+                                   // opening it.
+                                   applicationController.showMainWindow();
+                                   adqt::widgets::AdMessage::Request request;
+                                   request.content = error;
+                                   adqt::widgets::AdMessageService::error(std::move(request));
+                               });
 #endif
-    }
-    if (administratorRestart)
-        applicationController.showMainWindow();
-    snow_shot::diagnostics::logEvent(QStringLiteral("snow_shot.app"),
-                                     QStringLiteral("application.ready"));
-    if (!launchArguments.contains(QStringLiteral("--autostart")) &&
-        launchArguments.contains(QStringLiteral("--show-main-window"))) {
-        applicationController.showMainWindow();
-    }
-    return QApplication::exec();
+        }
+        if (administratorRestart)
+            applicationController.showMainWindow();
+        snow_shot::diagnostics::logEvent(QStringLiteral("snow_shot.app"),
+                                         QStringLiteral("application.ready"));
+        if (!launchArguments.contains(QStringLiteral("--autostart")) &&
+            launchArguments.contains(QStringLiteral("--show-main-window"))) {
+            applicationController.showMainWindow();
+        }
+    };
+    snow_shot::account::installAccountUi(app, [&] {
+        singleInstance.setLaunchRequestHandler({});
+        controllerStorage.reset();
+        QTimer::singleShot(0, &app, startAuthenticatedApplication);
+    });
+    QTimer::singleShot(0, &app, startAuthenticatedApplication);
+    const int result = QApplication::exec();
+    singleInstance.setLaunchRequestHandler({});
+    controllerStorage.reset();
+    return result;
 }

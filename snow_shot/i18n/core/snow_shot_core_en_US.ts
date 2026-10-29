@@ -229,6 +229,77 @@
         </message>
     </context>
     <context>
+        <name>MemberAccount</name>
+        <message>
+            <source>&lt;a href="https://www.yuntudata.com.cn/register"&gt;Create an account&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/privacy"&gt;Privacy&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/terms"&gt;Terms&lt;/a&gt;</source>
+            <translation>&lt;a href="https://www.yuntudata.com.cn/register"&gt;Create an account&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/privacy"&gt;Privacy&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/terms"&gt;Terms&lt;/a&gt;</translation>
+        </message>
+        <message>
+            <source>Account</source>
+            <translation>Account</translation>
+        </message>
+        <message>
+            <source>Checking subscription…</source>
+            <translation>Checking subscription…</translation>
+        </message>
+        <message>
+            <source>Free account</source>
+            <translation>Free account</translation>
+        </message>
+        <message>
+            <source>Not now</source>
+            <translation>Not now</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Password</translation>
+        </message>
+        <message>
+            <source>Phone number</source>
+            <translation>Phone number</translation>
+        </message>
+        <message>
+            <source>Remember sign-in on this device</source>
+            <translation>Remember sign-in on this device</translation>
+        </message>
+        <message>
+            <source>Sign in</source>
+            <translation>Sign in</translation>
+        </message>
+        <message>
+            <source>Sign in with your Yuntu account to use InuShot.</source>
+            <translation>Sign in with your Yuntu account to use InuShot.</translation>
+        </message>
+        <message>
+            <source>Sign out of Yuntu apps on this device</source>
+            <translation>Sign out of Yuntu apps on this device</translation>
+        </message>
+        <message>
+            <source>Sign-in status</source>
+            <translation>Sign-in status</translation>
+        </message>
+        <message>
+            <source>Signing in…</source>
+            <translation>Signing in…</translation>
+        </message>
+        <message>
+            <source>Subscription active</source>
+            <translation>Subscription active</translation>
+        </message>
+        <message>
+            <source>Subscription status is temporarily unavailable.</source>
+            <translation>Subscription status is temporarily unavailable.</translation>
+        </message>
+        <message>
+            <source>Welcome to InuShot</source>
+            <translation>Welcome to InuShot</translation>
+        </message>
+        <message>
+            <source>Yuntu account</source>
+            <translation>Yuntu account</translation>
+        </message>
+    </context>
+    <context>
         <name>QObject</name>
         <message>
             <source>%1 cannot be registered as a global shortcut, try another key</source>
@@ -587,6 +658,21 @@
         <message>
             <source>Restore</source>
             <translation>Restore</translation>
+        </message>
+    </context>
+    <context>
+        <name>snow_shot::account::MemberSession</name>
+        <message>
+            <source>Signed in, but automatic sign-in could not be saved.</source>
+            <translation>Signed in, but automatic sign-in could not be saved.</translation>
+        </message>
+        <message>
+            <source>Unable to save your session in the system credential store.</source>
+            <translation>Unable to save your session in the system credential store.</translation>
+        </message>
+        <message>
+            <source>Unable to sign in. Check your credentials and connection, then try again.</source>
+            <translation>Unable to sign in. Check your credentials and connection, then try again.</translation>
         </message>
     </context>
     <context>

@@ -229,6 +229,77 @@
         </message>
     </context>
     <context>
+        <name>MemberAccount</name>
+        <message>
+            <source>&lt;a href="https://www.yuntudata.com.cn/register"&gt;Create an account&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/privacy"&gt;Privacy&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/terms"&gt;Terms&lt;/a&gt;</source>
+            <translation>&lt;a href="https://www.yuntudata.com.cn/register"&gt;註冊帳號&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/privacy"&gt;隱私權政策&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/terms"&gt;使用者條款&lt;/a&gt;</translation>
+        </message>
+        <message>
+            <source>Account</source>
+            <translation>帳號</translation>
+        </message>
+        <message>
+            <source>Checking subscription…</source>
+            <translation>正在查詢訂閱…</translation>
+        </message>
+        <message>
+            <source>Free account</source>
+            <translation>免費帳號</translation>
+        </message>
+        <message>
+            <source>Not now</source>
+            <translation>稍後再說</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>密碼</translation>
+        </message>
+        <message>
+            <source>Phone number</source>
+            <translation>手機號碼</translation>
+        </message>
+        <message>
+            <source>Remember sign-in on this device</source>
+            <translation>記住此裝置上的登入</translation>
+        </message>
+        <message>
+            <source>Sign in</source>
+            <translation>登入</translation>
+        </message>
+        <message>
+            <source>Sign in with your Yuntu account to use InuShot.</source>
+            <translation>登入雲途帳號以使用 InuShot。</translation>
+        </message>
+        <message>
+            <source>Sign out of Yuntu apps on this device</source>
+            <translation>登出此裝置上的雲途帳號</translation>
+        </message>
+        <message>
+            <source>Sign-in status</source>
+            <translation>登入狀態</translation>
+        </message>
+        <message>
+            <source>Signing in…</source>
+            <translation>正在登入…</translation>
+        </message>
+        <message>
+            <source>Subscription active</source>
+            <translation>訂閱已生效</translation>
+        </message>
+        <message>
+            <source>Subscription status is temporarily unavailable.</source>
+            <translation>暫時無法查詢訂閱狀態。</translation>
+        </message>
+        <message>
+            <source>Welcome to InuShot</source>
+            <translation>歡迎使用 InuShot</translation>
+        </message>
+        <message>
+            <source>Yuntu account</source>
+            <translation>雲途帳號</translation>
+        </message>
+    </context>
+    <context>
         <name>QObject</name>
         <message>
             <source>%1 cannot be registered as a global shortcut, try another key</source>
@@ -587,6 +658,21 @@
         <message>
             <source>Restore</source>
             <translation>還原</translation>
+        </message>
+    </context>
+    <context>
+        <name>snow_shot::account::MemberSession</name>
+        <message>
+            <source>Signed in, but automatic sign-in could not be saved.</source>
+            <translation>登入成功，但無法儲存自動登入資訊。</translation>
+        </message>
+        <message>
+            <source>Unable to save your session in the system credential store.</source>
+            <translation>無法將登入工作階段儲存至系統認證存放區。</translation>
+        </message>
+        <message>
+            <source>Unable to sign in. Check your credentials and connection, then try again.</source>
+            <translation>登入失敗，請檢查帳號、密碼及網路連線後重試。</translation>
         </message>
     </context>
     <context>

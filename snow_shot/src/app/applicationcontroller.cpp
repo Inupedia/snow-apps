@@ -653,6 +653,13 @@ class ApplicationController::Impl {
 
     ~Impl() {
         storeLifecycle.reset();
+        // Account locking retires the controller without exiting QApplication.
+        // Top-level pins outlive their manager unless explicitly retired here.
+        // Direct destruction checkpoints their documents without removing records.
+        for (auto* window : groupManager.liveWindows()) {
+            window->checkpointStorage();
+            delete window;
+        }
         if (memoryOptimization)
             memoryOptimization->stop();
         floatingToolbar.shutdown();
