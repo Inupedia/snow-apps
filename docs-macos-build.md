@@ -4,9 +4,9 @@ The app presets target macOS 15 or newer, with separate Apple Silicon (`arm64`)
 and Intel (`x64`) builds. Each build uses one architecture throughout CMake,
 vcpkg and Cargo; universal builds are not supported by these presets.
 
-Apple Silicon OCR builds enable the `gpu` Cargo feature and compile embedded
-Metal shaders. Install Xcode's Metal Toolchain after selecting the developer
-directory and completing Xcode first-launch setup:
+Apple Silicon OCR builds enable the `gpu` Cargo feature by default and compile
+embedded Metal shaders. Install Xcode's Metal Toolchain after selecting the
+developer directory and completing Xcode first-launch setup:
 
 ```sh
 xcodebuild -downloadComponent MetalToolchain
@@ -15,7 +15,13 @@ xcrun metal --version
 
 Deployed apps do not require Xcode. Hardware acceleration defaults off and uses
 CPU while device discovery is pending or unavailable. Intel builds remain
-CPU-only; the preference does not enable resident OCR or model hot start.
+CPU-only; the preference does not enable resident OCR or model hot start. For a
+CPU-only development build on Apple Silicon without the Metal Toolchain, pass
+`-DSNOW_SHOT_OCR_GPU=OFF` to `scripts/build.sh` after `--`:
+
+```sh
+scripts/build.sh snow-shot-macos-arm64-debug --target snow_shot -- -DSNOW_SHOT_OCR_GPU=OFF
+```
 
 ## Snow Shot Mini
 
