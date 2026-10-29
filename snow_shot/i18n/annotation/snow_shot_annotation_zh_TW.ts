@@ -712,6 +712,10 @@
             <translation>整數</translation>
         </message>
         <message>
+            <source>InuShot visual understanding</source>
+            <translation>InuShot 視覺理解</translation>
+        </message>
+        <message>
             <source>Inversion</source>
             <translation>反相</translation>
         </message>
@@ -1222,10 +1226,6 @@
         <message>
             <source>Smart Erase</source>
             <translation>智慧擦除</translation>
-        </message>
-        <message>
-            <source>InuShot visual understanding</source>
-            <translation>InuShot 視覺理解</translation>
         </message>
         <message>
             <source>Solid arrow line</source>

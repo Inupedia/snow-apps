@@ -712,6 +712,10 @@
             <translation>Integers</translation>
         </message>
         <message>
+            <source>InuShot visual understanding</source>
+            <translation>InuShot visual understanding</translation>
+        </message>
+        <message>
             <source>Inversion</source>
             <translation>Inversion</translation>
         </message>
@@ -1222,10 +1226,6 @@
         <message>
             <source>Smart Erase</source>
             <translation>Smart Erase</translation>
-        </message>
-        <message>
-            <source>InuShot visual understanding</source>
-            <translation>InuShot visual understanding</translation>
         </message>
         <message>
             <source>Solid arrow line</source>

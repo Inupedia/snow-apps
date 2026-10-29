@@ -4219,15 +4219,6 @@ QVector<SettingsPageDefinition> builtInPages() {
              SettingsCustomDefinition{SettingsCustomRenderer::PermissionMicrophone}}}}}},
 #endif
 
-        {
-            QStringLiteral("about"),
-            QStringLiteral("/about"),
-            settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "About")),
-            settingsText(
-                QT_TRANSLATE_NOOP("SettingsCatalog", "Software version and license information")),
-            {},
-            SettingsPageKind::About,
-        },
     };
 }
 
@@ -4279,11 +4270,6 @@ QVector<SettingsNavigationNode> builtInNavigation() {
                                    QStringLiteral("app-permissions"),
                                    []() { return outlined_icons::SafetyCertificate(); }});
 #endif
-    SettingsNavigationPageDefinition about;
-    about.id = QStringLiteral("nav.about");
-    about.pageId = QStringLiteral("about");
-    about.iconFactory = []() { return outlined_icons::InfoCircle(); };
-
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
     SettingsNavigationPageDefinition translation;
     translation.id = QStringLiteral("nav.translation");
@@ -4299,7 +4285,7 @@ QVector<SettingsNavigationNode> builtInNavigation() {
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
             translation,
 #endif
-            settingsGroup, about};
+            settingsGroup};
 }
 
 QString locationText(const SettingsLocation& location) {

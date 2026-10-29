@@ -744,16 +744,16 @@
             <translation>无法保存登录时启动偏好设置。显示的 macOS 状态仍为当前状态。</translation>
         </message>
         <message>
+            <source>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</source>
+            <translation>InuShot 需要有效的代码签名才能使用登录时启动功能。请重新安装已签名的应用。</translation>
+        </message>
+        <message>
             <source>Move the signed %1 app to /Applications or ~/Applications to use launch at login.</source>
             <translation>请将已签名的 %1 应用移至 /Applications 或 ~/Applications，以便在登录时启动。</translation>
         </message>
         <message>
             <source>Move the signed InuShot app to /Applications or ~/Applications to use launch at login.</source>
             <translation>请将已签名的 InuShot 应用移至 /Applications 或 ~/Applications，以使用登录时启动功能。</translation>
-        </message>
-        <message>
-            <source>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</source>
-            <translation>InuShot 需要有效的代码签名才能使用登录时启动功能。请重新安装已签名的应用。</translation>
         </message>
         <message>
             <source>macOS could not find %1's login item. Reinstall the app in Applications.</source>
@@ -1194,10 +1194,6 @@
         <message>
             <source>AVIF</source>
             <translation>AVIF</translation>
-        </message>
-        <message>
-            <source>About</source>
-            <translation>关于</translation>
         </message>
         <message>
             <source>Above normal</source>
@@ -2736,6 +2732,14 @@
             <translation>界面设置</translation>
         </message>
         <message>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
+        </message>
+        <message>
+            <source>InuShot server</source>
+            <translation>InuShot 服务器</translation>
+        </message>
+        <message>
             <source>JPEG</source>
             <translation>JPEG</translation>
         </message>
@@ -4208,14 +4212,6 @@
             <translation>智能选择</translation>
         </message>
         <message>
-            <source>InuShot</source>
-            <translation>InuShot</translation>
-        </message>
-        <message>
-            <source>InuShot server</source>
-            <translation>InuShot 服务器</translation>
-        </message>
-        <message>
             <source>Snowflake</source>
             <translation>雪花</translation>
         </message>
@@ -4238,10 +4234,6 @@
         <message>
             <source>Software updates</source>
             <translation>软件更新</translation>
-        </message>
-        <message>
-            <source>Software version and license information</source>
-            <translation>软件版本与许可证信息</translation>
         </message>
         <message>
             <source>Source Language</source>

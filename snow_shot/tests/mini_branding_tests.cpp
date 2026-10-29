@@ -1,7 +1,5 @@
 #include "snow_shot/app/edition.h"
 #include "snow_shot/app/updateconfirmationdialog.h"
-#include "snow_shot/presentation/components/aboutpagewidget.h"
-#include "snow_shot/presentation/components/contentcardwidget.h"
 #include "snow_shot/presentation/components/settingscustomwidget.h"
 #include "snow_shot/presentation/components/formfields.h"
 #include "snow_shot/presentation/components/titlebarwidget.h"
@@ -161,35 +159,18 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
                       QStringLiteral("-mcp.json"));
     MainWindow window(registry, session);
     window.show();
-    auto* card = window.findChild<ContentCardWidget*>();
-    require(card != nullptr, "main window contains its navigation content");
-    card->setCurrentRoute(QStringLiteral("/about"));
-    flushEvents();
-    auto* embedded = window.findChild<AboutPageWidget*>();
     auto* titleBar = window.findChild<TitleBarWidget*>();
-    require(embedded != nullptr && titleBar != nullptr,
-            "main window constructs About and title bar");
+    require(titleBar != nullptr, "main window constructs its title bar");
     titleBarRendersTheEditionSvg(*titleBar);
-    AboutPageWidget standalone;
-
-    struct Case {
-        const char* locale;
-        const char* about;
-        const char* logo;
-    };
-    const Case cases[] = {
-        {"en_US", "About %1", "%1 logo"},
-        {"zh_CN", "关于 %1", "%1 标志"},
-        {"zh_TW", "關於 %1", "%1 標誌"},
-    };
+    const char* locales[] = {"en_US", "zh_CN", "zh_TW"};
     const QString product =
         edition::isMini ? QStringLiteral("InuShot Mini") : QStringLiteral("InuShot");
     const QString windowName = product;
-    for (const auto& test : cases) {
+    for (const char* locale : locales) {
         QTranslator translator;
         require(translator.load(
                     QStringLiteral(SNOW_SHOT_TEST_TRANSLATIONS_DIR) +
-                    QStringLiteral("/snow_shot_%1.qm").arg(QString::fromLatin1(test.locale))),
+                    QStringLiteral("/snow_shot_%1.qm").arg(QString::fromLatin1(locale))),
                 "load complete branding catalog");
         require(QCoreApplication::installTranslator(&translator), "install branding catalog");
         flushEvents();
@@ -197,7 +178,7 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
             const QString translated = translator.translate(context, source);
             // Release catalogs omit source-identical English entries. Exercise the same
             // source fallback as Qt while still requiring every localized branding entry.
-            require(QLatin1String(test.locale) == QLatin1String("en_US") || !translated.isEmpty(),
+            require(QLatin1String(locale) == QLatin1String("en_US") || !translated.isEmpty(),
                     "localized catalogs must contain the branding text");
             return translated.isEmpty() ? QString::fromUtf8(source) : translated;
         };
@@ -232,26 +213,6 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
             require(titleBar->accessibleName() == product,
                     "Mini title bar exposes its own product name");
         }
-        const QString expectedAbout = QString::fromUtf8(test.about).arg(product);
-        const QString expectedLogo = QString::fromUtf8(test.logo).arg(product);
-        require(translatedText("AboutPageWidget", "About %1") == QString::fromUtf8(test.about) &&
-                    translatedText("AboutPageWidget", "%1 logo") == QString::fromUtf8(test.logo),
-                "all catalogs include the reusable Mini branding strings");
-        for (AboutPageWidget* page : {embedded, &standalone}) {
-            require(page->accessibleName() == expectedAbout,
-                    "existing standalone and embedded About pages retranslate their product name");
-            require(child<QLabel>(*page, "aboutProductName")->text() == product,
-                    "About displays the exact edition name");
-            auto* logo = child<QLabel>(*page, "aboutLogo");
-            require(
-                logo->accessibleName() == expectedLogo && !logo->pixmap().isNull(),
-                "About keeps visible logo artwork and retranslates its accessible product name");
-            require(page->objectName() == QStringLiteral("aboutPage"),
-                    "About page keeps its stable object identifier");
-        }
-        require(card->currentRoute() == QStringLiteral("/about"),
-                "language changes preserve the stable About route");
-
         bool inspected = false;
         QTimer::singleShot(0, qApp, [&] {
             auto* dialog = qobject_cast<QMessageBox*>(QApplication::activeModalWidget());
@@ -276,9 +237,6 @@ void brandingRetranslatesWithoutChangingIdentifiers() {
 
         QCoreApplication::removeTranslator(&translator);
         flushEvents();
-        require(embedded->accessibleName() == QStringLiteral("About %1").arg(product) &&
-                    standalone.accessibleName() == QStringLiteral("About %1").arg(product),
-                "removing a catalog restores existing About pages to the English source");
     }
     window.hide();
 }

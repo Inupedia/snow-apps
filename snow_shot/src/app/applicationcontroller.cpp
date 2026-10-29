@@ -73,6 +73,7 @@
 #include "widgets/message.h"
 
 #include <QApplication>
+#include <QDesktopServices>
 #include <QEvent>
 #include <QClipboard>
 #include <QFutureWatcher>
@@ -84,6 +85,7 @@
 #include <QPointer>
 #include <QScreen>
 #include <QTimer>
+#include <QUrl>
 #include <QtMath>
 #include <QUuid>
 
@@ -214,8 +216,45 @@ class ApplicationController::Impl {
         QObject::connect(&systemTray,
                          &presentation::SystemTrayController::openFunctionSettingsRequested, &q,
                          [this]() { ensureMainWindow().showScreenshotSettings(); });
-        QObject::connect(&systemTray, &presentation::SystemTrayController::openAboutRequested, &q,
-                         [this]() { ensureMainWindow().showAbout(); });
+        QObject::connect(&systemTray, &presentation::SystemTrayController::updateActionRequested,
+                         &q, [this] {
+                             if (updates == nullptr) {
+                                 return;
+                             }
+                             if (updates->managedByStore()) {
+                                 static_cast<void>(QDesktopServices::openUrl(
+                                     QUrl(QStringLiteral(
+                                         "ms-windows-store://downloadsandupdates"))));
+                                 return;
+                             }
+                             using update::UpdateState;
+                             switch (updates->status().state) {
+                             case UpdateState::Available:
+#ifdef Q_OS_MACOS
+                                 if (!QDesktopServices::openUrl(updates->status().downloadUrl)) {
+                                     systemTray.showWarningMessage(
+                                         ApplicationController::tr("Could not open the update link"),
+                                         updates->status().downloadUrl.toString());
+                                 }
+#else
+                                 updates->download();
+#endif
+                                 break;
+                             case UpdateState::Ready:
+                                 updates->requestRestart();
+                                 break;
+                             case UpdateState::Idle:
+                             case UpdateState::Failed:
+                                 updates->check();
+                                 break;
+                             case UpdateState::Unavailable:
+                             case UpdateState::Checking:
+                             case UpdateState::Downloading:
+                             case UpdateState::Verifying:
+                             case UpdateState::Applying:
+                                 break;
+                             }
+                         });
         QObject::connect(
             &systemTray, &presentation::SystemTrayController::openRecordingFileRequested, &q,
             [](const QString& path) {
@@ -387,10 +426,12 @@ class ApplicationController::Impl {
                 systemTray.showUpdateMessage(
                     (edition::isMini
                          ? ApplicationController::tr(
-                               "%1 %2 is available. Open About for update options.")
+                               "%1 %2 is available. Select this notification "
+                               "to download the update.")
                                .arg(edition::productName(), version)
                          : ApplicationController::tr(
-                               "InuShot %1 is available. Open About for update options.")
+                               "InuShot %1 is available. Select this notification "
+                               "to download the update.")
                                .arg(version)));
             });
 #ifndef Q_OS_MACOS
@@ -398,10 +439,12 @@ class ApplicationController::Impl {
             systemTray.showUpdateMessage(
                 (edition::isMini
                      ? ApplicationController::tr(
-                           "An update is ready. Open About to restart and update %1.")
+                           "An update is ready. Select this notification "
+                           "to restart and update %1.")
                            .arg(edition::productName())
                      : ApplicationController::tr(
-                           "An update is ready. Open About to restart and update InuShot.")));
+                           "An update is ready. Select this notification "
+                           "to restart and update InuShot.")));
         });
 #endif
         platform::windows::setAdministratorRestartGuard([this] { return restartAllowed(); });

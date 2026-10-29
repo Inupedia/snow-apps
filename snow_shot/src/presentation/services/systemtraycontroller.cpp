@@ -421,7 +421,7 @@ class SystemTrayController::Impl {
         using NotificationService = platform::macos::SystemNotificationService;
         QObject::connect(notifications.get(), &NotificationService::activated, &q,
                          [this](NotificationService::Action action, const QString& path) {
-                             if (action == NotificationService::Action::OpenAbout)
+                             if (action == NotificationService::Action::OpenUpdate)
                                  activateMessage(BalloonKind::Update, {});
                              else if (action == NotificationService::Action::OpenRecording)
                                  activateMessage(BalloonKind::RecordingExport, path);
@@ -559,7 +559,7 @@ class SystemTrayController::Impl {
             return;
 #endif
         if (kind == BalloonKind::Update) {
-            emit q.openAboutRequested();
+            emit q.updateActionRequested();
         } else if (kind == BalloonKind::RecordingExport) {
             const QString path = filePath;
             emit q.openRecordingFileRequested(path);
@@ -583,7 +583,7 @@ class SystemTrayController::Impl {
         }
 #endif
         using Action = platform::SystemNotificationAction;
-        const Action action = kind == BalloonKind::Update            ? Action::OpenAbout
+        const Action action = kind == BalloonKind::Update            ? Action::OpenUpdate
                               : kind == BalloonKind::RecordingExport ? Action::OpenRecording
                                                                      : Action::None;
         const auto severity =

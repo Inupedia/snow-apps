@@ -28,7 +28,6 @@ set(SNOW_SHOT_RELEASE_SIZE_STORAGE_SOURCES
 # Settings forms and schema adapters are cold; history, thumbnail/clipboard
 # code, streaming translation, theme rendering and shortcut dispatch stay fast.
 set(SNOW_SHOT_RELEASE_SIZE_SETTINGS_SOURCES
-    src/presentation/components/aboutpagewidget.cpp
     src/presentation/components/customaimodelssettingswidget.cpp
     src/presentation/components/settingscustomwidget.cpp
     src/presentation/components/settingspagewidget.cpp

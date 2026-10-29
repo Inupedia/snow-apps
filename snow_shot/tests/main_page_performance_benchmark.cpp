@@ -1,4 +1,3 @@
-#include "snow_shot/presentation/components/aboutpagewidget.h"
 #include "snow_shot/app/edition.h"
 #include "snow_shot/presentation/components/screenshothistorypagewidget.h"
 #include "snow_shot/presentation/components/pinnedwindowmanagementpagewidget.h"
@@ -145,7 +144,6 @@ int main(int argc, char** argv) {
 #endif
     drain();
     QJsonArray pages;
-    pages.append(measure(QStringLiteral("about"), samples, [] { return new AboutPageWidget; }));
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
     pages.append(measure(QStringLiteral("translation-pending-local-catalog"), samples,
                          [&] { return new TranslationPageWidget(nullptr, &client); }));

@@ -160,7 +160,7 @@ void authorizedDeliveryAndActions() {
     const QString second = QStringLiteral("/tmp/Video exports/second.mov");
     show(service, QStringLiteral("Video export completed"), first, Action::OpenRecording, first);
     show(service, QStringLiteral("Video export completed"), second, Action::OpenRecording, second);
-    show(service, QStringLiteral("Update"), QStringLiteral("Update ready"), Action::OpenAbout);
+    show(service, QStringLiteral("Update"), QStringLiteral("Update ready"), Action::OpenUpdate);
     require(center.authorizationRequests == 1 &&
                 center.options == (UNAuthorizationOptionAlert | UNAuthorizationOptionSound) &&
                 center.requests.count == 0,
@@ -196,30 +196,32 @@ void authorizedDeliveryAndActions() {
             "foreground exports must request a banner, Notification Center entry and sound");
 
     QStringList opened;
-    int about = 0;
+    int updateActions = 0;
     QObject::connect(&service, &SystemNotificationService::activated, &service,
                      [&](Action action, const QString& path) {
                          require(QThread::currentThread() == service.thread(),
                                  "notification actions must run on the Qt owning thread");
                          if (action == Action::OpenRecording)
                              opened.append(path);
-                         if (action == Action::OpenAbout)
-                             ++about;
+                         if (action == Action::OpenUpdate)
+                             ++updateActions;
                      });
     respond(center, secondRequest);
     respond(center, center.requests[2]);
     respond(center, firstRequest);
-    require(opened == QStringList{second, first} && about == 1,
+    require(opened == QStringList{second, first} && updateActions == 1,
             "clicks must use their own payload even after a newer export or update");
     respond(center, firstRequest, UNNotificationDismissActionIdentifier);
-    require(opened.size() == 2 && about == 1, "dismissal must not open files or About");
+    require(opened.size() == 2 && updateActions == 1,
+            "dismissal must not open files or trigger update actions");
 
     show(service, QStringLiteral("Warning"), QStringLiteral("Capture unavailable"));
     [center resolveAuthorization:YES error:nil];
     waitFor([&] { return center.requests.count == 4; },
             "shared warning notifications must deliver");
     respond(center, center.requests[3]);
-    require(opened.size() == 2 && about == 1, "warnings must not inherit an older click action");
+    require(opened.size() == 2 && updateActions == 1,
+            "warnings must not inherit an older click action");
 }
 
 void deniedPermissionAndLifetime() {

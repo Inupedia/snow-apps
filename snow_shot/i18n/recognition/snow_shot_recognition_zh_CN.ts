@@ -168,6 +168,10 @@
             <translation>正在转换为 Markdown</translation>
         </message>
         <message>
+            <source>InuShot's visual understanding model is unavailable. Choose another model or retry.</source>
+            <translation>InuShot 的视觉理解模型不可用。请选择其他模型或重试。</translation>
+        </message>
+        <message>
             <source>LaTeX recognition failed</source>
             <translation>LaTeX 识别失败</translation>
         </message>
@@ -222,10 +226,6 @@
         <message>
             <source>Recognizing text</source>
             <translation>正在识别文本</translation>
-        </message>
-        <message>
-            <source>InuShot's visual understanding model is unavailable. Choose another model or retry.</source>
-            <translation>InuShot 的视觉理解模型不可用。请选择其他模型或重试。</translation>
         </message>
         <message>
             <source>Some text could not be translated</source>

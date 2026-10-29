@@ -91,7 +91,7 @@ Do not transfer a zero-retention or no-training promise between different plans.
    the page public. Website publication is separate from app packaging.
 4. Open both public HTTPS pages without signing in and check their text and
    revision date, not just the HTTP status. Enter the policy URL in Partner Center
-   and verify that the app's About link reaches the page.
+   and verify that the submitted URL points to the current policy page.
 5. Describe live generative AI functionality in listing/submission metadata and
    identify the existing in-app feedback route for reporting inappropriate output.
    Verify the mailbox and issue-reporting route are monitored.

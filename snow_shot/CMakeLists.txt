@@ -899,7 +899,6 @@ set(SNOW_SHOT_SETTINGS_SOURCES
     src/presentation/windowgeometrymemory.cpp
     include/snow_shot/presentation/components/translationpagewidget.h
     src/presentation/components/translationpagewidget.cpp
-    include/snow_shot/presentation/components/aboutpagewidget.h
     include/snow_shot/platform/windows/autostartregistration.h
     include/snow_shot/platform/windows/focusedfullscreenwindow.h
     include/snow_shot/platform/windows/printscreenshortcutrecorder.h
@@ -934,7 +933,6 @@ set(SNOW_SHOT_SETTINGS_SOURCES
     include/snow_shot/presentation/settings/settingsruntimesession.h
     include/snow_shot/presentation/settings/applicationpriority.h
     include/snow_shot/presentation/styles/thememanager.h
-    src/presentation/components/aboutpagewidget.cpp
     src/presentation/components/infotooltipicon.cpp
     src/presentation/components/globalmouserow.cpp
     src/presentation/components/pathinput.cpp
@@ -1170,11 +1168,6 @@ target_sources(snow_shot_settings PRIVATE
     src/presentation/components/clouduploadsettingswidget.cpp)
 target_link_libraries(snow_shot_settings PUBLIC snow_shot_permissions snow_shot_login_item
     snow_shot_store_lifecycle)
-qt_add_resources(snow_shot_settings "snow_shot_about_assets"
-    PREFIX "/snow_shot/about"
-    BASE "resources/about"
-    FILES resources/about/illustration.svg
-)
 target_compile_definitions(snow_shot_settings PRIVATE
     SNOW_SHOT_WEBSITE_URL="${SNOW_SHOT_WEBSITE_URL}"
     SNOW_SHOT_PROJECT_URL="${SNOW_SHOT_PROJECT_URL}"
@@ -3024,8 +3017,7 @@ if(SNOW_SHOT_BUILD_TESTS)
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"
     )
 
-    add_executable(snow-shot-about-page-tests
-        tests/about_page_tests.cpp
+    set(_snow_shot_main_window_test_sources
         include/snow_shot/presentation/mainwindow.h
         include/snow_shot/presentation/components/contentcardwidget.h
         include/snow_shot/presentation/components/maincontentheaderwidget.h
@@ -3040,43 +3032,12 @@ if(SNOW_SHOT_BUILD_TESTS)
         src/platform/windows/windowchrome.cpp
     )
     if(APPLE)
-        target_sources(snow-shot-about-page-tests PRIVATE
+        list(APPEND _snow_shot_main_window_test_sources
             src/platform/macos/applicationactivation.mm)
-        target_link_libraries(snow-shot-about-page-tests PRIVATE "-framework AppKit")
     endif()
-    target_link_libraries(snow-shot-about-page-tests PRIVATE
-        snow_shot_settings
-        snow_shot_image_codec
-    )
-    target_compile_definitions(snow-shot-about-page-tests PRIVATE
-        SNOW_SHOT_TEST_VERSION="${SNOW_SHOT_VERSION}"
-        SNOW_SHOT_TEST_TRANSLATIONS_DIR="${CMAKE_CURRENT_BINARY_DIR}"
-        SNOW_SHOT_TEST_WEBSITE_URL="${SNOW_SHOT_WEBSITE_URL}"
-        SNOW_SHOT_TEST_PROJECT_URL="${SNOW_SHOT_PROJECT_URL}"
-        SNOW_SHOT_TEST_QQ_GROUP_3_URL="${SNOW_SHOT_QQ_GROUP_3_URL}"
-    )
-    add_dependencies(snow-shot-about-page-tests snow_shot_release_translations)
-    snow_shot_import_offscreen_platform(snow-shot-about-page-tests)
-    add_test(NAME snow-shot-about-page-tests COMMAND snow-shot-about-page-tests)
-    target_link_libraries(snow-shot-about-page-tests PRIVATE snow_shot_updates)
-    set_tests_properties(snow-shot-about-page-tests PROPERTIES
-        ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT}"
-        ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>"
-    )
-    if(APPLE)
-        add_test(NAME snow-shot-tray-icon-color-settings-tests
-            COMMAND snow-shot-about-page-tests --tray-icon-color-only)
-        set_tests_properties(snow-shot-tray-icon-color-settings-tests PROPERTIES
-            LABELS "unit" TIMEOUT 30 SNOW_TEST_CROSS_PLATFORM TRUE
-            ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT}"
-            ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
-    endif()
-
-    get_target_property(_main_window_font_sources snow-shot-about-page-tests SOURCES)
-    list(REMOVE_ITEM _main_window_font_sources tests/about_page_tests.cpp)
     add_executable(snow-shot-main-window-font-tests
         tests/main_window_font_tests.cpp
-        ${_main_window_font_sources}
+        ${_snow_shot_main_window_test_sources}
     )
     target_link_libraries(snow-shot-main-window-font-tests PRIVATE
         snow_shot_settings snow_shot_image_codec snow_shot_updates)
@@ -3094,11 +3055,9 @@ if(SNOW_SHOT_BUILD_TESTS)
         ENVIRONMENT "${_SNOW_SHOT_OFFSCREEN_QPA_ENVIRONMENT};QT_SCALE_FACTOR=1.5"
     )
 
-    get_target_property(_window_geometry_memory_sources snow-shot-about-page-tests SOURCES)
-    list(REMOVE_ITEM _window_geometry_memory_sources tests/about_page_tests.cpp)
     add_executable(snow-shot-window-geometry-memory-tests
         tests/window_geometry_memory_tests.cpp
-        ${_window_geometry_memory_sources}
+        ${_snow_shot_main_window_test_sources}
     )
     target_link_libraries(snow-shot-window-geometry-memory-tests PRIVATE
         snow_shot_settings snow_shot_image_codec snow_shot_updates)
@@ -9323,13 +9282,11 @@ if(SNOW_SHOT_BUILD_TESTS)
     set_tests_properties(snow-shot-translation-notification-lifetime-tests PROPERTIES
         LABELS "unit" TIMEOUT 30)
 
-    get_target_property(_translation_window_sources snow-shot-about-page-tests SOURCES)
-    list(REMOVE_ITEM _translation_window_sources tests/about_page_tests.cpp)
     add_executable(snow-shot-translation-page-tests
         tests/translation_page_tests.cpp
         src/presentation/components/screenshottranslationsettingsdialog.cpp
         tests/translation_test_support.h
-        ${_translation_window_sources}
+        ${_snow_shot_main_window_test_sources}
     )
     target_link_libraries(snow-shot-translation-page-tests PRIVATE snow_shot_settings)
     target_compile_definitions(snow-shot-translation-page-tests PRIVATE

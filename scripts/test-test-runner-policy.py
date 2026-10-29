@@ -122,7 +122,7 @@ class ClipboardResourcePolicyTests(unittest.TestCase):
         cls.late_owner = 'snow-shot-pinned-future-alias-tests'
         cls.owners.add(cls.late_owner)
         cls.existing_owner = 'snow-shot-export-coordinator-tests'
-        cls.unrelated = {'snow-shot-about-page-tests', 'snow-shot-clipboard-preparation-tests',
+        cls.unrelated = {'snow-shot-clipboard-preparation-tests',
                          'snow-shot-mcp-document-tests', 'snow-shot-export-artifact-tests',
                          'snow-shot-screen-recording-controller-tests'}
         module_directory = (ROOT / 'cmake').as_posix()

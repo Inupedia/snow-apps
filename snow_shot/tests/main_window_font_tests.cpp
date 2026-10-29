@@ -962,8 +962,6 @@ void mainWindowSkinIsContinuousAndRestoresTheme(const QString& previewDirectory)
                        window.findChild<presentation::MainWindowSkinWidget*>()->skinActive();
             });
             save(QStringLiteral("skin-%1-max-blur").arg(theme));
-            window.showAbout();
-            save(QStringLiteral("skin-%1-about").arg(theme));
             window.showScreenshotHistory();
             save(QStringLiteral("skin-%1-history").arg(theme));
             window.showPinToScreenManagement();

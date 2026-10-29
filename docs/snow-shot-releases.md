@@ -6,7 +6,7 @@ Priorities: data preservation and authenticity > recovery > testability > mainta
 | Requirement | Contract | Verification |
 | --- | --- | --- |
 | U1 | One SemVer feed, signed metadata, no automatic downgrade | update contract tests |
-| U2 | Background check/download; explicit restart; preserve active work | update service and About tests |
+| U2 | Background check/download; explicit restart; preserve active work | update service and notification tests |
 | U3 | Apply only verified owned files; journal, probe, recover | update transaction tests |
 | R1 | Audited local release assets on GitHub; update and installer downloads on Gitee | publisher tests |
 | R2 | Private local signing key; immutable verified release assets | signing and publisher tests |
@@ -33,8 +33,8 @@ package URL, so a source change starts a fresh transfer. A failed mirror never c
 the published GitHub release.
 
 The macOS Qt updater races the same release APIs. It requires an exact architecture DMG
-and matching `.sha256` asset before offering the update; About opens the winning
-release page. The standalone installer races both lists and downloads the chosen DMG
+and matching `.sha256` asset before offering the update; selecting its notification
+opens the winning release page. The standalone installer races both lists and downloads the chosen DMG
 and checksum, with same-version package fallback. The app does not install macOS
 updates in-app.
 
@@ -271,8 +271,8 @@ The limits are 8 MiB for metadata, 20,000 files and 4 GiB expanded payload per p
 | Interrupted transfer with a strong ETag | Resume with Range and If-Range; verify full signed size/hash |
 | Signature failure or changed same-version payload | Reject; do not apply or trust new state |
 | Lower SemVer than the newest observed feed | Reject replay/downgrade |
-| Check-only mode discovers a newer release | Show a system notification that opens About |
-| Verified payload ready | Notify in tray and About; never restart without explicit confirmation |
+| Check-only mode discovers a newer release | Show a system notification that starts the download |
+| Verified payload ready | Notify in tray; selecting it requests explicit restart confirmation |
 | Capture/recording/export active or settings cannot flush | Refuse restart; check again at the final helper handoff |
 | User declines elevation or the ready/go handshake fails | Keep the current app running |
 | Apply interrupted or startup probe fails | Restore the previous owned payload from its journaled backup |
@@ -719,8 +719,8 @@ cargo test --manifest-path snow_shot/rust/snow-shot-updater/Cargo.toml --lib ser
 cargo test --manifest-path snow_shot/rust/snow-shot-updater/Cargo.toml --lib github::tests
 cargo test --manifest-path snow_shot/rust/snow-shot-updater/Cargo.toml --lib gitee::tests
 cargo clippy --manifest-path snow_shot/rust/snow-shot-updater/Cargo.toml --all-targets -- -D warnings
-cmake --build --preset build-windows-msvc-debug --target snow-shot-macos-update-tests snow-shot-update-adapter-tests snow-shot-about-page-tests snow-shot-settings-catalog-tests
-ctest --preset test-windows-msvc-debug -R '^snow-shot-(macos-update|update-adapter|about-page|settings-catalog)-tests$'
+cmake --build --preset build-windows-msvc-debug --target snow-shot-macos-update-tests snow-shot-update-adapter-tests snow-shot-settings-catalog-tests
+ctest --preset test-windows-msvc-debug -R '^snow-shot-(macos-update|update-adapter|settings-catalog)-tests$'
 ```
 
 Run `python3 scripts/test-macos-installer.py` on macOS for the standalone
@@ -733,13 +733,14 @@ verification of both channels' asset bytes.
 
 macOS offers **Manual** and **Check automatically**, defaulting to automatic
 checks. Automatic checks start 30 seconds after launch and repeat 24 hours
-after completion; About can trigger a manual check. The service starts GitHub
+after completion. Selecting an available-update notification opens the release
+download page. The service starts GitHub
 and Gitee release requests together, accepts published previews, and ignores
 drafts. Each release must have a versioned DMG and checksum asset for the
 machine architecture with exact release download URLs. Within a channel it
 selects the newest valid SemVer release; the first validated channel wins.
-A newer winning version produces an About download action for that release
-host and a once-per-session automatic notification. Background failures
+A newer winning version produces a notification action for that release host
+and a once-per-session automatic notification. Background failures
 remain quiet; manual failures offer retry. macOS does not install updates
 in-app.
 

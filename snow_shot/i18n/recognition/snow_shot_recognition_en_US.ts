@@ -168,6 +168,10 @@
             <translation>Converting to Markdown</translation>
         </message>
         <message>
+            <source>InuShot's visual understanding model is unavailable. Choose another model or retry.</source>
+            <translation>InuShot's visual understanding model is unavailable. Choose another model or retry.</translation>
+        </message>
+        <message>
             <source>LaTeX recognition failed</source>
             <translation>LaTeX recognition failed</translation>
         </message>
@@ -222,10 +226,6 @@
         <message>
             <source>Recognizing text</source>
             <translation>Recognizing text</translation>
-        </message>
-        <message>
-            <source>InuShot's visual understanding model is unavailable. Choose another model or retry.</source>
-            <translation>InuShot's visual understanding model is unavailable. Choose another model or retry.</translation>
         </message>
         <message>
             <source>Some text could not be translated</source>

@@ -42,7 +42,6 @@ class MainWindow : public QMainWindow {
     void showGeneralSettings();
     void showScreenshotSettings();
     void showSettingsLocation(const QString& pageId, const QString& sectionId = {});
-    void showAbout();
     void showAppPermissions(const QString& permissionId = {});
     void showScreenshotHistory();
     void showPinToScreenManagement();

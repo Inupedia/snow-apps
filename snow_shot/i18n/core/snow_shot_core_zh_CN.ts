@@ -2,267 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN" sourcelanguage="en_US">
     <context>
-        <name>AboutPageWidget</name>
-        <message>
-            <source>%1 logo</source>
-            <translation>%1 标志</translation>
-        </message>
-        <message>
-            <source>%1 · %2</source>
-            <translation>%1 · %2</translation>
-        </message>
-        <message>
-            <source>%1 · Make expression clearer</source>
-            <translation>%1 · 让表达更清晰</translation>
-        </message>
-        <message>
-            <source>, excellent work.</source>
-            <translation>，出色工作。</translation>
-        </message>
-        <message>
-            <source>About %1</source>
-            <translation>关于 %1</translation>
-        </message>
-        <message>
-            <source>About InuShot</source>
-            <translation>关于 InuShot</translation>
-        </message>
-        <message>
-            <source>Automatic updates are unavailable for this copy.</source>
-            <translation>此副本无法使用自动更新。</translation>
-        </message>
-        <message>
-            <source>Built for daily work, and growing with the community.</source>
-            <translation>为日常工作打造，也在社区中持续成长。</translation>
-        </message>
-        <message>
-            <source>Cancel download</source>
-            <translation>取消下载</translation>
-        </message>
-        <message>
-            <source>Capture, annotate, recognize text, and record your screen,
-so every moment on screen can be expressed clearly and shared easily.</source>
-            <translation>截图、标注、文字识别和屏幕录制，
-让屏幕上的每一刻都能清晰表达、轻松分享。</translation>
-        </message>
-        <message>
-            <source>Changelog</source>
-            <translation>更新日志</translation>
-        </message>
-        <message>
-            <source>Check for a newer version of %1.</source>
-            <translation>检查 %1 是否有新版本。</translation>
-        </message>
-        <message>
-            <source>Check for a newer version of InuShot.</source>
-            <translation>检查是否有新版 InuShot。</translation>
-        </message>
-        <message>
-            <source>Check for updates</source>
-            <translation>检查更新</translation>
-        </message>
-        <message>
-            <source>Checking for updates…</source>
-            <translation>正在检查更新…</translation>
-        </message>
-        <message>
-            <source>Copied</source>
-            <translation>已复制</translation>
-        </message>
-        <message>
-            <source>Copy the version number to the clipboard</source>
-            <translation>将版本号复制到剪贴板</translation>
-        </message>
-        <message>
-            <source>Copy version number</source>
-            <translation>复制版本号</translation>
-        </message>
-        <message>
-            <source>Copyright © %1 %2</source>
-            <translation>版权所有 © %1 %2</translation>
-        </message>
-        <message>
-            <source>Could not open the link. Open %1 in your browser.</source>
-            <translation>无法打开链接。请在浏览器中打开 %1。</translation>
-        </message>
-        <message>
-            <source>Current version</source>
-            <translation>当前版本</translation>
-        </message>
-        <message>
-            <source>Current version: %1</source>
-            <translation>当前版本：%1</translation>
-        </message>
-        <message>
-            <source>Discover more features and ways to use it</source>
-            <translation>发现更多功能与使用方式</translation>
-        </message>
-        <message>
-            <source>Discussion and support · Group No. %1</source>
-            <translation>交流与答疑 · 群号 %1</translation>
-        </message>
-        <message>
-            <source>Download from GitHub</source>
-            <translation>从 GitHub 下载</translation>
-        </message>
-        <message>
-            <source>Download from Gitee</source>
-            <translation>从 Gitee 下载</translation>
-        </message>
-        <message>
-            <source>Download update</source>
-            <translation>下载更新</translation>
-        </message>
-        <message>
-            <source>Downloading %1 of %2 MB</source>
-            <translation>正在下载：%1 / %2 MB</translation>
-        </message>
-        <message>
-            <source>Downloading update…</source>
-            <translation>正在下载更新…</translation>
-        </message>
-        <message>
-            <source>Easy annotation</source>
-            <translation>轻松标注</translation>
-        </message>
-        <message>
-            <source>Elegant screenshots</source>
-            <translation>优雅截图</translation>
-        </message>
-        <message>
-            <source>Feedback and suggestions</source>
-            <translation>反馈与建议</translation>
-        </message>
-        <message>
-            <source>Free and open-source software. Distributed without any warranty.</source>
-            <translation>自由开源软件，不提供任何担保。</translation>
-        </message>
-        <message>
-            <source>Free · Open source</source>
-            <translation>自由 · 开源</translation>
-        </message>
-        <message>
-            <source>GNU General Public License v3.0 or later</source>
-            <translation>GNU 通用公共许可证 v3.0 或更高版本</translation>
-        </message>
-        <message>
-            <source>GitHub</source>
-            <translation>GitHub</translation>
-        </message>
-        <message>
-            <source>Make every moment clear.</source>
-            <translation>每一刻，都能清晰表达。</translation>
-        </message>
-        <message>
-            <source>Make the next experience better</source>
-            <translation>让下一次体验更好</translation>
-        </message>
-        <message>
-            <source>Official website</source>
-            <translation>官方网站</translation>
-        </message>
-        <message>
-            <source>Open Microsoft Store</source>
-            <translation>打开 Microsoft Store</translation>
-        </message>
-        <message>
-            <source>Pin to screen</source>
-            <translation>固定到屏幕</translation>
-        </message>
-        <message>
-            <source>Preparing to restart and update…</source>
-            <translation>正在准备重启并更新…</translation>
-        </message>
-        <message>
-            <source>Preview</source>
-            <translation>预览版</translation>
-        </message>
-        <message>
-            <source>Privacy policy</source>
-            <translation>隐私政策</translation>
-        </message>
-        <message>
-            <source>QQ Group 3</source>
-            <translation>QQ 交流群 3</translation>
-        </message>
-        <message>
-            <source>Ready to install %1</source>
-            <translation>已准备好安装 %1</translation>
-        </message>
-        <message>
-            <source>Restart and update</source>
-            <translation>重启并更新</translation>
-        </message>
-        <message>
-            <source>Screen recording</source>
-            <translation>屏幕录制</translation>
-        </message>
-        <message>
-            <source>Screenshot capture</source>
-            <translation>截图捕捉</translation>
-        </message>
-        <message>
-            <source>Screenshot history</source>
-            <translation>截图历史</translation>
-        </message>
-        <message>
-            <source>Screenshot selection, annotation tools, and recognized text</source>
-            <translation>截图选区、标注工具与识别文字</translation>
-        </message>
-        <message>
-            <source>InuShot</source>
-            <translation>InuShot</translation>
-        </message>
-        <message>
-            <source>InuShot logo</source>
-            <translation>InuShot 标志</translation>
-        </message>
-        <message>
-            <source>InuShot · Make expression clearer</source>
-            <translation>InuShot · 让表达更清晰</translation>
-        </message>
-        <message>
-            <source>Text recognition</source>
-            <translation>文字识别</translation>
-        </message>
-        <message>
-            <source>Turn pixels into usable text</source>
-            <translation>把画面变成可用文字</translation>
-        </message>
-        <message>
-            <source>Unavailable</source>
-            <translation>不可用</translation>
-        </message>
-        <message>
-            <source>Update available: %1</source>
-            <translation>发现新版本：%1</translation>
-        </message>
-        <message>
-            <source>Update download progress</source>
-            <translation>更新下载进度</translation>
-        </message>
-        <message>
-            <source>Update failed: %1</source>
-            <translation>更新失败：%1</translation>
-        </message>
-        <message>
-            <source>Updates are managed by Microsoft Store.</source>
-            <translation>更新由 Microsoft Store 管理。</translation>
-        </message>
-        <message>
-            <source>Verifying update…</source>
-            <translation>正在验证更新…</translation>
-        </message>
-        <message>
-            <source>View the source and improve it together</source>
-            <translation>查看源码，一起改进</translation>
-        </message>
-        <message>
-            <source>You are up to date</source>
-            <translation>当前已是最新版本</translation>
-        </message>
-    </context>
-    <context>
         <name>ApplicationRestart</name>
         <message>
             <source>Another restart operation is in progress.</source>
@@ -853,20 +592,20 @@ so every moment on screen can be expressed clearly and shared easily.</source>
     <context>
         <name>snow_shot::app::ApplicationController</name>
         <message>
-            <source>%1 %2 is available. Open About for update options.</source>
-            <translation>%1 %2 已发布。请打开“关于”查看更新选项。</translation>
+            <source>%1 %2 is available. Select this notification to download the update.</source>
+            <translation>%1 %2 已发布。点击此通知下载更新。</translation>
         </message>
         <message>
             <source>%1 will close and restart to install the update. Continue?</source>
             <translation>%1 将关闭并重新启动以安装更新。是否继续？</translation>
         </message>
         <message>
-            <source>An update is ready. Open About to restart and update %1.</source>
-            <translation>更新已就绪。请打开“关于”重新启动并更新 %1。</translation>
+            <source>An update is ready. Select this notification to restart and update %1.</source>
+            <translation>更新已准备就绪。点击此通知重启并更新 %1。</translation>
         </message>
         <message>
-            <source>An update is ready. Open About to restart and update InuShot.</source>
-            <translation>更新已准备就绪。请打开“关于”页面，重启并更新 InuShot。</translation>
+            <source>An update is ready. Select this notification to restart and update InuShot.</source>
+            <translation>更新已准备就绪。点击此通知重启并更新 InuShot。</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -875,6 +614,10 @@ so every moment on screen can be expressed clearly and shared easily.</source>
         <message>
             <source>Could not open the selected file: %1</source>
             <translation>无法打开所选文件：%1</translation>
+        </message>
+        <message>
+            <source>Could not open the update link</source>
+            <translation>无法打开更新链接</translation>
         </message>
         <message>
             <source>Could not pin selected files</source>
@@ -893,20 +636,20 @@ so every moment on screen can be expressed clearly and shared easily.</source>
             <translation>请先完成截图、屏幕录制或导出，再进行更新。</translation>
         </message>
         <message>
+            <source>InuShot %1 is available. Select this notification to download the update.</source>
+            <translation>InuShot %1 已发布。点击此通知下载更新。</translation>
+        </message>
+        <message>
+            <source>InuShot will close and restart to install the update. Continue?</source>
+            <translation>InuShot 将关闭并重启以安装更新。是否继续？</translation>
+        </message>
+        <message>
             <source>Restart and update</source>
             <translation>重启并更新</translation>
         </message>
         <message>
             <source>Restart failed</source>
             <translation>重启失败</translation>
-        </message>
-        <message>
-            <source>InuShot %1 is available. Open About for update options.</source>
-            <translation>InuShot %1 已推出。打开“关于”查看更新选项。</translation>
-        </message>
-        <message>
-            <source>InuShot will close and restart to install the update. Continue?</source>
-            <translation>InuShot 将关闭并重启以安装更新。是否继续？</translation>
         </message>
         <message>
             <source>The selected file path is invalid</source>

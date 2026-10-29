@@ -744,16 +744,16 @@
             <translation>Could not save the launch-at-login preference. The displayed macOS status is still current.</translation>
         </message>
         <message>
+            <source>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</source>
+            <translation>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</translation>
+        </message>
+        <message>
             <source>Move the signed %1 app to /Applications or ~/Applications to use launch at login.</source>
             <translation>Move the signed %1 app to /Applications or ~/Applications to use launch at login.</translation>
         </message>
         <message>
             <source>Move the signed InuShot app to /Applications or ~/Applications to use launch at login.</source>
             <translation>Move the signed InuShot app to /Applications or ~/Applications to use launch at login.</translation>
-        </message>
-        <message>
-            <source>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</source>
-            <translation>InuShot needs a valid code signature to use launch at login. Reinstall the signed app.</translation>
         </message>
         <message>
             <source>macOS could not find %1's login item. Reinstall the app in Applications.</source>
@@ -1194,10 +1194,6 @@
         <message>
             <source>AVIF</source>
             <translation>AVIF</translation>
-        </message>
-        <message>
-            <source>About</source>
-            <translation>About</translation>
         </message>
         <message>
             <source>Above normal</source>
@@ -2736,6 +2732,14 @@
             <translation>Interface settings</translation>
         </message>
         <message>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
+        </message>
+        <message>
+            <source>InuShot server</source>
+            <translation>InuShot server</translation>
+        </message>
+        <message>
             <source>JPEG</source>
             <translation>JPEG</translation>
         </message>
@@ -4208,14 +4212,6 @@
             <translation>Smart selection</translation>
         </message>
         <message>
-            <source>InuShot</source>
-            <translation>InuShot</translation>
-        </message>
-        <message>
-            <source>InuShot server</source>
-            <translation>InuShot server</translation>
-        </message>
-        <message>
             <source>Snowflake</source>
             <translation>Snowflake</translation>
         </message>
@@ -4238,10 +4234,6 @@
         <message>
             <source>Software updates</source>
             <translation>Software updates</translation>
-        </message>
-        <message>
-            <source>Software version and license information</source>
-            <translation>Software version and license information</translation>
         </message>
         <message>
             <source>Source Language</source>

@@ -977,11 +977,11 @@ int main(int argc, char* argv[]) {
             });
 #endif
         QStringList openedPaths;
-        int aboutRequests = 0;
+        int updateActions = 0;
         QObject::connect(&controller, &SystemTrayController::openRecordingFileRequested,
                          &controller, [&](const QString& path) { openedPaths.append(path); });
-        QObject::connect(&controller, &SystemTrayController::openAboutRequested, &controller,
-                         [&] { ++aboutRequests; });
+        QObject::connect(&controller, &SystemTrayController::updateActionRequested, &controller,
+                         [&] { ++updateActions; });
         const QString first =
             storageDirectory.filePath(QStringLiteral("Video exports/first clip.mp4"));
         const QString second =
@@ -996,8 +996,8 @@ int main(int argc, char* argv[]) {
                        QDir::toNativeSeparators(first), QSystemTrayIcon::Information,
                        "recording notification displays the exported file path");
         clickNotification(controller, trayIcon, Action::OpenRecording, first);
-        require(openedPaths == QStringList{first} && aboutRequests == 0,
-                "clicking recording notification requests its file without opening About");
+        require(openedPaths == QStringList{first} && updateActions == 0,
+                "clicking recording notification requests its file without triggering an update action");
         controller.showRecordingExportMessage(second);
         clickNotification(controller, trayIcon, Action::OpenRecording, second);
         require(openedPaths == QStringList{first, second},
@@ -1014,9 +1014,9 @@ int main(int argc, char* argv[]) {
         require(openedPaths.size() == 2,
                 "warning notifications clear the previous recording action");
         controller.showUpdateMessage(QStringLiteral("Update ready"));
-        clickNotification(controller, trayIcon, Action::OpenAbout);
-        require(openedPaths.size() == 2 && aboutRequests == 1,
-                "update clicks keep their existing About action");
+        clickNotification(controller, trayIcon, Action::OpenUpdate);
+        require(openedPaths.size() == 2 && updateActions == 1,
+                "update clicks retain their update action");
 #ifdef Q_OS_MACOS
         QCoreApplication::processEvents();
         require(notificationAttempts == 4,
@@ -1025,7 +1025,7 @@ int main(int argc, char* argv[]) {
                     attemptedRequests.at(1).filePath == second &&
                     attemptedRequests.at(2).severity ==
                         snow_shot::platform::SystemNotificationSeverity::Warning &&
-                    attemptedRequests.at(3).action == Action::OpenAbout,
+                    attemptedRequests.at(3).action == Action::OpenUpdate,
                 "unavailable results must preserve each notification's content and action");
 #endif
         controller.showRecordingExportMessage(second);
@@ -1814,10 +1814,10 @@ int main(int argc, char* argv[]) {
     QObject::connect(&controller,
                      &snow_shot::presentation::SystemTrayController::openFunctionSettingsRequested,
                      [&functionSettingsRequests]() { ++functionSettingsRequests; });
-    int aboutRequests = 0;
+    int updateActions = 0;
     QObject::connect(&controller,
-                     &snow_shot::presentation::SystemTrayController::openAboutRequested,
-                     [&aboutRequests]() { ++aboutRequests; });
+                     &snow_shot::presentation::SystemTrayController::updateActionRequested,
+                     [&updateActions]() { ++updateActions; });
     verifyTrayClickActions();
     screenshotRequests = showMainWindowRequests = functionSettingsRequests = 0;
     quickActions.clear();
@@ -1852,26 +1852,26 @@ int main(int argc, char* argv[]) {
     const int functionSettingsRequestsBeforeMessageClicks = functionSettingsRequests;
     controller.showUpdateMessage(QStringLiteral("InuShot 2.0.0 is available."));
     clickNotification(controller, trayIcon,
-                      snow_shot::platform::SystemNotificationAction::OpenAbout);
-    require(aboutRequests == 1 && screenshotRequests == screenshotRequestsBeforeMessageClicks &&
+                      snow_shot::platform::SystemNotificationAction::OpenUpdate);
+    require(updateActions == 1 && screenshotRequests == screenshotRequestsBeforeMessageClicks &&
                 showMainWindowRequests == showMainWindowRequestsBeforeMessageClicks &&
                 functionSettingsRequests == functionSettingsRequestsBeforeMessageClicks,
-            "clicking a new-version system notification must request only the About page");
+            "clicking a new-version system notification must request only the update action");
     controller.showCaptureMessage(QStringLiteral("Capture failed"), false);
     controller.showWarningMessage(QStringLiteral("Feature unavailable"),
                                   QStringLiteral("Screenshot is unavailable"));
     clickNotification(controller, trayIcon, snow_shot::platform::SystemNotificationAction::None);
-    require(aboutRequests == 1,
-            "capture and warning balloon clicks must not request the About page");
+    require(updateActions == 1,
+            "capture and warning balloon clicks must not trigger the update action");
     controller.setEnabled(false);
     controller.showUpdateMessage(QStringLiteral("Update with tray hidden"));
     clickNotification(controller, trayIcon,
-                      snow_shot::platform::SystemNotificationAction::OpenAbout);
+                      snow_shot::platform::SystemNotificationAction::OpenUpdate);
     controller.setEnabled(true);
 #ifdef Q_OS_MACOS
-    require(aboutRequests == 2, "native notification actions must remain valid with a hidden tray");
+    require(updateActions == 2, "native notification actions must remain valid with a hidden tray");
 #else
-    require(aboutRequests == 1,
+    require(updateActions == 1,
             "a balloon suppressed while the tray is disabled must stay unclickable");
 #endif
 

@@ -60,7 +60,7 @@ id<SnowShotNotificationCenter> nativeCenter() {
         const QPointer<SystemNotificationService> guard = service;
         dispatch_async(dispatch_get_main_queue(), ^{
           if (guard &&
-              (action == SystemNotificationService::Action::OpenAbout ||
+              (action == SystemNotificationService::Action::OpenUpdate ||
                (action == SystemNotificationService::Action::OpenRecording && !path.isEmpty())))
               emit guard->activated(action, path);
         });

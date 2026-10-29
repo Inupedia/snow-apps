@@ -94,7 +94,7 @@ History and pinned management take one filter snapshot per filtering pass and co
 timestamps to local dates only when a date boundary is active. They also skip building a set of
 every record ID when there is no selection to reconcile.
 
-The added `snow-shot-main-page-performance-benchmark` covers About, Translation, and empty and
+The added `snow-shot-main-page-performance-benchmark` covers Translation plus empty and
 populated history/pinned pages. It uses the same fresh-instance, four-event-pass measurement as
 the settings benchmark. Synthetic sources with 100 and 10,000 records exclude repository reads
 and thumbnail completion; Translation uses a pending local catalog request. These timings measure

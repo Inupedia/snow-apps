@@ -74,7 +74,7 @@ class SystemTrayController final : public QObject {
     void showMainWindowRequested();
     void restartRequested();
     void openFunctionSettingsRequested();
-    void openAboutRequested();
+    void updateActionRequested();
     void openRecordingFileRequested(const QString& path);
     void quickActionRequested(snow_shot::presentation::GlobalShortcutAction action);
     void exitRequested();

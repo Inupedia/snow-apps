@@ -250,8 +250,7 @@ Follow Microsoft's [MSIX submission guide](https://learn.microsoft.com/en-us/win
    the published privacy-policy URL. Describe online AI recognition/translation and
    declare live generative AI under the [AI content policy](https://learn.microsoft.com/en-us/windows/apps/publish/store-policies#1116-live-generative-ai-content).
    Confirm that privacy requests, feedback and inappropriate-content reports have
-   monitored contact routes. About → Feedback and suggestions opens the project's
-   issue tracker.
+   monitored contact routes. The project's issue tracker accepts feedback and suggestions.
 4. Explain the restricted `runFullTrust` capability: native screen capture, global
    shortcuts, annotation/pinning windows, local OCR and recording. Explain microphone
    and webcam use for recording. Supply reviewer instructions and any access needed
@@ -266,8 +265,8 @@ Suggested reviewer notes, to confirm against the submitted build:
 > microphone and camera controls and supports Windows permission denial. Explorer's
 > Snow Shot Edit action opens supported files. Optional official online recognition
 > and AI features need a network connection; custom providers need configuration.
-> About links to privacy and feedback. Settings can enable startup and authenticated
-> local MCP through snow-shot-store-mcp.exe. Microsoft Store manages updates.
+> Settings can enable startup and authenticated local MCP through
+> snow-shot-store-mcp.exe. Microsoft Store manages updates.
 > Administrator launch and runtime shell-registration controls are absent.
 
 Test updates through a private package flight before expanding production

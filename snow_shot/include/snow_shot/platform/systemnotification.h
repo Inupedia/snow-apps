@@ -6,7 +6,7 @@
 #include <functional>
 
 namespace snow_shot::platform {
-enum class SystemNotificationAction { None, OpenAbout, OpenRecording };
+enum class SystemNotificationAction { None, OpenUpdate, OpenRecording };
 enum class SystemNotificationSeverity { Information, Warning, Error };
 
 struct SystemNotificationRequest {

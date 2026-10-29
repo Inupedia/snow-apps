@@ -1,6 +1,5 @@
 {
   "core": [
-    "AboutPageWidget",
     "ApplicationRestart",
     "CanvasStatusReadout",
     "ConfirmationSkipButton",

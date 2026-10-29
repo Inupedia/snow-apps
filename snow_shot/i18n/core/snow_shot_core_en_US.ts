@@ -2,267 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US" sourcelanguage="en_US">
     <context>
-        <name>AboutPageWidget</name>
-        <message>
-            <source>%1 logo</source>
-            <translation>%1 logo</translation>
-        </message>
-        <message>
-            <source>%1 · %2</source>
-            <translation>%1 · %2</translation>
-        </message>
-        <message>
-            <source>%1 · Make expression clearer</source>
-            <translation>%1 · Make expression clearer</translation>
-        </message>
-        <message>
-            <source>, excellent work.</source>
-            <translation>, excellent work.</translation>
-        </message>
-        <message>
-            <source>About %1</source>
-            <translation>About %1</translation>
-        </message>
-        <message>
-            <source>About InuShot</source>
-            <translation>About InuShot</translation>
-        </message>
-        <message>
-            <source>Automatic updates are unavailable for this copy.</source>
-            <translation>Automatic updates are unavailable for this copy.</translation>
-        </message>
-        <message>
-            <source>Built for daily work, and growing with the community.</source>
-            <translation>Built for daily work, and growing with the community.</translation>
-        </message>
-        <message>
-            <source>Cancel download</source>
-            <translation>Cancel download</translation>
-        </message>
-        <message>
-            <source>Capture, annotate, recognize text, and record your screen,
-so every moment on screen can be expressed clearly and shared easily.</source>
-            <translation>Capture, annotate, recognize text, and record your screen,
-so every moment on screen can be expressed clearly and shared easily.</translation>
-        </message>
-        <message>
-            <source>Changelog</source>
-            <translation>Changelog</translation>
-        </message>
-        <message>
-            <source>Check for a newer version of %1.</source>
-            <translation>Check for a newer version of %1.</translation>
-        </message>
-        <message>
-            <source>Check for a newer version of InuShot.</source>
-            <translation>Check for a newer version of InuShot.</translation>
-        </message>
-        <message>
-            <source>Check for updates</source>
-            <translation>Check for updates</translation>
-        </message>
-        <message>
-            <source>Checking for updates…</source>
-            <translation>Checking for updates…</translation>
-        </message>
-        <message>
-            <source>Copied</source>
-            <translation>Copied</translation>
-        </message>
-        <message>
-            <source>Copy the version number to the clipboard</source>
-            <translation>Copy the version number to the clipboard</translation>
-        </message>
-        <message>
-            <source>Copy version number</source>
-            <translation>Copy version number</translation>
-        </message>
-        <message>
-            <source>Copyright © %1 %2</source>
-            <translation>Copyright © %1 %2</translation>
-        </message>
-        <message>
-            <source>Could not open the link. Open %1 in your browser.</source>
-            <translation>Could not open the link. Open %1 in your browser.</translation>
-        </message>
-        <message>
-            <source>Current version</source>
-            <translation>Current version</translation>
-        </message>
-        <message>
-            <source>Current version: %1</source>
-            <translation>Current version: %1</translation>
-        </message>
-        <message>
-            <source>Discover more features and ways to use it</source>
-            <translation>Discover more features and ways to use it</translation>
-        </message>
-        <message>
-            <source>Discussion and support · Group No. %1</source>
-            <translation>Discussion and support · Group No. %1</translation>
-        </message>
-        <message>
-            <source>Download from GitHub</source>
-            <translation>Download from GitHub</translation>
-        </message>
-        <message>
-            <source>Download from Gitee</source>
-            <translation>Download from Gitee</translation>
-        </message>
-        <message>
-            <source>Download update</source>
-            <translation>Download update</translation>
-        </message>
-        <message>
-            <source>Downloading %1 of %2 MB</source>
-            <translation>Downloading %1 of %2 MB</translation>
-        </message>
-        <message>
-            <source>Downloading update…</source>
-            <translation>Downloading update…</translation>
-        </message>
-        <message>
-            <source>Easy annotation</source>
-            <translation>Easy annotation</translation>
-        </message>
-        <message>
-            <source>Elegant screenshots</source>
-            <translation>Elegant screenshots</translation>
-        </message>
-        <message>
-            <source>Feedback and suggestions</source>
-            <translation>Feedback and suggestions</translation>
-        </message>
-        <message>
-            <source>Free and open-source software. Distributed without any warranty.</source>
-            <translation>Free and open-source software. Distributed without any warranty.</translation>
-        </message>
-        <message>
-            <source>Free · Open source</source>
-            <translation>Free · Open source</translation>
-        </message>
-        <message>
-            <source>GNU General Public License v3.0 or later</source>
-            <translation>GNU General Public License v3.0 or later</translation>
-        </message>
-        <message>
-            <source>GitHub</source>
-            <translation>GitHub</translation>
-        </message>
-        <message>
-            <source>Make every moment clear.</source>
-            <translation>Make every moment clear.</translation>
-        </message>
-        <message>
-            <source>Make the next experience better</source>
-            <translation>Make the next experience better</translation>
-        </message>
-        <message>
-            <source>Official website</source>
-            <translation>Official website</translation>
-        </message>
-        <message>
-            <source>Open Microsoft Store</source>
-            <translation>Open Microsoft Store</translation>
-        </message>
-        <message>
-            <source>Pin to screen</source>
-            <translation>Pin to screen</translation>
-        </message>
-        <message>
-            <source>Preparing to restart and update…</source>
-            <translation>Preparing to restart and update…</translation>
-        </message>
-        <message>
-            <source>Preview</source>
-            <translation>Preview</translation>
-        </message>
-        <message>
-            <source>Privacy policy</source>
-            <translation>Privacy policy</translation>
-        </message>
-        <message>
-            <source>QQ Group 3</source>
-            <translation>QQ Group 3</translation>
-        </message>
-        <message>
-            <source>Ready to install %1</source>
-            <translation>Ready to install %1</translation>
-        </message>
-        <message>
-            <source>Restart and update</source>
-            <translation>Restart and update</translation>
-        </message>
-        <message>
-            <source>Screen recording</source>
-            <translation>Screen recording</translation>
-        </message>
-        <message>
-            <source>Screenshot capture</source>
-            <translation>Screenshot capture</translation>
-        </message>
-        <message>
-            <source>Screenshot history</source>
-            <translation>Screenshot history</translation>
-        </message>
-        <message>
-            <source>Screenshot selection, annotation tools, and recognized text</source>
-            <translation>Screenshot selection, annotation tools, and recognized text</translation>
-        </message>
-        <message>
-            <source>InuShot</source>
-            <translation>InuShot</translation>
-        </message>
-        <message>
-            <source>InuShot logo</source>
-            <translation>InuShot logo</translation>
-        </message>
-        <message>
-            <source>InuShot · Make expression clearer</source>
-            <translation>InuShot · Make expression clearer</translation>
-        </message>
-        <message>
-            <source>Text recognition</source>
-            <translation>Text recognition</translation>
-        </message>
-        <message>
-            <source>Turn pixels into usable text</source>
-            <translation>Turn pixels into usable text</translation>
-        </message>
-        <message>
-            <source>Unavailable</source>
-            <translation>Unavailable</translation>
-        </message>
-        <message>
-            <source>Update available: %1</source>
-            <translation>Update available: %1</translation>
-        </message>
-        <message>
-            <source>Update download progress</source>
-            <translation>Update download progress</translation>
-        </message>
-        <message>
-            <source>Update failed: %1</source>
-            <translation>Update failed: %1</translation>
-        </message>
-        <message>
-            <source>Updates are managed by Microsoft Store.</source>
-            <translation>Updates are managed by Microsoft Store.</translation>
-        </message>
-        <message>
-            <source>Verifying update…</source>
-            <translation>Verifying update…</translation>
-        </message>
-        <message>
-            <source>View the source and improve it together</source>
-            <translation>View the source and improve it together</translation>
-        </message>
-        <message>
-            <source>You are up to date</source>
-            <translation>You are up to date</translation>
-        </message>
-    </context>
-    <context>
         <name>ApplicationRestart</name>
         <message>
             <source>Another restart operation is in progress.</source>
@@ -853,20 +592,20 @@ so every moment on screen can be expressed clearly and shared easily.</translati
     <context>
         <name>snow_shot::app::ApplicationController</name>
         <message>
-            <source>%1 %2 is available. Open About for update options.</source>
-            <translation>%1 %2 is available. Open About for update options.</translation>
+            <source>%1 %2 is available. Select this notification to download the update.</source>
+            <translation>%1 %2 is available. Select this notification to download the update.</translation>
         </message>
         <message>
             <source>%1 will close and restart to install the update. Continue?</source>
             <translation>%1 will close and restart to install the update. Continue?</translation>
         </message>
         <message>
-            <source>An update is ready. Open About to restart and update %1.</source>
-            <translation>An update is ready. Open About to restart and update %1.</translation>
+            <source>An update is ready. Select this notification to restart and update %1.</source>
+            <translation>An update is ready. Select this notification to restart and update %1.</translation>
         </message>
         <message>
-            <source>An update is ready. Open About to restart and update InuShot.</source>
-            <translation>An update is ready. Open About to restart and update InuShot.</translation>
+            <source>An update is ready. Select this notification to restart and update InuShot.</source>
+            <translation>An update is ready. Select this notification to restart and update InuShot.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -875,6 +614,10 @@ so every moment on screen can be expressed clearly and shared easily.</translati
         <message>
             <source>Could not open the selected file: %1</source>
             <translation>Could not open the selected file: %1</translation>
+        </message>
+        <message>
+            <source>Could not open the update link</source>
+            <translation>Could not open the update link</translation>
         </message>
         <message>
             <source>Could not pin selected files</source>
@@ -893,20 +636,20 @@ so every moment on screen can be expressed clearly and shared easily.</translati
             <translation>Finish capturing, recording, or exporting before updating.</translation>
         </message>
         <message>
+            <source>InuShot %1 is available. Select this notification to download the update.</source>
+            <translation>InuShot %1 is available. Select this notification to download the update.</translation>
+        </message>
+        <message>
+            <source>InuShot will close and restart to install the update. Continue?</source>
+            <translation>InuShot will close and restart to install the update. Continue?</translation>
+        </message>
+        <message>
             <source>Restart and update</source>
             <translation>Restart and update</translation>
         </message>
         <message>
             <source>Restart failed</source>
             <translation>Restart failed</translation>
-        </message>
-        <message>
-            <source>InuShot %1 is available. Open About for update options.</source>
-            <translation>InuShot %1 is available. Open About for update options.</translation>
-        </message>
-        <message>
-            <source>InuShot will close and restart to install the update. Continue?</source>
-            <translation>InuShot will close and restart to install the update. Continue?</translation>
         </message>
         <message>
             <source>The selected file path is invalid</source>

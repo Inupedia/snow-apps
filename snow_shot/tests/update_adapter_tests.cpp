@@ -781,7 +781,7 @@ int main(int argc, char** argv) {
         service.start();
         require(waitUntil([&] { return service.status().state == UpdateState::Available; }),
                 "probe restores an available update");
-        require(announced.isEmpty(), "manual mode keeps cached discovery in About");
+        require(announced.isEmpty(), "manual mode keeps cached discovery quiet");
         service.setMode(QStringLiteral("download"));
         require(waitUntil([&] {
                     return counterValue(launches) >= 2 &&

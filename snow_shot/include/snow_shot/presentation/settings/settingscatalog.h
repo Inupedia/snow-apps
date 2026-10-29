@@ -560,7 +560,6 @@ enum class SettingsPageKind {
     GeneratedSettings,
     ScreenshotHistory,
     PinnedWindowManagement,
-    About,
     Translation,
 };
 
