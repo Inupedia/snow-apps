@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 #include "snow_shot/presentation/components/imagespliteditorwidget.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "snow_shot/presentation/components/canvasactiontoolbar.h"
 #include "snow_shot/presentation/components/imagedropsurface.h"
@@ -1121,7 +1122,7 @@ ImageSplitEditorWidget::ImageSplitEditorWidget(ImageSplitDocument* document, QWi
     overlay->setContentsMargins(16, 16, 16, 16);
     overlay->addStretch(1);
     overlay->addWidget(toolbar, 0, Qt::AlignHCenter);
-    namespace icons = snow_shot::presentation::icons::custom::outlined;
+    namespace icons = snow_shot::presentation::icons::third_party::outlined;
     const std::array<adqt::icons::IconRef, 4> refs{icons::Undo(), icons::Redo(),
                                                    icons::Fullscreen(), icons::Reload()};
     const std::array<const char*, 4> names{"imageSplitUndo", "imageSplitRedo", "imageSplitFit",

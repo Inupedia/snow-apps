@@ -1703,6 +1703,7 @@ set(PROJECT_HEADERS
     include/snow_shot/presentation/components/contentcardwidget.h
     include/snow_shot/presentation/components/maincontentheaderwidget.h
     include/snow_shot/presentation/components/icons/snowshoticons.h
+    include/snow_shot/presentation/components/icons/third_party_icons.h
     include/snow_shot/presentation/components/settingspageutils.h
     include/snow_shot/presentation/components/sidebarwidget.h
     include/snow_shot/presentation/components/titlebarwidget.h

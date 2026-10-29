@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/components/pathinput.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "antd_icons.h"
 #include "widgets/button.h"
@@ -11,7 +12,7 @@
 #include <QSizePolicy>
 
 namespace {
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 }
 
 DirectoryPathInput::DirectoryPathInput(QWidget* parent)

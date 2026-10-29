@@ -3,6 +3,7 @@
 #include "widgets/detail/pointer_region.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/pagecontainerwidget.h"
 #include "snow_shot/presentation/styles/mainwindowcomponenttoken.h"
 #include "snow_shot/presentation/styles/thememanager.h"
@@ -51,8 +52,8 @@ static void initializeAboutResources() {
 
 namespace {
 namespace styles = snow_shot::presentation::styles;
-namespace custom = snow_shot::presentation::icons::custom;
-namespace outlined = snow_shot::presentation::icons::custom::outlined;
+namespace third_party = snow_shot::presentation::icons::third_party;
+namespace outlined = snow_shot::presentation::icons::third_party::outlined;
 using adqt::widgets::AdButton;
 using adqt::widgets::AdDivider;
 
@@ -340,9 +341,9 @@ struct AboutPageWidget::Ui {
     std::array<QLabel*, 6> featureLabels{};
     std::array<AdDivider*, 6> featureSeparators{};
     std::array<adqt::icons::IconRef, 6> featureRefs{
-        custom::twotone::ScreenshotFeature(), custom::outlined::ToolFreeDraw(),
-        custom::outlined::TextRecognition(),  custom::outlined::RecordScreen(),
-        custom::outlined::PinToScreen(),      outlined::History()};
+        third_party::twotone::ScreenshotFeature(), third_party::outlined::ToolFreeDraw(),
+        third_party::outlined::TextRecognition(),   third_party::outlined::RecordScreen(),
+        third_party::outlined::PinToScreen(),       outlined::History()};
     AdDivider* featureDivider = nullptr;
     QFrame* versionPanel = nullptr;
     QVBoxLayout* versionPanelLayout = nullptr;
@@ -740,7 +741,8 @@ void AboutPageWidget::applyTheme(const styles::ThemeColorScheme& scheme) {
     styleAboutLabel(m_ui->linkError, metric.fontSizeSM, QFont::Normal, colors.colorErrorText);
     const int logoSize = metric.controlHeight;
     m_ui->logo->setFixedSize(logoSize, logoSize);
-    m_ui->logo->setPixmap(aboutIcon(custom::app::ApplicationIcon(), m_ui->logo->size(), this));
+    m_ui->logo->setPixmap(aboutIcon(snow_shot::presentation::icons::custom::app::ApplicationIcon(),
+                                    m_ui->logo->size(), this));
     m_ui->heart->setFixedSize(metric.fontSizeSM, metric.fontSizeSM);
     m_ui->heart->setPixmap(aboutIcon(outlined::Heart(), m_ui->heart->size(), this, violet));
     const std::array<QColor, 6> tones{violet,

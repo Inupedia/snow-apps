@@ -13,6 +13,7 @@
 #include "snow_shot/presentation/settings/settingscatalog.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #ifdef Q_OS_MACOS
 #include "snow_shot/platform/macos/systemtraymenu.h"
@@ -51,8 +52,8 @@ constexpr auto DEFAULT_DARK_TRAY_ICON = "inherit";
 constexpr auto DEFAULT_LEFT_CLICK_ACTION = "screenshot";
 constexpr auto DEFAULT_MIDDLE_CLICK_ACTION = "screenshot_fixed";
 
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 
 const QHash<QString, QString>& bundledIconResources() {
     static const QHash<QString, QString> resources{
@@ -646,7 +647,7 @@ class SystemTrayController::Impl {
                 new TrayMenuSkinBinding(popup);
                 rebuildGroupMenu();
             },
-            custom_outlined_icons::Group());
+            third_party_icons::Group());
         groupMenuAction->setObjectName(QStringLiteral("systemTrayWindowGroupAction"));
         if (!windowGroupingOptionId.isEmpty()) {
             groupMenuAction->setData(windowGroupingOptionId);
@@ -727,7 +728,7 @@ class SystemTrayController::Impl {
                     });
                 }
             },
-            custom_outlined_icons::Delete());
+            third_party_icons::Delete());
         deleteSpecified->setObjectName(QStringLiteral("systemTrayDeleteSpecifiedGroupAction"));
     }
 

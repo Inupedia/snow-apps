@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/screenshottoolbarlayoutmodel.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/storagestatussettingswidget.h"
 #include "snow_shot/presentation/components/formfields.h"
 #include "snow_shot/presentation/components/customaimodelssettingswidget.h"
@@ -345,7 +346,7 @@ settings::SettingsRegistry storageStatusRegistry() {
                                           {section}};
     settings::SettingsNavigationPageDefinition navigation{
         QStringLiteral("nav.storage"), page.id,
-        []() { return snow_shot::presentation::icons::custom::outlined::Appstore(); }};
+        []() { return snow_shot::presentation::icons::third_party::outlined::Appstore(); }};
     return settings::SettingsRegistry::fromCatalog(
         settings::SettingsCatalog({page}, {navigation}, {page.id, section.id, {}}),
         QStringLiteral("test-provider"));

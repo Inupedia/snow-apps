@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/screenshotrecognitionwindow.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/crosshaircursor.h"
 #include "snow_shot/presentation/screenshotocrtextlayout.h"
 #include <QAbstractTextDocumentLayout>
@@ -2104,9 +2105,9 @@ void ScreenshotRecognitionWindow::showOcrContextMenu(const QPoint& globalPositio
     adqt::widgets::AdContextMenu menu(this);
     menu.setObjectName(QStringLiteral("screenshotOcrContextMenu"));
     QAction* copy =
-        menu.addItem(tr("Copy"), snow_shot::presentation::icons::custom::outlined::Copy());
+        menu.addItem(tr("Copy"), snow_shot::presentation::icons::third_party::outlined::Copy());
     QAction* selectAll =
-        menu.addItem(tr("Select All"), snow_shot::presentation::icons::custom::outlined::Select());
+        menu.addItem(tr("Select All"), snow_shot::presentation::icons::third_party::outlined::Select());
     selectAll->setEnabled(!m_ocrPresentation->lines.isEmpty());
     connect(copy, &QAction::triggered, this,
             [this]() { static_cast<void>(copyVisibleContentToClipboard()); });
@@ -2131,9 +2132,9 @@ void ScreenshotRecognitionWindow::showQrContextMenu(const QPoint& globalPosition
     adqt::widgets::AdContextMenu menu(this);
     menu.setObjectName(QStringLiteral("screenshotQrContextMenu"));
     QAction* copy =
-        menu.addItem(tr("Copy"), snow_shot::presentation::icons::custom::outlined::Copy());
+        menu.addItem(tr("Copy"), snow_shot::presentation::icons::third_party::outlined::Copy());
     QAction* selectAll =
-        menu.addItem(tr("Select All"), snow_shot::presentation::icons::custom::outlined::Select());
+        menu.addItem(tr("Select All"), snow_shot::presentation::icons::third_party::outlined::Select());
     selectAll->setEnabled(!m_qrBrowser->document()->isEmpty());
     connect(copy, &QAction::triggered, this,
             [this]() { static_cast<void>(copyVisibleContentToClipboard()); });
@@ -2151,16 +2152,16 @@ void ScreenshotRecognitionWindow::showTextEditorContextMenu(const QPoint& global
     adqt::widgets::AdContextMenu menu(this);
     menu.setObjectName(QStringLiteral("screenshotTextEditorContextMenu"));
     QAction* copy =
-        menu.addItem(tr("Copy"), snow_shot::presentation::icons::custom::outlined::Copy());
+        menu.addItem(tr("Copy"), snow_shot::presentation::icons::third_party::outlined::Copy());
     QAction* cut =
-        menu.addItem(tr("Cut"), snow_shot::presentation::icons::custom::outlined::Scissor());
+        menu.addItem(tr("Cut"), snow_shot::presentation::icons::third_party::outlined::Scissor());
     QAction* paste =
-        menu.addItem(tr("Paste"), snow_shot::presentation::icons::custom::outlined::Snippets());
+        menu.addItem(tr("Paste"), snow_shot::presentation::icons::third_party::outlined::Snippets());
     QAction* remove =
-        menu.addItem(tr("Delete"), snow_shot::presentation::icons::custom::outlined::IconDelete());
+        menu.addItem(tr("Delete"), snow_shot::presentation::icons::third_party::outlined::IconDelete());
     menu.addSeparator();
     QAction* selectAll =
-        menu.addItem(tr("Select All"), snow_shot::presentation::icons::custom::outlined::Select());
+        menu.addItem(tr("Select All"), snow_shot::presentation::icons::third_party::outlined::Select());
 
     const bool hasSelection = m_textEditor->textCursor().hasSelection();
     const bool writable = !m_textEditor->isReadOnly();

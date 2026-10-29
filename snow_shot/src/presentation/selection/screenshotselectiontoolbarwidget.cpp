@@ -2,6 +2,7 @@
 
 #include "screenshotselectiontoolbarwidgets.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/pointerhoverevents.h"
 #include "snow_shot/presentation/screenshotselectionlimits.h"
 #include "snow_shot/presentation/screenshottoolbarcommands.h"
@@ -35,7 +36,7 @@
 #include <array>
 
 namespace {
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace toolbar_widgets = screenshot_selection_toolbar;
 using snow_shot::presentation::kScreenshotSelectionCornerRadiusMax;
 using snow_shot::presentation::kScreenshotSelectionShadowWidthMax;
@@ -1054,7 +1055,7 @@ void ScreenshotSelectionToolbarWidget::updateLockIconPixmap() {
     if (m_lockIconLabel != nullptr) {
         auto* valueLabel = static_cast<SelectionToolbarValueLabel*>(m_lockIconLabel);
         valueLabel->setIconOnlyPixmap(toolbar_widgets::renderToolbarIcon(
-            m_lockIconLabel, custom_outlined_icons::SelectionLockAspect(),
+            m_lockIconLabel, third_party_icons::SelectionLockAspect(),
             m_aspectRatioLocked ? toolbar_widgets::panelPrimaryColor()
                                 : toolbar_widgets::panelTextColor()));
         valueLabel->setLockAspectRatioControl(true);
@@ -1068,7 +1069,7 @@ void ScreenshotSelectionToolbarWidget::updateIconPixmaps() {
     if (m_radiusLabel != nullptr) {
         auto* valueLabel = static_cast<SelectionToolbarValueLabel*>(m_radiusLabel);
         valueLabel->setLeadingIcon(toolbar_widgets::renderToolbarIcon(
-            m_radiusLabel, custom_outlined_icons::SelectionRadius(),
+            m_radiusLabel, third_party_icons::SelectionRadius(),
             toolbar_widgets::panelTextColor()));
         valueLabel->setFixedSize(valueLabel->sizeHint());
     }
@@ -1076,7 +1077,7 @@ void ScreenshotSelectionToolbarWidget::updateIconPixmaps() {
     if (m_effectLabel != nullptr) {
         auto* valueLabel = static_cast<SelectionToolbarValueLabel*>(m_effectLabel);
         valueLabel->setLeadingIcon(toolbar_widgets::renderToolbarIcon(
-            m_effectLabel, custom_outlined_icons::SelectionShadow(),
+            m_effectLabel, third_party_icons::SelectionShadow(),
             toolbar_widgets::panelTextColor()));
         valueLabel->setFixedSize(valueLabel->sizeHint());
     }

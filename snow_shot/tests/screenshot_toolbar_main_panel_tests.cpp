@@ -1,5 +1,6 @@
 #include "palette_style_edit_test_support.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshottoolbarmainpanel.h"
 #include "snow_shot/presentation/screenshottoolpalette.h"
 #include "snow_shot/presentation/screenshottoolbarlayoutmodel.h"
@@ -199,7 +200,7 @@ void smallToolbarIconStaysVerticallyCentered() {
     ScreenshotToolbarMainPanel panel(ScreenshotToolbarMainPanel::Options{});
     adqt::widgets::AdControlScaleScope scaleScope(&panel);
     auto* button = panel.createToolButton(
-        nullptr, snow_shot::presentation::icons::custom::outlined::Border().withColors(
+        nullptr, snow_shot::presentation::icons::third_party::outlined::Border().withColors(
                      adqt::icons::IconColors::primary(Qt::magenta)));
     scaleScope.publishScale(
         adqt::widgets::AdControlScaleContext::fromDprsAndContentScale(1.0, 1.0, 0.8));
@@ -229,7 +230,7 @@ void smallToolbarIconStaysVerticallyCentered() {
 void customToolbarWidgetsKeepCallerMetricsDuringScaling() {
     ScreenshotToolbarMainPanel panel(ScreenshotToolbarMainPanel::Options{});
     auto* button =
-        panel.createActionButton("Copy", snow_shot::presentation::icons::custom::outlined::Copy());
+        panel.createActionButton("Copy", snow_shot::presentation::icons::third_party::outlined::Copy());
     auto* readout = new QLabel(QStringLiteral("00:00:00"), &panel);
     readout->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     readout->setFixedSize(96, screenshot_action_toolbar::ControlSize);
@@ -265,11 +266,11 @@ void customToolbarWidgetsKeepCallerMetricsDuringScaling() {
 void hiddenToolbarPeersKeepVisibleReferenceMetrics() {
     ScreenshotToolbarMainPanel panel(ScreenshotToolbarMainPanel::Options{});
     auto* first = panel.createActionButton(
-        "Start recording", snow_shot::presentation::icons::custom::outlined::PlayCircle());
+        "Start recording", snow_shot::presentation::icons::third_party::outlined::PlayCircle());
     auto* alternate = panel.createActionButton(
-        "Stop recording", snow_shot::presentation::icons::custom::outlined::Stop());
+        "Stop recording", snow_shot::presentation::icons::third_party::outlined::Stop());
     auto* copy =
-        panel.createActionButton("Copy", snow_shot::presentation::icons::custom::outlined::Copy());
+        panel.createActionButton("Copy", snow_shot::presentation::icons::third_party::outlined::Copy());
     panel.contentLayout()->addWidget(first);
     panel.contentLayout()->addWidget(alternate);
     panel.addSpacing(4);
@@ -1467,7 +1468,7 @@ void toolbarSkinProfilesAndLifecycle() {
     adqt::widgets::AdButton button(&probes);
     button.setButtonStyle(adqt::widgets::AdButton::ButtonStyle::Solid);
     button.setAccentRole(adqt::widgets::AdButton::AccentRole::Primary);
-    button.setIconRef(snow_shot::presentation::icons::custom::outlined::Heart().withColors(
+    button.setIconRef(snow_shot::presentation::icons::third_party::outlined::Heart().withColors(
         adqt::icons::IconColors::primary(Qt::green)));
     button.setIconSize(QSize(16, 16));
     button.setGeometry(8, 8, 40, 32);

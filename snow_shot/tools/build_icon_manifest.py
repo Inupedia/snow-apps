@@ -7,22 +7,10 @@ import re
 from pathlib import Path
 
 
-IMAGEGEN_ICON_ALIASES = {
-    "keyboard": "custom-application-shortcuts-nav.svg",
-    "mouse": "custom-global-mouse-nav.svg",
-    "ocr-translate": "custom-translation.svg",
-    "pin-to-screen": "custom-pin-screen-nav.svg",
-    "pin-to-screen-management": "custom-pin-management-nav.svg",
-    "quick-save": "custom-download.svg",
-    "record-screen": "custom-screen-recording-nav.svg",
-    "save": "custom-file-add.svg",
-    "screenshot-feature": "custom-picture.svg",
-    "screenshot-copy": "custom-copy.svg",
-    "screenshot-delay": "custom-clock-circle.svg",
-    "screenshot-focused-window": "custom-desktop.svg",
-    "screenshot-full-screen": "custom-fullscreen.svg",
-    "text-recognition": "custom-text-recognition-translation-nav.svg",
-    "wheel-mouse": "custom-global-mouse-nav.svg",
+PRODUCT_OWNED_ICON_ASSETS = {
+    "selection-shadow-cursor",
+    "snow-shot-logo",
+    "snow-shot-mini-logo",
 }
 
 
@@ -41,24 +29,11 @@ def main() -> int:
     entries = []
     for asset in sorted(asset_root.glob("*.svg"), key=lambda item: item.name):
         name = asset.stem
-        imagegen_source = asset_root / IMAGEGEN_ICON_ALIASES.get(name, asset.name)
+        if name not in PRODUCT_OWNED_ICON_ASSETS:
+            continue
         variant = "outlined"
         model = "monochrome"
-        defaults = None
-        allow_embedded_data_images = (
-            (name.startswith("custom-") or name in IMAGEGEN_ICON_ALIASES)
-            and "data:image/" in imagegen_source.read_text(encoding="utf-8")
-        )
-        if name == "screenshot-feature":
-            variant = "twotone"
-            if not allow_embedded_data_images:
-                model = "twoTone"
-                defaults = {"secondary": "#9254DE"}
-        elif allow_embedded_data_images:
-            variant = "outlined"
-            if name == "custom-setting":
-                model = "fullColor"
-        elif name in {"snow-shot-logo", "snow-shot-mini-logo"}:
+        if name in {"snow-shot-logo", "snow-shot-mini-logo"}:
             variant = "brand"
         elif name == "selection-shadow-cursor":
             variant, model = "cursor", "fullColor"
@@ -66,14 +41,10 @@ def main() -> int:
             "variant": variant,
             "symbol": symbol(name),
             "name": name,
-            "source": f"../src/presentation/components/icons/resources/{imagegen_source.name}",
+            "source": f"../src/presentation/components/icons/resources/{asset.name}",
             "colorModel": model,
             "fit": "contain",
         }
-        if defaults:
-            entry["defaultColors"] = defaults
-        if allow_embedded_data_images:
-            entry["allowEmbeddedDataImages"] = True
         entries.append(entry)
     entries.append({
         "variant": "app",

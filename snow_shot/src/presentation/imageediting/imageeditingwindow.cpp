@@ -6,6 +6,7 @@
 #include "snow_shot/presentation/components/canvasactiontoolbar.h"
 #include "antd_icons.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_shot/presentation/screenshotdrawingtoolbaroptions.h"
 #include "snow_shot/presentation/screenshotcanvascolorsampler.h"
@@ -154,9 +155,9 @@ struct ImageEditingWindow::Impl {
           stack(new QStackedLayout(surface)),
           floating(new ScreenshotFloatingToolPaletteWindow(editorOptions())),
           host(floating->paletteHost()), palette(host->palette()),
-          fit(zoomToolbar->addAction(snow_shot::presentation::icons::custom::outlined::Fullscreen(),
+          fit(zoomToolbar->addAction(snow_shot::presentation::icons::third_party::outlined::Fullscreen(),
                                      "imageEditingFit")),
-          actual(zoomToolbar->addAction(icons::custom::outlined::ActualSize(),
+          actual(zoomToolbar->addAction(icons::third_party::outlined::ActualSize(),
                                         "imageEditingActualSize")),
           shortcuts(&q), autoFilter(new ScreenshotAutoFilterController(
                              [this] { return document.bounds(); },

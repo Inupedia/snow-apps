@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/screenshottoolbarmainpanel.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "screenshottoolpalettebuttons.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
@@ -32,7 +33,7 @@
 #include <utility>
 
 namespace {
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 
 constexpr int kButtonSize = 32;
 constexpr int kIconSize = 24;

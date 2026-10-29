@@ -2,6 +2,7 @@
 
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 
@@ -316,7 +317,7 @@ void drawFillStyleIcon(QPainter* painter, const QRectF& iconRect, SnowCanvasFill
 
     if (fillStyle == SnowCanvasFillStyle::Border) {
         const QPixmap icon = snow_shot::presentation::icons::renderTintedIconPixmap(
-            snow_shot::presentation::icons::custom::outlined::FillBorder(),
+            snow_shot::presentation::icons::third_party::outlined::FillBorder(),
             iconRect.size().toSize(), painter->device()->devicePixelRatioF(), color);
         painter->drawPixmap(iconRect.toRect(), icon);
         return;
@@ -940,7 +941,7 @@ void ColorPickerSamplerButton::paintEvent(QPaintEvent* event) {
     const int iconSide = qBound(10, qRound(14.0 * swatchPhysicalScale()), qMin(width(), height()));
     const QRect iconRect((width() - iconSide) / 2, (height() - iconSide) / 2, iconSide, iconSide);
     const QPixmap icon = snow_shot::presentation::icons::renderTintedIconPixmap(
-        snow_shot::presentation::icons::custom::outlined::ColorPicker(), iconRect.size(),
+        snow_shot::presentation::icons::third_party::outlined::ColorPicker(), iconRect.size(),
         devicePixelRatioF(), iconColor);
     if (icon.isNull()) {
         return;

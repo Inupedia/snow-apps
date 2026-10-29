@@ -1,6 +1,7 @@
 #include "recordingwebcamcontrol.h"
 #include "snow_shot/presentation/components/canvasactiontoolbar.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "antd_icons.h"
 
 #include <QApplication>
@@ -58,10 +59,10 @@ RecordingWebcamControl::RecordingWebcamControl(QWidget* parent)
     auto* toolbar =
         static_cast<snow_shot::presentation::components::CanvasActionToolbar*>(m_toolbar);
     const std::array<adqt::icons::IconRef, 4> icons{
-        snow_shot::presentation::icons::custom::outlined::RotateRight(),
-        snow_shot::presentation::icons::custom::outlined::RotateLeft(),
-        snow_shot::presentation::icons::custom::outlined::FlipHorizontal(),
-        snow_shot::presentation::icons::custom::outlined::FlipVertical()};
+        snow_shot::presentation::icons::third_party::outlined::RotateRight(),
+        snow_shot::presentation::icons::third_party::outlined::RotateLeft(),
+        snow_shot::presentation::icons::third_party::outlined::FlipHorizontal(),
+        snow_shot::presentation::icons::third_party::outlined::FlipVertical()};
     const std::array<const char*, 4> names{
         "screenRecordingWebcamRotateClockwise", "screenRecordingWebcamRotateCounterclockwise",
         "screenRecordingWebcamFlipHorizontal", "screenRecordingWebcamFlipVertical"};

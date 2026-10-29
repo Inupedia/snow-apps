@@ -6,6 +6,7 @@
 #include "snow_draw_engine_qt/snow_canvas_widget.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshotcolorpickerwindow.h"
 #include "snow_shot/presentation/screenshotselectiontoolbarwidget.h"
 #include "snow_shot/presentation/screenshotoverlaywindow.h"
@@ -54,7 +55,7 @@ constexpr int kShortcutHintsIconSize = 14;
 constexpr int kShortcutHintsIconTextGap = 8;
 constexpr int kShortcutHintsChipTrailingSpace = 8;
 
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 
 class ScreenshotShortcutHintsWidget final : public QWidget {
   public:
@@ -167,8 +168,8 @@ class ScreenshotShortcutHintsWidget final : public QWidget {
                              Qt::AlignLeft | Qt::AlignVCenter, QStringLiteral(":"));
             int chipLeft = colonLeft + colonWidth + kShortcutHintsColonMarginRight;
             const auto icon = row.input == ScreenshotShortcutHintInput::Mouse
-                                  ? custom_outlined_icons::WheelMouse()
-                                  : custom_outlined_icons::Keyboard();
+                                  ? third_party_icons::WheelMouse()
+                                  : third_party_icons::Keyboard();
             const QPixmap iconPixmap = snow_shot::presentation::icons::renderTintedIconPixmap(
                 icon, QSize(kShortcutHintsIconSize, kShortcutHintsIconSize), devicePixelRatioF(),
                 contentColor);

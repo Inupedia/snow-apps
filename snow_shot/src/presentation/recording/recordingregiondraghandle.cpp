@@ -1,12 +1,13 @@
 #include "recordingregiondraghandle.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include <QEvent>
 #include <QMouseEvent>
 
 RecordingRegionDragHandle::RecordingRegionDragHandle(QWidget* parent)
     : OverlayControlButton(Intent::Primary,
-                           snow_shot::presentation::icons::custom::outlined::ToolMove(), parent) {
+                           snow_shot::presentation::icons::third_party::outlined::ToolMove(), parent) {
     setObjectName(QStringLiteral("screenRecordingRegionDragHandle"));
     setCursor(Qt::SizeAllCursor);
     setMouseTracking(true);

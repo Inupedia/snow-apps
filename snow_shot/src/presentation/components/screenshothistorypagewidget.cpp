@@ -12,6 +12,7 @@
 #include "snow_shot/presentation/components/historyentrycard.h"
 #include "snow_shot/presentation/components/thumbnailcache.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/pagecontainerwidget.h"
 #include "snow_shot/presentation/components/themedheadericonbutton.h"
 #include "snow_shot/presentation/screenshotclipboardservice.h"
@@ -73,10 +74,10 @@
 #include <utility>
 
 namespace {
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace history_page = snow_shot::presentation::components::history_page;
 namespace thumbnail_cache = snow_shot::presentation::components::thumbnail_cache;
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace storage = snow_shot::storage;
 namespace styles = snow_shot::presentation::styles;
 using snow_shot::presentation::components::HistoryEntryCard;
@@ -1044,26 +1045,26 @@ class HistoryEntryWidget final : public HistoryEntryCard {
         auto* menu = new adqt::widgets::AdContextMenu(this);
         m_moreMenu = menu;
         menu->setObjectName(QStringLiteral("screenshotHistoryEntryMoreMenu"));
-        auto* pin = menu->addItem(QString(), custom_outlined_icons::PinToScreen());
+        auto* pin = menu->addItem(QString(), third_party_icons::PinToScreen());
         pin->setObjectName(QStringLiteral("screenshotHistoryEntryPin"));
         pin->setEnabled(m_record.result.has_value());
         m_pinAction = pin;
-        auto* stitch = menu->addItem(QString(), custom_outlined_icons::ImageStitching());
+        auto* stitch = menu->addItem(QString(), third_party_icons::ImageStitching());
         stitch->setObjectName(QStringLiteral("screenshotHistoryEntryStitch"));
         stitch->setEnabled(m_record.result.has_value());
         m_stitchAction = stitch;
-        auto* split = menu->addItem(QString(), custom_outlined_icons::ImageSplitting());
+        auto* split = menu->addItem(QString(), third_party_icons::ImageSplitting());
         split->setObjectName(QStringLiteral("screenshotHistoryEntrySplit"));
         split->setEnabled(m_record.result.has_value());
         m_splitAction = split;
         m_imageEditingAction = menu->addItem(HistoryEntryWidget::tr("Image Editing"),
-                                             custom_outlined_icons::ImageEditing());
+                                             third_party_icons::ImageEditing());
         m_imageEditingAction->setObjectName(QStringLiteral("screenshotHistoryEntryImageEditing"));
         connect(m_imageEditingAction, &QAction::triggered, this, [this] {
             if (m_imageEditingRequested)
                 m_imageEditingRequested();
         });
-        auto* reveal = menu->addItem(QString(), custom_outlined_icons::RevealInFolder());
+        auto* reveal = menu->addItem(QString(), third_party_icons::RevealInFolder());
         reveal->setObjectName(QStringLiteral("screenshotHistoryEntryReveal"));
         m_revealAction = reveal;
         auto* remove = menu->addItem(QString(), outlined_icons::IconDelete());
@@ -1326,9 +1327,9 @@ ScreenshotHistoryPageWidget::ScreenshotHistoryPageWidget(
         [this] {
             auto* menu = new adqt::widgets::AdContextMenu(this);
             menu->setObjectName(QStringLiteral("screenshotHistoryBatchActionsMenu"));
-            m_batchStitchAction = menu->addItem(QString(), custom_outlined_icons::ImageStitching());
+            m_batchStitchAction = menu->addItem(QString(), third_party_icons::ImageStitching());
             m_batchStitchAction->setObjectName(QStringLiteral("screenshotHistoryBatchStitch"));
-            m_batchPinAction = menu->addItem(QString(), custom_outlined_icons::PinToScreen());
+            m_batchPinAction = menu->addItem(QString(), third_party_icons::PinToScreen());
             m_batchPinAction->setObjectName(QStringLiteral("screenshotHistoryBatchPin"));
             updateBatchActions();
             connect(m_batchStitchAction, &QAction::triggered, this, [this] {

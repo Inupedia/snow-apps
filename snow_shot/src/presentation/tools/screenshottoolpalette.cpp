@@ -18,6 +18,7 @@
 #include "screenshottoolpalettestylepresets.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/formfields.h"
 #include "snow_shot/presentation/screenshottoolbarlayoutmodel.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
@@ -132,8 +133,8 @@ constexpr int kRecordingSettingsColorPickerWidth = 154;
     QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Elbow arrow"),
 };
 
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace toolbar_layout = snow_shot::presentation::toolbar_layout;
 
 constexpr int TOOLBAR_ITEM_SPACING = 8;
@@ -1103,7 +1104,7 @@ ScreenshotToolPalette::ScreenshotToolPalette(const Options& options, QWidget* pa
                 ScreenshotToolPaletteSliderEditor spotlightEditor;
                 spotlightEditor.icon = m_spotlightOpacityIcon;
                 spotlightEditor.slider = m_spotlightOpacitySlider;
-                spotlightEditor.iconRef = custom_outlined_icons::Opacity();
+                spotlightEditor.iconRef = third_party_icons::Opacity();
                 spotlightEditor.baseIconSize = COMPACT_SLIDER_ICON_SIZE;
                 spotlightEditor.baseSliderWidth = COMPACT_SLIDER_WIDTH;
                 configureScreenshotToolPaletteSliderEditor(spotlightEditor,
@@ -1765,7 +1766,7 @@ void ScreenshotToolPalette::updateSelectionOpacityIcon() {
             : scheme.map.colorText;
     m_selectionOpacityIcon->setFixedSize(controlSize, controlSize);
     m_selectionOpacityIcon->setPixmap(snow_shot::presentation::icons::renderTintedIconPixmap(
-        custom_outlined_icons::Opacity(), QSize(iconSize, iconSize), devicePixelRatioF(),
+        third_party_icons::Opacity(), QSize(iconSize, iconSize), devicePixelRatioF(),
         iconColor));
 }
 
@@ -1780,7 +1781,7 @@ void ScreenshotToolPalette::updateFilterIntensityIcon(FilterEditor& editor) {
             : scheme.map.colorText;
     const int iconSize = scaledMetric(COMPACT_SLIDER_ICON_SIZE);
     editor.intensityIcon->setPixmap(snow_shot::presentation::icons::renderTintedIconPixmap(
-        custom_outlined_icons::Blur(), QSize(iconSize, iconSize), devicePixelRatioF(), iconColor));
+        third_party_icons::Blur(), QSize(iconSize, iconSize), devicePixelRatioF(), iconColor));
 }
 
 void ScreenshotToolPalette::refreshThemeDependentIcons() {
@@ -1801,11 +1802,11 @@ void ScreenshotToolPalette::refreshThemeDependentIcons() {
     refreshActionToolGroups();
     if (m_recordStartButton != nullptr) {
         m_recordStartButton->setIconRef(snow_shot::presentation::icons::withPrimaryColor(
-            custom_outlined_icons::RecordingStart(), scheme.map.colorPrimary));
+            third_party_icons::RecordingStart(), scheme.map.colorPrimary));
     }
     if (m_recordResumeButton != nullptr) {
         m_recordResumeButton->setIconRef(snow_shot::presentation::icons::withPrimaryColor(
-            custom_outlined_icons::RecordingResume(), scheme.map.colorPrimary));
+            third_party_icons::RecordingResume(), scheme.map.colorPrimary));
     }
     const auto refreshRecordingExportIcon = [this, &scheme](QLabel* label,
                                                             const adqt::icons::IconRef& iconRef) {
@@ -1816,8 +1817,8 @@ void ScreenshotToolPalette::refreshThemeDependentIcons() {
         label->setPixmap(snow_shot::presentation::icons::renderTintedIconPixmap(
             iconRef, QSize(iconSize, iconSize), devicePixelRatioF(), scheme.map.colorText));
     };
-    refreshRecordingExportIcon(m_recordMouseTrailIcon, custom_outlined_icons::LaserPointer());
-    refreshRecordingExportIcon(m_recordMouseClickIcon, custom_outlined_icons::RecordingClick());
+    refreshRecordingExportIcon(m_recordMouseTrailIcon, third_party_icons::LaserPointer());
+    refreshRecordingExportIcon(m_recordMouseClickIcon, third_party_icons::RecordingClick());
 
     updateRecordingControls();
     updateRecordingExportSettingsControls();
@@ -2133,8 +2134,8 @@ void ScreenshotToolPalette::refreshTableQrTrigger() {
         table ? QStringLiteral("Table recognition") : QStringLiteral("Barcode recognition"),
         table ? QStringLiteral("table_recognition") : QStringLiteral("qr_code_recognition"));
     setScreenshotToolPaletteToolButtonIcon(m_tableButton,
-                                           table ? custom_outlined_icons::TableRecognition()
-                                                 : custom_outlined_icons::ScanQrcode());
+                                           table ? third_party_icons::TableRecognition()
+                                                 : third_party_icons::ScanQrcode());
     updateTableQrEnabled();
 }
 
@@ -3798,7 +3799,7 @@ void ScreenshotToolPalette::applyScaledToolbarMetrics() {
         ScreenshotToolPaletteSliderEditor opacityEditor;
         opacityEditor.icon = m_selectionOpacityIcon;
         opacityEditor.slider = m_selectionOpacitySlider;
-        opacityEditor.iconRef = custom_outlined_icons::Opacity();
+        opacityEditor.iconRef = third_party_icons::Opacity();
         opacityEditor.baseIconSize = STYLE_ICON_SIZE;
         opacityEditor.baseSliderWidth = COMPACT_SLIDER_WIDTH;
         configureScreenshotToolPaletteSliderEditor(opacityEditor, metrics);
@@ -3855,8 +3856,8 @@ void ScreenshotToolPalette::applyScaledToolbarMetrics() {
         label->setPixmap(snow_shot::presentation::icons::renderTintedIconPixmap(
             iconRef, QSize(iconSize, iconSize), devicePixelRatioF(), scheme.map.colorText));
     };
-    scaleRecordingExportIcon(m_recordMouseTrailIcon, custom_outlined_icons::LaserPointer());
-    scaleRecordingExportIcon(m_recordMouseClickIcon, custom_outlined_icons::RecordingClick());
+    scaleRecordingExportIcon(m_recordMouseTrailIcon, third_party_icons::LaserPointer());
+    scaleRecordingExportIcon(m_recordMouseClickIcon, third_party_icons::RecordingClick());
     if (m_recordCursorButton != nullptr) {
         configureScreenshotToolPaletteStyleButton(m_recordCursorButton, "Show cursor in recording",
                                                   styleButtonMetrics(m_physicalScale));
@@ -3969,7 +3970,7 @@ void ScreenshotToolPalette::applyStyleMetricsForScope(QWidget* scope) {
         ScreenshotToolPaletteSliderEditor spotlightEditor;
         spotlightEditor.icon = m_spotlightOpacityIcon;
         spotlightEditor.slider = m_spotlightOpacitySlider;
-        spotlightEditor.iconRef = custom_outlined_icons::Opacity();
+        spotlightEditor.iconRef = third_party_icons::Opacity();
         spotlightEditor.baseIconSize = COMPACT_SLIDER_ICON_SIZE;
         spotlightEditor.baseSliderWidth = COMPACT_SLIDER_WIDTH;
         configureScreenshotToolPaletteSliderEditor(spotlightEditor, metrics);
@@ -4743,7 +4744,7 @@ void ScreenshotToolPalette::createMainToolbar(const Options& options) {
 
     if (options.showRecordingControls) {
         m_recordExportSettingsButton =
-            addActionButton("Export Settings", custom_outlined_icons::ExportSettings());
+            addActionButton("Export Settings", third_party_icons::ExportSettings());
         m_recordExportSettingsButton->setObjectName(
             QStringLiteral("screenRecordingExportSettings"));
         panelLayout->addWidget(m_recordExportSettingsButton);
@@ -6153,13 +6154,13 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     if (options.showMoveTool) {
         if (options.moveToolPresentation ==
             ScreenshotToolPalette::MoveToolPresentation::ResizeWindow) {
-            m_moveButton = addToolButton("Resize window", custom_outlined_icons::ToolMove());
+            m_moveButton = addToolButton("Resize window", third_party_icons::ToolMove());
             applyPinToScreenShortcutTooltip(m_moveButton, QStringLiteral("Resize window"),
                                             QStringLiteral("resize_window"));
         } else if (options.moveToolPresentation == MoveToolPresentation::Pan) {
-            m_moveButton = addToolButton("Pan", custom_outlined_icons::ToolMove());
+            m_moveButton = addToolButton("Pan", third_party_icons::ToolMove());
         } else {
-            m_moveButton = addToolButton("Edit selection", custom_outlined_icons::ToolMove());
+            m_moveButton = addToolButton("Edit selection", third_party_icons::ToolMove());
             applyScreenshotShortcutTooltip(m_moveButton, QStringLiteral("Edit selection"),
                                            QStringLiteral("move_tool"));
         }
@@ -6169,7 +6170,7 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
 
     if (options.showSelectTool) {
-        m_selectButton = addToolButton("Select elements", custom_outlined_icons::ToolSelect());
+        m_selectButton = addToolButton("Select elements", third_party_icons::ToolSelect());
         addButton(m_selectButton);
         connect(m_selectButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::Select); });
@@ -6180,7 +6181,7 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
 
     if (options.showShapeTool) {
-        m_shapeButton = addToolButton("Shape", custom_outlined_icons::ToolRectangle());
+        m_shapeButton = addToolButton("Shape", third_party_icons::ToolRectangle());
         addButton(m_shapeButton);
         connect(m_shapeButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::Shape); });
@@ -6188,7 +6189,7 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
 
     if (options.showSpeechBubbleTool) {
         m_speechBubbleButton =
-            addToolButton("Speech Bubble", custom_outlined_icons::ToolSpeechBubble());
+            addToolButton("Speech Bubble", third_party_icons::ToolSpeechBubble());
         m_speechBubbleButton->setObjectName(QStringLiteral("screenshotSpeechBubbleButton"));
         addButton(m_speechBubbleButton);
         connect(m_speechBubbleButton, &adqt::widgets::AdButton::clicked, this,
@@ -6196,14 +6197,14 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
 
     if (options.showArrowTool) {
-        m_arrowButton = addToolButton("Arrow", custom_outlined_icons::ToolArrow());
+        m_arrowButton = addToolButton("Arrow", third_party_icons::ToolArrow());
         m_arrowButton->setObjectName(QStringLiteral("screenshotArrowButton"));
         addButton(m_arrowButton);
         connect(m_arrowButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::Arrow); });
     }
     if (options.showAngleTool) {
-        m_angleButton = addToolButton("Angle annotation", custom_outlined_icons::AngleAnnotation());
+        m_angleButton = addToolButton("Angle annotation", third_party_icons::AngleAnnotation());
         m_angleButton->setObjectName(QStringLiteral("screenshotAngleButton"));
         addButton(m_angleButton);
         connect(m_angleButton, &adqt::widgets::AdButton::clicked, this,
@@ -6211,14 +6212,14 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
     if (options.showDistanceTool) {
         m_distanceButton =
-            addToolButton("Distance annotation", custom_outlined_icons::DistanceAnnotation());
+            addToolButton("Distance annotation", third_party_icons::DistanceAnnotation());
         m_distanceButton->setObjectName(QStringLiteral("screenshotDistanceButton"));
         addButton(m_distanceButton);
         connect(m_distanceButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::Distance); });
     }
     if (options.showLineTool) {
-        m_lineButton = addToolButton("Line", custom_outlined_icons::ToolLine());
+        m_lineButton = addToolButton("Line", third_party_icons::ToolLine());
         m_lineButton->setObjectName(QStringLiteral("screenshotLineButton"));
         addButton(m_lineButton);
         connect(m_lineButton, &adqt::widgets::AdButton::clicked, this,
@@ -6226,7 +6227,7 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
 
     if (options.showFreeDrawTool) {
-        m_freeDrawButton = addToolButton("Pen", custom_outlined_icons::ToolFreeDraw());
+        m_freeDrawButton = addToolButton("Pen", third_party_icons::ToolFreeDraw());
         addButton(m_freeDrawButton);
         connect(m_freeDrawButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::FreeDraw); });
@@ -6234,21 +6235,21 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
 
     if (options.showHighlightTool || options.showRectangleHighlightTool ||
         options.showPenHighlightTool) {
-        m_highlighterButton = addToolButton("Highlight", custom_outlined_icons::ToolHighlight());
+        m_highlighterButton = addToolButton("Highlight", third_party_icons::ToolHighlight());
         m_highlighterButton->setObjectName(QStringLiteral("screenshotHighlighterButton"));
         addButton(m_highlighterButton);
         connect(m_highlighterButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::PenHighlight); });
     }
     if (options.showMagnifierTool) {
-        m_magnifierButton = addToolButton("Magnifier", custom_outlined_icons::ToolMagnifier());
+        m_magnifierButton = addToolButton("Magnifier", third_party_icons::ToolMagnifier());
         m_magnifierButton->setObjectName(QStringLiteral("screenshotMagnifierButton"));
         addButton(m_magnifierButton);
         connect(m_magnifierButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::Magnifier); });
     }
     if (options.showSpotlightTool) {
-        m_spotlightButton = addToolButton("Spotlight", custom_outlined_icons::ToolSpotlight());
+        m_spotlightButton = addToolButton("Spotlight", third_party_icons::ToolSpotlight());
         m_spotlightButton->setObjectName(QStringLiteral("screenshotSpotlightButton"));
         addButton(m_spotlightButton);
         connect(m_spotlightButton, &adqt::widgets::AdButton::clicked, this,
@@ -6256,7 +6257,7 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
 
     if (options.showTextTool) {
-        m_textButton = addToolButton("Text", custom_outlined_icons::ToolText());
+        m_textButton = addToolButton("Text", third_party_icons::ToolText());
         addButton(m_textButton);
         connect(m_textButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::Text); });
@@ -6264,21 +6265,21 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
 
     if (options.showSerialNumberTool) {
         m_serialNumberButton =
-            addToolButton("Serial number", custom_outlined_icons::ToolSerialNumber());
+            addToolButton("Serial number", third_party_icons::ToolSerialNumber());
         addButton(m_serialNumberButton);
         connect(m_serialNumberButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::SerialNumber); });
     }
 
     if (options.showFilterTool) {
-        m_filterButton = addToolButton("Filter", custom_outlined_icons::ToolFilter());
+        m_filterButton = addToolButton("Filter", third_party_icons::ToolFilter());
         addButton(m_filterButton);
         connect(m_filterButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateToolFromToolbar(Tool::PenFilter); });
     }
 
     if (options.showEraserTool) {
-        m_eraserButton = addToolButton("Eraser", custom_outlined_icons::ToolEraser());
+        m_eraserButton = addToolButton("Eraser", third_party_icons::ToolEraser());
         m_eraserButton->setObjectName(QStringLiteral("screenshotEraserButton"));
         addButton(m_eraserButton);
         connect(m_eraserButton, &adqt::widgets::AdButton::clicked, this,
@@ -6286,7 +6287,7 @@ bool ScreenshotToolPalette::addMainToolButtons(const Options& options, QBoxLayou
     }
 
     if (options.showWatermarkTool) {
-        m_watermarkButton = addToolButton("Watermark", custom_outlined_icons::ToolWatermark());
+        m_watermarkButton = addToolButton("Watermark", third_party_icons::ToolWatermark());
         m_watermarkButton->setObjectName(QStringLiteral("screenshotWatermarkButton"));
         addButton(m_watermarkButton);
         connect(m_watermarkButton, &adqt::widgets::AdButton::clicked, this,
@@ -6387,10 +6388,10 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     if (options.showCropTools) {
         m_cropRowsButton =
             addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Vertical Crop"),
-                          custom_outlined_icons::CropVertical());
+                          third_party_icons::CropVertical());
         m_cropColumnsButton =
             addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Horizontal Crop"),
-                          custom_outlined_icons::CropHorizontal());
+                          third_party_icons::CropHorizontal());
         m_cropRowsButton->setObjectName(QStringLiteral("imageEditingCropRows"));
         m_cropColumnsButton->setObjectName(QStringLiteral("imageEditingCropColumns"));
         for (auto* button : {m_cropRowsButton, m_cropColumnsButton}) {
@@ -6408,7 +6409,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     if ((options.showTableTool && snow_shot::app::edition::tableRecognition) &&
         (options.showQrTool && snow_shot::app::edition::qrRecognition)) {
         m_tableButton =
-            addToolButton("Table recognition", custom_outlined_icons::TableRecognition());
+            addToolButton("Table recognition", third_party_icons::TableRecognition());
         applyScreenshotShortcutTooltip(m_tableButton, QStringLiteral("Table recognition"),
                                        QStringLiteral("table_recognition"));
         m_tableButton->setObjectName(QStringLiteral("screenshotTableQrButton"));
@@ -6428,7 +6429,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     } else if ((options.showTableTool && snow_shot::app::edition::tableRecognition)) {
         m_tableQrEntryTool = Tool::Table;
         m_tableButton =
-            addToolButton("Table recognition", custom_outlined_icons::TableRecognition());
+            addToolButton("Table recognition", third_party_icons::TableRecognition());
         applyScreenshotShortcutTooltip(m_tableButton, QStringLiteral("Table recognition"),
                                        QStringLiteral("table_recognition"));
         m_tableButton->setBusyIndicatorPresentation(
@@ -6438,7 +6439,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
                 [this]() { activateActionTool(QStringLiteral("table-recognition")); });
     } else if ((options.showQrTool && snow_shot::app::edition::qrRecognition)) {
         m_tableQrEntryTool = Tool::Qr;
-        m_tableButton = addToolButton("Barcode recognition", custom_outlined_icons::ScanQrcode());
+        m_tableButton = addToolButton("Barcode recognition", third_party_icons::ScanQrcode());
         applyScreenshotShortcutTooltip(m_tableButton, QStringLiteral("Barcode recognition"),
                                        QStringLiteral("qr_code_recognition"));
         m_tableButton->setBusyIndicatorPresentation(
@@ -6451,16 +6452,16 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     if ((options.showImageConversionTools && snow_shot::app::edition::imageConversion)) {
         m_latexButton =
             addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "LaTeX Formula Recognition"),
-                          snow_shot::presentation::icons::custom::outlined::Function());
+                          snow_shot::presentation::icons::third_party::outlined::Function());
         m_latexButton->setObjectName(QStringLiteral("screenshotLatexRecognitionButton"));
         connect(m_latexButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateActionTool(QStringLiteral("latex-recognition")); });
         m_markdownButton =
             addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Convert to Markdown"),
-                          custom_outlined_icons::Markdown());
+                          third_party_icons::Markdown());
         m_markdownButton->setObjectName(QStringLiteral("screenshotConvertToMarkdownButton"));
         m_htmlButton = addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Convert to HTML"),
-                                     custom_outlined_icons::Html());
+                                     third_party_icons::Html());
         m_htmlButton->setObjectName(QStringLiteral("screenshotConvertToHtmlButton"));
         for (auto* button : {m_markdownButton, m_htmlButton, m_latexButton}) {
             button->setBusyIndicatorPresentation(
@@ -6475,7 +6476,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
 
     if (options.showScreenRecordButton) {
         m_screenRecordButton =
-            addToolButton("Record screen", custom_outlined_icons::RecordScreen());
+            addToolButton("Record screen", third_party_icons::RecordScreen());
         applyScreenshotShortcutTooltip(m_screenRecordButton, QStringLiteral("Record screen"),
                                        QStringLiteral("video_recording"));
         addButton(m_screenRecordButton);
@@ -6484,7 +6485,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     }
 
     if (!options.showRecordingControls && (options.actions & PinAction) != 0) {
-        m_pinButton = addActionButton("Pin to screen", custom_outlined_icons::PinToScreen());
+        m_pinButton = addActionButton("Pin to screen", third_party_icons::PinToScreen());
         applyScreenshotShortcutTooltip(m_pinButton, QStringLiteral("Pin to screen"),
                                        QStringLiteral("pin_to_screen"));
         m_pinButton->setObjectName(QStringLiteral("screenshotPinToScreenButton"));
@@ -6494,7 +6495,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
     }
 
     if (options.showOcrTool) {
-        m_ocrButton = addToolButton("Text recognition", custom_outlined_icons::TextRecognition());
+        m_ocrButton = addToolButton("Text recognition", third_party_icons::TextRecognition());
         applyScreenshotShortcutTooltip(m_ocrButton, QStringLiteral("Text recognition"),
                                        QStringLiteral("text_recognition"));
         m_ocrButton->setBusyIndicatorPresentation(
@@ -6506,7 +6507,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
 
     if ((options.showTextTranslationTool && snow_shot::app::edition::textTranslation)) {
         m_textTranslationButton =
-            addToolButton("Text translation", custom_outlined_icons::OcrTranslate());
+            addToolButton("Text translation", third_party_icons::OcrTranslate());
         applyScreenshotShortcutTooltip(m_textTranslationButton, QStringLiteral("Text translation"),
                                        QStringLiteral("text_translation"));
         m_textTranslationButton->setObjectName(QStringLiteral("screenshotTextTranslationButton"));
@@ -6520,7 +6521,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
 
     if (options.showScrollingScreenshotTool) {
         m_scrollingScreenshotButton =
-            addToolButton("Scrolling screenshot", custom_outlined_icons::ScrollingScreenshot());
+            addToolButton("Scrolling screenshot", third_party_icons::ScrollingScreenshot());
         applyScreenshotShortcutTooltip(m_scrollingScreenshotButton,
                                        QStringLiteral("Scrolling screenshot"),
                                        QStringLiteral("scrolling_screenshot"));
@@ -6539,7 +6540,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
         m_printButton->hide();
         connect(m_printButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateActionTool(QStringLiteral("print")); });
-        m_quickSaveButton = addActionButton("Quick save", custom_outlined_icons::QuickSave());
+        m_quickSaveButton = addActionButton("Quick save", third_party_icons::QuickSave());
         applyScreenshotShortcutTooltip(m_quickSaveButton, QStringLiteral("Quick save"),
                                        QStringLiteral("quick_save"));
         m_quickSaveButton->setObjectName(QStringLiteral("screenshotQuickSaveButton"));
@@ -6556,7 +6557,7 @@ bool ScreenshotToolPalette::addMainSecondaryButtons(const Options& options, QBox
         connect(m_cloudUploadButton, &adqt::widgets::AdButton::clicked, this,
                 [this] { activateActionTool(QStringLiteral("upload-to-cloud")); });
         setCloudUploadBusy(m_cloudUploadBusy);
-        m_saveButton = addActionButton("Save as file", custom_outlined_icons::Save());
+        m_saveButton = addActionButton("Save as file", third_party_icons::Save());
         applyScreenshotShortcutTooltip(m_saveButton, QStringLiteral("Save as file"),
                                        QStringLiteral("save_as_file"));
         m_saveButton->setObjectName(QStringLiteral("screenshotSaveAsFileButton"));
@@ -6747,7 +6748,7 @@ void ScreenshotToolPalette::addMainActionButtons(const Options& options, QBoxLay
     if (options.showGlobalCanvasActions) {
         m_globalCanvasLaserPointerButton =
             addToolButton(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Laser pointer"),
-                          custom_outlined_icons::LaserPointer());
+                          third_party_icons::LaserPointer());
         m_globalCanvasLaserPointerButton->setObjectName(
             QStringLiteral("globalCanvasLaserPointerButton"));
         m_globalCanvasLaserPointerButton->setCheckable(true);
@@ -6760,7 +6761,7 @@ void ScreenshotToolPalette::addMainActionButtons(const Options& options, QBoxLay
         connect(m_globalCanvasLaserPointerButton, &adqt::widgets::AdButton::clicked, this,
                 &ScreenshotToolPalette::globalCanvasLaserPointerRequested);
         m_globalCanvasClickThroughButton =
-            addToolButton("Click-through", custom_outlined_icons::Mouse());
+            addToolButton("Click-through", third_party_icons::Mouse());
         m_globalCanvasClickThroughButton->setObjectName(
             QStringLiteral("globalCanvasClickThroughButton"));
         m_globalCanvasClickThroughButton->setCheckable(true);
@@ -6797,7 +6798,7 @@ void ScreenshotToolPalette::addMainActionButtons(const Options& options, QBoxLay
         m_printButton->hide();
         connect(m_printButton, &adqt::widgets::AdButton::clicked, this,
                 [this]() { activateActionTool(QStringLiteral("print")); });
-        m_quickSaveButton = addActionButton("Quick save", custom_outlined_icons::QuickSave());
+        m_quickSaveButton = addActionButton("Quick save", third_party_icons::QuickSave());
         applyScreenshotShortcutTooltip(m_quickSaveButton, QStringLiteral("Quick save"),
                                        QStringLiteral("quick_save"));
         m_quickSaveButton->setObjectName(QStringLiteral("screenshotQuickSaveButton"));
@@ -6814,7 +6815,7 @@ void ScreenshotToolPalette::addMainActionButtons(const Options& options, QBoxLay
         connect(m_cloudUploadButton, &adqt::widgets::AdButton::clicked, this,
                 [this] { activateActionTool(QStringLiteral("upload-to-cloud")); });
         setCloudUploadBusy(m_cloudUploadBusy);
-        m_saveButton = addActionButton("Save as file", custom_outlined_icons::Save());
+        m_saveButton = addActionButton("Save as file", third_party_icons::Save());
         applyScreenshotShortcutTooltip(m_saveButton, QStringLiteral("Save as file"),
                                        QStringLiteral("save_as_file"));
         m_saveButton->setObjectName(QStringLiteral("screenshotSaveAsFileButton"));
@@ -6878,7 +6879,7 @@ void ScreenshotToolPalette::refreshFilterEditorMetrics(FilterEditor& editor) {
     ScreenshotToolPaletteSliderEditor intensityEditor;
     intensityEditor.icon = editor.intensityIcon;
     intensityEditor.slider = editor.intensitySlider;
-    intensityEditor.iconRef = custom_outlined_icons::Blur();
+    intensityEditor.iconRef = third_party_icons::Blur();
     intensityEditor.baseIconSize = COMPACT_SLIDER_ICON_SIZE;
     intensityEditor.baseSliderWidth = COMPACT_SLIDER_WIDTH;
     configureScreenshotToolPaletteSliderEditor(intensityEditor, metrics);
@@ -7181,7 +7182,7 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
     };
 
     m_recordMouseTrailIcon = addIcon(QStringLiteral("screenRecordingMouseTrailIcon"),
-                                     custom_outlined_icons::LaserPointer());
+                                     third_party_icons::LaserPointer());
     m_recordMouseTrailColorPicker =
         createPicker(QStringLiteral("screenRecordingMouseTrailColor"),
                      QStringLiteral("Mouse trail color"), m_recordingMouseTrailColor);
@@ -7191,7 +7192,7 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
     addSeparator(QStringLiteral("screenRecordingExportTrailSeparator"));
 
     m_recordMouseClickIcon = addIcon(QStringLiteral("screenRecordingMouseClickIcon"),
-                                     custom_outlined_icons::RecordingClick());
+                                     third_party_icons::RecordingClick());
     m_recordMouseClickColorPicker =
         createPicker(QStringLiteral("screenRecordingMouseClickColor"),
                      QStringLiteral("Mouse click color"), m_recordingMouseClickColor);
@@ -7202,7 +7203,7 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
 
     m_recordCursorButton = createScreenshotToolPaletteStyleActionButton(
         m_recordExportSettingsPanel, "Show cursor in recording",
-        custom_outlined_icons::RecordingCursor(), styleButtonMetrics(m_physicalScale));
+        third_party_icons::RecordingCursor(), styleButtonMetrics(m_physicalScale));
     m_recordCursorButton->setObjectName(QStringLiteral("screenRecordingShowCursor"));
     layout->addWidget(m_recordCursorButton);
     m_recordCursorPopover = new adqt::widgets::AdPopover(m_recordCursorButton);
@@ -7251,11 +7252,11 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
 
     m_recordKeyboardButton = createScreenshotToolPaletteStyleActionButton(
         m_recordExportSettingsPanel, "Show keystrokes in recording",
-        custom_outlined_icons::RecordingKeyboard(), styleButtonMetrics(m_physicalScale));
+        third_party_icons::RecordingKeyboard(), styleButtonMetrics(m_physicalScale));
     m_recordKeyboardButton->setObjectName(QStringLiteral("screenRecordingShowKeyboard"));
     layout->addWidget(m_recordKeyboardButton);
     m_recordWebcamButton = createScreenshotToolPaletteStyleActionButton(
-        m_recordExportSettingsPanel, "Record webcam", custom_outlined_icons::RecordingCamera(),
+        m_recordExportSettingsPanel, "Record webcam", third_party_icons::RecordingCamera(),
         styleButtonMetrics(m_physicalScale));
     m_recordWebcamButton->setObjectName(QStringLiteral("screenRecordingWebcam"));
     layout->addWidget(m_recordWebcamButton);
@@ -7265,7 +7266,7 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
     });
     m_recordPostProcessingButton = createScreenshotToolPaletteStyleActionButton(
         m_recordExportSettingsPanel, "Post-processing effects",
-        custom_outlined_icons::RecordingPostProcessing(), styleButtonMetrics(m_physicalScale));
+        third_party_icons::RecordingPostProcessing(), styleButtonMetrics(m_physicalScale));
     m_recordPostProcessingButton->setObjectName(QStringLiteral("screenRecordingPostProcessing"));
     m_recordPostProcessingButton->setCheckable(true);
     m_recordPostProcessingButton->setChecked(m_recordPostProcessingEnabled);
@@ -7312,7 +7313,7 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
     addSeparator(QStringLiteral("screenRecordingExportSettingsSeparator"));
     m_recordDelayButton = createScreenshotToolPaletteRecordingDelayEditor(
         m_recordExportSettingsPanel, "Delay recording (scroll to adjust)",
-        custom_outlined_icons::RecorderDelay(), m_recordingStartDelaySeconds,
+        third_party_icons::RecorderDelay(), m_recordingStartDelaySeconds,
         styleButtonMetrics(m_physicalScale));
     m_recordDelayButton->setObjectName(QStringLiteral("screenRecordingStartDelaySeconds"));
     layout->addWidget(m_recordDelayButton);
@@ -7329,7 +7330,7 @@ void ScreenshotToolPalette::createRecordingExportSettingsToolbar() {
         emit recordingStartDelaySecondsChanged(m_recordingStartDelaySeconds);
     });
     m_recordSettingsButton = createScreenshotToolPaletteStyleActionButton(
-        m_recordExportSettingsPanel, "Settings", custom_outlined_icons::RecordingRenderSettings(),
+        m_recordExportSettingsPanel, "Settings", third_party_icons::RecordingRenderSettings(),
         styleButtonMetrics(m_physicalScale));
     m_recordSettingsButton->setObjectName(QStringLiteral("screenRecordingEffectSettings"));
     m_recordSettingsButton->setButtonStyle(adqt::widgets::AdButton::ButtonStyle::Text);
@@ -8411,30 +8412,30 @@ void ScreenshotToolPalette::createSelectionActionFamily() {
     addSpacing(STYLE_GROUP_SPACING * 2);
     m_selectActionLayout->addWidget(createStyleToolbarSeparator(m_selectActionPanel));
     addSpacing(STYLE_GROUP_SPACING * 2);
-    addAlignButton("Align left", custom_outlined_icons::AlignLeft(),
+    addAlignButton("Align left", third_party_icons::AlignLeft(),
                    &ScreenshotToolPalette::alignSelectionLeftRequested, false);
     addSpacing(STYLE_ITEM_SPACING);
-    addAlignButton("Center horizontally", custom_outlined_icons::AlignCenterHorizontal(),
+    addAlignButton("Center horizontally", third_party_icons::AlignCenterHorizontal(),
                    &ScreenshotToolPalette::alignSelectionCenterHorizontallyRequested, false);
     addSpacing(STYLE_ITEM_SPACING);
-    addAlignButton("Align right", custom_outlined_icons::AlignRight(),
+    addAlignButton("Align right", third_party_icons::AlignRight(),
                    &ScreenshotToolPalette::alignSelectionRightRequested, false);
     addSpacing(STYLE_ITEM_SPACING);
-    addAlignButton("Distribute horizontally", custom_outlined_icons::DistributeHorizontal(),
+    addAlignButton("Distribute horizontally", third_party_icons::DistributeHorizontal(),
                    &ScreenshotToolPalette::distributeSelectionHorizontallyRequested, true);
     addSpacing(STYLE_GROUP_SPACING * 2);
     m_selectActionLayout->addWidget(createStyleToolbarSeparator(m_selectActionPanel));
     addSpacing(STYLE_GROUP_SPACING * 2);
-    addAlignButton("Align top", custom_outlined_icons::AlignTop(),
+    addAlignButton("Align top", third_party_icons::AlignTop(),
                    &ScreenshotToolPalette::alignSelectionTopRequested, false);
     addSpacing(STYLE_ITEM_SPACING);
-    addAlignButton("Center vertically", custom_outlined_icons::AlignCenterVertical(),
+    addAlignButton("Center vertically", third_party_icons::AlignCenterVertical(),
                    &ScreenshotToolPalette::alignSelectionCenterVerticallyRequested, false);
     addSpacing(STYLE_ITEM_SPACING);
-    addAlignButton("Align bottom", custom_outlined_icons::AlignBottom(),
+    addAlignButton("Align bottom", third_party_icons::AlignBottom(),
                    &ScreenshotToolPalette::alignSelectionBottomRequested, false);
     addSpacing(STYLE_ITEM_SPACING);
-    addAlignButton("Distribute vertically", custom_outlined_icons::DistributeVertical(),
+    addAlignButton("Distribute vertically", third_party_icons::DistributeVertical(),
                    &ScreenshotToolPalette::distributeSelectionVerticallyRequested, true);
     addSpacing(STYLE_GROUP_SPACING * 2);
     m_selectActionLayout->addWidget(createStyleToolbarSeparator(m_selectActionPanel));
@@ -8448,7 +8449,7 @@ void ScreenshotToolPalette::createSelectionActionFamily() {
     opacityConfig.sliderObjectName = QStringLiteral("screenshotSelectionOpacitySlider");
     opacityConfig.accessibleName = QStringLiteral("Opacity");
     opacityConfig.sliderTooltip = QStringLiteral("Adjust opacity");
-    opacityConfig.iconRef = custom_outlined_icons::Opacity();
+    opacityConfig.iconRef = third_party_icons::Opacity();
     opacityConfig.initialValue = qRound(m_selectionOpacity * 100.0);
     opacityConfig.baseIconSize = STYLE_ICON_SIZE;
     opacityConfig.baseSliderWidth = COMPACT_SLIDER_WIDTH;
@@ -8469,10 +8470,10 @@ void ScreenshotToolPalette::createSelectionActionFamily() {
     addSpacing(STYLE_ITEM_SPACING);
     m_selectActionLayout->addWidget(createStyleToolbarSeparator(m_selectActionPanel));
     addSpacing(STYLE_GROUP_SPACING * 2);
-    addSelectButton("Copy selected elements", custom_outlined_icons::Duplicate(),
+    addSelectButton("Copy selected elements", third_party_icons::Duplicate(),
                     &ScreenshotToolPalette::duplicateSelectionRequested);
     addSpacing(STYLE_ITEM_SPACING);
-    addSelectButton("Delete selected elements", custom_outlined_icons::Trash(),
+    addSelectButton("Delete selected elements", third_party_icons::Trash(),
                     &ScreenshotToolPalette::deleteSelectionRequested);
     m_selectionActionAvailabilityInitialized = false;
     updateSelectionActionAvailability(m_hasSelectedElements, m_selectedElementCount,
@@ -8811,7 +8812,7 @@ void ScreenshotToolPalette::createShowOriginalImageButton() {
     }
     m_showOriginalImageButton = createScreenshotToolPaletteStyleActionButton(
         m_selectActionPanel, QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Show original image"),
-        snow_shot::presentation::icons::custom::outlined::Eye(),
+        snow_shot::presentation::icons::third_party::outlined::Eye(),
         actionButtonMetrics(m_physicalScale));
     m_showOriginalImageButton->setEnabled(m_originalImageToggleEnabled);
     m_showOriginalImageButton->setObjectName(QStringLiteral("screenshotShowOriginalImageButton"));
@@ -8840,12 +8841,12 @@ void ScreenshotToolPalette::createTextRecognitionActionFamily() {
         addButton("Edit", outlined_icons::Edit(), QStringLiteral("screenshotOcrTextEditButton"));
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
     m_textActionSpacers.push_back(addStyleToolbarSpacing(m_selectActionLayout, STYLE_ITEM_SPACING));
-    m_textTranslateButton = addButton("Text translation", custom_outlined_icons::OcrTranslate(),
+    m_textTranslateButton = addButton("Text translation", third_party_icons::OcrTranslate(),
                                       QStringLiteral("screenshotOcrTextTranslateButton"));
     m_jumpToTranslationPageLeadingSpacer =
         addStyleToolbarSpacing(m_selectActionLayout, STYLE_ITEM_SPACING);
     m_jumpToTranslationPageButton =
-        addButton("Jump to Translation Page", custom_outlined_icons::JumpTranslate(),
+        addButton("Jump to Translation Page", third_party_icons::JumpTranslate(),
                   QStringLiteral("screenshotOcrJumpToTranslationPageButton"));
     m_textActionSpacers.push_back(addStyleToolbarSpacing(m_selectActionLayout, STYLE_ITEM_SPACING));
 #endif
@@ -9069,7 +9070,7 @@ void ScreenshotToolPalette::createTableRecognitionActionFamily() {
     m_tableActionSpacers.push_back(
         addStyleToolbarSpacing(m_selectActionLayout, STYLE_GROUP_SPACING * 2));
     m_openSpreadsheetFileButton =
-        add("Open spreadsheet file", custom_outlined_icons::OpenSpreadsheetFile(),
+        add("Open spreadsheet file", third_party_icons::OpenSpreadsheetFile(),
             QStringLiteral("screenshotOpenSpreadsheetFileButton"));
     connect(m_openSpreadsheetFileButton, &adqt::widgets::AdButton::clicked, this,
             &ScreenshotToolPalette::openSpreadsheetFileRequested);
@@ -9216,23 +9217,23 @@ void ScreenshotToolPalette::createMoveActionFamily() {
 
     m_addRegionButton = createScreenshotToolPaletteStyleActionButton(
         m_moveActionControls, QT_TR_NOOP("Add screenshot region"),
-        custom_outlined_icons::ScreenshotRegionAdd(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::ScreenshotRegionAdd(), actionButtonMetrics(m_physicalScale));
     m_addRegionButton->setObjectName(QStringLiteral("screenshotAddRegionButton"));
     layout->addWidget(m_addRegionButton);
     addStyleToolbarSpacing(layout, STYLE_ITEM_SPACING);
     m_subtractRegionButton = createScreenshotToolPaletteStyleActionButton(
         m_moveActionControls, QT_TR_NOOP("Subtract screenshot region"),
-        custom_outlined_icons::ScreenshotRegionReduce(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::ScreenshotRegionReduce(), actionButtonMetrics(m_physicalScale));
     m_subtractRegionButton->setObjectName(QStringLiteral("screenshotSubtractRegionButton"));
     layout->addWidget(m_subtractRegionButton);
     addStyleToolbarSpacing(layout, STYLE_GROUP_SPACING);
     ScreenshotToolPaletteRadioEditorConfig regionTypeConfig;
     regionTypeConfig.objectName = QStringLiteral("screenshotMoveRegionTypeButtonGroup");
     regionTypeConfig.options = {
-        {0, QT_TR_NOOP("Rectangle region"), custom_outlined_icons::ScreenshotRegionRectangle()},
-        {1, QT_TR_NOOP("Polyline region"), custom_outlined_icons::ScreenshotRegionPolyline()},
-        {2, QT_TR_NOOP("Curve region"), custom_outlined_icons::ScreenshotRegionCurved()},
-        {3, QT_TR_NOOP("Freehand region"), custom_outlined_icons::ScreenshotRegionFreehand()},
+        {0, QT_TR_NOOP("Rectangle region"), third_party_icons::ScreenshotRegionRectangle()},
+        {1, QT_TR_NOOP("Polyline region"), third_party_icons::ScreenshotRegionPolyline()},
+        {2, QT_TR_NOOP("Curve region"), third_party_icons::ScreenshotRegionCurved()},
+        {3, QT_TR_NOOP("Freehand region"), third_party_icons::ScreenshotRegionFreehand()},
     };
     regionTypeConfig.initialId = int(m_screenshotRegionType);
     regionTypeConfig.useButtonMetrics = true;
@@ -9248,13 +9249,13 @@ void ScreenshotToolPalette::createMoveActionFamily() {
             &ScreenshotToolPalette::subtractScreenshotRegionRequested);
     m_layoutCompactionButton = createScreenshotToolPaletteStyleActionButton(
         m_moveActionControls, QT_TR_NOOP("Compact layout"),
-        custom_outlined_icons::LayoutCompaction(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::LayoutCompaction(), actionButtonMetrics(m_physicalScale));
     m_layoutCompactionButton->setObjectName(QStringLiteral("screenshotLayoutCompactionButton"));
     layout->addWidget(m_layoutCompactionButton);
     addStyleToolbarSpacing(layout, STYLE_ITEM_SPACING);
     m_layoutSpacingEditor = createScreenshotToolPaletteIconNumericValueButton(
         m_moveActionControls, QT_TR_NOOP("Layout spacing (scroll to adjust; click to reset to 0)"),
-        custom_outlined_icons::LayoutSpacing(), m_layoutCompaction.spacing, QStringLiteral("100dp"),
+        third_party_icons::LayoutSpacing(), m_layoutCompaction.spacing, QStringLiteral("100dp"),
         actionButtonMetrics(m_physicalScale));
     m_layoutSpacingEditor->setObjectName(QStringLiteral("screenshotLayoutSpacingEditor"));
     configureScreenshotToolPaletteScrollingIntervalEditor(m_layoutSpacingEditor,
@@ -9264,7 +9265,7 @@ void ScreenshotToolPalette::createMoveActionFamily() {
     m_backgroundOpacityEditor = createScreenshotToolPaletteIconNumericValueButton(
         m_moveActionControls,
         QT_TR_NOOP("Selection background opacity (scroll to adjust; click to reset to 0%)"),
-        custom_outlined_icons::SelectionBackgroundOpacity(), m_backgroundOpacityPercent,
+        third_party_icons::SelectionBackgroundOpacity(), m_backgroundOpacityPercent,
         QStringLiteral("100%"), actionButtonMetrics(m_physicalScale));
     m_backgroundOpacityEditor->setObjectName(
         QStringLiteral("screenshotSelectionBackgroundOpacityEditor"));
@@ -9304,13 +9305,13 @@ void ScreenshotToolPalette::createMoveActionFamily() {
     addStyleToolbarSpacing(layout, STYLE_GROUP_SPACING * 2);
 
     m_cursorButton = createScreenshotToolPaletteStyleActionButton(
-        m_moveActionControls, "Show Cursor", custom_outlined_icons::RecordingCursor(),
+        m_moveActionControls, "Show Cursor", third_party_icons::RecordingCursor(),
         actionButtonMetrics(m_physicalScale));
     m_cursorButton->setObjectName(QStringLiteral("screenshotCaptureCursorButton"));
     layout->addWidget(m_cursorButton);
     addStyleToolbarSpacing(layout, STYLE_ITEM_SPACING);
     m_recaptureButton = createScreenshotToolPaletteStyleActionButton(
-        m_moveActionControls, "Recapture", custom_outlined_icons::RefreshCapture(),
+        m_moveActionControls, "Recapture", third_party_icons::RefreshCapture(),
         actionButtonMetrics(m_physicalScale));
     m_recaptureButton->setObjectName(QStringLiteral("screenshotRecaptureButton"));
     applyScreenshotShortcutTooltip(m_recaptureButton, QStringLiteral("Recapture"),
@@ -9318,7 +9319,7 @@ void ScreenshotToolPalette::createMoveActionFamily() {
     layout->addWidget(m_recaptureButton);
     addStyleToolbarSpacing(layout, STYLE_ITEM_SPACING);
     m_showQrCodeButton = createScreenshotToolPaletteStyleActionButton(
-        m_moveActionControls, "Show QR Code", custom_outlined_icons::ScanQrcode(),
+        m_moveActionControls, "Show QR Code", third_party_icons::ScanQrcode(),
         actionButtonMetrics(m_physicalScale));
     m_showQrCodeButton->setObjectName(QStringLiteral("screenshotShowQrCodeButton"));
     layout->addWidget(m_showQrCodeButton);
@@ -9333,9 +9334,9 @@ void ScreenshotToolPalette::createMoveActionFamily() {
     unitConfig.objectName = QStringLiteral("screenshotSelectionDisplayUnitButtonGroup");
     unitConfig.options = {
         {int(ScreenshotSelectionDisplayUnit::PhysicalPixels),
-         QT_TR_NOOP("Physical Pixel Selection"), custom_outlined_icons::PhysicalPixels()},
+         QT_TR_NOOP("Physical Pixel Selection"), third_party_icons::PhysicalPixels()},
         {int(ScreenshotSelectionDisplayUnit::LogicalPixels), QT_TR_NOOP("Logical Pixel Selection"),
-         custom_outlined_icons::LogicalPixels()},
+         third_party_icons::LogicalPixels()},
     };
     unitConfig.initialId = int(m_selectionDisplayUnit);
     unitConfig.useButtonMetrics = true;
@@ -9396,16 +9397,16 @@ void ScreenshotToolPalette::createScrollingRecognitionActionFamily() {
     layout->setSpacing(0);
     m_scrollingVerticalButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls, "Vertical scrolling",
-        custom_outlined_icons::ScrollingVertical(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::ScrollingVertical(), actionButtonMetrics(m_physicalScale));
     m_scrollingHorizontalButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls, "Horizontal scrolling",
-        custom_outlined_icons::ScrollingHorizontal(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::ScrollingHorizontal(), actionButtonMetrics(m_physicalScale));
     m_scrollingVerticalButton->setObjectName(QStringLiteral("screenshotScrollingVerticalButton"));
     m_scrollingHorizontalButton->setObjectName(
         QStringLiteral("screenshotScrollingHorizontalButton"));
     m_scrollingAutoScrollButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls, QT_TR_NOOP("Auto-scroll"),
-        custom_outlined_icons::AutoScroll(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::AutoScroll(), actionButtonMetrics(m_physicalScale));
     m_scrollingAutoScrollButton->setObjectName(
         QStringLiteral("screenshotScrollingAutoScrollButton"));
     layout->addWidget(m_scrollingAutoScrollButton);
@@ -9413,7 +9414,7 @@ void ScreenshotToolPalette::createScrollingRecognitionActionFamily() {
     m_scrollingAutoScrollIntervalEditor = createScreenshotToolPaletteIconNumericValueButton(
         m_scrollingRecognitionControls,
         QT_TR_NOOP("Auto-scroll interval (scroll to adjust; click to reset to 200 ms)"),
-        custom_outlined_icons::AutoScrollInterval(), m_scrollingAutoScrollIntervalMs,
+        third_party_icons::AutoScrollInterval(), m_scrollingAutoScrollIntervalMs,
         QStringLiteral("1000ms"), actionButtonMetrics(m_physicalScale));
     m_scrollingAutoScrollIntervalEditor->setObjectName(
         QStringLiteral("screenshotScrollingAutoScrollIntervalEditor"));
@@ -9443,11 +9444,11 @@ void ScreenshotToolPalette::createScrollingRecognitionActionFamily() {
     m_scrollingMoveHorizontalButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls,
         QT_TR_NOOP("Move selection horizontally (press and hold to drag)"),
-        custom_outlined_icons::MoveSelectionHorizontal(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::MoveSelectionHorizontal(), actionButtonMetrics(m_physicalScale));
     m_scrollingMoveVerticalButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls,
         QT_TR_NOOP("Move selection vertically (press and hold to drag)"),
-        custom_outlined_icons::MoveSelectionVertical(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::MoveSelectionVertical(), actionButtonMetrics(m_physicalScale));
     m_scrollingMoveHorizontalButton->setObjectName(
         QStringLiteral("screenshotScrollingMoveHorizontalButton"));
     m_scrollingMoveVerticalButton->setObjectName(
@@ -9467,7 +9468,7 @@ void ScreenshotToolPalette::createScrollingRecognitionActionFamily() {
     addStyleToolbarSpacing(layout, STYLE_GROUP_SPACING * 2);
     auto* splitButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls, QT_TR_NOOP("Image Splitting"),
-        custom_outlined_icons::ImageSplitting(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::ImageSplitting(), actionButtonMetrics(m_physicalScale));
     splitButton->setObjectName(QStringLiteral("screenshotScrollingImageSplittingButton"));
     layout->addWidget(splitButton);
     addStyleToolbarSpacing(layout, STYLE_ITEM_SPACING);
@@ -9475,7 +9476,7 @@ void ScreenshotToolPalette::createScrollingRecognitionActionFamily() {
             &ScreenshotToolPalette::scrollingImageSplittingRequested);
     auto* editingButton = createScreenshotToolPaletteStyleActionButton(
         m_scrollingRecognitionControls, QT_TR_NOOP("Image Editing"),
-        custom_outlined_icons::ImageEditing(), actionButtonMetrics(m_physicalScale));
+        third_party_icons::ImageEditing(), actionButtonMetrics(m_physicalScale));
     editingButton->setObjectName(QStringLiteral("screenshotScrollingImageEditingButton"));
     layout->addWidget(editingButton);
     addStyleToolbarSpacing(layout, STYLE_ITEM_SPACING);
@@ -9985,12 +9986,12 @@ void ScreenshotToolPalette::addRecordingControls(QBoxLayout* layout) {
     }
     if (m_recordStartButton == nullptr) {
         m_recordStartButton = addActionButton("Start recording",
-                                              primaryIcon(custom_outlined_icons::RecordingStart()));
+                                              primaryIcon(third_party_icons::RecordingStart()));
         m_recordStopButton =
-            addActionButton("Stop recording", custom_outlined_icons::RecordingStop(), true);
+            addActionButton("Stop recording", third_party_icons::RecordingStop(), true);
         m_recordPauseButton = addActionButton("Pause recording", outlined_icons::Pause());
         m_recordResumeButton = addActionButton(
-            "Resume recording", primaryIcon(custom_outlined_icons::RecordingResume()));
+            "Resume recording", primaryIcon(third_party_icons::RecordingResume()));
         // Long-running start, stop, and copy operations report through
         // setRecordingSession(); use the isolated spinner surface like the
         // other toolbar busy indicators.
@@ -10006,14 +10007,14 @@ void ScreenshotToolPalette::addRecordingControls(QBoxLayout* layout) {
         m_recordDurationLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
         m_recordMicrophoneButton =
-            addActionButton("Record microphone", custom_outlined_icons::RecordingMicrophone());
+            addActionButton("Record microphone", third_party_icons::RecordingMicrophone());
         m_recordSystemAudioButton = addActionButton("Record speakers", outlined_icons::Sound());
 
         m_recordOpenFolderButton =
-            addActionButton("Open recording folder", custom_outlined_icons::RecordingFolder());
+            addActionButton("Open recording folder", third_party_icons::RecordingFolder());
         m_recordCloseButton = addActionButton("Close recording", outlined_icons::Close(), true);
-        m_recordTrimButton = addActionButton("Trim Video", custom_outlined_icons::RecordingTrim());
-        m_recordSaveButton = addActionButton("Save to File", custom_outlined_icons::Save());
+        m_recordTrimButton = addActionButton("Trim Video", third_party_icons::RecordingTrim());
+        m_recordSaveButton = addActionButton("Save to File", third_party_icons::Save());
         m_recordTrimButton->setObjectName(QStringLiteral("screenRecordingTrim"));
         m_recordSaveButton->setObjectName(QStringLiteral("screenRecordingSave"));
         connect(m_recordTrimButton, &adqt::widgets::AdButton::clicked, this,
@@ -10427,7 +10428,7 @@ bool ScreenshotToolPalette::setStyleControlsActive(Tool tool) {
         ScreenshotToolPaletteSliderEditor spotlightEditor;
         spotlightEditor.icon = m_spotlightOpacityIcon;
         spotlightEditor.slider = m_spotlightOpacitySlider;
-        spotlightEditor.iconRef = custom_outlined_icons::Opacity();
+        spotlightEditor.iconRef = third_party_icons::Opacity();
         spotlightEditor.baseIconSize = COMPACT_SLIDER_ICON_SIZE;
         spotlightEditor.baseSliderWidth = COMPACT_SLIDER_WIDTH;
         configureScreenshotToolPaletteSliderEditor(spotlightEditor,
@@ -10570,8 +10571,8 @@ void ScreenshotToolPalette::updateRecordingControls() {
         // interaction while recording must not imply that audio is muted.
         setScreenshotToolPaletteButtonActive(m_recordMicrophoneButton, false);
         m_recordMicrophoneButton->setIconRef(snow_shot::presentation::icons::withPrimaryColor(
-            m_recordingMicrophoneEnabled ? custom_outlined_icons::RecordingMicrophone()
-                                         : custom_outlined_icons::RecordingMicrophoneOff(),
+            m_recordingMicrophoneEnabled ? third_party_icons::RecordingMicrophone()
+                                         : third_party_icons::RecordingMicrophoneOff(),
             microphoneIconColor));
         m_recordMicrophoneButton->setEnabled(microphoneControlEnabled);
         if (m_recordMicrophoneGainPopover) {
@@ -10597,7 +10598,7 @@ void ScreenshotToolPalette::updateRecordingControls() {
         setScreenshotToolPaletteButtonActive(m_recordSystemAudioButton, false);
         m_recordSystemAudioButton->setIconRef(snow_shot::presentation::icons::withPrimaryColor(
             m_recordingSystemAudioEnabled ? outlined_icons::Sound()
-                                          : custom_outlined_icons::RecordingSpeakerOff(),
+                                          : third_party_icons::RecordingSpeakerOff(),
             systemAudioIconColor));
         m_recordSystemAudioButton->setEnabled(systemAudioControlEnabled);
         if (m_recordSystemAudioGainPopover) {

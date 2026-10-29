@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/components/sidebarwidget.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/applicationsearchwidget.h"
 #include "snow_shot/storage/settingsadapters.h"
 #include "snow_shot/storage/applicationstorage.h"
@@ -26,7 +27,7 @@
 
 namespace {
 using adqt::widgets::AdNavigationMenu;
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 
 constexpr int SIDEBAR_EXPANDED_WIDTH = 220;
 constexpr int SIDEBAR_COLLAPSED_WIDTH = 80;

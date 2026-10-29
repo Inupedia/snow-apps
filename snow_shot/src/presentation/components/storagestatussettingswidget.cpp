@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/components/storagestatussettingswidget.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/formfields.h"
 
 #include "snow_shot/presentation/components/pathinput.h"
@@ -128,7 +129,7 @@ StorageStatusSettingsWidget::StorageStatusSettingsWidget(
     m_refreshButton->setObjectName(QStringLiteral("settings-storage-status-refresh"));
     m_refreshButton->setButtonStyle(adqt::widgets::AdButton::ButtonStyle::Text);
     m_refreshButton->setSizeClass(adqt::widgets::AdButton::SizeClass::Small);
-    m_refreshButton->setIconRef(snow_shot::presentation::icons::custom::outlined::Reload());
+    m_refreshButton->setIconRef(snow_shot::presentation::icons::third_party::outlined::Reload());
     m_descriptions->setExtraWidget(m_refreshButton);
     m_totalValue = createStatusValue(m_descriptions, QStringLiteral("total"));
     m_historyValue = createStatusValue(m_descriptions, QStringLiteral("history"));
@@ -166,7 +167,7 @@ StorageStatusSettingsWidget::StorageStatusSettingsWidget(
     m_copyLogFeedback->setWordWrap(true);
     m_copyLogButton = new adqt::widgets::AdButton(this);
     m_copyLogButton->setObjectName(QStringLiteral("settings-storage-copy-today-log"));
-    m_copyLogButton->setIconRef(snow_shot::presentation::icons::custom::outlined::Copy());
+    m_copyLogButton->setIconRef(snow_shot::presentation::icons::third_party::outlined::Copy());
     m_copyLogButton->setSizeClass(adqt::widgets::AdButton::SizeClass::Small);
     layout->addWidget(m_copyLogFeedback);
     actions->addStretch(1);

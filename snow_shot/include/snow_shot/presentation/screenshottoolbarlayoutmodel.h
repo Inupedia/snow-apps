@@ -4,6 +4,7 @@
 #include "snow_shot/app/editionfeatures.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/storage/settingsadapters.h"
 #include "snow_shot/storage/floatingtoolbarsettings.h"
 #include "antd_icons.h"
@@ -929,10 +930,10 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
 }
 
 [[nodiscard]] inline adqt::icons::IconRef icon(Icon semantic) {
-    namespace custom = snow_shot::presentation::icons::custom::outlined;
+    namespace custom = snow_shot::presentation::icons::third_party::outlined;
     switch (semantic) {
     case Icon::Screenshot:
-        return snow_shot::presentation::icons::custom::twotone::ScreenshotFeature();
+        return snow_shot::presentation::icons::third_party::twotone::ScreenshotFeature();
     case Icon::ScreenshotDelay:
         return custom::ScreenshotDelay();
     case Icon::Select:
@@ -968,9 +969,9 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
     case Icon::Watermark:
         return custom::ToolWatermark();
     case Icon::Undo:
-        return snow_shot::presentation::icons::custom::outlined::Undo();
+        return snow_shot::presentation::icons::third_party::outlined::Undo();
     case Icon::Redo:
-        return snow_shot::presentation::icons::custom::outlined::Redo();
+        return snow_shot::presentation::icons::third_party::outlined::Redo();
     case Icon::Separator:
         return {};
     case Icon::BarcodeRecognition:
@@ -978,7 +979,7 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
     case Icon::TableRecognition:
         return custom::TableRecognition();
     case Icon::Latex:
-        return snow_shot::presentation::icons::custom::outlined::Function();
+        return snow_shot::presentation::icons::third_party::outlined::Function();
     case Icon::Markdown:
         return custom::Markdown();
     case Icon::Html:
@@ -996,27 +997,27 @@ moveItemToHidden(const storage::ScreenshotToolbarLayout& input,
     case Icon::QuickSave:
         return custom::QuickSave();
     case Icon::Copy:
-        return snow_shot::presentation::icons::custom::outlined::Copy();
+        return snow_shot::presentation::icons::third_party::outlined::Copy();
     case Icon::Confirm:
-        return snow_shot::presentation::icons::custom::outlined::Check();
+        return snow_shot::presentation::icons::third_party::outlined::Check();
     case Icon::Cancel:
-        return snow_shot::presentation::icons::custom::outlined::Close();
+        return snow_shot::presentation::icons::third_party::outlined::Close();
     case Icon::Print:
-        return snow_shot::presentation::icons::custom::outlined::Printer();
+        return snow_shot::presentation::icons::third_party::outlined::Printer();
     case Icon::UploadToCloud:
-        return snow_shot::presentation::icons::custom::outlined::CloudUpload();
+        return snow_shot::presentation::icons::third_party::outlined::CloudUpload();
     case Icon::SaveAsFile:
         return custom::Save();
     case Icon::RecordingStart:
         return custom::RecordingStart();
     case Icon::RecordingPause:
-        return snow_shot::presentation::icons::custom::outlined::Pause();
+        return snow_shot::presentation::icons::third_party::outlined::Pause();
     case Icon::RecordingDuration:
-        return snow_shot::presentation::icons::custom::outlined::ClockCircle();
+        return snow_shot::presentation::icons::third_party::outlined::ClockCircle();
     case Icon::RecordingMicrophone:
         return custom::RecordingMicrophone();
     case Icon::RecordingSystemAudio:
-        return snow_shot::presentation::icons::custom::outlined::Sound();
+        return snow_shot::presentation::icons::third_party::outlined::Sound();
     case Icon::RecordingFolder:
         return custom::RecordingFolder();
     case Icon::RecordingTrim:

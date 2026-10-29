@@ -4,6 +4,7 @@
 #include "screenrecordingperfinstrumentation.h"
 #include "snow_shot/presentation/canvasstatusreadout.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenrecordingareawindow.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "snow_draw_engine_qt/snow_canvas_widget.h"
@@ -58,7 +59,7 @@ class RecordingStatusPrompt final : public QWidget {
         painter.setPen(Qt::white);
         const int textWidth = fontMetrics().horizontalAdvance(m_text);
         painter.drawText(QRect(kPadding, 0, textWidth, height()), Qt::AlignCenter, m_text);
-        namespace custom = snow_shot::presentation::icons::custom::outlined;
+        namespace custom = snow_shot::presentation::icons::third_party::outlined;
         const auto colors =
             snow_shot::presentation::styles::ThemeManager::instance().themeColorScheme().map;
         const auto microphoneColor = adqt::icons::IconColors::primary(
@@ -73,7 +74,7 @@ class RecordingStatusPrompt final : public QWidget {
                                microphone);
         adqt::icons::paintIcon(
             &painter,
-            m_speaker ? snow_shot::presentation::icons::custom::outlined::Sound(speakerColor)
+            m_speaker ? snow_shot::presentation::icons::third_party::outlined::Sound(speakerColor)
                       : custom::RecordingSpeakerOff(speakerColor),
             microphone.translated(kIconSize + kGap, 0));
     }

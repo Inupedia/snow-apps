@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/components/infotooltipicon.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 
@@ -13,7 +14,7 @@
 #include <algorithm>
 
 namespace {
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 }
 
 InfoTooltipIcon::InfoTooltipIcon(int iconSize, QWidget* parent)

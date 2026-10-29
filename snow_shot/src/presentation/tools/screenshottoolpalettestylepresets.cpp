@@ -1,12 +1,13 @@
 #include "screenshottoolpalettestylepresets.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshotdefaultstyles.h"
 #include "snow_shot/storage/settingsadapters.h"
 
 namespace snow_shot::presentation::style_presets {
 namespace {
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 
 } // namespace
 
@@ -58,15 +59,15 @@ const QStringList& sizePresetLabels() {
 adqt::icons::IconRef sizePresetIcon(int index) {
     switch (index) {
     case 0:
-        return custom_outlined_icons::FontSizeSmall();
+        return third_party_icons::FontSizeSmall();
     case 1:
-        return custom_outlined_icons::FontSizeMedium();
+        return third_party_icons::FontSizeMedium();
     case 2:
-        return custom_outlined_icons::FontSizeLarge();
+        return third_party_icons::FontSizeLarge();
     case 3:
-        return custom_outlined_icons::FontSizeVeryLarge();
+        return third_party_icons::FontSizeVeryLarge();
     default:
-        return custom_outlined_icons::FontSizeMedium();
+        return third_party_icons::FontSizeMedium();
     }
 }
 

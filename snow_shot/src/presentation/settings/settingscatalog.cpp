@@ -7,6 +7,7 @@
 
 #include "antd_icons.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/storage/configurationschema.h"
 
 #include <QCoreApplication>
@@ -18,9 +19,9 @@
 
 namespace snow_shot::presentation::settings {
 namespace {
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace custom_twotone_icons = snow_shot::presentation::icons::custom::twotone;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
+namespace third_party_twotone_icons = snow_shot::presentation::icons::third_party::twotone;
 
 constexpr TranslatableText settingsText(const char* source) {
     return {"SettingsCatalog", source};
@@ -42,7 +43,7 @@ SettingsItemDefinition screenshotItem() {
     SettingsShortcutActionDefinition payload;
     payload.shortcutAction = GlobalShortcutAction::Screenshot;
     payload.command = {SettingsCommandKind::CaptureScreenshot, {}};
-    payload.iconFactory = []() { return custom_twotone_icons::ScreenshotFeature(); };
+    payload.iconFactory = []() { return third_party_twotone_icons::ScreenshotFeature(); };
     return {
         QStringLiteral("quick.screenshot"),
         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Screenshot")),
@@ -99,7 +100,7 @@ SettingsItemDefinition screenshotDelayItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Delayed screenshot")),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Delay capture"))},
         GlobalShortcutAction::ScreenshotDelay, QStringLiteral("global_shortcuts/screenshot_delay"),
-        []() { return custom_outlined_icons::ScreenshotDelay(); },
+        []() { return third_party_icons::ScreenshotDelay(); },
         SettingsShortcutAdjustment::ScreenshotDelaySeconds);
 }
 
@@ -112,7 +113,7 @@ SettingsItemDefinition screenshotFixedItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Fixed screenshot")),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Pin selection"))},
         GlobalShortcutAction::ScreenshotFixed, QStringLiteral("global_shortcuts/screenshot_fixed"),
-        []() { return custom_outlined_icons::PinToScreen(); });
+        []() { return third_party_icons::PinToScreen(); });
 }
 
 SettingsItemDefinition screenshotOcrItem() {
@@ -124,7 +125,7 @@ SettingsItemDefinition screenshotOcrItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "OCR")),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Recognize text"))},
         GlobalShortcutAction::ScreenshotOcr, QStringLiteral("global_shortcuts/screenshot_ocr"),
-        []() { return custom_outlined_icons::TextRecognition(); });
+        []() { return third_party_icons::TextRecognition(); });
 }
 
 SettingsItemDefinition screenshotOcrCopyItem() {
@@ -136,7 +137,7 @@ SettingsItemDefinition screenshotOcrCopyItem() {
             "Recognize text, copy it to the clipboard, and end the screenshot session"),
         {}, GlobalShortcutAction::ScreenshotOcrCopy,
         QStringLiteral("global_shortcuts/screenshot_ocr_copy"),
-        []() { return custom_outlined_icons::TextRecognition(); });
+        []() { return third_party_icons::TextRecognition(); });
 }
 
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
@@ -149,7 +150,7 @@ SettingsItemDefinition screenshotTranslationItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Translate text"))},
         GlobalShortcutAction::ScreenshotTranslation,
         QStringLiteral("global_shortcuts/screenshot_translation"),
-        []() { return custom_outlined_icons::OcrTranslate(); });
+        []() { return third_party_icons::OcrTranslate(); });
 }
 #endif
 
@@ -162,7 +163,7 @@ SettingsItemDefinition screenshotCopyItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Copy screenshot")),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Clipboard"))},
         GlobalShortcutAction::ScreenshotCopy, QStringLiteral("global_shortcuts/screenshot_copy"),
-        []() { return custom_outlined_icons::ScreenshotCopy(); });
+        []() { return third_party_icons::ScreenshotCopy(); });
 }
 
 SettingsItemDefinition screenshotSaveItem() {
@@ -172,7 +173,7 @@ SettingsItemDefinition screenshotSaveItem() {
         QT_TRANSLATE_NOOP("SettingsCatalog", "Save the confirmed screenshot selection to a file"),
         {}, GlobalShortcutAction::ScreenshotSave,
         QStringLiteral("global_shortcuts/screenshot_save"),
-        []() { return custom_outlined_icons::Save(); });
+        []() { return third_party_icons::Save(); });
 }
 
 SettingsItemDefinition screenshotQuickSaveItem() {
@@ -183,7 +184,7 @@ SettingsItemDefinition screenshotQuickSaveItem() {
                           "Save the confirmed screenshot selection to the configured folder"),
         {}, GlobalShortcutAction::ScreenshotQuickSave,
         QStringLiteral("global_shortcuts/screenshot_quick_save"),
-        []() { return custom_outlined_icons::QuickSave(); });
+        []() { return third_party_icons::QuickSave(); });
 }
 
 SettingsItemDefinition screenshotFullScreenItem() {
@@ -196,7 +197,7 @@ SettingsItemDefinition screenshotFullScreenItem() {
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Monitor capture"))},
         GlobalShortcutAction::ScreenshotFullScreen,
         QStringLiteral("global_shortcuts/screenshot_full_screen"),
-        []() { return custom_outlined_icons::ScreenshotFullScreen(); });
+        []() { return third_party_icons::ScreenshotFullScreen(); });
 }
 
 SettingsItemDefinition screenshotFocusedWindowItem() {
@@ -208,7 +209,7 @@ SettingsItemDefinition screenshotFocusedWindowItem() {
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Window capture"))},
         GlobalShortcutAction::ScreenshotFocusedWindow,
         QStringLiteral("global_shortcuts/screenshot_focused_window"),
-        []() { return custom_outlined_icons::ScreenshotFocusedWindow(); });
+        []() { return third_party_icons::ScreenshotFocusedWindow(); });
 }
 
 SettingsItemDefinition screenRecordItem() {
@@ -218,7 +219,7 @@ SettingsItemDefinition screenRecordItem() {
         QT_TRANSLATE_NOOP("SettingsCatalog", "Start a screen recording from a confirmed selection"),
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Record screen"))},
         GlobalShortcutAction::ScreenRecord, QStringLiteral("global_shortcuts/screen_record"),
-        []() { return custom_outlined_icons::RecordScreen(); });
+        []() { return third_party_icons::RecordScreen(); });
 }
 
 SettingsItemDefinition screenRecordCopyItem() {
@@ -231,7 +232,7 @@ SettingsItemDefinition screenRecordCopyItem() {
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Recording toggle"))},
         GlobalShortcutAction::ScreenRecordCopy,
         QStringLiteral("global_shortcuts/screen_record_copy"),
-        []() { return custom_outlined_icons::ScreenshotCopy(); }, SettingsShortcutAdjustment::None);
+        []() { return third_party_icons::ScreenshotCopy(); }, SettingsShortcutAdjustment::None);
 }
 
 SettingsItemDefinition openScreenRecordingFolderItem() {
@@ -242,7 +243,7 @@ SettingsItemDefinition openScreenRecordingFolderItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Recording folder"))},
         GlobalShortcutAction::OpenScreenRecordingFolder,
         QStringLiteral("global_shortcuts/open_screen_recording_folder"),
-        []() { return custom_outlined_icons::RecordingFolder(); });
+        []() { return third_party_icons::RecordingFolder(); });
 }
 
 SettingsItemDefinition openCaptureHistoryItem() {
@@ -264,7 +265,7 @@ SettingsItemDefinition switchWindowGroupItem() {
                           "Preview window groups, then release the shortcut keys to switch"),
         {}, GlobalShortcutAction::SwitchWindowGroup,
         QStringLiteral("global_shortcuts/switch_window_group"),
-        []() { return custom_outlined_icons::WindowGroupSwitch(); });
+        []() { return third_party_icons::WindowGroupSwitch(); });
     std::get<SettingsShortcutActionDefinition>(item.payload).showInTrayMenu = false;
     return item;
 }
@@ -277,7 +278,7 @@ SettingsItemDefinition openPinToScreenManagementItem() {
                           "Open the Pin to Screen Management page in the main window"),
         {}, GlobalShortcutAction::OpenPinToScreenManagement,
         QStringLiteral("global_shortcuts/open_pin_to_screen_management"),
-        []() { return custom_outlined_icons::PinToScreenManagement(); });
+        []() { return third_party_icons::PinToScreenManagement(); });
 }
 
 SettingsItemDefinition globalCanvasItem() {
@@ -288,7 +289,7 @@ SettingsItemDefinition globalCanvasItem() {
                           "Open a canvas on the current display or toggle click-through"),
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Global Canvas"))},
         GlobalShortcutAction::GlobalCanvas, QStringLiteral("global_shortcuts/global_canvas"),
-        []() { return custom_outlined_icons::FullScreenCanvas(); });
+        []() { return third_party_icons::FullScreenCanvas(); });
 }
 
 SettingsItemDefinition stitchSelectedImagesItem() {
@@ -300,7 +301,7 @@ SettingsItemDefinition stitchSelectedImagesItem() {
                           "no images are selected"),
         {}, GlobalShortcutAction::StitchSelectedImages,
         QStringLiteral("global_shortcuts/stitch_selected_images"),
-        []() { return custom_outlined_icons::ImageStitching(); });
+        []() { return third_party_icons::ImageStitching(); });
 }
 
 SettingsItemDefinition splitSelectedImagesItem() {
@@ -312,7 +313,7 @@ SettingsItemDefinition splitSelectedImagesItem() {
                           "if no images are selected"),
         {}, GlobalShortcutAction::SplitSelectedImages,
         QStringLiteral("global_shortcuts/split_selected_images"),
-        []() { return custom_outlined_icons::ImageSplitting(); });
+        []() { return third_party_icons::ImageSplitting(); });
 }
 
 SettingsItemDefinition themeItem() {
@@ -1206,7 +1207,7 @@ SettingsItemDefinition translateSelectedTextItem() {
         QT_TRANSLATE_NOOP("SettingsCatalog", "Capture selected text and open it in Translation"),
         {}, GlobalShortcutAction::TranslateSelectedText,
         QStringLiteral("global_shortcuts/translate_selected_text"),
-        []() { return custom_outlined_icons::OcrTranslate(); });
+        []() { return third_party_icons::OcrTranslate(); });
 }
 #endif
 
@@ -1221,7 +1222,7 @@ SettingsItemDefinition toggleGlobalHotkeysItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Toggle hotkeys"))},
         GlobalShortcutAction::ToggleGlobalHotkeys,
         QStringLiteral("global_shortcuts/toggle_global_hotkeys"),
-        []() { return custom_outlined_icons::Disabled(); }, SettingsShortcutAdjustment::None,
+        []() { return third_party_icons::Disabled(); }, SettingsShortcutAdjustment::None,
         {QT_TRANSLATE_NOOP("SettingsCatalog", "Disable global hotkeys"), true});
 }
 
@@ -1236,7 +1237,7 @@ SettingsItemDefinition toggleDisableOnFocusedFullscreenWindowItem() {
         {settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Fullscreen suppression"))},
         GlobalShortcutAction::ToggleDisableOnFocusedFullscreenWindow,
         QStringLiteral("global_shortcuts/toggle_disable_on_focused_fullscreen_window"),
-        []() { return custom_outlined_icons::ScreenshotFullScreen(); },
+        []() { return third_party_icons::ScreenshotFullScreen(); },
         SettingsShortcutAdjustment::None,
         {QT_TRANSLATE_NOOP("SettingsCatalog", "Disable hotkeys in fullscreen windows"), true});
 }
@@ -1251,7 +1252,7 @@ SettingsItemDefinition pinClipboardContentItem() {
                             settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Pin clipboard"))},
                            GlobalShortcutAction::PinClipboardContent,
                            QStringLiteral("global_shortcuts/pin_clipboard_content"),
-                           []() { return custom_outlined_icons::PinClipboard(); });
+                           []() { return third_party_icons::PinClipboard(); });
 }
 
 SettingsItemDefinition restoreLastClosedWindowsItem() {
@@ -1290,7 +1291,7 @@ SettingsItemDefinition pinSelectedFilesItem() {
 #endif
         {}, GlobalShortcutAction::PinSelectedFiles,
         QStringLiteral("global_shortcuts/pin_selected_files"),
-        []() { return custom_outlined_icons::Select(); });
+        []() { return third_party_icons::Select(); });
 }
 
 SettingsItemDefinition globalMouseItem(const QString& id, const char* title,
@@ -2495,7 +2496,7 @@ QVector<SettingsItemDefinition> screenshotShortcutItems() {
     return {
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("move_tool"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Edit selection"),
-                          []() { return custom_outlined_icons::ToolMove(); }),
+                          []() { return third_party_icons::ToolMove(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("move_cursor_up"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Move cursor up"),
                           []() { return outlined_icons::ArrowUp(); }),
@@ -2514,7 +2515,7 @@ QVector<SettingsItemDefinition> screenshotShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("move_entire_selection"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Move entire selection"),
-                          []() { return custom_outlined_icons::ToolMove(); }),
+                          []() { return third_party_icons::ToolMove(); }),
         localShortcutItem(
             SettingsLocalShortcutScope::Screenshot,
             QStringLiteral("keep_selection_width_and_height_consistent"),
@@ -2559,10 +2560,10 @@ QVector<SettingsItemDefinition> screenshotShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("toggle_cursor_visibility"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Toggle cursor visibility"),
-                          []() { return custom_outlined_icons::RecordingCursor(); }),
+                          []() { return third_party_icons::RecordingCursor(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("recapture"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Recapture"),
-                          []() { return custom_outlined_icons::RefreshCapture(); }),
+                          []() { return third_party_icons::RefreshCapture(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("copy_color"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Copy color"),
                           []() { return outlined_icons::Copy(); }),
@@ -2575,27 +2576,27 @@ QVector<SettingsItemDefinition> screenshotShortcutItems() {
                           []() { return outlined_icons::Swap(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("pin_to_screen"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Pin to screen"),
-                          []() { return custom_outlined_icons::PinToScreen(); }),
+                          []() { return third_party_icons::PinToScreen(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("video_recording"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Video recording"),
-                          []() { return custom_outlined_icons::RecordScreen(); }),
+                          []() { return third_party_icons::RecordScreen(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("scrolling_screenshot"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Scrolling screenshot"),
-                          []() { return custom_outlined_icons::ScrollingScreenshot(); }),
+                          []() { return third_party_icons::ScrollingScreenshot(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("quick_save"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Quick save"),
-                          []() { return custom_outlined_icons::QuickSave(); }),
+                          []() { return third_party_icons::QuickSave(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("print"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Print"),
                           []() { return outlined_icons::Printer(); }),
         localShortcutItem(
             SettingsLocalShortcutScope::Screenshot, QStringLiteral("upload_to_cloud"),
             QT_TRANSLATE_NOOP("SettingsCatalog", "Upload to Cloud"),
-            []() { return snow_shot::presentation::icons::custom::outlined::CloudUpload(); }),
+            []() { return snow_shot::presentation::icons::third_party::outlined::CloudUpload(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("save_as_file"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Save as file"),
-                          []() { return custom_outlined_icons::Save(); }),
+                          []() { return third_party_icons::Save(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("cancel_screenshot"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Cancel screenshot"),
@@ -2613,23 +2614,23 @@ QVector<SettingsItemDefinition> screenshotOtherShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("table_recognition"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Table recognition"),
-                          []() { return custom_outlined_icons::TableRecognition(); }),
+                          []() { return third_party_icons::TableRecognition(); }),
 #endif
 #if SNOW_SHOT_ENABLE_QR_RECOGNITION
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("qr_code_recognition"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Barcode recognition"),
-                          []() { return custom_outlined_icons::ScanQrcode(); }),
+                          []() { return third_party_icons::ScanQrcode(); }),
 #endif
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("text_recognition"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Text recognition"),
-                          []() { return custom_outlined_icons::TextRecognition(); }),
+                          []() { return third_party_icons::TextRecognition(); }),
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
         localShortcutItem(SettingsLocalShortcutScope::Screenshot,
                           QStringLiteral("text_translation"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Text translation"),
-                          []() { return custom_outlined_icons::OcrTranslate(); }),
+                          []() { return third_party_icons::OcrTranslate(); }),
 #endif
     };
 }
@@ -2638,55 +2639,55 @@ QVector<SettingsItemDefinition> drawingShortcutItems() {
     return {
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("select"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Select tool"),
-                          []() { return custom_outlined_icons::ToolSelect(); }),
+                          []() { return third_party_icons::ToolSelect(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("shape"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Shape tool"),
-                          []() { return custom_outlined_icons::ToolRectangle(); }),
+                          []() { return third_party_icons::ToolRectangle(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("speech_bubble"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Speech Bubble"),
-                          []() { return custom_outlined_icons::ToolSpeechBubble(); }),
+                          []() { return third_party_icons::ToolSpeechBubble(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("arrow"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Arrow"),
-                          []() { return custom_outlined_icons::ToolArrow(); }),
+                          []() { return third_party_icons::ToolArrow(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("distance"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Distance annotation"),
-                          []() { return custom_outlined_icons::DistanceAnnotation(); }),
+                          []() { return third_party_icons::DistanceAnnotation(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("angle"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Angle annotation"),
-                          []() { return custom_outlined_icons::AngleAnnotation(); }),
+                          []() { return third_party_icons::AngleAnnotation(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("line"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Line"),
-                          []() { return custom_outlined_icons::ToolLine(); }),
+                          []() { return third_party_icons::ToolLine(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("brush"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Pen"),
-                          []() { return custom_outlined_icons::ToolFreeDraw(); }),
+                          []() { return third_party_icons::ToolFreeDraw(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("highlight"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Highlight"),
-                          []() { return custom_outlined_icons::ToolHighlight(); }),
+                          []() { return third_party_icons::ToolHighlight(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("magnifier"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Magnifier"),
-                          []() { return custom_outlined_icons::ToolMagnifier(); }),
+                          []() { return third_party_icons::ToolMagnifier(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("spotlight"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Spotlight"),
-                          []() { return custom_outlined_icons::ToolSpotlight(); }),
+                          []() { return third_party_icons::ToolSpotlight(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("text"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Text"),
-                          []() { return custom_outlined_icons::ToolText(); }),
+                          []() { return third_party_icons::ToolText(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("serial_number"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Serial number"),
-                          []() { return custom_outlined_icons::ToolSerialNumber(); }),
+                          []() { return third_party_icons::ToolSerialNumber(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("filter"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Filter"),
-                          []() { return custom_outlined_icons::ToolFilter(); }),
+                          []() { return third_party_icons::ToolFilter(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("eraser"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Eraser"),
-                          []() { return custom_outlined_icons::ToolEraser(); }),
+                          []() { return third_party_icons::ToolEraser(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("reset_canvas"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Reset canvas"),
                           []() { return outlined_icons::Reload(); }),
         localShortcutItem(SettingsLocalShortcutScope::Drawing, QStringLiteral("watermark"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Watermark"),
-                          []() { return custom_outlined_icons::ToolWatermark(); }),
+                          []() { return third_party_icons::ToolWatermark(); }),
         localShortcutItem(SettingsLocalShortcutScope::Screenshot, QStringLiteral("undo"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Undo"),
                           []() { return outlined_icons::Undo(); }),
@@ -2740,14 +2741,14 @@ QVector<SettingsItemDefinition> pinToScreenShortcutItems() {
         localShortcutItem(
             SettingsLocalShortcutScope::PinToScreen, QStringLiteral("upload_to_cloud"),
             QT_TRANSLATE_NOOP("SettingsCatalog", "Upload to Cloud"),
-            []() { return snow_shot::presentation::icons::custom::outlined::CloudUpload(); }),
+            []() { return snow_shot::presentation::icons::third_party::outlined::CloudUpload(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("save_as_file"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Save as file"),
-                          []() { return custom_outlined_icons::Save(); }),
+                          []() { return third_party_icons::Save(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen,
                           QStringLiteral("show_text_recognition_results"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Show text recognition results"),
-                          []() { return custom_outlined_icons::TextRecognition(); }),
+                          []() { return third_party_icons::TextRecognition(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("drawing_mode"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Annotation mode"),
                           []() { return outlined_icons::Edit(); }),
@@ -2775,7 +2776,7 @@ QVector<SettingsItemDefinition> pinToScreenShortcutItems() {
                           []() { return outlined_icons::Reload(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("resize_window"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Resize window"),
-                          []() { return custom_outlined_icons::ToolMove(); }),
+                          []() { return third_party_icons::ToolMove(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("thumbnail_mode"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Thumbnail mode"),
                           []() { return outlined_icons::Compress(); }),
@@ -2785,7 +2786,7 @@ QVector<SettingsItemDefinition> pinToScreenShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen,
                           QStringLiteral("toggle_click_through"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Click-through"),
-                          []() { return custom_outlined_icons::Mouse(); }),
+                          []() { return third_party_icons::Mouse(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("toggle_lock"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Lock mode"),
                           []() { return outlined_icons::Lock(); }),
@@ -2794,16 +2795,16 @@ QVector<SettingsItemDefinition> pinToScreenShortcutItems() {
                           []() { return outlined_icons::ToTop(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("show_border"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Show border"),
-                          []() { return custom_outlined_icons::PinnedWindowBorder(); }),
+                          []() { return third_party_icons::PinnedWindowBorder(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("show_shadow"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Show shadow"),
-                          []() { return custom_outlined_icons::PinnedWindowShadow(); }),
+                          []() { return third_party_icons::PinnedWindowShadow(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("close_window"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Close window"),
                           []() { return outlined_icons::Close(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("destroy_window"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Destroy"),
-                          []() { return custom_outlined_icons::DestroyPinnedWindow(); }),
+                          []() { return third_party_icons::DestroyPinnedWindow(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("move_cursor_up"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Move cursor up"),
                           []() { return outlined_icons::ArrowUp(); }),
@@ -2844,10 +2845,10 @@ QVector<SettingsItemDefinition> pinToScreenShortcutItems() {
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen,
                           QStringLiteral("flip_horizontal"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Flip horizontally"),
-                          []() { return custom_outlined_icons::FlipHorizontal(); }),
+                          []() { return third_party_icons::FlipHorizontal(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen, QStringLiteral("flip_vertical"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Flip vertically"),
-                          []() { return custom_outlined_icons::FlipVertical(); }),
+                          []() { return third_party_icons::FlipVertical(); }),
         localShortcutItem(SettingsLocalShortcutScope::PinToScreen,
                           QStringLiteral("reset_transform"),
                           QT_TRANSLATE_NOOP("SettingsCatalog", "Reset transform"),
@@ -3074,7 +3075,7 @@ SettingsItemDefinition exportConfigurationItem() {
     SettingsActionDefinition payload;
     payload.binding = SettingsActionBinding::ExportConfiguration;
     payload.buttonText = settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Export"));
-    payload.iconFactory = []() { return custom_outlined_icons::ExportConfiguration(); };
+    payload.iconFactory = []() { return third_party_icons::ExportConfiguration(); };
     payload.successMessage = settingsText(
         QT_TRANSLATE_NOOP("SettingsCatalog", "Configuration exported to the clipboard"));
     payload.exportOptions = {
@@ -3099,7 +3100,7 @@ SettingsItemDefinition importConfigurationItem() {
     SettingsActionDefinition payload;
     payload.binding = SettingsActionBinding::ImportConfiguration;
     payload.buttonText = settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Import"));
-    payload.iconFactory = []() { return custom_outlined_icons::ImportConfiguration(); };
+    payload.iconFactory = []() { return third_party_icons::ImportConfiguration(); };
     payload.confirmation = {
         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Import configuration?")),
         settingsText(QT_TRANSLATE_NOOP(
@@ -4208,7 +4209,7 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     SettingsNavigationPageDefinition globalMouse;
     globalMouse.id = QStringLiteral("nav.global-mouse");
     globalMouse.pageId = QString::fromLatin1(GLOBAL_MOUSE_PAGE_ID);
-    globalMouse.iconFactory = []() { return custom_outlined_icons::GlobalMouseNav(); };
+    globalMouse.iconFactory = []() { return third_party_icons::GlobalMouseNav(); };
 
     SettingsNavigationPageDefinition history;
     history.id = QStringLiteral("nav.screenshot-history");
@@ -4221,20 +4222,20 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     settingsGroup.iconFactory = []() { return outlined_icons::Setting(); };
     settingsGroup.pages = {
         {QStringLiteral("nav.general"), QStringLiteral("general"),
-         []() { return custom_outlined_icons::Control(); }},
+         []() { return third_party_icons::Control(); }},
         {QStringLiteral("nav.general-appearance"), QStringLiteral("general-appearance"),
          []() { return outlined_icons::BgColors(); }},
         {QStringLiteral("nav.screenshots"), QStringLiteral("screenshots"),
          []() { return outlined_icons::Picture(); }},
         {QStringLiteral("nav.pinned-windows"), QStringLiteral("pinned-windows"),
-         []() { return custom_outlined_icons::PinScreenNav(); }},
+         []() { return third_party_icons::PinScreenNav(); }},
         {QStringLiteral("nav.screen-recording"), QStringLiteral("screen-recording"),
-         []() { return custom_outlined_icons::ScreenRecordingNav(); }},
+         []() { return third_party_icons::ScreenRecordingNav(); }},
         {QStringLiteral("nav.text-recognition-translation"),
          QStringLiteral("text-recognition-translation"),
-         []() { return custom_outlined_icons::TextRecognitionTranslationNav(); }},
+         []() { return third_party_icons::TextRecognitionTranslationNav(); }},
         {QStringLiteral("nav.shortcuts-mouse"), QStringLiteral("shortcuts-mouse"),
-         []() { return custom_outlined_icons::ApplicationShortcutsNav(); }},
+         []() { return third_party_icons::ApplicationShortcutsNav(); }},
         {QStringLiteral("nav.desktop-tools"), QStringLiteral("desktop-tools"),
          []() { return outlined_icons::Desktop(); }},
         {QStringLiteral("nav.files-history"), QStringLiteral("files-history"),
@@ -4262,7 +4263,7 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     SettingsNavigationPageDefinition pinned;
     pinned.id = QStringLiteral("nav.pin-to-screen-management");
     pinned.pageId = QString::fromLatin1(PINNED_PAGE_ID);
-    pinned.iconFactory = []() { return custom_outlined_icons::PinManagementNav(); };
+    pinned.iconFactory = []() { return third_party_icons::PinManagementNav(); };
     return {globalHotkeys, globalMouse, history, pinned,
 #if SNOW_SHOT_ENABLE_TEXT_TRANSLATION
             translation,
@@ -4583,18 +4584,18 @@ QVector<SettingsTrayMenuGroupDefinition> SettingsCatalog::trayMenuGroups() const
         {QStringLiteral("tray.window-grouping"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Window grouping")),
          SettingsTrayMenuOptionKind::WindowGrouping, GlobalShortcutAction::Screenshot,
-         []() { return custom_outlined_icons::Group(); }},
+         []() { return third_party_icons::Group(); }},
         {QStringLiteral("tray.show-main-window"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Show main interface")),
          SettingsTrayMenuOptionKind::ShowMainWindow, GlobalShortcutAction::Screenshot,
-         []() { return custom_outlined_icons::Window(); }},
+         []() { return third_party_icons::Window(); }},
         {QStringLiteral("tray.restart-app"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Restart App")),
          SettingsTrayMenuOptionKind::RestartApp, GlobalShortcutAction::Screenshot,
-         []() { return custom_outlined_icons::Restart(); }},
+         []() { return third_party_icons::Restart(); }},
         {QStringLiteral("tray.exit"), settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Exit")),
          SettingsTrayMenuOptionKind::Exit, GlobalShortcutAction::Screenshot,
-         []() { return custom_outlined_icons::Exit(); }},
+         []() { return third_party_icons::Exit(); }},
     };
     groups.push_back(std::move(systemGroup));
     return groups;
@@ -4642,58 +4643,58 @@ TrayCommandManifest buildBuiltInTrayCommandManifest() {
          {quick(QStringLiteral("quick.screenshot"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Screenshot"),
                 GlobalShortcutAction::Screenshot,
-                []() { return custom_twotone_icons::ScreenshotFeature(); }),
+                []() { return third_party_twotone_icons::ScreenshotFeature(); }),
           quick(
               QStringLiteral("quick.screenshot-delay"),
               QT_TRANSLATE_NOOP("SettingsCatalog", "Delay %1s to execute"),
               GlobalShortcutAction::ScreenshotDelay,
-              []() { return custom_outlined_icons::ScreenshotDelay(); },
+              []() { return third_party_icons::ScreenshotDelay(); },
               SettingsShortcutAdjustment::ScreenshotDelaySeconds),
           quick(QStringLiteral("quick.screenshot-fixed"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Pin to screen"),
                 GlobalShortcutAction::ScreenshotFixed,
-                []() { return custom_outlined_icons::PinToScreen(); }),
+                []() { return third_party_icons::PinToScreen(); }),
           quick(QStringLiteral("quick.screenshot-ocr"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Text recognition"),
                 GlobalShortcutAction::ScreenshotOcr,
-                []() { return custom_outlined_icons::TextRecognition(); }),
+                []() { return third_party_icons::TextRecognition(); }),
           quick(QStringLiteral("quick.screenshot-ocr-copy"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Copy after text recognition"),
                 GlobalShortcutAction::ScreenshotOcrCopy,
-                []() { return custom_outlined_icons::TextRecognition(); }),
+                []() { return third_party_icons::TextRecognition(); }),
           quick(QStringLiteral("quick.screenshot-translation"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Text translation"),
                 GlobalShortcutAction::ScreenshotTranslation,
-                []() { return custom_outlined_icons::OcrTranslate(); }),
+                []() { return third_party_icons::OcrTranslate(); }),
           quick(QStringLiteral("quick.screenshot-copy"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Copy to clipboard"),
                 GlobalShortcutAction::ScreenshotCopy,
-                []() { return custom_outlined_icons::ScreenshotCopy(); }),
+                []() { return third_party_icons::ScreenshotCopy(); }),
           quick(QStringLiteral("quick.screenshot-save"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Save as file"),
                 GlobalShortcutAction::ScreenshotSave,
-                []() { return custom_outlined_icons::Save(); }),
+                []() { return third_party_icons::Save(); }),
           quick(QStringLiteral("quick.screenshot-quick-save"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Quick save"),
                 GlobalShortcutAction::ScreenshotQuickSave,
-                []() { return custom_outlined_icons::QuickSave(); }),
+                []() { return third_party_icons::QuickSave(); }),
           quick(QStringLiteral("quick.screenshot-full-screen"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Current monitor"),
                 GlobalShortcutAction::ScreenshotFullScreen,
-                []() { return custom_outlined_icons::ScreenshotFullScreen(); }),
+                []() { return third_party_icons::ScreenshotFullScreen(); }),
           quick(QStringLiteral("quick.screenshot-focused-window"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Focused window"),
                 GlobalShortcutAction::ScreenshotFocusedWindow,
-                []() { return custom_outlined_icons::ScreenshotFocusedWindow(); })}},
+                []() { return third_party_icons::ScreenshotFocusedWindow(); })}},
         {QStringLiteral("pin-to-screen"),
          {quick(QStringLiteral("quick.pin-clipboard-content"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Pin clipboard content to screen"),
                 GlobalShortcutAction::PinClipboardContent,
-                []() { return custom_outlined_icons::PinClipboard(); }),
+                []() { return third_party_icons::PinClipboard(); }),
           quick(QStringLiteral("quick.pin-selected-files"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Pin Selected Files to Screen"),
                 GlobalShortcutAction::PinSelectedFiles,
-                []() { return custom_outlined_icons::Select(); }),
+                []() { return third_party_icons::Select(); }),
           quick(QStringLiteral("quick.restore-last-closed-windows"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Restore Last Closed Window"),
                 GlobalShortcutAction::RestoreLastClosedWindows,
@@ -4704,20 +4705,20 @@ TrayCommandManifest buildBuiltInTrayCommandManifest() {
           quick(QStringLiteral("quick.open-pin-to-screen-management"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Pin to Screen Management"),
                 GlobalShortcutAction::OpenPinToScreenManagement,
-                []() { return custom_outlined_icons::PinToScreenManagement(); })}},
+                []() { return third_party_icons::PinToScreenManagement(); })}},
         {QStringLiteral("screen-recording"),
          {quick(QStringLiteral("quick.screen-record"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Screen recording"),
                 GlobalShortcutAction::ScreenRecord,
-                []() { return custom_outlined_icons::RecordScreen(); }),
+                []() { return third_party_icons::RecordScreen(); }),
           quick(QStringLiteral("quick.screen-record-copy"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Record/Copy Video"),
                 GlobalShortcutAction::ScreenRecordCopy,
-                []() { return custom_outlined_icons::ScreenshotCopy(); }),
+                []() { return third_party_icons::ScreenshotCopy(); }),
           quick(QStringLiteral("quick.open-screen-recording-folder"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Screen recording folder"),
                 GlobalShortcutAction::OpenScreenRecordingFolder,
-                []() { return custom_outlined_icons::RecordingFolder(); })}},
+                []() { return third_party_icons::RecordingFolder(); })}},
         {QStringLiteral("other"),
          {quick(QStringLiteral("quick.open-capture-history"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Screenshot history"),
@@ -4727,52 +4728,52 @@ TrayCommandManifest buildBuiltInTrayCommandManifest() {
                 QT_TRANSLATE_NOOP("SettingsCatalog",
                                   "Full-screen canvas (enable/disable click-through)"),
                 GlobalShortcutAction::GlobalCanvas,
-                []() { return custom_outlined_icons::FullScreenCanvas(); }),
+                []() { return third_party_icons::FullScreenCanvas(); }),
           quick(QStringLiteral("quick.stitch-selected-images"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Stitch Selected Images"),
                 GlobalShortcutAction::StitchSelectedImages,
-                []() { return custom_outlined_icons::ImageStitching(); }),
+                []() { return third_party_icons::ImageStitching(); }),
           quick(QStringLiteral("quick.split-selected-images"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Split Selected Images"),
                 GlobalShortcutAction::SplitSelectedImages,
-                []() { return custom_outlined_icons::ImageSplitting(); }),
+                []() { return third_party_icons::ImageSplitting(); }),
           quick(QStringLiteral("quick.translate-selected-text"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Translate Selected Text"),
                 GlobalShortcutAction::TranslateSelectedText,
-                []() { return custom_outlined_icons::OcrTranslate(); }),
+                []() { return third_party_icons::OcrTranslate(); }),
           quick(
               QStringLiteral("quick.toggle-global-hotkeys"),
               QT_TRANSLATE_NOOP("SettingsCatalog", "Disable global hotkeys"),
               GlobalShortcutAction::ToggleGlobalHotkeys,
-              []() { return custom_outlined_icons::Disabled(); }, SettingsShortcutAdjustment::None,
+              []() { return third_party_icons::Disabled(); }, SettingsShortcutAdjustment::None,
               true),
           quick(
               QStringLiteral("quick.toggle-disable-on-focused-fullscreen-window"),
               QT_TRANSLATE_NOOP("SettingsCatalog", "Disable hotkeys in fullscreen windows"),
               GlobalShortcutAction::ToggleDisableOnFocusedFullscreenWindow,
-              []() { return custom_outlined_icons::ScreenshotFullScreen(); },
+              []() { return third_party_icons::ScreenshotFullScreen(); },
               SettingsShortcutAdjustment::None, true)}},
         {QStringLiteral("system"),
          {{QStringLiteral("tray.window-grouping"),
            {"SettingsCatalog", QT_TRANSLATE_NOOP("SettingsCatalog", "Window grouping")},
            SettingsTrayMenuOptionKind::WindowGrouping,
            GlobalShortcutAction::Screenshot,
-           []() { return custom_outlined_icons::Group(); }},
+           []() { return third_party_icons::Group(); }},
           {QStringLiteral("tray.show-main-window"),
            {"SettingsCatalog", QT_TRANSLATE_NOOP("SettingsCatalog", "Show main interface")},
            SettingsTrayMenuOptionKind::ShowMainWindow,
            GlobalShortcutAction::Screenshot,
-           []() { return custom_outlined_icons::Window(); }},
+           []() { return third_party_icons::Window(); }},
           {QStringLiteral("tray.restart-app"),
            {"SettingsCatalog", QT_TRANSLATE_NOOP("SettingsCatalog", "Restart App")},
            SettingsTrayMenuOptionKind::RestartApp,
            GlobalShortcutAction::Screenshot,
-           []() { return custom_outlined_icons::Restart(); }},
+           []() { return third_party_icons::Restart(); }},
           {QStringLiteral("tray.exit"),
            {"SettingsCatalog", QT_TRANSLATE_NOOP("SettingsCatalog", "Exit")},
            SettingsTrayMenuOptionKind::Exit,
            GlobalShortcutAction::Screenshot,
-           []() { return custom_outlined_icons::Exit(); }}}}};
+           []() { return third_party_icons::Exit(); }}}}};
 
     if constexpr (!app::edition::textTranslation) {
         for (auto& group : manifest.groups) {

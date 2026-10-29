@@ -3,6 +3,7 @@
 #include "snow_shot/presentation/components/formfields.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/settingspagewidget.h"
 #include "snow_shot/presentation/components/shortcutconfigurationbutton.h"
 #include "snow_shot/presentation/components/shortcutkeyrow.h"
@@ -380,7 +381,7 @@ void globalMousePageRendersActionButtons() {
                 "Every global mouse action must display an icon without intercepting clicks");
         if (label->text() == QStringLiteral("Quick save")) {
             const QPixmap expected = presentation::icons::renderTintedIconPixmap(
-                presentation::icons::custom::outlined::QuickSave(), icon->size(),
+                presentation::icons::third_party::outlined::QuickSave(), icon->size(),
                 row->devicePixelRatioF(), label->palette().color(QPalette::WindowText));
             require(icon->pixmap().toImage() == expected.toImage(),
                     "Quick save must display the supplied quick-save icon");
@@ -688,7 +689,7 @@ void globalMouseAndHotkeyTitlesRenderIdentically() {
                          settings::SettingsGlobalMouseAction::ScreenshotCopy, session, scheme);
     ShortcutKeyRowConfig config;
     config.title = QStringLiteral("Copy to clipboard");
-    config.iconRef = presentation::icons::custom::outlined::ScreenshotCopy();
+    config.iconRef = presentation::icons::third_party::outlined::ScreenshotCopy();
     config.useStableBorder = true;
     ShortcutKeyRow shortcut(config, scheme.metricAlias,
                             styles::buildMainWindowComponentMetricToken(scheme));

@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/screenshotcanvastoolstyles.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "eraser_toolbar_test_support.h"
 #include "window_close_shortcut_test_support.h"
 #include "../src/presentation/recording/recordingrenderjob.h"
@@ -6102,13 +6103,13 @@ void recordingTrimmingTests(const QString& directory, bool uiOnly = false) {
         range.findChild<adqt::widgets::AdButton*>(QStringLiteral("screenRecordingTrimPlayPause"));
     require(playPause &&
                 playPause->iconRef() ==
-                    snow_shot::presentation::icons::custom::outlined::PlayCircle() &&
+                    snow_shot::presentation::icons::third_party::outlined::PlayCircle() &&
                 playPause->toolTip() == QStringLiteral("Play") &&
                 playPause->accessibleName() == playPause->toolTip(),
             "paused trim offers the Ant Design Play Circle action");
     range.setPlaying(true);
     require(playPause->iconRef() ==
-                    snow_shot::presentation::icons::custom::outlined::PauseCircle() &&
+                    snow_shot::presentation::icons::third_party::outlined::PauseCircle() &&
                 playPause->toolTip() == QStringLiteral("Pause") &&
                 playPause->accessibleName() == playPause->toolTip(),
             "playing trim offers the matching Pause Circle action");

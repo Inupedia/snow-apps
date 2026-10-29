@@ -3,6 +3,7 @@
 
 #include "snow_shot/network/snowshotapiclient.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/pagecontainerwidget.h"
 #include "snow_shot/presentation/languagemanager.h"
 #include "snow_shot/presentation/styles/thememanager.h"
@@ -41,7 +42,7 @@
 namespace {
 using namespace adqt::widgets;
 namespace translation = snow_shot::presentation;
-namespace outlined = snow_shot::presentation::icons::custom::outlined;
+namespace outlined = snow_shot::presentation::icons::third_party::outlined;
 
 class TranslationTextPolicy final : public AdInputTextPolicy {
   public:
@@ -206,7 +207,7 @@ TranslationPageWidget::TranslationPageWidget(QWidget* parent, SnowShotApiClient*
 
     m_floating = new AdButton(this);
     m_floating->setObjectName(QStringLiteral("translationActions"));
-    m_floating->setIconRef(translation::icons::custom::outlined::Keyboard());
+    m_floating->setIconRef(translation::icons::third_party::outlined::Keyboard());
     m_floating->setShape(AdButton::Shape::Circle);
     m_floating->setFocusPolicy(Qt::StrongFocus);
     new translation::ActionPopupMenu(

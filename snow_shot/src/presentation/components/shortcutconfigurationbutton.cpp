@@ -3,6 +3,7 @@
 
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/infotooltipicon.h"
 
 #include "theme/theme.h"
@@ -21,7 +22,7 @@
 #include <cmath>
 
 namespace {
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 
 adqt::widgets::AdButton::AccentRole
 shortcutAccentRole(snow_shot::presentation::GlobalShortcutStatus status) {
@@ -72,7 +73,7 @@ resolvedState(const ShortcutConfigurationButton& button,
 ShortcutConfigurationButton::ShortcutConfigurationButton(
     const snow_shot::presentation::styles::ThemeAliasMetricToken& metric, int textMaxWidth,
     QWidget* parent)
-    : ShortcutConfigurationButton(metric, textMaxWidth, custom_outlined_icons::Keyboard(), parent) {
+    : ShortcutConfigurationButton(metric, textMaxWidth, third_party_icons::Keyboard(), parent) {
 }
 
 ShortcutConfigurationButton::ShortcutConfigurationButton(

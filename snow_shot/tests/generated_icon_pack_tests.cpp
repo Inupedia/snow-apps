@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "icon_renderer.h"
 
@@ -360,7 +361,7 @@ void flipIconsShowMirroredShapesWithoutDividers() {
 }
 
 void conversionIconsUseTheSuppliedProjectAssets() {
-    namespace icons = snow_shot::presentation::icons::custom::outlined;
+    namespace icons = snow_shot::presentation::icons::third_party::outlined;
     for (const QColor tint : {QColor(24, 24, 24), QColor(240, 240, 240)}) {
         const auto colors = adqt::icons::IconColors::primary(tint);
         for (const auto& ref : {icons::Markdown(colors), icons::Html(colors)}) {
@@ -715,7 +716,7 @@ void revealIconFollowsAntDesign() {
 }
 
 void cropIconsFollowAntDesign() {
-    namespace icons = snow_shot::presentation::icons::custom::outlined;
+    namespace icons = snow_shot::presentation::icons::third_party::outlined;
     const adqt::icons::IconRef refs[] = {icons::CropVertical(), icons::CropHorizontal()};
     QImage preview(480, 160, QImage::Format_ARGB32_Premultiplied);
     QPainter painter(&preview);

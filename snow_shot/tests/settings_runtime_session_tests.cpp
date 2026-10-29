@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/globalmousetypes.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/settings/settingsruntimesession.h"
 
 #include "antd_icons.h"
@@ -714,7 +715,7 @@ testRegistry(settings::SettingsSectionReset reset = settings::SettingsSectionRes
                                           {section}};
     settings::SettingsNavigationPageDefinition navigation{
         QStringLiteral("nav.test"), page.id,
-        []() { return snow_shot::presentation::icons::custom::outlined::Appstore(); }};
+        []() { return snow_shot::presentation::icons::third_party::outlined::Appstore(); }};
     settings::SettingsCatalog catalog({page}, {navigation}, {page.id, section.id, {}});
     return settings::SettingsRegistry::fromCatalog(catalog, QStringLiteral("test-provider"));
 }
@@ -739,7 +740,7 @@ settings::SettingsRegistry registryWithoutStandaloneDelay() {
                                           {section}};
     settings::SettingsNavigationPageDefinition navigation{
         QStringLiteral("nav.test"), page.id,
-        []() { return snow_shot::presentation::icons::custom::outlined::Appstore(); }};
+        []() { return snow_shot::presentation::icons::third_party::outlined::Appstore(); }};
     return settings::SettingsRegistry::fromCatalog(
         settings::SettingsCatalog({page}, {navigation}, {page.id, section.id, {}}),
         QStringLiteral("test-provider"));

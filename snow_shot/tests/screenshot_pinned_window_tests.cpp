@@ -86,6 +86,7 @@
 #include "snow_shot/presentation/windowshortcutmanager.h"
 #include "snow_shot/shortcuts/shortcutdisplayservice.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/storage/applicationstorage.h"
 #include "snow_shot/storage/configurationstore.h"
 #include "snow_shot/storage/pinnedwindowrepository.h"
@@ -18881,7 +18882,7 @@ void pinnedContentReplacement() {
                 management->menu()->actions().indexOf(load) == 5 && load->isEnabled(),
             "replacement submenu must be available after materialization");
     require(menu->actionIcon(clipboard) ==
-                snow_shot::presentation::icons::custom::outlined::PinClipboard(),
+                snow_shot::presentation::icons::third_party::outlined::PinClipboard(),
             "clipboard replacement must use the pin-clipboard outlined icon");
     for (const bool tray : {false, true, false}) {
         ScreenshotPinnedWindow::setRuntimeTrayEnabled(tray);

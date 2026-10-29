@@ -3,6 +3,7 @@
 
 #include "snow_shot/presentation/components/canvasactiontoolbar.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/imagedropsurface.h"
 #include "snow_shot/presentation/screenshotclipboardcontent.h"
 #include "snow_shot/presentation/styles/sequencenumberbadgestyle.h"
@@ -50,7 +51,7 @@ using adqt::widgets::AdImageListModel;
 using adqt::widgets::AdImageViewer;
 using adqt::widgets::AdScrollArea;
 using styles::SequenceNumberBadgeStyle;
-namespace icons = snow_shot::presentation::icons::custom::outlined;
+namespace icons = snow_shot::presentation::icons::third_party::outlined;
 
 constexpr auto dragType = "application/x-snow-shot-collage-pdf-page";
 constexpr int gridInset = 16;
@@ -1093,8 +1094,8 @@ CollagePdfPageGrid::CollagePdfPageGrid(CollageDocument* document, QWidget* paren
     const std::array<adqt::icons::IconRef, 8> refs{
         icons::RotateRight(),
         icons::RotateLeft(),
-        snow_shot::presentation::icons::custom::outlined::FlipHorizontal(),
-        snow_shot::presentation::icons::custom::outlined::FlipVertical(),
+        snow_shot::presentation::icons::third_party::outlined::FlipHorizontal(),
+        snow_shot::presentation::icons::third_party::outlined::FlipVertical(),
         icons::Reload(),
         icons::Edit(),
         icons::Eye(),

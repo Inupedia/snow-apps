@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/components/clouduploadsettingswidget.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/formfields.h"
 #include "snow_shot/presentation/settings/settingsruntimesession.h"
 #include "snow_shot/presentation/styles/mainwindowcomponenttoken.h"
@@ -121,7 +122,7 @@ CloudUploadSettingsWidget::CloudUploadSettingsWidget(settings::SettingsRuntimeSe
     layout->addLayout(m_rows);
     m_add = new AdButton(this);
     m_add->setObjectName(QStringLiteral("cloudUploadAdd"));
-    m_add->setIconRef(snow_shot::presentation::icons::custom::outlined::Plus());
+    m_add->setIconRef(snow_shot::presentation::icons::third_party::outlined::Plus());
     m_add->setButtonStyle(AdButton::ButtonStyle::Dashed);
     m_add->setShape(AdButton::Shape::Rounded);
     m_add->setAccentRole(AdButton::AccentRole::Primary);
@@ -194,9 +195,9 @@ void CloudUploadSettingsWidget::rebuild(bool force) {
         const QStringList labels{tr("Edit"), tr("Delete"), tr("Copy")};
         const QStringList actions{QStringLiteral("edit"), QStringLiteral("delete"),
                                   QStringLiteral("copy")};
-        const std::array icons{snow_shot::presentation::icons::custom::outlined::Edit(),
-                               snow_shot::presentation::icons::custom::outlined::IconDelete(),
-                               snow_shot::presentation::icons::custom::outlined::Copy()};
+        const std::array icons{snow_shot::presentation::icons::third_party::outlined::Edit(),
+                               snow_shot::presentation::icons::third_party::outlined::IconDelete(),
+                               snow_shot::presentation::icons::third_party::outlined::Copy()};
         for (int i = 0; i < 3; ++i) {
             auto* button = new AdButton(row);
             button->setObjectName(actions[i] + u':' + value.id);

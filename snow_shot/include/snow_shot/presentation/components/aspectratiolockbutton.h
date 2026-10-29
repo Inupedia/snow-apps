@@ -2,6 +2,7 @@
 #define SNOW_SHOT_PRESENTATION_COMPONENTS_ASPECTRATIOLOCKBUTTON_H
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "theme/theme_manager.h"
 #include "widgets/button.h"
@@ -36,7 +37,7 @@ class AspectRatioLockButton final : public adqt::widgets::AdButton {
             colors = adqt::icons::IconColors::primary(
                 primaryActive.isValid() ? primaryActive : QColor(QStringLiteral("#0958d9")));
         }
-        setIconRef(snow_shot::presentation::icons::custom::outlined::SelectionLockAspect(colors));
+        setIconRef(snow_shot::presentation::icons::third_party::outlined::SelectionLockAspect(colors));
     }
 };
 

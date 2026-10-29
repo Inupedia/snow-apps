@@ -1,6 +1,7 @@
 #include "recordingtrimtoolbar.h"
 #include "antd_icons.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "widgets/button.h"
 #include "widgets/select.h"
@@ -58,7 +59,7 @@ RecordingTrimToolbar::RecordingTrimToolbar(QWidget* parent) : ScreenshotToolbarP
     m_replay->setButtonStyle(adqt::widgets::AdButton::ButtonStyle::Text);
     m_replay->setShape(adqt::widgets::AdButton::Shape::Rounded);
     m_replay->setFocusPolicy(Qt::StrongFocus);
-    m_replay->setIconRef(snow_shot::presentation::icons::custom::outlined::RecordingReplay());
+    m_replay->setIconRef(snow_shot::presentation::icons::third_party::outlined::RecordingReplay());
     m_replay->setReferenceIconSize({IconSize, IconSize});
     m_replay->setCursor(Qt::PointingHandCursor);
     m_playPause = new adqt::widgets::AdButton(this);
@@ -180,8 +181,8 @@ void RecordingTrimToolbar::setPlaybackAvailable(bool available) {
 }
 void RecordingTrimToolbar::updatePlaybackControl() {
     m_playPause->setIconRef(m_playing
-                                ? snow_shot::presentation::icons::custom::outlined::PauseCircle()
-                                : snow_shot::presentation::icons::custom::outlined::PlayCircle());
+                                ? snow_shot::presentation::icons::third_party::outlined::PauseCircle()
+                                : snow_shot::presentation::icons::third_party::outlined::PlayCircle());
     m_playPause->setToolTip(trimText(m_playing
                                          ? QT_TRANSLATE_NOOP("RecordingTrimToolbar", "Pause")
                                          : QT_TRANSLATE_NOOP("RecordingTrimToolbar", "Play")));

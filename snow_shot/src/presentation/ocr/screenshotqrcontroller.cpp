@@ -7,6 +7,7 @@
 #include "snow_draw_engine_qt/snow_canvas_widget.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/pointerhoverevents.h"
 #include "theme/theme_manager.h"
 #include "widgets/button.h"
@@ -58,7 +59,7 @@ class ScreenshotQrMarker final : public QAbstractButton {
         painter.setPen(QPen(theme.colorBgElevated, hasFocus() ? 3.0 : 2.0));
         painter.drawEllipse(QRectF(rect()).adjusted(1, 1, -1, -1));
         const auto glyph = snow_shot::presentation::icons::renderTintedIconPixmap(
-            snow_shot::presentation::icons::custom::outlined::ScanQrcode(), QSize(14, 14),
+            snow_shot::presentation::icons::third_party::outlined::ScanQrcode(), QSize(14, 14),
             devicePixelRatioF(), Qt::white);
         painter.drawPixmap(QPoint(5, 5), glyph);
     }

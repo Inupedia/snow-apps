@@ -10,6 +10,7 @@
 #include "snow_shot/storage/settingsadapters.h"
 #include "snow_shot/presentation/components/applicationsearchwidget.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "theme/theme_manager.h"
 #include "widgets/context_menu.h"
@@ -522,7 +523,7 @@ inline bool paintShortcutHints(QWidget* widget) {
     constexpr int iconSize = 14;
     constexpr int iconGap = 8;
     int rowTop = padding;
-    namespace custom = snow_shot::presentation::icons::custom::outlined;
+    namespace custom = snow_shot::presentation::icons::third_party::outlined;
     for (const QString& line : lines) {
         const qsizetype ascii = line.indexOf(QLatin1Char(':'));
         const qsizetype fullWidth = line.indexOf(QChar(0xFF1A));
@@ -589,7 +590,7 @@ inline bool paintRecordingStatusPrompt(QWidget* widget) {
     constexpr int iconSize = 20;
     const QRect microphone(12 + textWidth + 12, (widget->height() - iconSize) / 2, iconSize,
                            iconSize);
-    namespace custom = snow_shot::presentation::icons::custom::outlined;
+    namespace custom = snow_shot::presentation::icons::third_party::outlined;
     adqt::icons::paintIcon(&painter,
                            status->microphone ? custom::RecordingMicrophone(microphoneColor)
                                               : custom::RecordingMicrophoneOff(microphoneColor),

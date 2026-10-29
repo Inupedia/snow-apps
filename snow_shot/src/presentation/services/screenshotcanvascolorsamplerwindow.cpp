@@ -4,6 +4,7 @@
 
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshotgeometry.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "widgets/detail/top_level_popup_window.h"
@@ -168,8 +169,7 @@ QCursor ScreenshotCanvasColorSamplerWindow::samplingCursor() {
     cursorPixmap.setDevicePixelRatio(devicePixelRatio);
     cursorPixmap.fill(Qt::transparent);
 
-    namespace custom_icons = snow_shot::presentation::icons::custom;
-    const auto icon = custom_icons::outlined::ColorPicker();
+    const auto icon = snow_shot::presentation::icons::third_party::outlined::ColorPicker();
     const QPixmap outline = snow_shot::presentation::icons::renderTintedIconPixmap(
         icon, QSize(kCursorIconSize, kCursorIconSize), devicePixelRatio, QColor(255, 255, 255));
     const QPixmap foreground = snow_shot::presentation::icons::renderTintedIconPixmap(

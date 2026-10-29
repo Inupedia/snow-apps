@@ -1,5 +1,6 @@
 #include "snow_shot/app/distribution.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/clouduploadsettingswidget.h"
 #include "snow_shot/presentation/components/settingscustomwidget.h"
 #include "snow_shot/presentation/components/formfields.h"
@@ -1400,7 +1401,7 @@ class McpStatusSettingsWidget final : public SettingsCustomWidget {
         m_title->setWordWrap(true);
         m_copy = new adqt::widgets::AdButton(this);
         m_copy->setObjectName(QStringLiteral("settings-mcp-copy"));
-        m_copy->setIconRef(snow_shot::presentation::icons::custom::outlined::Copy());
+        m_copy->setIconRef(snow_shot::presentation::icons::third_party::outlined::Copy());
         heading->addWidget(m_title, 1);
         heading->addWidget(m_copy);
         layout->addLayout(heading);

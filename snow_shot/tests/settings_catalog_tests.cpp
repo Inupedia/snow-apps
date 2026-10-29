@@ -4,6 +4,7 @@
 #include "snow_shot/presentation/settings/settingsregistry.h"
 #include "snow_shot/presentation/settings/settingssearchindex.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/storage/configurationschema.h"
 
 #include "antd_icons.h"
@@ -1380,9 +1381,9 @@ void builtInCatalogIsCompleteAndValid() {
                 importAction->buttonText.source != nullptr && exportAction->iconFactory &&
                 importAction->iconFactory &&
                 exportAction->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::ExportConfiguration() &&
+                    snow_shot::presentation::icons::third_party::outlined::ExportConfiguration() &&
                 importAction->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::ImportConfiguration() &&
+                    snow_shot::presentation::icons::third_party::outlined::ImportConfiguration() &&
                 !exportAction->confirmation.has_value() && importAction->confirmation.has_value() &&
                 !exportAction->fileOpen.has_value() && importAction->fileOpen.has_value() &&
                 importAction->fileOpen->dialogTitle.source != nullptr &&
@@ -1797,7 +1798,7 @@ void builtInCatalogIsCompleteAndValid() {
             std::get<settings::SettingsLocalShortcutDefinition>(
                 pinToScreenShortcuts->items.at(13).payload)
                     .iconFactory() ==
-                snow_shot::presentation::icons::custom::outlined::ToolMove() &&
+                snow_shot::presentation::icons::third_party::outlined::ToolMove() &&
             pinToScreenShortcuts->items.at(16).id ==
                 QStringLiteral("pin-to-screen-shortcut.toggle_click_through") &&
             pinToScreenShortcuts->items.at(16).title.translated() ==
@@ -1837,7 +1838,7 @@ void builtInCatalogIsCompleteAndValid() {
                 .iconFactory &&
             std::get<settings::SettingsLocalShortcutDefinition>(
                 pinToScreenShortcuts->items.at(16).payload)
-                    .iconFactory() == snow_shot::presentation::icons::custom::outlined::Mouse() &&
+                    .iconFactory() == snow_shot::presentation::icons::third_party::outlined::Mouse() &&
             std::get<settings::SettingsLocalShortcutDefinition>(
                 pinToScreenShortcuts->items.constFirst().payload)
                     .scope == settings::SettingsLocalShortcutScope::PinToScreen &&
@@ -1868,7 +1869,7 @@ void builtInCatalogIsCompleteAndValid() {
             std::get<settings::SettingsLocalShortcutDefinition>(
                 drawingShortcuts->items.at(5).payload)
                     .iconFactory() ==
-                snow_shot::presentation::icons::custom::outlined::AngleAnnotation() &&
+                snow_shot::presentation::icons::third_party::outlined::AngleAnnotation() &&
             drawingShortcuts->items.at(6).configurationKey ==
                 QStringLiteral("drawing_shortcuts/line") &&
             drawingShortcuts->items.at(10).configurationKey ==
@@ -2297,11 +2298,11 @@ void globalMouseSettingsHaveStableContracts() {
                 globalMouse != nullptr && globalMouse->id == QStringLiteral("nav.global-mouse") &&
                 globalMouse->pageId == QStringLiteral("global-mouse") && globalMouse->iconFactory &&
                 globalMouse->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::WheelMouse() &&
+                    snow_shot::presentation::icons::third_party::outlined::WheelMouse() &&
                 pinned != nullptr && pinned->pageId == QStringLiteral("pin-to-screen-management") &&
                 pinned->iconFactory &&
                 pinned->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::PinToScreenManagement() &&
+                    snow_shot::presentation::icons::third_party::outlined::PinToScreenManagement() &&
                 translation != nullptr && translation->pageId == QStringLiteral("translation") &&
                 translation->iconFactory && history != nullptr &&
                 history->pageId == QStringLiteral("screenshot-history"),
@@ -2465,7 +2466,7 @@ void globalHotkeyShortcutsHaveStableContracts() {
     require(
         stitch && stitch->title.translated() == QStringLiteral("Stitch Selected Images") &&
             std::get<settings::SettingsShortcutActionDefinition>(stitch->payload).iconFactory() ==
-                snow_shot::presentation::icons::custom::outlined::ImageStitching() &&
+                snow_shot::presentation::icons::third_party::outlined::ImageStitching() &&
             stitchSchema && stitchSchema->defaultValue.toArray().isEmpty(),
         "stitch selected images uses its existing icon and starts unassigned");
     const auto* split = catalog.itemForShortcut(Action::SplitSelectedImages);
@@ -2474,7 +2475,7 @@ void globalHotkeyShortcutsHaveStableContracts() {
     require(
         split && split->title.translated() == QStringLiteral("Split Selected Images") &&
             std::get<settings::SettingsShortcutActionDefinition>(split->payload).iconFactory() ==
-                snow_shot::presentation::icons::custom::outlined::ImageSplitting() &&
+                snow_shot::presentation::icons::third_party::outlined::ImageSplitting() &&
             splitSchema && splitSchema->defaultValue.toArray().isEmpty(),
         "split selected images uses its existing icon and starts unassigned");
     const auto* pinnedManagementShortcut =
@@ -2582,7 +2583,7 @@ void globalHotkeyShortcutsHaveStableContracts() {
                     settings::SettingsTrayMenuOptionKind::RestartApp &&
                 trayGroups.at(4).options.at(2).iconFactory &&
                 trayGroups.at(4).options.at(2).iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::Restart() &&
+                    snow_shot::presentation::icons::third_party::outlined::Restart() &&
                 trayOptionIds.at(29) == QStringLiteral("tray.exit") && trayMenuSchema != nullptr &&
                 trayMenuSchema->allowedStringValues == trayOptionIds,
             "tray menu options must derive all global-hotkey groups and append system commands");
@@ -2670,7 +2671,7 @@ void globalHotkeyShortcutsHaveStableContracts() {
             : nullptr;
     require(ocrShortcut != nullptr && ocrShortcut->iconFactory &&
                 ocrShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::TextRecognition(),
+                    snow_shot::presentation::icons::third_party::outlined::TextRecognition(),
             "Text recognition quick action must use the screenshot toolbar OCR icon");
     const auto* translationItem =
         catalog.item({QStringLiteral("global-hotkeys"), QStringLiteral("screenshot"),
@@ -2699,8 +2700,8 @@ void globalHotkeyShortcutsHaveStableContracts() {
                     (saveAsFile ? QStringLiteral("Save as file") : QStringLiteral("Quick save")) &&
                 shortcut.iconFactory &&
                 shortcut.iconFactory() ==
-                    (saveAsFile ? snow_shot::presentation::icons::custom::outlined::Save()
-                                : snow_shot::presentation::icons::custom::outlined::QuickSave()),
+                    (saveAsFile ? snow_shot::presentation::icons::third_party::outlined::Save()
+                                : snow_shot::presentation::icons::third_party::outlined::QuickSave()),
             "save hotkeys reuse the screenshot save labels and icons");
     }
     require(translationItem != nullptr && translationItem->title.source != nullptr &&
@@ -2708,7 +2709,7 @@ void globalHotkeyShortcutsHaveStableContracts() {
                     QStringLiteral("Text translation") &&
                 translationShortcut != nullptr && translationShortcut->iconFactory &&
                 translationShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::OcrTranslate() &&
+                    snow_shot::presentation::icons::third_party::outlined::OcrTranslate() &&
                 screenshotSection != nullptr && screenshotSection->items.size() >= 5 &&
                 screenshotSection->items.at(3).id == QStringLiteral("quick.screenshot-ocr") &&
                 screenshotSection->items.at(4).id == QStringLiteral("quick.screenshot-ocr-copy") &&
@@ -2791,14 +2792,14 @@ void globalHotkeyShortcutsHaveStableContracts() {
                     QStringLiteral("Screen recording") &&
                 screenRecordShortcut != nullptr && screenRecordShortcut->iconFactory &&
                 screenRecordShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::RecordScreen(),
+                    snow_shot::presentation::icons::third_party::outlined::RecordScreen(),
             "Screen recording must use the screenshot toolbar recording icon");
     require(screenRecordCopy != nullptr && screenRecordCopy->title.source != nullptr &&
                 QString::fromLatin1(screenRecordCopy->title.source) ==
                     QStringLiteral("Record/Copy Video") &&
                 screenRecordCopyShortcut != nullptr && screenRecordCopyShortcut->iconFactory &&
                 screenRecordCopyShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::ScreenshotCopy(),
+                    snow_shot::presentation::icons::third_party::outlined::ScreenshotCopy(),
             "recording toggle must use the exact screenshot-copy icon");
     require(openRecordingFolder != nullptr && openRecordingFolder->title.source != nullptr &&
                 QString::fromLatin1(openRecordingFolder->title.source) ==
@@ -2806,28 +2807,28 @@ void globalHotkeyShortcutsHaveStableContracts() {
                 openRecordingFolderShortcut != nullptr &&
                 openRecordingFolderShortcut->iconFactory &&
                 openRecordingFolderShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::RecordingFolder(),
+                    snow_shot::presentation::icons::third_party::outlined::RecordingFolder(),
             "Screen recording folder must use the recording toolbar folder icon");
     require(openHistory != nullptr && openHistory->title.source != nullptr &&
                 QString::fromLatin1(openHistory->title.source) ==
                     QStringLiteral("Screenshot history") &&
                 openHistoryShortcut != nullptr && openHistoryShortcut->iconFactory &&
                 openHistoryShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::History(),
+                    snow_shot::presentation::icons::third_party::outlined::History(),
             "Screenshot history must use the History outlined icon");
     require(pinClipboard != nullptr && pinClipboard->title.source != nullptr &&
                 QString::fromLatin1(pinClipboard->title.source) ==
                     QStringLiteral("Pin clipboard content to screen") &&
                 pinClipboardShortcut != nullptr && pinClipboardShortcut->iconFactory &&
                 pinClipboardShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::PinClipboard(),
+                    snow_shot::presentation::icons::third_party::outlined::PinClipboard(),
             "clipboard pinning must use the pin-clipboard outlined icon");
     require(pinSelectedFiles != nullptr && pinSelectedFiles->title.source != nullptr &&
                 QString::fromLatin1(pinSelectedFiles->title.source) ==
                     QStringLiteral("Pin Selected Files to Screen") &&
                 pinSelectedFilesShortcut != nullptr && pinSelectedFilesShortcut->iconFactory &&
                 pinSelectedFilesShortcut->iconFactory() ==
-                    snow_shot::presentation::icons::custom::outlined::Select(),
+                    snow_shot::presentation::icons::third_party::outlined::Select(),
             "selected-file pinning must use the select outlined icon");
 }
 
@@ -3278,7 +3279,7 @@ void addingCatalogNodesAutomaticallyExpandsSearch() {
         QStringLiteral("nav.extra-page"),
         QStringLiteral("extra-page"),
         // This search fixture also links against the production icon subset.
-        []() { return snow_shot::presentation::icons::custom::outlined::Setting(); },
+        []() { return snow_shot::presentation::icons::third_party::outlined::Setting(); },
     });
     const settings::SettingsCatalog expanded(std::move(pages), std::move(navigation),
                                              builtIn.defaultLocation());
@@ -3319,7 +3320,7 @@ void searchIndexPreservesInteriorSubstringMatches() {
     QVector<settings::SettingsNavigationNode> navigation = builtIn.navigation();
     navigation.push_back(settings::SettingsNavigationPageDefinition{
         QStringLiteral("nav.substring-page"), QStringLiteral("substring-page"),
-        []() { return snow_shot::presentation::icons::custom::outlined::Search(); }});
+        []() { return snow_shot::presentation::icons::third_party::outlined::Search(); }});
     const settings::SettingsCatalog expanded(std::move(pages), std::move(navigation),
                                              builtIn.defaultLocation());
     require(expanded.validationErrors().isEmpty(),

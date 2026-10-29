@@ -14,6 +14,7 @@
 #include "snow_shot/presentation/screenshottoolbarlayoutmodel.h"
 #include "snow_shot/presentation/components/icons/iconrenderutils.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/languagemanager.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
 #include "snow_shot/presentation/styles/thememanager.h"
@@ -4673,7 +4674,7 @@ void tableQrPopoverSharesOneEntryAndRemembersTheSelectedMode() {
                 trigger->accessibleName() == QStringLiteral("Barcode recognition") &&
                 adqt::icons::describeIcon(trigger->iconRef()).key.name ==
                     adqt::icons::describeIcon(
-                        snow_shot::presentation::icons::custom::outlined::ScanQrcode())
+                        snow_shot::presentation::icons::third_party::outlined::ScanQrcode())
                         .key.name,
             "choosing QR recognition should replace and activate the shared trigger");
     trigger->click();
@@ -7131,7 +7132,7 @@ void originalImageToggleLeadsRecognitionActions() {
                 "original-image toggle starts inactive");
         require(
             adqt::icons::describeIcon(button->iconRef()).key ==
-                adqt::icons::describeIcon(snow_shot::presentation::icons::custom::outlined::Eye())
+                adqt::icons::describeIcon(snow_shot::presentation::icons::third_party::outlined::Eye())
                     .key,
             "original-image toggle uses Ant Design outlined Eye");
         require(button->accessibleName() == QStringLiteral("Show original image"),
@@ -10357,9 +10358,9 @@ void watermarkToolExposesSharedStyleControls() {
 
     const QColor tint(QStringLiteral("#1677ff"));
     const QPixmap angleIcon = snow_shot::presentation::icons::renderTintedIconPixmap(
-        snow_shot::presentation::icons::custom::outlined::Angle(), QSize(18, 18), 1.0, tint);
+        snow_shot::presentation::icons::third_party::outlined::Angle(), QSize(18, 18), 1.0, tint);
     const QPixmap gapIcon = snow_shot::presentation::icons::renderTintedIconPixmap(
-        snow_shot::presentation::icons::custom::outlined::WatermarkGap(), QSize(18, 18), 1.0, tint);
+        snow_shot::presentation::icons::third_party::outlined::WatermarkGap(), QSize(18, 18), 1.0, tint);
     require(!angleIcon.isNull() && !gapIcon.isNull() && imageHasVisiblePixel(angleIcon.toImage()) &&
                 imageHasVisiblePixel(gapIcon.toImage()),
             "Watermark icons should render through the monochrome tint path");
@@ -12821,12 +12822,12 @@ void magnifierControlsRetranslateAndRenderPreviews() {
             const QString suffix = QStringLiteral("%1-%2").arg(
                 dark ? QStringLiteral("dark") : QStringLiteral("light"), QString::number(dpr));
             const QVector<adqt::icons::IconRef> icons{
-                snow_shot::presentation::icons::custom::outlined::ToolMagnifier(),
-                snow_shot::presentation::icons::custom::outlined::MagnificationFactor(),
-                snow_shot::presentation::icons::custom::outlined::MagnifierConnectionNone(),
-                snow_shot::presentation::icons::custom::outlined::ShowLeaderLine(),
-                snow_shot::presentation::icons::custom::outlined::MagnifierGradient(),
-                snow_shot::presentation::icons::custom::outlined::SourceRegionOutline()};
+                snow_shot::presentation::icons::third_party::outlined::ToolMagnifier(),
+                snow_shot::presentation::icons::third_party::outlined::MagnificationFactor(),
+                snow_shot::presentation::icons::third_party::outlined::MagnifierConnectionNone(),
+                snow_shot::presentation::icons::third_party::outlined::ShowLeaderLine(),
+                snow_shot::presentation::icons::third_party::outlined::MagnifierGradient(),
+                snow_shot::presentation::icons::third_party::outlined::SourceRegionOutline()};
             const QVector<QColor> colors{scheme.map.colorText, scheme.map.colorPrimary,
                                          scheme.map.colorTextQuaternary};
             QImage sheet(
@@ -15012,7 +15013,7 @@ void serialNumberStyleControlsExposeAndEmitRequestedProperties() {
                 numberInput->variant() == adqt::widgets::AdLineEdit::Variant::Underlined &&
                 adqt::icons::describeIcon(numberInput->prefixIconRef()).key.name ==
                     adqt::icons::describeIcon(
-                        snow_shot::presentation::icons::custom::outlined::Number())
+                        snow_shot::presentation::icons::third_party::outlined::Number())
                         .key.name,
             "sequence number should be an underlined input with its existing icon as a prefix");
     const int numberEditorIndex = serialNumberLayout->indexOf(numberEditor);

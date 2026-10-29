@@ -3,6 +3,7 @@
 #include "snow_shot/presentation/screenshotpinnedwindow.h"
 #include "snow_shot/presentation/pinnedwindowgroupmanager.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/storage/settingsadapters.h"
 #include "antd_icons.h"
 #include "widgets/context_menu.h"
@@ -16,8 +17,8 @@
 #include <utility>
 
 namespace snow_shot::presentation {
-namespace outlined = snow_shot::presentation::icons::custom::outlined;
-namespace customIcons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined = snow_shot::presentation::icons::third_party::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace {
 [[maybe_unused]] constexpr const char* translationSources[] = {
     QT_TRANSLATE_NOOP("snow_shot::presentation::PinnedWindowSelectionController",
@@ -216,7 +217,7 @@ void PinnedWindowSelectionController::buildContextMenu(ScreenshotPinnedWindow* o
     };
     auto* stitching =
         add("Image Stitching", QStringLiteral("screenshotPinnedSelectionImageStitching"),
-            customIcons::ImageStitching());
+            third_party_icons::ImageStitching());
     connect(stitching, &QAction::triggered, this, [this, targets, valid] {
         if (!valid())
             return;
@@ -248,7 +249,7 @@ void PinnedWindowSelectionController::buildContextMenu(ScreenshotPinnedWindow* o
                 window->requestUserClose();
     });
 
-    auto* alignment = menu->addSubMenu(text("Align Position"), customIcons::AlignLeft());
+    auto* alignment = menu->addSubMenu(text("Align Position"), third_party_icons::AlignLeft());
     translateAction(alignment->menuAction(), "Align Position");
     alignment->setObjectName(QStringLiteral("screenshotPinnedSelectionAlignmentMenu"));
     const bool locked = std::any_of(targets.cbegin(), targets.cend(),
@@ -268,19 +269,19 @@ void PinnedWindowSelectionController::buildContextMenu(ScreenshotPinnedWindow* o
         });
     };
     using A = SnowCanvasSelectionAlignment;
-    align("Align left", A::AlignLeft, customIcons::AlignLeft());
-    align("Center horizontally", A::AlignCenterHorizontally, customIcons::AlignCenterHorizontal());
-    align("Align right", A::AlignRight, customIcons::AlignRight());
-    align("Distribute horizontally", A::DistributeHorizontally, customIcons::DistributeHorizontal(),
+    align("Align left", A::AlignLeft, third_party_icons::AlignLeft());
+    align("Center horizontally", A::AlignCenterHorizontally, third_party_icons::AlignCenterHorizontal());
+    align("Align right", A::AlignRight, third_party_icons::AlignRight());
+    align("Distribute horizontally", A::DistributeHorizontally, third_party_icons::DistributeHorizontal(),
           true);
     alignment->addSeparator();
-    align("Align top", A::AlignTop, customIcons::AlignTop());
-    align("Center vertically", A::AlignCenterVertically, customIcons::AlignCenterVertical());
-    align("Align bottom", A::AlignBottom, customIcons::AlignBottom());
-    align("Distribute vertically", A::DistributeVertically, customIcons::DistributeVertical(),
+    align("Align top", A::AlignTop, third_party_icons::AlignTop());
+    align("Center vertically", A::AlignCenterVertically, third_party_icons::AlignCenterVertical());
+    align("Align bottom", A::AlignBottom, third_party_icons::AlignBottom());
+    align("Distribute vertically", A::DistributeVertically, third_party_icons::DistributeVertical(),
           true);
 
-    auto* group = menu->addSubMenu(text("Group"), customIcons::Group());
+    auto* group = menu->addSubMenu(text("Group"), third_party_icons::Group());
     translateAction(group->menuAction(), "Group");
     group->setObjectName(QStringLiteral("screenshotPinnedSelectionGroupMenu"));
     const QPointer<PinnedWindowGroupManager> manager = owner->m_groupManager;
@@ -323,7 +324,7 @@ void PinnedWindowSelectionController::buildContextMenu(ScreenshotPinnedWindow* o
             if (valid() && manager && owner)
                 manager->openDeleteEmptyGroupsConfirmation(owner);
         });
-        auto* remove = group->addSubMenu(text("Delete Specified Group"), customIcons::Delete());
+        auto* remove = group->addSubMenu(text("Delete Specified Group"), third_party_icons::Delete());
         translateAction(remove->menuAction(), "Delete Specified Group");
         for (const auto& entry : entries) {
             auto* action = remove->addItem(entry.name);
@@ -358,7 +359,7 @@ void PinnedWindowSelectionController::buildContextMenu(ScreenshotPinnedWindow* o
                     window->requestUserClose();
     });
     auto* destroy = add("Destroy", QStringLiteral("screenshotPinnedSelectionDestroy"),
-                        customIcons::DestroyPinnedWindow());
+                        third_party_icons::DestroyPinnedWindow());
     menu->setActionDanger(destroy);
     connect(destroy, &QAction::triggered, this, [this, targets, valid, owner = QPointer(owner)] {
         if (valid() && owner)

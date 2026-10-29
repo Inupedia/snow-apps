@@ -4,6 +4,7 @@
 
 #include "antd_icons.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "icon_renderer.h"
 #include "theme/theme_manager.h"
 
@@ -27,7 +28,7 @@ class ImageDropIcon final : public QWidget {
         adqt::icons::IconStatePalette palette;
         palette.set(QIcon::Normal, QIcon::Off,
                     adqt::icons::IconColors::primary(theme.colorPrimary));
-        adqt::icons::paintIcon(&painter, snow_shot::presentation::icons::custom::outlined::Inbox(),
+        adqt::icons::paintIcon(&painter, snow_shot::presentation::icons::third_party::outlined::Inbox(),
                                rect(), {}, palette);
     }
 };

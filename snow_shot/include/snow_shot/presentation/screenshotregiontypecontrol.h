@@ -2,6 +2,7 @@
 #include "snow_shot/presentation/shortcutdisplaytext.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshotregionpreferences.h"
 #include "snow_shot/presentation/screenshotshortcuthints.h"
 #include "snow_shot/presentation/styles/themecolorscheme.h"
@@ -36,7 +37,7 @@ class ScreenshotRegionTypeControl final : public QWidget {
         layout->setSpacing(6);
         auto* row = new QHBoxLayout;
         row->setSpacing(2);
-        namespace icons = snow_shot::presentation::icons::custom::outlined;
+        namespace icons = snow_shot::presentation::icons::third_party::outlined;
         const std::array refs{icons::ScreenshotRegionRectangle(), icons::ScreenshotRegionPolyline(),
                               icons::ScreenshotRegionCurved(), icons::ScreenshotRegionFreehand()};
         for (int i = 0; i < 4; ++i) {

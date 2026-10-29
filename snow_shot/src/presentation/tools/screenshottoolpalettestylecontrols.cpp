@@ -4,6 +4,7 @@
 #include "screenshottoolpalettestylepresets.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshotdefaultstyles.h"
 #include "snow_shot/presentation/screenshottoolpalette.h"
 
@@ -62,8 +63,8 @@ namespace {
     return count;
 }
 
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace style_presets = snow_shot::presentation::style_presets;
 constexpr int kCornerRadiusLeadingSpacing = 4;
 constexpr int kTextStrokeColorTrailingSpacing = 4;
@@ -715,13 +716,13 @@ SnowCanvasArrowStyle arrowStyleFromShapeStyle(const SnowCanvasShapeStyle& shapeS
 adqt::icons::IconRef arrowTypeIcon(SnowCanvasArrowType arrowType) {
     switch (arrowType) {
     case SnowCanvasArrowType::Straight:
-        return custom_outlined_icons::ArrowTypeStraight();
+        return third_party_icons::ArrowTypeStraight();
     case SnowCanvasArrowType::Curve:
-        return custom_outlined_icons::ArrowTypeCurved();
+        return third_party_icons::ArrowTypeCurved();
     case SnowCanvasArrowType::Elbow:
-        return custom_outlined_icons::ArrowTypeElbow();
+        return third_party_icons::ArrowTypeElbow();
     }
-    return custom_outlined_icons::ArrowTypeStraight();
+    return third_party_icons::ArrowTypeStraight();
 }
 
 adqt::icons::IconRef textAlignmentIcon(SnowCanvasTextHorizontalAlign alignment) {
@@ -739,50 +740,50 @@ adqt::icons::IconRef textAlignmentIcon(SnowCanvasTextHorizontalAlign alignment) 
 adqt::icons::IconRef arrowheadIcon(SnowCanvasArrowhead arrowhead, bool start) {
     switch (arrowhead) {
     case SnowCanvasArrowhead::None:
-        return start ? custom_outlined_icons::ArrowheadNoneStart()
-                     : custom_outlined_icons::ArrowheadNone();
+        return start ? third_party_icons::ArrowheadNoneStart()
+                     : third_party_icons::ArrowheadNone();
     case SnowCanvasArrowhead::Arrow:
-        return start ? custom_outlined_icons::ArrowheadStandardStart()
-                     : custom_outlined_icons::ArrowheadStandard();
+        return start ? third_party_icons::ArrowheadStandardStart()
+                     : third_party_icons::ArrowheadStandard();
     case SnowCanvasArrowhead::Bar:
-        return start ? custom_outlined_icons::ArrowheadBarStart()
-                     : custom_outlined_icons::ArrowheadBar();
+        return start ? third_party_icons::ArrowheadBarStart()
+                     : third_party_icons::ArrowheadBar();
     case SnowCanvasArrowhead::Dot:
-        return start ? custom_outlined_icons::ArrowheadDotStart()
-                     : custom_outlined_icons::ArrowheadDot();
+        return start ? third_party_icons::ArrowheadDotStart()
+                     : third_party_icons::ArrowheadDot();
     case SnowCanvasArrowhead::Circle:
-        return start ? custom_outlined_icons::ArrowheadCircleStart()
-                     : custom_outlined_icons::ArrowheadCircle();
+        return start ? third_party_icons::ArrowheadCircleStart()
+                     : third_party_icons::ArrowheadCircle();
     case SnowCanvasArrowhead::CircleOutline:
-        return start ? custom_outlined_icons::ArrowheadCircleOutlineStart()
-                     : custom_outlined_icons::ArrowheadCircleOutline();
+        return start ? third_party_icons::ArrowheadCircleOutlineStart()
+                     : third_party_icons::ArrowheadCircleOutline();
     case SnowCanvasArrowhead::IndentedTriangle:
-        return start ? custom_outlined_icons::ArrowheadIndentedTriangleStart()
-                     : custom_outlined_icons::ArrowheadIndentedTriangle();
+        return start ? third_party_icons::ArrowheadIndentedTriangleStart()
+                     : third_party_icons::ArrowheadIndentedTriangle();
     case SnowCanvasArrowhead::Triangle:
-        return start ? custom_outlined_icons::ArrowheadTriangleStart()
-                     : custom_outlined_icons::ArrowheadTriangle();
+        return start ? third_party_icons::ArrowheadTriangleStart()
+                     : third_party_icons::ArrowheadTriangle();
     case SnowCanvasArrowhead::TriangleOutline:
-        return start ? custom_outlined_icons::ArrowheadTriangleOutlineStart()
-                     : custom_outlined_icons::ArrowheadTriangleOutline();
+        return start ? third_party_icons::ArrowheadTriangleOutlineStart()
+                     : third_party_icons::ArrowheadTriangleOutline();
     case SnowCanvasArrowhead::Diamond:
-        return start ? custom_outlined_icons::ArrowheadDiamondStart()
-                     : custom_outlined_icons::ArrowheadDiamond();
+        return start ? third_party_icons::ArrowheadDiamondStart()
+                     : third_party_icons::ArrowheadDiamond();
     case SnowCanvasArrowhead::DiamondOutline:
-        return start ? custom_outlined_icons::ArrowheadDiamondOutlineStart()
-                     : custom_outlined_icons::ArrowheadDiamondOutline();
+        return start ? third_party_icons::ArrowheadDiamondOutlineStart()
+                     : third_party_icons::ArrowheadDiamondOutline();
     case SnowCanvasArrowhead::CrowfootOne:
-        return start ? custom_outlined_icons::ArrowheadCrowfootOneStart()
-                     : custom_outlined_icons::ArrowheadCrowfootOne();
+        return start ? third_party_icons::ArrowheadCrowfootOneStart()
+                     : third_party_icons::ArrowheadCrowfootOne();
     case SnowCanvasArrowhead::CrowfootMany:
-        return start ? custom_outlined_icons::ArrowheadCrowfootManyStart()
-                     : custom_outlined_icons::ArrowheadCrowfootMany();
+        return start ? third_party_icons::ArrowheadCrowfootManyStart()
+                     : third_party_icons::ArrowheadCrowfootMany();
     case SnowCanvasArrowhead::CrowfootOneOrMany:
-        return start ? custom_outlined_icons::ArrowheadCrowfootOneOrManyStart()
-                     : custom_outlined_icons::ArrowheadCrowfootOneOrMany();
+        return start ? third_party_icons::ArrowheadCrowfootOneOrManyStart()
+                     : third_party_icons::ArrowheadCrowfootOneOrMany();
     }
-    return start ? custom_outlined_icons::ArrowheadNoneStart()
-                 : custom_outlined_icons::ArrowheadNone();
+    return start ? third_party_icons::ArrowheadNoneStart()
+                 : third_party_icons::ArrowheadNone();
 }
 
 const char* arrowheadOptionTooltipSource(bool start, SnowCanvasArrowhead arrowhead) {
@@ -1577,13 +1578,13 @@ ScreenshotToolPaletteShapeFamilyResult ScreenshotToolPaletteStyleControls::build
     shapeConfig.objectName = spotlight ? QStringLiteral("screenshotSpotlightShapeButtonGroup")
                                        : QStringLiteral("screenshotShapeButtonGroup");
     shapeConfig.options = {
-        {0, QStringLiteral("Rectangle"), custom_outlined_icons::ShapeRectangle()},
-        {1, QStringLiteral("Ellipse"), custom_outlined_icons::ShapeEllipse()},
-        {2, QStringLiteral("Diamond"), custom_outlined_icons::ShapeDiamond()},
+        {0, QStringLiteral("Rectangle"), third_party_icons::ShapeRectangle()},
+        {1, QStringLiteral("Ellipse"), third_party_icons::ShapeEllipse()},
+        {2, QStringLiteral("Diamond"), third_party_icons::ShapeDiamond()},
     };
     if (speechBubble) {
         shapeConfig.options.push_back(
-            {3, QStringLiteral("Thought Bubble"), custom_outlined_icons::ShapeThoughtBubble()});
+            {3, QStringLiteral("Thought Bubble"), third_party_icons::ShapeThoughtBubble()});
     }
     const char* signature = speechBubble ? kSignatureBubbleShapeKind : kSignatureShapeKind;
     shapeConfig.initialId = 0;
@@ -1738,9 +1739,9 @@ ScreenshotToolPaletteShapeFamilyResult ScreenshotToolPaletteStyleControls::build
         ScreenshotToolPaletteRadioEditorConfig brushModeConfig;
         brushModeConfig.objectName = QStringLiteral("screenshotBrushModeButtonGroup");
         brushModeConfig.options = {
-            {0, QStringLiteral("Regular brush"), custom_outlined_icons::BrushRegular()},
+            {0, QStringLiteral("Regular brush"), third_party_icons::BrushRegular()},
             {1, QStringLiteral("Pressure-sensitive brush"),
-             custom_outlined_icons::BrushPressureSensitive()},
+             third_party_icons::BrushPressureSensitive()},
         };
         brushModeConfig.initialId = 0;
         QWidget* brushControls =
@@ -1776,8 +1777,8 @@ ScreenshotToolPaletteShapeFamilyResult ScreenshotToolPaletteStyleControls::build
         ScreenshotToolPaletteRadioEditorConfig lineTypeConfig;
         lineTypeConfig.objectName = QStringLiteral("screenshotLineTypeButtonGroup");
         lineTypeConfig.options = {
-            {0, QStringLiteral("Straight line"), custom_outlined_icons::LineTypeStraight()},
-            {1, QStringLiteral("Curved line"), custom_outlined_icons::LineTypeCurved()},
+            {0, QStringLiteral("Straight line"), third_party_icons::LineTypeStraight()},
+            {1, QStringLiteral("Curved line"), third_party_icons::LineTypeCurved()},
         };
         lineTypeConfig.initialId = 1;
         QWidget* lineTypeControlsContainer =
@@ -1863,7 +1864,7 @@ void ScreenshotToolPaletteStyleControls::buildCornerRadiusEditor(
         takeReusableWidget(kRoleCornerRadius, kSignatureCornerRadius, layout, controls));
     if (m_cornerRadiusEditor == nullptr) {
         m_cornerRadiusEditor = createScreenshotToolPaletteCornerRadiusEditor(
-            controls, "Corner radius (scroll to adjust)", custom_outlined_icons::SelectionRadius(),
+            controls, "Corner radius (scroll to adjust)", third_party_icons::SelectionRadius(),
             radius, metrics);
         layout->addWidget(m_cornerRadiusEditor);
     } else {
@@ -2041,7 +2042,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildArrowFamily(
         takeReusableWidget(kRoleArrowRatio, kSignatureArrowRatio, layout, controls));
     if (m_arrowRatioEditor == nullptr) {
         m_arrowRatioEditor = createScreenshotToolPaletteIconNumericValueButton(
-            controls, "Arrow ratio (scroll to adjust)", custom_outlined_icons::ArrowRatio(), 1,
+            controls, "Arrow ratio (scroll to adjust)", third_party_icons::ArrowRatio(), 1,
             QStringLiteral("3.0"), metrics);
         layout->addWidget(m_arrowRatioEditor);
     } else {
@@ -2119,8 +2120,8 @@ QWidget* ScreenshotToolPaletteStyleControls::buildArrowFamily(
                        "triangle arrowheads.");
     shaftConfig.gridColumnCount = 2;
     shaftConfig.options = {
-        {0, QStringLiteral("Plain shaft"), custom_outlined_icons::ArrowShaftPlain()},
-        {1, QStringLiteral("Tapered shaft"), custom_outlined_icons::ArrowShaftTapered()},
+        {0, QStringLiteral("Plain shaft"), third_party_icons::ArrowShaftPlain()},
+        {1, QStringLiteral("Tapered shaft"), third_party_icons::ArrowShaftTapered()},
     };
     auto reusedShaft = takeReusableEditor(kRoleArrowShaft, kSignatureArrowShaft, layout, controls);
     const auto changeShaft = [this](int value) {
@@ -2276,11 +2277,11 @@ QWidget* ScreenshotToolPaletteStyleControls::buildMagnifierFamily(
         config.objectName = QStringLiteral("screenshotMagnifierShapeButtonGroup");
         config.options = {
             {static_cast<int>(SnowCanvasRectangleShape::Rectangle), "Rectangle",
-             custom_outlined_icons::ShapeRectangle()},
+             third_party_icons::ShapeRectangle()},
             {static_cast<int>(SnowCanvasRectangleShape::Ellipse), "Ellipse",
-             custom_outlined_icons::ShapeEllipse()},
+             third_party_icons::ShapeEllipse()},
             {static_cast<int>(SnowCanvasRectangleShape::Diamond), "Diamond",
-             custom_outlined_icons::ShapeDiamond()},
+             third_party_icons::ShapeDiamond()},
         };
         auto editor = createScreenshotToolPaletteRadioEditor(controls, config, metrics);
         shapes = editor.container;
@@ -2382,7 +2383,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildMagnifierFamily(
     if (m_magnifierFactorEditor == nullptr) {
         m_magnifierFactorEditor = createScreenshotToolPaletteIconNumericValueButton(
             controls, "Magnification factor (scroll to adjust)",
-            custom_outlined_icons::MagnificationFactor(), 2, QStringLiteral("10.0×"), metrics);
+            third_party_icons::MagnificationFactor(), 2, QStringLiteral("10.0×"), metrics);
         layout->addWidget(m_magnifierFactorEditor);
     }
     m_magnifierFactorEditor->setObjectName(QStringLiteral("screenshotMagnifierFactorButton"));
@@ -2401,11 +2402,11 @@ QWidget* ScreenshotToolPaletteStyleControls::buildMagnifierFamily(
         config.objectName = QStringLiteral("screenshotMagnifierConnectionButtonGroup");
         config.options = {
             {static_cast<int>(SnowCanvasMagnifierConnectionType::None), "None",
-             custom_outlined_icons::MagnifierConnectionNone()},
+             third_party_icons::MagnifierConnectionNone()},
             {static_cast<int>(SnowCanvasMagnifierConnectionType::LeaderLine), "Leader line",
-             custom_outlined_icons::ShowLeaderLine()},
+             third_party_icons::ShowLeaderLine()},
             {static_cast<int>(SnowCanvasMagnifierConnectionType::Gradient), "Gradient",
-             custom_outlined_icons::MagnifierGradient()},
+             third_party_icons::MagnifierGradient()},
         };
         auto editor = createScreenshotToolPaletteRadioEditor(controls, config, metrics);
         connections = editor.container;
@@ -2444,7 +2445,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildMagnifierFamily(
         kRoleMagnifierSourceOutline, kSignatureMagnifierSourceOutline, layout, controls));
     if (m_magnifierSourceOutlineToggle == nullptr) {
         m_magnifierSourceOutlineToggle = createScreenshotToolPaletteStyleActionButton(
-            controls, "Source region outline", custom_outlined_icons::SourceRegionOutline(),
+            controls, "Source region outline", third_party_icons::SourceRegionOutline(),
             metrics);
         m_magnifierSourceOutlineToggle->setCheckable(true);
         m_magnifierSourceOutlineToggle->setCheckedUsesActiveStyle(false);
@@ -2471,7 +2472,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildMagnifierFamily(
         takeReusableWidget(kRoleMagnifierArrowRatio, kSignatureArrowRatio, layout, controls));
     if (m_magnifierArrowRatioEditor == nullptr) {
         m_magnifierArrowRatioEditor = createScreenshotToolPaletteIconNumericValueButton(
-            controls, "Arrow ratio (scroll to adjust)", custom_outlined_icons::ArrowRatio(), 1,
+            controls, "Arrow ratio (scroll to adjust)", third_party_icons::ArrowRatio(), 1,
             QStringLiteral("3.0"), metrics);
         layout->addWidget(m_magnifierArrowRatioEditor);
     } else {
@@ -2538,7 +2539,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildMagnifierFamily(
         takeReusableWidget(kRoleMagnifierRadius, kSignatureCornerRadius, layout, controls));
     if (m_magnifierCornerRadiusEditor == nullptr) {
         m_magnifierCornerRadiusEditor = createScreenshotToolPaletteCornerRadiusEditor(
-            controls, "Corner radius (scroll to adjust)", custom_outlined_icons::SelectionRadius(),
+            controls, "Corner radius (scroll to adjust)", third_party_icons::SelectionRadius(),
             qRound(m_state.magnifierStyle.cornerRadii.topLeft), metrics);
         layout->addWidget(m_magnifierCornerRadiusEditor);
     } else {
@@ -2682,9 +2683,9 @@ QWidget* ScreenshotToolPaletteStyleControls::buildAngleFamily(
         config.useButtonMetrics = true;
         config.options = {
             {static_cast<int>(SnowCanvasAngleType::Directed), "360° angle",
-             custom_outlined_icons::AngleType360()},
+             third_party_icons::AngleType360()},
             {static_cast<int>(SnowCanvasAngleType::Interior), "180° angle",
-             custom_outlined_icons::AngleType180()},
+             third_party_icons::AngleType180()},
         };
         auto editor = createScreenshotToolPaletteRadioEditor(controls, config, metrics);
         types = editor.container;
@@ -2718,9 +2719,9 @@ QWidget* ScreenshotToolPaletteStyleControls::buildAngleFamily(
         config.useButtonMetrics = true;
         config.options = {
             {static_cast<int>(SnowCanvasAngleUnit::Degrees), "Degrees",
-             custom_outlined_icons::AngleUnitDegrees()},
+             third_party_icons::AngleUnitDegrees()},
             {static_cast<int>(SnowCanvasAngleUnit::Radians), "Radians",
-             custom_outlined_icons::AngleUnitRadians()},
+             third_party_icons::AngleUnitRadians()},
         };
         auto editor = createScreenshotToolPaletteRadioEditor(controls, config, metrics);
         units = editor.container;
@@ -2879,7 +2880,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildDistanceFamily(
         layout->addWidget(m_distanceValueInput);
     }
     m_distanceValueInput->setObjectName(QStringLiteral("screenshotDistanceValueInput"));
-    m_distanceValueInput->setPrefixIconRef(custom_outlined_icons::DistanceValueScale());
+    m_distanceValueInput->setPrefixIconRef(third_party_icons::DistanceValueScale());
     m_distanceValueInput->setVariant(adqt::widgets::AdInputNumber::Variant::Borderless);
     m_distanceValueInput->setValueMode(adqt::widgets::AdInputNumber::ValueMode::ExactDecimal);
     m_distanceValueInput->setDecimals(3);
@@ -2911,15 +2912,15 @@ QWidget* ScreenshotToolPaletteStyleControls::buildDistanceFamily(
         config.useButtonMetrics = true;
         config.options = {
             {static_cast<int>(SnowCanvasDistanceUnit::Mm), "mm",
-             custom_outlined_icons::DistanceUnitMm()},
+             third_party_icons::DistanceUnitMm()},
             {static_cast<int>(SnowCanvasDistanceUnit::Cm), "cm",
-             custom_outlined_icons::DistanceUnitCm()},
+             third_party_icons::DistanceUnitCm()},
             {static_cast<int>(SnowCanvasDistanceUnit::M), "m",
-             custom_outlined_icons::DistanceUnitM()},
+             third_party_icons::DistanceUnitM()},
             {static_cast<int>(SnowCanvasDistanceUnit::Km), "km",
-             custom_outlined_icons::DistanceUnitKm()},
+             third_party_icons::DistanceUnitKm()},
             {static_cast<int>(SnowCanvasDistanceUnit::Px), "px",
-             custom_outlined_icons::DistanceUnitPx()},
+             third_party_icons::DistanceUnitPx()},
         };
         auto editor = createScreenshotToolPaletteRadioEditor(controls, config, metrics);
         units = editor.container;
@@ -2988,7 +2989,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildDistanceFamily(
         takeReusableWidget(kRoleDistanceScale, kSignatureArrowRatio, layout, controls));
     if (m_distanceScaleEditor == nullptr) {
         m_distanceScaleEditor = createScreenshotToolPaletteIconNumericValueButton(
-            controls, "Endpoint scale (scroll to adjust)", custom_outlined_icons::ArrowRatio(), 1,
+            controls, "Endpoint scale (scroll to adjust)", third_party_icons::ArrowRatio(), 1,
             QStringLiteral("3.0"), metrics);
         layout->addWidget(m_distanceScaleEditor);
     }
@@ -3061,7 +3062,7 @@ ScreenshotToolPaletteHighlightFamilyResult ScreenshotToolPaletteStyleControls::b
         {static_cast<int>(ScreenshotToolPalette::Tool::PenHighlight),
          QStringLiteral("Pen highlight"), outlined_icons::Highlight()},
         {static_cast<int>(ScreenshotToolPalette::Tool::RectangleHighlight),
-         QStringLiteral("Rectangle highlight"), custom_outlined_icons::ShapeRectangle()},
+         QStringLiteral("Rectangle highlight"), third_party_icons::ShapeRectangle()},
     };
 
     if (static_cast<ScreenshotToolPalette::Tool>(tool) ==
@@ -3286,7 +3287,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildSpotlightFamily(
     opacityConfig.sliderObjectName = QStringLiteral("screenshotSpotlightOpacitySlider");
     opacityConfig.accessibleName = QStringLiteral("Opacity");
     opacityConfig.sliderTooltip = QStringLiteral("Adjust opacity");
-    opacityConfig.iconRef = custom_outlined_icons::Opacity();
+    opacityConfig.iconRef = third_party_icons::Opacity();
     opacityConfig.initialValue =
         qRound(std::clamp(m_state.spotlightConfig.opacity, 0.0, 1.0) * 100.0);
     opacityConfig.baseIconSize = kCompactSliderIconSize;
@@ -3529,7 +3530,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildTextFamily(
     if (m_textCornerRadiusEditor == nullptr) {
         m_textCornerRadiusEditor = createScreenshotToolPaletteCornerRadiusEditor(
             controls, "Text fill corner radius (scroll to adjust)",
-            custom_outlined_icons::SelectionRadius(), qRound(style.cornerRadii.topLeft), metrics);
+            third_party_icons::SelectionRadius(), qRound(style.cornerRadii.topLeft), metrics);
         layout->addWidget(m_textCornerRadiusEditor);
     } else {
         configureScreenshotToolPaletteTooltip(
@@ -3600,22 +3601,22 @@ QWidget* ScreenshotToolPaletteStyleControls::buildSerialNumberFamily(
         {static_cast<int>(SnowCanvasSerialNumberType::OutlinedCircle),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Outlined circle")),
-         custom_outlined_icons::SequenceNumberOutlinedCircle()},
+         third_party_icons::SequenceNumberOutlinedCircle()},
         {static_cast<int>(SnowCanvasSerialNumberType::SolidCircle),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Solid circle")),
-         custom_outlined_icons::SequenceNumberSolidCircle()},
+         third_party_icons::SequenceNumberSolidCircle()},
         {static_cast<int>(SnowCanvasSerialNumberType::OutlinedSquare),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Outlined square")),
-         custom_outlined_icons::SequenceNumberOutlinedSquare()},
+         third_party_icons::SequenceNumberOutlinedSquare()},
         {static_cast<int>(SnowCanvasSerialNumberType::SolidSquare),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Solid square")),
-         custom_outlined_icons::SequenceNumberSolidSquare()},
+         third_party_icons::SequenceNumberSolidSquare()},
         {static_cast<int>(SnowCanvasSerialNumberType::Circle),
          ScreenshotToolPaletteTranslationText(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Circle")),
-         custom_outlined_icons::SequenceNumberCircle()},
+         third_party_icons::SequenceNumberCircle()},
     };
     serialNumberTypeConfig.initialId = static_cast<int>(m_state.m_serialNumberStyle.type);
     m_serialNumberTypeControlsContainer =
@@ -3658,23 +3659,23 @@ QWidget* ScreenshotToolPaletteStyleControls::buildSerialNumberFamily(
         {static_cast<int>(SnowCanvasSerialNumberNumericType::Arabic),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Arabic numerals")),
-         custom_outlined_icons::SequenceNumberNumericArabic()},
+         third_party_icons::SequenceNumberNumericArabic()},
         {static_cast<int>(SnowCanvasSerialNumberNumericType::Roman),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Roman numerals")),
-         custom_outlined_icons::SequenceNumberNumericRoman()},
+         third_party_icons::SequenceNumberNumericRoman()},
         {static_cast<int>(SnowCanvasSerialNumberNumericType::LowercaseLetters),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Lowercase letters")),
-         custom_outlined_icons::SequenceNumberNumericLowercaseLetters()},
+         third_party_icons::SequenceNumberNumericLowercaseLetters()},
         {static_cast<int>(SnowCanvasSerialNumberNumericType::UppercaseLetters),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Uppercase letters")),
-         custom_outlined_icons::SequenceNumberNumericUppercaseLetters()},
+         third_party_icons::SequenceNumberNumericUppercaseLetters()},
         {static_cast<int>(SnowCanvasSerialNumberNumericType::Chinese),
          ScreenshotToolPaletteTranslationText(
              QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Chinese numerals")),
-         custom_outlined_icons::SequenceNumberNumericChinese()},
+         third_party_icons::SequenceNumberNumericChinese()},
     };
     serialNumberNumericTypeConfig.initialId =
         static_cast<int>(m_state.m_serialNumberStyle.numericType);
@@ -4100,7 +4101,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildWatermarkFamily(
         takeReusableWidget(kRoleAngle, kSignatureAngle, layout, controls));
     if (m_watermarkAngleEditor == nullptr) {
         m_watermarkAngleEditor = createScreenshotToolPaletteIconNumericValueButton(
-            controls, "Watermark angle", custom_outlined_icons::Angle(),
+            controls, "Watermark angle", third_party_icons::Angle(),
             qBound(-90, qRound(config.angle), 90), QStringLiteral("-90"), metrics);
         layout->addWidget(m_watermarkAngleEditor);
     }
@@ -4115,7 +4116,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildWatermarkFamily(
         takeReusableWidget(kRoleGap, kSignatureGap, layout, controls));
     if (m_watermarkGapEditor == nullptr) {
         m_watermarkGapEditor = createScreenshotToolPaletteIconNumericValueButton(
-            controls, "Watermark gap", custom_outlined_icons::WatermarkGap(),
+            controls, "Watermark gap", third_party_icons::WatermarkGap(),
             qBound(10, qRound(config.gap), 200), QStringLiteral("200"), metrics);
         layout->addWidget(m_watermarkGapEditor);
     }
@@ -4135,7 +4136,7 @@ QWidget* ScreenshotToolPaletteStyleControls::buildWatermarkFamily(
     opacityConfig.sliderObjectName = QStringLiteral("screenshotWatermarkOpacitySlider");
     opacityConfig.accessibleName = QStringLiteral("Opacity");
     opacityConfig.sliderTooltip = QStringLiteral("Adjust opacity");
-    opacityConfig.iconRef = custom_outlined_icons::Opacity();
+    opacityConfig.iconRef = third_party_icons::Opacity();
     opacityConfig.initialValue = qRound(std::clamp(config.opacity, 0.0, 1.0) * 100.0);
     opacityConfig.baseIconSize = metrics.iconSize;
     opacityConfig.baseSliderWidth = kOpacitySliderWidth;
@@ -4187,11 +4188,11 @@ QWidget* ScreenshotToolPaletteStyleControls::buildEraserFamily(
     auto* layout = static_cast<QHBoxLayout*>(controls->layout());
     const QVector<ScreenshotToolPaletteStyleModeSelectorOption> modes{
         {static_cast<int>(Tool::Eraser), QStringLiteral("Element Eraser"),
-         custom_outlined_icons::ToolEraser()},
+         third_party_icons::ToolEraser()},
         {static_cast<int>(Tool::RectangleEraser), QStringLiteral("Rectangle Eraser"),
-         custom_outlined_icons::EraserTypeRectangle()},
+         third_party_icons::EraserTypeRectangle()},
         {static_cast<int>(Tool::BrushEraser), QStringLiteral("Brush Eraser"),
-         custom_outlined_icons::EraserTypeBrush()},
+         third_party_icons::EraserTypeBrush()},
     };
     QWidget* selector = takeReusableWidget(kRoleEraserMode, kSignatureEraserMode, layout, controls);
     if (selector == nullptr && host.createModeSelector)
@@ -4256,9 +4257,9 @@ ScreenshotToolPaletteFilterFamilyResult ScreenshotToolPaletteStyleControls::buil
         {static_cast<int>(ScreenshotToolPalette::Tool::PenFilter), QStringLiteral("Pen filter"),
          outlined_icons::Highlight()},
         {static_cast<int>(ScreenshotToolPalette::Tool::RectangleFilter),
-         QStringLiteral("Rectangle filter"), custom_outlined_icons::ShapeRectangle()},
+         QStringLiteral("Rectangle filter"), third_party_icons::ShapeRectangle()},
         {static_cast<int>(ScreenshotToolPalette::Tool::AutoFilter), QStringLiteral("Auto Filter"),
-         custom_outlined_icons::MagicWand()},
+         third_party_icons::MagicWand()},
     };
     QWidget* modeSelector =
         takeReusableWidget("filter-mode", kSignatureFilterMode, layout, result.controls);
@@ -4362,7 +4363,7 @@ ScreenshotToolPaletteFilterFamilyResult ScreenshotToolPaletteStyleControls::buil
     intensityConfig.sliderObjectName = config.intensitySliderObjectName;
     intensityConfig.accessibleName = QStringLiteral("Filter intensity");
     intensityConfig.sliderTooltip = QStringLiteral("Adjust filter intensity");
-    intensityConfig.iconRef = custom_outlined_icons::Blur();
+    intensityConfig.iconRef = third_party_icons::Blur();
     intensityConfig.initialValue = 50;
     intensityConfig.baseIconSize = kCompactSliderIconSize;
     intensityConfig.baseSliderWidth = kCompactSliderWidth;

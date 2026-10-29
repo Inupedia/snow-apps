@@ -10,6 +10,7 @@
 #include "snow_shot/presentation/components/canvasactiontoolbar.h"
 #include "snow_shot/presentation/components/imagedropsurface.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/styles/thememanager.h"
 #include "antd_icons.h"
 #include "icon_renderer.h"
@@ -73,7 +74,7 @@ using adqt::widgets::AdFormItem;
 using adqt::widgets::AdInputNumber;
 using adqt::widgets::AdScrollArea;
 using adqt::widgets::AdSegmented;
-namespace icons = snow_shot::presentation::icons::custom::outlined;
+namespace icons = snow_shot::presentation::icons::third_party::outlined;
 constexpr int kSettingsFormWidth = 340;
 constexpr int kSettingsFormRightMargin = 12;
 constexpr auto kDragType = "application/x-snow-shot-collage-item";
@@ -1035,8 +1036,8 @@ CollagePreviewCanvas::CollagePreviewCanvas(CollageDocument* document, QWidget* p
     const std::array<adqt::icons::IconRef, 6> refs{
         icons::RotateRight(),
         icons::RotateLeft(),
-        snow_shot::presentation::icons::custom::outlined::FlipHorizontal(),
-        snow_shot::presentation::icons::custom::outlined::FlipVertical(),
+        snow_shot::presentation::icons::third_party::outlined::FlipHorizontal(),
+        snow_shot::presentation::icons::third_party::outlined::FlipVertical(),
         icons::Reload(),
         icons::IconDelete()};
     const std::array<const char*, 6> names{

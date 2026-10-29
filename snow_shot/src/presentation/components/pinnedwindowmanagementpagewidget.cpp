@@ -9,6 +9,7 @@
 #include "snow_shot/presentation/components/historypagecommon.h"
 #include "snow_shot/presentation/components/historyentrycard.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/thumbnailcache.h"
 #include "snow_shot/presentation/components/emptystateicon.h"
 #include "snow_shot/presentation/components/pagecontainerwidget.h"
@@ -50,7 +51,7 @@
 using namespace snow_shot;
 
 namespace {
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace styles = snow_shot::presentation::styles;
 namespace storage = snow_shot::storage;
 namespace history_page = snow_shot::presentation::components::history_page;
@@ -620,10 +621,10 @@ PinnedWindowManagementPageWidget::PinnedWindowManagementPageWidget(
             auto* menu = new adqt::widgets::AdContextMenu(this);
             menu->setObjectName(QStringLiteral("pinnedManagementBatchActionsMenu"));
             m_batchStitchAction =
-                menu->addItem(QString(), presentation::icons::custom::outlined::ImageStitching());
+                menu->addItem(QString(), presentation::icons::third_party::outlined::ImageStitching());
             m_batchStitchAction->setObjectName(QStringLiteral("pinnedManagementBatchStitch"));
             m_batchPinAction =
-                menu->addItem(QString(), presentation::icons::custom::outlined::PinToScreen());
+                menu->addItem(QString(), presentation::icons::third_party::outlined::PinToScreen());
             m_batchPinAction->setObjectName(QStringLiteral("pinnedManagementBatchPin"));
             updateBatchActions();
             connect(m_batchStitchAction, &QAction::triggered, this, [this] {
@@ -911,16 +912,16 @@ void PinnedWindowManagementPageWidget::rebuildEntries() {
                     menu->setObjectName(QStringLiteral("pinnedManagementEntryMoreMenu"));
                     auto* stitch =
                         menu->addItem(tr("Stitch Image"),
-                                      presentation::icons::custom::outlined::ImageStitching());
+                                      presentation::icons::third_party::outlined::ImageStitching());
                     stitch->setObjectName(QStringLiteral("pinnedManagementEntryStitch"));
                     stitch->setToolTip(tr("Stitch Image"));
                     const QString splitLabel = tr("Image Splitting");
                     auto* split = menu->addItem(
-                        splitLabel, presentation::icons::custom::outlined::ImageSplitting());
+                        splitLabel, presentation::icons::third_party::outlined::ImageSplitting());
                     split->setObjectName(QStringLiteral("pinnedManagementEntrySplit"));
                     split->setToolTip(splitLabel);
                     auto* imageEditing = menu->addItem(
-                        tr("Image Editing"), presentation::icons::custom::outlined::ImageEditing());
+                        tr("Image Editing"), presentation::icons::third_party::outlined::ImageEditing());
                     imageEditing->setObjectName(
                         QStringLiteral("pinnedManagementEntryImageEditing"));
                     imageEditing->setToolTip(imageEditing->text());
@@ -928,7 +929,7 @@ void PinnedWindowManagementPageWidget::rebuildEntries() {
                             [this, id] { emit imageEditingRequested(id); });
                     const QString revealLabel = history_page::revealActionText();
                     auto* reveal = menu->addItem(
-                        revealLabel, presentation::icons::custom::outlined::RevealInFolder());
+                        revealLabel, presentation::icons::third_party::outlined::RevealInFolder());
                     reveal->setObjectName(QStringLiteral("pinnedManagementEntryReveal"));
                     reveal->setToolTip(revealLabel);
                     reveal->setEnabled(!row->property("pending").toBool());

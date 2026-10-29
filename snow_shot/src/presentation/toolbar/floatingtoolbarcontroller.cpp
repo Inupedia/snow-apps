@@ -1,5 +1,6 @@
 #include "snow_shot/presentation/floatingtoolbarcontroller.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 
 #include "snow_shot/presentation/floatingtoolbarplacement.h"
 #include "snow_shot/presentation/components/pointerhoverevents.h"
@@ -613,7 +614,7 @@ class FloatingToolbarController::Impl {
                                  });
             }
         }
-        overflow = button(snow_shot::presentation::icons::custom::outlined::Ellipsis());
+        overflow = button(snow_shot::presentation::icons::third_party::outlined::Ellipsis());
         overflow->setAccessibleName(text(QT_TRANSLATE_NOOP("FloatingToolbar", "More tools")));
         overflow->setToolTip(overflow->accessibleName());
         QObject::connect(overflow, &adqt::widgets::AdButton::clicked, &q, [this] {

@@ -52,6 +52,7 @@
 #include "screenshotpintoperfinstrumentation.h"
 #include "snow_shot/platform/physicalcursor.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/screenshotcanvasrenderer.h"
 #include "snow_shot/presentation/screenshotcanvastoolstyles.h"
 #include "snow_shot/presentation/screenshotdefaultstyles.h"
@@ -501,8 +502,8 @@ ScreenshotRecognitionResults deserializeRecognitionResults(const QByteArray& byt
 
 namespace pinned_platform = snow_shot::presentation;
 namespace resize_geometry = screenshot_pinned_resize_geometry;
-namespace outlined_icons = snow_shot::presentation::icons::custom::outlined;
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace outlined_icons = snow_shot::presentation::icons::third_party::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 
 constexpr int kControlsInset = 16;
 constexpr int kControlButtonSpacing = 8;
@@ -1007,7 +1008,7 @@ class PinnedOpacityEditor final : public QWidget {
             QString::fromUtf8(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Opacity"));
         config.sliderTooltip =
             QString::fromUtf8(QT_TRANSLATE_NOOP("ScreenshotToolPalette", "Adjust opacity"));
-        config.iconRef = custom_outlined_icons::Opacity();
+        config.iconRef = third_party_icons::Opacity();
         config.initialValue = value;
         config.baseIconSize = 18;
         config.baseSliderWidth = 96;
@@ -3630,14 +3631,14 @@ void ScreenshotPinnedWindow::createContextMenu() {
     connect(copyOriginalAction, &QAction::triggered, this,
             &ScreenshotPinnedWindow::copyOriginalContent);
 
-    QAction* saveAction = m_contextMenu->addItem(tr("Save as file"), custom_outlined_icons::Save());
+    QAction* saveAction = m_contextMenu->addItem(tr("Save as file"), third_party_icons::Save());
     setActionTranslationSource(saveAction, "Save as file");
     saveAction->setObjectName(QStringLiteral("screenshotPinnedSaveAsFileAction"));
     connect(saveAction, &QAction::triggered, this, &ScreenshotPinnedWindow::saveAsFile);
 
     if (!animatedImage()) {
         m_ocrAction = m_contextMenu->addItem(tr("Recognizing text"),
-                                             custom_outlined_icons::TextRecognition());
+                                             third_party_icons::TextRecognition());
         setActionTranslationSource(m_ocrAction, "Recognizing text");
         m_ocrAction->setObjectName(QStringLiteral("screenshotPinnedOcrAction"));
         m_ocrAction->setCheckable(true);
@@ -3814,13 +3815,13 @@ void ScreenshotPinnedWindow::createContextMenu() {
             connect(rotateCounterClockwise, &QAction::triggered, this,
                     [this]() { executeImageCommand(QStringLiteral("rotate_counterclockwise")); });
             QAction* flipHorizontal = processMenu->addItem(tr("Flip horizontally"),
-                                                           custom_outlined_icons::FlipHorizontal());
+                                                           third_party_icons::FlipHorizontal());
             setActionTranslationSource(flipHorizontal, "Flip horizontally");
             flipHorizontal->setObjectName(QStringLiteral("screenshotPinnedFlipHorizontalAction"));
             connect(flipHorizontal, &QAction::triggered, this,
                     [this]() { executeImageCommand(QStringLiteral("flip_horizontal")); });
             QAction* flipVertical =
-                processMenu->addItem(tr("Flip vertically"), custom_outlined_icons::FlipVertical());
+                processMenu->addItem(tr("Flip vertically"), third_party_icons::FlipVertical());
             setActionTranslationSource(flipVertical, "Flip vertically");
             flipVertical->setObjectName(QStringLiteral("screenshotPinnedFlipVerticalAction"));
             connect(flipVertical, &QAction::triggered, this,
@@ -3835,7 +3836,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
             m_splitImageAction = processMenu->addItem(
                 QCoreApplication::translate(
                     "ImageSplitWindow", QT_TRANSLATE_NOOP("ImageSplitWindow", "Image Splitting")),
-                custom_outlined_icons::ImageSplitting());
+                third_party_icons::ImageSplitting());
             m_splitImageAction->setObjectName(QStringLiteral("screenshotPinnedSplitImageAction"));
             connect(m_splitImageAction, &QAction::triggered, this, [this] {
                 if (m_closing || !m_firstContentFramePublished || m_transformedImage.isNull())
@@ -3843,7 +3844,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
                 emit splitRequested(splittingSnapshot());
             });
             m_imageEditingAction =
-                processMenu->addItem(tr("Image Editing"), custom_outlined_icons::ImageEditing());
+                processMenu->addItem(tr("Image Editing"), third_party_icons::ImageEditing());
             setActionTranslationSource(m_imageEditingAction, "Image Editing");
             m_imageEditingAction->setObjectName(
                 QStringLiteral("screenshotPinnedImageEditingAction"));
@@ -3870,7 +3871,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
             menu->setMinimumWidth(300);
             rebuildGroupMenu();
         },
-        custom_outlined_icons::Group());
+        third_party_icons::Group());
     m_groupMenuAction->setObjectName(QStringLiteral("screenshotPinnedGroupAction"));
 
     m_thumbnailAction = m_contextMenu->addItem(tr("Thumbnail mode"), outlined_icons::Compress());
@@ -3887,7 +3888,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
     connect(m_hideToTopAction, &QAction::triggered, this, &ScreenshotPinnedWindow::toggleHideToTop);
 
     m_clickThroughAction =
-        m_contextMenu->addItem(tr("Click-through"), custom_outlined_icons::Mouse());
+        m_contextMenu->addItem(tr("Click-through"), third_party_icons::Mouse());
     setActionTranslationSource(m_clickThroughAction, "Click-through");
     m_clickThroughAction->setObjectName(QStringLiteral("screenshotPinnedClickThroughAction"));
     m_clickThroughAction->setCheckable(true);
@@ -3913,14 +3914,14 @@ void ScreenshotPinnedWindow::createContextMenu() {
             connect(m_alwaysOnTopAction, &QAction::triggered, this,
                     &ScreenshotPinnedWindow::toggleAlwaysOnTop);
             m_showBorderAction = windowManagementMenu->addItem(
-                tr("Show border"), custom_outlined_icons::PinnedWindowBorder());
+                tr("Show border"), third_party_icons::PinnedWindowBorder());
             setActionTranslationSource(m_showBorderAction, "Show border");
             m_showBorderAction->setObjectName(QStringLiteral("screenshotPinnedShowBorderAction"));
             m_showBorderAction->setCheckable(true);
             connect(m_showBorderAction, &QAction::triggered, this,
                     &ScreenshotPinnedWindow::toggleShowBorder);
             m_showShadowAction = windowManagementMenu->addItem(
-                tr("Show shadow"), custom_outlined_icons::PinnedWindowShadow());
+                tr("Show shadow"), third_party_icons::PinnedWindowShadow());
             setActionTranslationSource(m_showShadowAction, "Show shadow");
             m_showShadowAction->setObjectName(QStringLiteral("screenshotPinnedShowShadowAction"));
             m_showShadowAction->setCheckable(true);
@@ -3945,7 +3946,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
                     connect(loadFile, &QAction::triggered, this,
                             &ScreenshotPinnedWindow::loadImageFile);
                     QAction* loadClipboard =
-                        loadMenu->addItem(tr("Clipboard"), custom_outlined_icons::PinClipboard());
+                        loadMenu->addItem(tr("Clipboard"), third_party_icons::PinClipboard());
                     setActionTranslationSource(loadClipboard, "Clipboard");
                     loadClipboard->setObjectName(
                         QStringLiteral("screenshotPinnedLoadClipboardAction"));
@@ -3994,7 +3995,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
 
     m_contextMenu->addSeparator();
     m_showMainInterfaceAction =
-        m_contextMenu->addItem(tr("Show main interface"), custom_outlined_icons::Window());
+        m_contextMenu->addItem(tr("Show main interface"), third_party_icons::Window());
     setActionTranslationSource(m_showMainInterfaceAction, "Show main interface");
     m_showMainInterfaceAction->setObjectName(
         QStringLiteral("screenshotPinnedShowMainInterfaceAction"));
@@ -4006,7 +4007,7 @@ void ScreenshotPinnedWindow::createContextMenu() {
     m_closeAction->setObjectName(QStringLiteral("screenshotPinnedCloseAction"));
     connect(m_closeAction, &QAction::triggered, this, &ScreenshotPinnedWindow::requestUserClose);
     QAction* destroyAction =
-        m_contextMenu->addItem(tr("Destroy"), custom_outlined_icons::DestroyPinnedWindow());
+        m_contextMenu->addItem(tr("Destroy"), third_party_icons::DestroyPinnedWindow());
     setActionTranslationSource(destroyAction, "Destroy");
     destroyAction->setObjectName(QStringLiteral("screenshotPinnedDestroyAction"));
     m_contextMenu->setActionDanger(destroyAction);
@@ -4237,7 +4238,7 @@ void ScreenshotPinnedWindow::rebuildGroupMenu() {
                 });
             }
         },
-        custom_outlined_icons::Delete());
+        third_party_icons::Delete());
     deleteSpecified->setObjectName(QStringLiteral("screenshotPinnedDeleteSpecifiedGroupAction"));
 }
 
@@ -8143,7 +8144,7 @@ bool ScreenshotPinnedWindow::ensureClickThroughExitButton() {
     }
 
     auto button = std::unique_ptr<adqt::widgets::AdButton>(
-        createControlButton(nullptr, "Exit click-through mode", custom_outlined_icons::Mouse(),
+        createControlButton(nullptr, "Exit click-through mode", third_party_icons::Mouse(),
                             OverlayControlButton::Intent::Primary));
     button->setObjectName(QStringLiteral("screenshotPinnedClickThroughExitButton"));
     Qt::WindowFlags controlFlags =
@@ -8167,7 +8168,7 @@ bool ScreenshotPinnedWindow::ensureClickThroughExitButton() {
     }
     button->windowHandle()->setTransientParent(windowHandle());
     auto moveButton = std::unique_ptr<adqt::widgets::AdButton>(
-        createControlButton(nullptr, "Move window", custom_outlined_icons::ToolMove(),
+        createControlButton(nullptr, "Move window", third_party_icons::ToolMove(),
                             OverlayControlButton::Intent::Primary));
     moveButton->setObjectName(QStringLiteral("screenshotPinnedClickThroughMoveButton"));
     moveButton->setWindowFlags(button->windowFlags());

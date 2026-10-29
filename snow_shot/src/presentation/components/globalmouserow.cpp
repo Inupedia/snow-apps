@@ -2,6 +2,7 @@
 #include "snow_shot/presentation/components/formfields.h"
 
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
+#include "snow_shot/presentation/components/icons/third_party_icons.h"
 #include "snow_shot/presentation/components/shortcutconfigurationbutton.h"
 #include "snow_shot/presentation/settings/settingsruntimesession.h"
 #include "snow_shot/presentation/styles/mainwindowcomponenttoken.h"
@@ -22,7 +23,7 @@
 #include <QVBoxLayout>
 
 namespace {
-namespace custom_outlined_icons = snow_shot::presentation::icons::custom::outlined;
+namespace third_party_icons = snow_shot::presentation::icons::third_party::outlined;
 namespace settings = snow_shot::presentation::settings;
 namespace fields = snow_shot::presentation::components::form_fields;
 
@@ -32,20 +33,20 @@ constexpr int COMBINATION_TEXT_MAX_WIDTH = 260;
 adqt::icons::IconRef actionIcon(settings::SettingsGlobalMouseAction action) {
     switch (action) {
     case settings::SettingsGlobalMouseAction::ScreenshotCopy:
-        return custom_outlined_icons::ScreenshotCopy();
+        return third_party_icons::ScreenshotCopy();
     case settings::SettingsGlobalMouseAction::ScreenshotFixed:
-        return custom_outlined_icons::PinToScreen();
+        return third_party_icons::PinToScreen();
     case settings::SettingsGlobalMouseAction::ScreenshotOcr:
     case settings::SettingsGlobalMouseAction::ScreenshotOcrCopy:
-        return custom_outlined_icons::TextRecognition();
+        return third_party_icons::TextRecognition();
     case settings::SettingsGlobalMouseAction::ScreenshotTranslation:
-        return custom_outlined_icons::OcrTranslate();
+        return third_party_icons::OcrTranslate();
     case settings::SettingsGlobalMouseAction::ScreenshotSave:
-        return custom_outlined_icons::Save();
+        return third_party_icons::Save();
     case settings::SettingsGlobalMouseAction::ScreenshotQuickSave:
-        return custom_outlined_icons::QuickSave();
+        return third_party_icons::QuickSave();
     case settings::SettingsGlobalMouseAction::ScreenRecording:
-        return custom_outlined_icons::RecordScreen();
+        return third_party_icons::RecordScreen();
     }
     return {};
 }
@@ -74,7 +75,7 @@ GlobalMouseRow::GlobalMouseRow(const QString& title, settings::SettingsGlobalMou
     }
 
     m_button = new ShortcutConfigurationButton(metric, COMBINATION_TEXT_MAX_WIDTH,
-                                               custom_outlined_icons::WheelMouse(), this);
+                                               third_party_icons::WheelMouse(), this);
     m_button->setObjectName(QStringLiteral("globalMouseConfigurationButton"));
     m_button->setFixedHeight(metric.controlHeight);
     m_button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
