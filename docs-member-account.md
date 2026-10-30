@@ -23,6 +23,15 @@ service identifier; subscription queries send `serviceId=11`.
 - No test account, token, password, or device MAC is embedded in source code or
   application logs.
 
+Account details and the inline sign-out action are located in Settings → User.
+There is no account button in the main-window header.
+
+The login window follows the application's resolved appearance, including its
+Follow System setting. Its alpine glass artwork has separate light and dark
+assets; form surfaces, text, links and actions switch in place with the application
+palette. A theme change preserves any partially entered credentials. Narrow
+windows hide the artwork and short windows scroll the form.
+
 Sign-in is mandatory. The standalone login window appears before the application
 controller is created. Main-window features, hotkeys, tray actions, capture, and
 recording are unavailable until sign-in succeeds. Signing out tears down the

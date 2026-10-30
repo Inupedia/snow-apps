@@ -1,3 +1,4 @@
+#include "snow_shot/account/accountui.h"
 #include "snow_shot/app/distribution.h"
 #include "snow_shot/presentation/components/icons/snowshoticons.h"
 #include "snow_shot/presentation/components/icons/third_party_icons.h"
@@ -1574,6 +1575,8 @@ SettingsCustomWidget* createSettingsCustomWidget(
 #else
         return nullptr;
 #endif
+    case SettingsCustomRenderer::MemberAccount:
+        return snow_shot::account::createMemberAccountSettingsWidget(parent);
     case SettingsCustomRenderer::StorageStatus:
         return new StorageStatusSettingsWidget(runtimeSession, parent);
     case SettingsCustomRenderer::DrawingToolbarEditor:

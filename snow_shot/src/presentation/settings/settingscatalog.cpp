@@ -1487,13 +1487,13 @@ QVector<SettingsItemDefinition> screenshotOutputItems() {
         screenshotAutoSaveAfterExecutionItem(),
         screenshotCopyFileItem(),
         screenshotSaveAsFileDialogItem(),
-        switchItem(QStringLiteral("screenshot.show-save-result"),
-                   QT_TRANSLATE_NOOP("SettingsCatalog", "Show save result"),
-                   QT_TRANSLATE_NOOP(
-                       "SettingsCatalog",
-                       "Keep the InuShot save dialog open after saving to show the result"),
-                   QStringLiteral("screenshot/show_save_result"),
-                   SettingsSwitchBinding::ScreenshotShowSaveResult),
+        switchItem(
+            QStringLiteral("screenshot.show-save-result"),
+            QT_TRANSLATE_NOOP("SettingsCatalog", "Show save result"),
+            QT_TRANSLATE_NOOP("SettingsCatalog",
+                              "Keep the InuShot save dialog open after saving to show the result"),
+            QStringLiteral("screenshot/show_save_result"),
+            SettingsSwitchBinding::ScreenshotShowSaveResult),
         directoryPathItem(
             QStringLiteral("screenshot-output.image-save-directory"),
             QT_TRANSLATE_NOOP("SettingsCatalog", "Image save directory"),
@@ -2426,8 +2426,7 @@ SettingsItemDefinition autoStartItem() {
         QT_TRANSLATE_NOOP("SettingsCatalog", "Start InuShot in the background when you log in."),
 #else
         QT_TRANSLATE_NOOP("SettingsCatalog", "Auto start at boot"),
-        QT_TRANSLATE_NOOP("SettingsCatalog",
-                          "Start InuShot in the background when Windows starts"),
+        QT_TRANSLATE_NOOP("SettingsCatalog", "Start InuShot in the background when Windows starts"),
 #endif
         QStringLiteral("system/auto_start_at_boot"), SettingsSwitchBinding::AutoStartAtBoot);
 }
@@ -3333,6 +3332,24 @@ QVector<SettingsPageDefinition> builtInPages() {
         },
 #endif
 
+        {QStringLiteral("user"),
+         QStringLiteral("/settings/user"),
+         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "User")),
+         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Your Yuntu account on this device")),
+         {{QStringLiteral("member-account"),
+           settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "User account")),
+           settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Your Yuntu account on this device")),
+           SettingsSectionReset::None,
+           {{QStringLiteral("system.member-account"),
+             settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Current user")),
+             settingsText(
+                 QT_TRANSLATE_NOOP("SettingsCatalog", "Your Yuntu account on this device")),
+             {},
+             {},
+             SettingsCustomDefinition{SettingsCustomRenderer::MemberAccount}}}}},
+         SettingsPageKind::GeneratedSettings,
+         {},
+         {}},
         {QStringLiteral("general"),
          QStringLiteral("/settings/general"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "General")),
@@ -3812,8 +3829,8 @@ QVector<SettingsPageDefinition> builtInPages() {
         {QStringLiteral("shortcuts-mouse"),
          QStringLiteral("/settings/shortcuts-mouse"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Application shortcuts")),
-         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog",
-                                        "Keyboard shortcuts used within InuShot tools")),
+         settingsText(
+             QT_TRANSLATE_NOOP("SettingsCatalog", "Keyboard shortcuts used within InuShot tools")),
          {
              {
                  QStringLiteral("screenshot-shortcuts"),
@@ -3869,10 +3886,9 @@ QVector<SettingsPageDefinition> builtInPages() {
                                                 "classic Windows context menu is open")),
                  SettingsSectionReset::WindowsContextMenuShortcuts,
                  {{QStringLiteral("windows-context-menu-shortcut.edit_with_snow_shot"),
-                   settingsText(
-                       app::edition::isMini
-                           ? QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with InuShot Mini")
-                           : QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with InuShot")),
+                   settingsText(app::edition::isMini
+                                    ? QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with InuShot Mini")
+                                    : QT_TRANSLATE_NOOP("SettingsCatalog", "Edit with InuShot")),
                    settingsText(QT_TRANSLATE_NOOP("SettingsCatalog",
                                                   "Use one letter (A–Z) or digit (0–9) when the "
                                                   "classic Windows context menu is open")),
@@ -4180,8 +4196,7 @@ QVector<SettingsPageDefinition> builtInPages() {
         {QStringLiteral("app-permissions"),
          QStringLiteral("/settings/appPermissions"),
          settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "App Permissions")),
-         settingsText(
-             QT_TRANSLATE_NOOP("SettingsCatalog", "Manage macOS permissions for InuShot")),
+         settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Manage macOS permissions for InuShot")),
          {{QStringLiteral("permissions"),
            settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "App Permissions")),
            settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Permission status and access")),
@@ -4243,6 +4258,8 @@ QVector<SettingsNavigationNode> builtInNavigation() {
     settingsGroup.title = settingsText(QT_TRANSLATE_NOOP("SettingsCatalog", "Settings"));
     settingsGroup.iconFactory = []() { return outlined_icons::Setting(); };
     settingsGroup.pages = {
+        {QStringLiteral("nav.user"), QStringLiteral("user"),
+         []() { return outlined_icons::User(); }},
         {QStringLiteral("nav.general"), QStringLiteral("general"),
          []() { return third_party_icons::Control(); }},
         {QStringLiteral("nav.general-appearance"), QStringLiteral("general-appearance"),
@@ -4689,8 +4706,7 @@ TrayCommandManifest buildBuiltInTrayCommandManifest() {
                 []() { return third_party_icons::ScreenshotCopy(); }),
           quick(QStringLiteral("quick.screenshot-save"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Save as file"),
-                GlobalShortcutAction::ScreenshotSave,
-                []() { return third_party_icons::Save(); }),
+                GlobalShortcutAction::ScreenshotSave, []() { return third_party_icons::Save(); }),
           quick(QStringLiteral("quick.screenshot-quick-save"),
                 QT_TRANSLATE_NOOP("SettingsCatalog", "Quick save"),
                 GlobalShortcutAction::ScreenshotQuickSave,
@@ -5799,6 +5815,7 @@ QStringList SettingsCatalog::validationErrors() const {
                     case SettingsCustomRenderer::PermissionInputMonitoring:
                     case SettingsCustomRenderer::PermissionMicrophone:
                     case SettingsCustomRenderer::McpStatus:
+                    case SettingsCustomRenderer::MemberAccount:
                     case SettingsCustomRenderer::StorageStatus:
                         rendererSupported = true;
                         break;

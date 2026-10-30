@@ -99,6 +99,7 @@ permissionForRenderer(settings::SettingsCustomRenderer renderer) {
     case Renderer::TextTranslationConfigurations:
     case Renderer::CustomAiModels:
     case Renderer::McpStatus:
+    case Renderer::MemberAccount:
     case Renderer::StorageStatus:
     case Renderer::DrawingToolbarEditor:
     case Renderer::ScreenshotToolbarEditor:

@@ -1,9 +1,14 @@
 #include "snow_shot/account/accountui.h"
 #include "snow_shot/account/credentialstore.h"
+#include "snow_shot/presentation/components/settingscustomwidget.h"
+#include <QAbstractButton>
+#include <memory>
 #include <QApplication>
 #include <QDialog>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QPixmap>
+#include <QLabel>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QTimer>
@@ -40,6 +45,12 @@ int main(int argc, char** argv) {
     }
     bool lockedCallback = false;
     snow_shot::account::installAccountUi(application, [&] { lockedCallback = true; });
+    auto accountSection = std::unique_ptr<SettingsCustomWidget>(
+        snow_shot::account::createMemberAccountSettingsWidget(nullptr));
+    auto* signOut = accountSection->findChild<QAbstractButton*>(QStringLiteral("memberSignOut"));
+    require(signOut && signOut->text() == QStringLiteral("Sign out"),
+            "Settings user section must expose an inline sign-out action");
+    require(!signOut->isEnabled(), "Signed-out settings must not offer an active sign-out action");
     QTimer::singleShot(0, &application, [&] {
         QDialog* dialog = nullptr;
         for (auto* widget : QApplication::topLevelWidgets()) {
@@ -64,8 +75,38 @@ int main(int argc, char** argv) {
         require(submit->isEnabled(), "Complete credentials must enable submission");
         dialog->grab().save(dark ? QStringLiteral("/tmp/inushot-login-dark.png")
                                  : QStringLiteral("/tmp/inushot-login-light.png"));
+        auto* artwork = dialog->findChild<QWidget*>(QStringLiteral("memberLoginArtwork"));
+        require(artwork && artwork->isVisible(), "Wide login must display its artwork");
+        require(!QPixmap(QStringLiteral(":/snow-shot/account/login-alpine-light.png")).isNull() &&
+                    !QPixmap(QStringLiteral(":/snow-shot/account/login-alpine-dark.png")).isNull(),
+                "Both theme artwork assets must be bundled");
+        require(artwork->property("artworkAppearance").toString() ==
+                    (dark ? QStringLiteral("dark") : QStringLiteral("light")),
+                "Login artwork must match the initial application appearance");
+        const QPalette originalPalette = application.palette();
+        QPalette switchedPalette = originalPalette;
+        switchedPalette.setColor(QPalette::Window, dark ? QColor("#fafbfd") : QColor("#171b22"));
+        application.setPalette(switchedPalette);
+        application.processEvents();
+        const QImage switched = dialog->grab().toImage();
+        require(artwork->property("artworkAppearance").toString() ==
+                    (dark ? QStringLiteral("light") : QStringLiteral("dark")),
+                "Visible login artwork must switch when application appearance changes");
+        const QColor formPixel = switched.pixelColor(switched.width() - 8, switched.height() / 2);
+        require((formPixel.lightness() < 128) != dark,
+                "The form surface must switch together with artwork");
+        auto* links = dialog->findChild<QLabel*>(QStringLiteral("memberLinks"));
+        require(links && links->text().contains(dark ? QStringLiteral("#005fcc")
+                                                     : QStringLiteral("#accdff")),
+                "Link contrast must update on appearance changes");
+        require(telephone->text() == QStringLiteral("test-user") &&
+                    password->text() == QStringLiteral("test-password"),
+                "Switching appearance must preserve in-progress credentials");
+        application.setPalette(originalPalette);
+        application.processEvents();
         dialog->resize(420, 240);
         application.processEvents();
+        require(!artwork->isVisible(), "Narrow login must prioritize the usable form");
         auto* scroll = dialog->findChild<QScrollArea*>();
         require(scroll && scroll->verticalScrollBar()->maximum() > 0,
                 "Short login windows must keep their form reachable by scrolling");

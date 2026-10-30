@@ -2024,6 +2024,10 @@
             <translation>Current monitor</translation>
         </message>
         <message>
+            <source>Current user</source>
+            <translation>Current user</translation>
+        </message>
+        <message>
             <source>Cursor guide line color</source>
             <translation>Cursor guide line color</translation>
         </message>
@@ -4644,6 +4648,14 @@
             <translation>Use this language when local language detection matches the primary target language at the configured confidence</translation>
         </message>
         <message>
+            <source>User</source>
+            <translation>User</translation>
+        </message>
+        <message>
+            <source>User account</source>
+            <translation>User account</translation>
+        </message>
+        <message>
             <source>User initiated</source>
             <translation>User initiated</translation>
         </message>
@@ -4738,6 +4750,10 @@
         <message>
             <source>Windows context menu</source>
             <translation>Windows context menu</translation>
+        </message>
+        <message>
+            <source>Your Yuntu account on this device</source>
+            <translation>Your Yuntu account on this device</translation>
         </message>
         <message>
             <source>Zip archives (*.zip);;All files (*.*)</source>

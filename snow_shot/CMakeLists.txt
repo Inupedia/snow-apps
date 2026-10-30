@@ -2108,6 +2108,11 @@ add_library(snow_shot_account_credentials STATIC
     src/account/accountui.cpp
     include/snow_shot/account/membersession.h)
 target_include_directories(snow_shot_account_credentials PUBLIC include)
+qt_add_resources(snow_shot_account_credentials "snow_shot_member_assets"
+    PREFIX "/snow-shot/account"
+    BASE "${CMAKE_CURRENT_SOURCE_DIR}/resources/account"
+    FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/account/login-alpine-light.png"
+          "${CMAKE_CURRENT_SOURCE_DIR}/resources/account/login-alpine-dark.png")
 target_link_libraries(snow_shot_account_credentials PUBLIC Qt6::Core Qt6::Network Qt6::Widgets PRIVATE ant_design_qt)
 target_compile_definitions(snow_shot_account_credentials PRIVATE
     SNOW_SHOT_MEMBER_API_BASE_URL=\"${SNOW_SHOT_MEMBER_API_BASE_URL}\")
@@ -2119,6 +2124,7 @@ elseif(WIN32)
     target_link_libraries(snow_shot_account_credentials PRIVATE advapi32)
 endif()
 target_link_libraries(snow_shot PRIVATE snow_shot_account_credentials)
+target_link_libraries(snow_shot_settings PRIVATE snow_shot_account_credentials)
 if(SNOW_SHOT_BUILD_TESTS)
     add_executable(snow-shot-member-session-tests tests/member_session_tests.cpp
         src/account/membersession.cpp include/snow_shot/account/membersession.h)
@@ -2129,7 +2135,7 @@ if(SNOW_SHOT_BUILD_TESTS)
     add_test(NAME snow-shot-member-session-tests COMMAND snow-shot-member-session-tests)
     set_tests_properties(snow-shot-member-session-tests PROPERTIES LABELS unit)
     add_executable(snow-shot-member-account-ui-tests tests/member_account_ui_tests.cpp)
-    target_link_libraries(snow-shot-member-account-ui-tests PRIVATE snow_shot_account_credentials)
+    target_link_libraries(snow-shot-member-account-ui-tests PRIVATE snow_shot_account_credentials adqt_icon_core)
     add_test(NAME snow-shot-member-account-ui-tests COMMAND snow-shot-member-account-ui-tests -platform offscreen)
     add_test(NAME snow-shot-member-account-ui-dark-tests COMMAND snow-shot-member-account-ui-tests -platform offscreen --dark)
     set_tests_properties(snow-shot-member-account-ui-tests snow-shot-member-account-ui-dark-tests PROPERTIES LABELS unit)
@@ -3122,6 +3128,9 @@ if(SNOW_SHOT_BUILD_TESTS)
         ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:Qt6::Core>")
     add_test(NAME snow-shot-settings-catalog-tests
              COMMAND snow-shot-settings-catalog-tests)
+    add_test(NAME snow-shot-member-account-settings-catalog-tests
+             COMMAND snow-shot-settings-catalog-tests --member-account-only)
+    set_tests_properties(snow-shot-member-account-settings-catalog-tests PROPERTIES LABELS unit)
     add_test(NAME snow-shot-tray-icon-settings-catalog-tests
         COMMAND snow-shot-settings-catalog-tests --tray-icons-only)
     set_tests_properties(snow-shot-tray-icon-settings-catalog-tests PROPERTIES

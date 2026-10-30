@@ -2024,6 +2024,10 @@
             <translation>目前顯示器</translation>
         </message>
         <message>
+            <source>Current user</source>
+            <translation>目前使用者</translation>
+        </message>
+        <message>
             <source>Cursor guide line color</source>
             <translation>游標輔助線色彩</translation>
         </message>
@@ -4644,6 +4648,14 @@
             <translation>當本機語言偵測結果與主目標語言相符且達到設定的信心度時，使用此語言</translation>
         </message>
         <message>
+            <source>User</source>
+            <translation>使用者</translation>
+        </message>
+        <message>
+            <source>User account</source>
+            <translation>使用者帳號</translation>
+        </message>
+        <message>
             <source>User initiated</source>
             <translation>使用者啟動</translation>
         </message>
@@ -4738,6 +4750,10 @@
         <message>
             <source>Windows context menu</source>
             <translation>Windows 右鍵選單</translation>
+        </message>
+        <message>
+            <source>Your Yuntu account on this device</source>
+            <translation>此裝置上的雲途帳號</translation>
         </message>
         <message>
             <source>Zip archives (*.zip);;All files (*.*)</source>

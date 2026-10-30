@@ -235,20 +235,8 @@
             <translation>&lt;a href="https://www.yuntudata.com.cn/register"&gt;Create an account&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/privacy"&gt;Privacy&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/terms"&gt;Terms&lt;/a&gt;</translation>
         </message>
         <message>
-            <source>Account</source>
-            <translation>Account</translation>
-        </message>
-        <message>
-            <source>Checking subscription…</source>
-            <translation>Checking subscription…</translation>
-        </message>
-        <message>
-            <source>Free account</source>
-            <translation>Free account</translation>
-        </message>
-        <message>
-            <source>Not now</source>
-            <translation>Not now</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
             <source>Password</source>
@@ -271,6 +259,10 @@
             <translation>Sign in with your Yuntu account to use InuShot.</translation>
         </message>
         <message>
+            <source>Sign out</source>
+            <translation>Sign out</translation>
+        </message>
+        <message>
             <source>Sign out of Yuntu apps on this device</source>
             <translation>Sign out of Yuntu apps on this device</translation>
         </message>
@@ -281,14 +273,6 @@
         <message>
             <source>Signing in…</source>
             <translation>Signing in…</translation>
-        </message>
-        <message>
-            <source>Subscription active</source>
-            <translation>Subscription active</translation>
-        </message>
-        <message>
-            <source>Subscription status is temporarily unavailable.</source>
-            <translation>Subscription status is temporarily unavailable.</translation>
         </message>
         <message>
             <source>Welcome to InuShot</source>

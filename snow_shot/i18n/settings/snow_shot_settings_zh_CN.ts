@@ -2024,6 +2024,10 @@
             <translation>当前显示器</translation>
         </message>
         <message>
+            <source>Current user</source>
+            <translation>当前用户</translation>
+        </message>
+        <message>
             <source>Cursor guide line color</source>
             <translation>光标辅助线颜色</translation>
         </message>
@@ -4644,6 +4648,14 @@
             <translation>当本地语言检测结果与主目标语言匹配且达到设置的置信度时，使用此语言</translation>
         </message>
         <message>
+            <source>User</source>
+            <translation>用户</translation>
+        </message>
+        <message>
+            <source>User account</source>
+            <translation>用户账号</translation>
+        </message>
+        <message>
             <source>User initiated</source>
             <translation>用户发起</translation>
         </message>
@@ -4738,6 +4750,10 @@
         <message>
             <source>Windows context menu</source>
             <translation>Windows 右键菜单</translation>
+        </message>
+        <message>
+            <source>Your Yuntu account on this device</source>
+            <translation>此设备上的云途账号</translation>
         </message>
         <message>
             <source>Zip archives (*.zip);;All files (*.*)</source>

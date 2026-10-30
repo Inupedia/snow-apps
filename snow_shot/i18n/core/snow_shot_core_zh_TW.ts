@@ -235,20 +235,8 @@
             <translation>&lt;a href="https://www.yuntudata.com.cn/register"&gt;註冊帳號&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/privacy"&gt;隱私權政策&lt;/a&gt; · &lt;a href="https://www.yuntudata.com.cn/terms"&gt;使用者條款&lt;/a&gt;</translation>
         </message>
         <message>
-            <source>Account</source>
-            <translation>帳號</translation>
-        </message>
-        <message>
-            <source>Checking subscription…</source>
-            <translation>正在查詢訂閱…</translation>
-        </message>
-        <message>
-            <source>Free account</source>
-            <translation>免費帳號</translation>
-        </message>
-        <message>
-            <source>Not now</source>
-            <translation>稍後再說</translation>
+            <source>InuShot</source>
+            <translation>InuShot</translation>
         </message>
         <message>
             <source>Password</source>
@@ -271,6 +259,10 @@
             <translation>登入雲途帳號以使用 InuShot。</translation>
         </message>
         <message>
+            <source>Sign out</source>
+            <translation>登出</translation>
+        </message>
+        <message>
             <source>Sign out of Yuntu apps on this device</source>
             <translation>登出此裝置上的雲途帳號</translation>
         </message>
@@ -281,14 +273,6 @@
         <message>
             <source>Signing in…</source>
             <translation>正在登入…</translation>
-        </message>
-        <message>
-            <source>Subscription active</source>
-            <translation>訂閱已生效</translation>
-        </message>
-        <message>
-            <source>Subscription status is temporarily unavailable.</source>
-            <translation>暫時無法查詢訂閱狀態。</translation>
         </message>
         <message>
             <source>Welcome to InuShot</source>

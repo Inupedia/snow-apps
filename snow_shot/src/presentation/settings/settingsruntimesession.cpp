@@ -1029,6 +1029,8 @@ QVariant SettingsRuntimeSession::readValue(const SettingsFieldDescriptor& descri
 #else
                     return {};
 #endif
+                case SettingsCustomRenderer::MemberAccount:
+                    return {};
                 case SettingsCustomRenderer::StorageStatus:
                     return QVariant::fromValue(m_backend.storageStatus());
                 }
@@ -1137,6 +1139,7 @@ bool SettingsRuntimeSession::writeValue(const SettingsFieldDescriptor& descripto
                 case SettingsCustomRenderer::CloudUploadConfigurations:
                     return value.canConvert<CloudUploadSettings>() &&
                            m_backend.applyCloudUploadSettings(value.value<CloudUploadSettings>());
+                case SettingsCustomRenderer::MemberAccount:
                 case SettingsCustomRenderer::StorageStatus:
                     return false;
                 }
@@ -1251,7 +1254,8 @@ bool SettingsRuntimeSession::isReadOnly(const SettingsFieldDescriptor& descripto
     }
     if (const auto* custom = std::get_if<SettingsCustomDefinition>(&descriptor.definition->payload);
         custom != nullptr &&
-        (custom->renderer == SettingsCustomRenderer::StorageStatus ||
+        (custom->renderer == SettingsCustomRenderer::MemberAccount ||
+         custom->renderer == SettingsCustomRenderer::StorageStatus ||
          custom->renderer == SettingsCustomRenderer::PermissionScreenRecording ||
          custom->renderer == SettingsCustomRenderer::PermissionAccessibility ||
          custom->renderer == SettingsCustomRenderer::PermissionInputMonitoring ||

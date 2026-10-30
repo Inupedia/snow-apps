@@ -402,9 +402,11 @@ void builtInCatalogIsCompleteAndValid() {
             }) != screenshotInterface->items.cend(),
         "selection center guide color must appear immediately below cursor guide color");
 #ifdef Q_OS_MACOS
-    require(catalog.pages().size() == 17, "macOS includes App Permissions");
+    require(catalog.page(QStringLiteral("app-permissions")) != nullptr,
+            "macOS includes App Permissions");
 #else
-    require(catalog.pages().size() == 16, "other platforms include pin management");
+    require(catalog.page(QStringLiteral("pin-to-screen-management")) != nullptr,
+            "other platforms include pin management");
 #endif
 
     for (const auto& pageId :
@@ -594,16 +596,16 @@ void builtInCatalogIsCompleteAndValid() {
             }
         }
     }
-#ifdef Q_OS_MACOS
-    require(sectionCount == 52, "macOS includes permissions and merged storage and desktop groups");
-#elif defined(Q_OS_WIN)
-    require(
-        sectionCount == 53,
-        "Windows includes the context menu shortcut category with capture and recording groups");
-#else
-    require(sectionCount == 52,
-            "catalog includes capture and recording groups with merged storage and desktop groups");
-#endif
+    require(sectionCount > 0, "catalog defines settings sections");
+    const auto* accountItem =
+        catalog.item({QStringLiteral("user"), QStringLiteral("member-account"),
+                      QStringLiteral("system.member-account")});
+    const auto* accountRenderer =
+        accountItem ? std::get_if<settings::SettingsCustomDefinition>(&accountItem->payload)
+                    : nullptr;
+    require(accountRenderer &&
+                accountRenderer->renderer == settings::SettingsCustomRenderer::MemberAccount,
+            "User settings must contain the inline member account section");
     // Verify platform membership directly; shared features have their own binding and metadata
     // assertions, so adding one must not require maintaining an unrelated catalog-wide total.
     const QSet<QString> windowsOnlyItems{
@@ -1857,7 +1859,8 @@ void builtInCatalogIsCompleteAndValid() {
                 .iconFactory &&
             std::get<settings::SettingsLocalShortcutDefinition>(
                 pinToScreenShortcuts->items.at(16).payload)
-                    .iconFactory() == snow_shot::presentation::icons::third_party::outlined::Mouse() &&
+                    .iconFactory() ==
+                snow_shot::presentation::icons::third_party::outlined::Mouse() &&
             std::get<settings::SettingsLocalShortcutDefinition>(
                 pinToScreenShortcuts->items.constFirst().payload)
                     .scope == settings::SettingsLocalShortcutScope::PinToScreen &&
@@ -2313,20 +2316,21 @@ void globalMouseSettingsHaveStableContracts() {
     const auto* pinned = std::get_if<settings::SettingsNavigationPageDefinition>(&navigation.at(3));
     const auto* translation =
         std::get_if<settings::SettingsNavigationPageDefinition>(&navigation.at(4));
-    require(quick != nullptr && quick->pageId == QStringLiteral("global-hotkeys") &&
-                globalMouse != nullptr && globalMouse->id == QStringLiteral("nav.global-mouse") &&
-                globalMouse->pageId == QStringLiteral("global-mouse") && globalMouse->iconFactory &&
-                globalMouse->iconFactory() ==
-                    snow_shot::presentation::icons::third_party::outlined::WheelMouse() &&
-                pinned != nullptr && pinned->pageId == QStringLiteral("pin-to-screen-management") &&
-                pinned->iconFactory &&
-                pinned->iconFactory() ==
-                    snow_shot::presentation::icons::third_party::outlined::PinToScreenManagement() &&
-                translation != nullptr && translation->pageId == QStringLiteral("translation") &&
-                translation->iconFactory && history != nullptr &&
-                history->pageId == QStringLiteral("screenshot-history"),
-            "navigation order must be Global hotkeys, Global mouse, Screenshot history, Pin to "
-            "Screen Management, Translation");
+    require(
+        quick != nullptr && quick->pageId == QStringLiteral("global-hotkeys") &&
+            globalMouse != nullptr && globalMouse->id == QStringLiteral("nav.global-mouse") &&
+            globalMouse->pageId == QStringLiteral("global-mouse") && globalMouse->iconFactory &&
+            globalMouse->iconFactory() ==
+                snow_shot::presentation::icons::third_party::outlined::WheelMouse() &&
+            pinned != nullptr && pinned->pageId == QStringLiteral("pin-to-screen-management") &&
+            pinned->iconFactory &&
+            pinned->iconFactory() ==
+                snow_shot::presentation::icons::third_party::outlined::PinToScreenManagement() &&
+            translation != nullptr && translation->pageId == QStringLiteral("translation") &&
+            translation->iconFactory && history != nullptr &&
+            history->pageId == QStringLiteral("screenshot-history"),
+        "navigation order must be Global hotkeys, Global mouse, Screenshot history, Pin to "
+        "Screen Management, Translation");
 
     for (qsizetype index = 0; index < static_cast<qsizetype>(std::size(expectations)); ++index) {
         const auto& expected = expectations[index];
@@ -2714,14 +2718,14 @@ void globalHotkeyShortcutsHaveStableContracts() {
                     schema->maximumListItems == 2 && schema->defaultValue.toArray().isEmpty(),
                 "save hotkeys support two bindings and start unset");
         const bool saveAsFile = action == Action::ScreenshotSave;
-        require(
-            item->title.translated() ==
-                    (saveAsFile ? QStringLiteral("Save as file") : QStringLiteral("Quick save")) &&
-                shortcut.iconFactory &&
-                shortcut.iconFactory() ==
-                    (saveAsFile ? snow_shot::presentation::icons::third_party::outlined::Save()
-                                : snow_shot::presentation::icons::third_party::outlined::QuickSave()),
-            "save hotkeys reuse the screenshot save labels and icons");
+        require(item->title.translated() == (saveAsFile ? QStringLiteral("Save as file")
+                                                        : QStringLiteral("Quick save")) &&
+                    shortcut.iconFactory &&
+                    shortcut.iconFactory() ==
+                        (saveAsFile
+                             ? snow_shot::presentation::icons::third_party::outlined::Save()
+                             : snow_shot::presentation::icons::third_party::outlined::QuickSave()),
+                "save hotkeys reuse the screenshot save labels and icons");
     }
     require(translationItem != nullptr && translationItem->title.source != nullptr &&
                 QString::fromLatin1(translationItem->title.source) ==
@@ -3827,6 +3831,36 @@ void memoryOptimizationPolicyCatalog() {
 
 int main(int argc, char** argv) {
     QCoreApplication application(argc, argv);
+    if (application.arguments().contains(QStringLiteral("--member-account-only"))) {
+        const auto& registry = settings::builtInSettingsRegistry();
+        require(registry.isValid(), "Account section must preserve a valid settings registry");
+        const auto* page = registry.catalog().page(QStringLiteral("user"));
+        require(page && page->route == QStringLiteral("/settings/user"),
+                "User must have its own settings page and route");
+        bool hasUserNavigation = false;
+        for (const auto& node : registry.catalog().navigation()) {
+            const auto* group = std::get_if<settings::SettingsNavigationGroupDefinition>(&node);
+            if (!group || group->id != QStringLiteral("nav.settings"))
+                continue;
+            for (const auto& entry : group->pages)
+                hasUserNavigation |=
+                    entry.pageId == QStringLiteral("user") && bool(entry.iconFactory);
+        }
+        require(hasUserNavigation, "Settings sidebar must expose a dedicated User menu");
+        require(!registry.catalog().section(QStringLiteral("general"),
+                                            QStringLiteral("member-account")),
+                "Account controls must live on User rather than General");
+        const auto* section =
+            registry.catalog().section(QStringLiteral("user"), QStringLiteral("member-account"));
+        require(section && section->reset == settings::SettingsSectionReset::None &&
+                    section->items.size() == 1,
+                "User account must be a non-resettable section in User settings");
+        const auto* custom =
+            std::get_if<settings::SettingsCustomDefinition>(&section->items.front().payload);
+        require(custom && custom->renderer == settings::SettingsCustomRenderer::MemberAccount,
+                "User account must use the inline member renderer");
+        return 0;
+    }
     if (application.arguments().contains(QStringLiteral("--tray-icons-only"))) {
         trayDarkIconSettingsHaveIndependentContracts();
         return 0;
